@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+    <include
+        android:id="@+id/headactionbar"
+        layout="@layout/common_head" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/rl_askforservice"
+        android:layout_below="@+id/headactionbar"
+        >
+         <LinearLayout
+        android:id="@+id/ll_container_dital"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="@drawable/shape_corner_nostroke_background"
+        android:orientation="vertical" />
+    </ScrollView>
+   
+    <LinearLayout
+        android:id="@+id/ll_container_compent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_askforservice"
+        android:layout_below="@+id/scr_servicedital"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_askforservice"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_red"
+        android:visibility="gone" >
+
+        <!--
+             <TextView
+            style="@style/style_app_headtitle"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:id="@+id/tv_askforservice"
+            android:text="我要预约" >
+             </TextView>
+        -->
+
+        <ImageView
+            android:id="@+id/iv_phone"
+            android:layout_width="15dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/voice_rcd_hint"
+            android:scaleType="fitXY" >
+        </ImageView>
+
+      
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_gray"
+    android:orientation="vertical" >
+    
+    
+     <include
+        android:id="@+id/headactionbar"
+        layout="@layout/common_head" />
+     
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_margin="5dp"
+          android:paddingLeft="5dp"
+         >
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:id="@+id/rl_isemsgopenvoice"
+             >
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/hint_isemsgreciverwithvoice"
+                 android:text="消息提示声音开启/关闭"
+                 android:layout_centerVertical="true"
+                 style="@style/style_app_black_14"
+                 ></TextView>
+             
+             <com.zy.booking.wedget.CheckSwitchButton  
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="5dp"
+                 android:layout_centerVertical="true"
+                 android:id="@+id/prefer_emsg_withvoice"
+                 />
+         </RelativeLayout>
+         
+         <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:background="@drawable/separator"
+             ></View>
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:id="@+id/rl_isemsgopenvoice"
+             >
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/hint_isemsgreciverwithvoice"
+                 android:text="消息提示震动开启/关闭"
+                 android:layout_centerVertical="true"
+                 style="@style/style_app_black_14"
+                 ></TextView>
+             
+             <com.zy.booking.wedget.CheckSwitchButton  
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="5dp"
+                 android:id="@+id/prefer_emsg_withshack"
+                 android:layout_centerVertical="true"
+                 />
+         </RelativeLayout>
+          <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:background="@drawable/separator"
+             ></View>
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:id="@+id/rl_isemsgopenvoice"
+             >
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/hint_isemsgreciverwithvoice"
+                 android:text="检查系统更新"
+                 android:layout_centerVertical="true"
+                 style="@style/style_app_black_14"
+                 ></TextView>
+         </RelativeLayout>
+         
+          <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:background="@drawable/separator"
+             ></View>
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:id="@+id/rl_loginout"
+             >
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:gravity="center_vertical"
+                 android:id="@+id/preference_tv_loginout"
+                 android:text="注销登录"
+                 android:layout_centerVertical="true"
+                 style="@style/style_app_black_14"
+                 android:background="@drawable/selector_tv"
+                 ></TextView>
+         </RelativeLayout>
+         
+           <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:background="@drawable/separator"
+             ></View>
+     </LinearLayout>
+
+</LinearLayout>

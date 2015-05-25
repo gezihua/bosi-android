@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebeeee"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/headactionbar"
+        layout="@layout/common_head" />
+
+    <include
+        android:id="@+id/search_components"
+        layout="@layout/layout_search_component"
+        android:visibility="gone" >
+    </include>
+
+    <LinearLayout
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/headactionbar"
+        android:gravity="center"
+        android:background="#576065"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_proviceselect"
+            style="@style/style_app_black_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/icon_downhint"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="省份"
+            android:tag=""
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_areaselect"
+            style="@style/style_app_black_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/icon_downhint"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="城市"
+            android:tag=""
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_cityselect"
+            style="@style/style_app_black_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/icon_downhint"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="区域"
+            android:tag=""
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_categoryselect"
+            style="@style/style_app_black_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/icon_down"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:tag=""
+            android:visibility="gone"
+            android:text="类别" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/hint_search_split"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/radiogroup"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/icon_separator" >
+    </View>
+
+    <LinearLayout
+        android:id="@+id/ll_search_body"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hint_search_split" />
+
+    <FrameLayout
+        android:id="@+id/layout_frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/hint_search_split"
+        android:background="@drawable/area_popupwind_back"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone" />
+
+</RelativeLayout>

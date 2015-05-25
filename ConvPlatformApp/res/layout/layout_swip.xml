@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+>
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+      <com.zy.booking.wedget.swiptlistview.SwipeListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="48dp"
+            android:divider="@color/list_divider"
+            android:dividerHeight="1px"
+            android:footerDividersEnabled="false"
+            
+            swipe:swipeBackView="@+id/back"
+            swipe:swipeFrontView="@+id/front"
+            android:scrollbarSize="@dimen/listview_scrollbar_width"
+            android:scrollbarThumbVertical="@drawable/scrollbar"
+            swipe:swipeCloseAllItemsWhenMoveList="true"
+            swipe:swipeDrawableChecked="@drawable/choice_selected"
+            swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
+            swipe:swipeIsAutoLoadOnBottom="true"
+            swipe:swipeIsDropDownStyle="false"
+            swipe:swipeIsOnBottomStyle="true"
+            swipe:swipeMode="none" />
+	
+    </android.support.v4.widget.SwipeRefreshLayout> 
+       
+
+   
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminateDuration="700"
+        android:visibility="gone" />
+
+</RelativeLayout>
