@@ -1,4 +1,4 @@
-# Built application files
+ls# Built application files
 *.apk
 *.ap_
 
@@ -25,3 +25,4 @@ proguard/
 
 # Log Files
 *.log
+.DS_Store
