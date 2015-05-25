@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+<!--     <include
+        android:id="@+id/headactionbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        layout="@layout/include_apphead" /> -->
+
+ <include
+        android:id="@+id/editSearchlayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        layout="@layout/include_editsearch" /> 
+         <com.viewpagerindicator.TabPageIndicator
+        android:id="@+id/indicator"
+        android:layout_height="wrap_content"
+         android:layout_below="@+id/editSearchlayout"
+        android:layout_width="match_parent"
+        />
+  <!--   <com.zy.booking.view.prlistview.PRListView
+        android:layout_below="@+id/indicator"
+        android:layout_above="@+id/layout_menu_actionlist"
+        android:id="@+id/lv_comlist"
+        android:dividerHeight="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" /> -->
+         <android.support.v4.view.ViewPager
+        android:id="@+id/vpager_comlist"
+        android:layout_width="fill_parent"
+         android:layout_below="@+id/indicator"
+        android:layout_above="@+id/layout_menu_actionlist"
+        android:layout_height="0dp"
+        />
+        
+    <include layout="@layout/include_menubottom" 
+        android:id="@+id/layout_menu_actionlist"
+        android:layout_alignParentBottom="true"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      />
+</RelativeLayout>

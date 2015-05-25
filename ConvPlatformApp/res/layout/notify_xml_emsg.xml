@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:background="@color/main_gray"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_launcher"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/notify_iv_imgicon"
+            android:layout_centerVertical="true"
+            ></ImageView>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您有一条新消息"
+            android:layout_toRightOf="@+id/notify_iv_imgicon"
+            style="@style/style_app_black_16"
+            android:id="@+id/notify_msgname"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            >
+        </TextView>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+             style="@style/style_app_black_16"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/notify_tv_content"
+            android:layout_toRightOf="@+id/notify_iv_imgicon"
+            android:layout_below="@+id/notify_msgname"
+            android:text="good"
+            android:layout_marginRight="10dp"
+            android:singleLine="true"
+            >
+            </TextView>
+        
+    </RelativeLayout>
+    
+
+</LinearLayout>

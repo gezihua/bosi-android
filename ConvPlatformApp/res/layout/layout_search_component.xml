@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/ll_container_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="#ebeeee"
+       >
+
+        <ImageView
+            android:id="@+id/view_searchcomp_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/btn_back_detail_pressed" >
+        </ImageView>
+
+        <RelativeLayout
+            android:layout_toRightOf="@+id/view_searchcomp_close"
+            android:layout_toLeftOf="@+id/tv_search"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                 android:hint="请输入关键字"
+                 android:gravity="center"
+                 android:paddingLeft="5dp"
+                 style="@style/style_app_black_14"
+                 android:background="@drawable/act_back"
+                android:drawableLeft="@drawable/icon_search" >
+            </EditText>
+
+            <ImageView
+                android:id="@+id/iv_layoutinput_del"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:focusable="false" >
+            </ImageView>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/tv_search"
+            style="@style/style_app_black_16"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_red"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:text="搜索" >
+        </TextView>
+    </RelativeLayout>
+
+</LinearLayout>

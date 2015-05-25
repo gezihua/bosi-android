@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_margin="10dp"
+      android:gravity="center_vertical"
+      android:drawableRight="@drawable/jiantou"
+      android:paddingLeft="5dp"
+      android:paddingRight="5dp"
+      style="@style/style_app_black_18"
+      android:background="@drawable/act_back01"
+      android:text="good"
+      android:id="@+id/tv_item_groupname"
+      ></TextView>
+
+</LinearLayout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/act_back01"
+        >
+        
+        
+        <LinearLayout
+        android:id="@+id/ll_state"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+            
+        android:orientation="vertical" >
+
+        <com.zy.booking.wedget.CircleImageView
+            android:id="@+id/iv_item_intro"
+            android:layout_marginLeft="10dp"
+             android:layout_gravity="center_vertical"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/ll_askstateinfo"
+        android:layout_toRightOf="@+id/ll_state"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_itemlayout_fname"
+            style="@style/style_app_black_18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-" >
+        </TextView>
+
+       
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            
+           <TextView
+            android:id="@+id/tv_itemlayout_comtime"
+            style="@style/style_app_black_12"
+            android:layout_width="wrap_content"
+            android:minWidth="40dp"
+            android:layout_height="18dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:background="@drawable/reddot"
+            android:text="-" />
+
+           
+            <TextView
+            android:id="@+id/tv_itemlayout_fcomment"
+            style="@style/style_app_black_14"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="#878178"
+           
+            android:text="-" >
+        </TextView>
+     
+        </LinearLayout>
+
+          <TextView
+            android:id="@+id/tv_itemlayout_cplace"
+            style="@style/style_app_black_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/icon_location"
+             android:textColor="@color/lighter_gray"
+            android:text="-" > </TextView>
+       
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_askstateinfo"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_sendtime"
+            style="@style/style_app_black_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="good"
+            android:visibility="gone" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_availablenum"
+            style="@style/style_app_black_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="good"
+            android:visibility="gone" >
+        </TextView>
+    </LinearLayout>
+        
+        
+    </RelativeLayout>
+
+    
+
+</RelativeLayout>

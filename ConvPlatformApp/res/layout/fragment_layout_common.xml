@@ -1,0 +1,35 @@
+
+<android.support.v4.widget.DrawerLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/muliti_image_select_drawerlayout"
+    
+      android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    >
+    
+    <RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/headactionbar"
+        android:layout_alignParentTop="true"
+        layout="@layout/common_head"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/headactionbar" >
+
+        <LinearLayout
+            android:id="@+id/ll_container_body"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical" />
+    </ScrollView>
+
+</RelativeLayout>
+    </android.support.v4.widget.DrawerLayout>

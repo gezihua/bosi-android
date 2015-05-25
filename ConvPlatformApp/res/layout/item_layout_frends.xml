@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="5dp"
+         android:background="@drawable/act_back01"
+        >
+        <com.zy.booking.wedget.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/abaose"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/item_friend_icon"
+            android:layout_margin="5dp"
+            />
+        
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/style_app_black_16"
+            android:text="张三"
+            android:id="@+id/tv_item_friend_name"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:singleLine="true"
+            android:layout_toLeftOf="@+id/tv_item_friend_last_infodate"
+            android:layout_toRightOf="@+id/item_friend_icon"
+            ></TextView>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请问您什么时候有时间呢？"
+            android:id="@+id/tv_item_friendslist_lastinfo"
+            android:layout_below="@+id/tv_item_friend_name"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/item_friend_icon"
+            android:textColor="#9A9A9A"
+            android:layout_marginRight="5dp"
+            android:singleLine="true"
+            android:layout_toLeftOf="@+id/tv_friends_info_dothot"
+            ></TextView>
+        
+         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/style_app_black_12"
+            android:text="周三"
+            android:id="@+id/tv_item_friend_last_infodate"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:textColor="#9A9A9A"
+            android:layout_marginRight="5dp"
+            ></TextView>
+        <com.dk.view.drop.WaterDrop
+            android:id="@+id/tv_friends_info_dothot"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:text="5"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/tv_item_friend_last_infodate"
+            />
+    </RelativeLayout>
+    
+    
+
+</LinearLayout>

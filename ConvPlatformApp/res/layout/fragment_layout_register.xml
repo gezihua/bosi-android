@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_search_activity_pink"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/headactionbar"
+        layout="@layout/common_head" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ll_autuinput"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        
+        android:background="@drawable/act_back"
+        >
+        
+        <EditText
+            android:id="@+id/et_regsiger_account"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="手机号"
+            style="@style/zy_booking_et_style"
+            android:phoneNumber="true"
+            android:paddingLeft="5dp"
+            ></EditText>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/separator"
+            ></View>
+        
+         <EditText
+             android:id="@+id/et_regsiger_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="密码"
+            android:paddingLeft="5dp"
+                 style="@style/zy_booking_et_style"
+            android:inputType="textPassword"
+            ></EditText>
+         <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/separator"
+            ></View>
+         <EditText
+            android:id="@+id/et_regsiger_surepassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="5dp"
+            android:hint="确认密码"
+                 style="@style/zy_booking_et_style"
+            android:inputType="textPassword"
+            ></EditText>
+    </LinearLayout>
+    
+     <Button
+         android:id="@+id/bt_register_actionreg"
+         android:layout_width="match_parent"
+        android:layout_height="40dp"
+         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="立即注册"
+      style="@style/zy_booking_bt_style"
+        android:layout_marginTop="50dp"
+         ></Button>
+  
+      
+     
+
+   
+</LinearLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+       <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:scaleType="fitXY"
+        android:id="@+id/iv_psersion_bg"
+        android:src="@drawable/persioninfo_bg"
+        >
+    </ImageView>
+    
+       
+       <com.zy.booking.wedget.CircleImageView 
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:src="@drawable/abaose"
+           android:layout_marginTop="90dp"
+           android:layout_marginLeft = "10dp"
+           android:id="@+id/model_userphoto"
+           />
+       
+       
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/rl_persionalinfo"
+           android:layout_toRightOf="@+id/model_userphoto"
+           android:layout_marginLeft="15dp"
+           android:layout_marginTop="100dp"
+           >
+           <TextView 
+               android:id="@+id/tv_model_name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="#ffffff"
+               
+                android:text="张三"
+               />
+       </RelativeLayout>
+      
+  </RelativeLayout>
+   
+    
+    
+     <LinearLayout
+        android:id="@+id/ll_persional_dital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical" >
+       
+         <include
+             layout="@layout/layout_model_dital"
+             ></include>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_persional_myAlbums"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+      >
+
+        <Button
+            android:id="@+id/bt_send_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="给我留言"
+            style="@style/zy_booking_bt_style"
+            android:visibility="gone"
+            ></Button>
+        
+         <Button
+            android:id="@+id/bt_show_mymsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="查看留言"
+            style="@style/zy_booking_bt_style"
+            android:visibility="gone"
+            ></Button>
+    </LinearLayout>
+    
+
+</LinearLayout>

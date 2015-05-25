@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="1dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:orientation="vertical"
+            >
+             <TextView
+            android:id="@+id/tv_item_timeavail_date"
+            style="@style/style_app_black_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            />
+            <TextView
+                 android:id="@+id/tv_item_timeavail_week"
+            style="@style/style_app_black_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            
+                ></TextView>
+            
+            
+        </LinearLayout>
+
+       
+        <TextView
+            android:id="@+id/tv_item_timeavail_am"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:padding="1dp"
+            android:layout_marginLeft="1dp"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_item_timeavail_pm"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:gravity="center"
+             android:layout_marginLeft="1dp"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_item_timeavail_night"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+             android:layout_marginLeft="1dp"
+            android:padding="1dp"
+            >
+        </TextView>
+    </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="#828588"
+        android:id="@+id/view_timeavail_hint"
+        ></View>
+
+</LinearLayout>
