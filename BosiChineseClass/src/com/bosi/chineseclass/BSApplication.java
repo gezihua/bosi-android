@@ -13,15 +13,14 @@ public class BSApplication extends Application{
 		@Override
 		public void onCreate() {
 			super.onCreate();
+			mApplication = this;
 			storageManagerInit();
 			mActivityStack = new AppActivityStack();
+			
 		}
 		public static BSApplication mApplication=null;
 		
 		public  static BSApplication getInstance(){
-			if(mApplication==null){
-				mApplication = new BSApplication();
-			}
 			return mApplication;
 		}
 		
