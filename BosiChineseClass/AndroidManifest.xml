@@ -6,12 +6,16 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
-
+    
+<!--5565412967e58e1de800669e  -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
+        <meta-data android:value="5565412967e58e1de800669e" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="MODEL-PLATFORM" android:name="UMENG_CHANNEL"/>
     </application>
 
 </manifest>
