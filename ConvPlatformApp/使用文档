@@ -1,0 +1,68 @@
+0.页面 
+
+所有	Activity 均继承 BaseActivity
+所有fragment均继承BaseFragment
+所有左右滑动的页面均继承SampleHolderActivity
+
+
+
+
+
+常见注解：
+@ViewInject 对于view的注解 相当于findviewbyid
+@ContentView 对于activity的注解 相当于setcontentview
+@OnClick 相当于对点击事件的注解 作用于方法头上
+
+默认继承了 BaseActivity 和BaseFragment 在添加上注解后 就相当于对页面的事件和 加载view 做了初始化
+
+要在其他的类上使用注解的话 需要使用ViewUtils.inject 去 加载注解
+
+
+
+1.
+联网
+
+实现 OnHttpActionListener，重写方法后执行 数据返回的相关处理
+
+因为博思的服务 和我这边之前写的接口结构不一致 关于数据发送和接收的格式 这个在与博思那边对接
+
+2.
+存储
+
+文件存储
+统一使用CpApplication 中Storage类 。文件统一路径 放在Appdefine 中配置
+文件的复制／删除／新建／修改等
+
+配置存储
+这个可以自定义
+
+数据库存储
+在com.zy.booking.db 包中 新建一个表
+
+如：
+@Table(name = "sendhistory", execAfterTableCreated = "CREATE UNIQUE INDEX index_name ON history(serviceid)")  // 建议加上注解， 混淆后表名不受影响
+public class HistoryDbBean extends EntityBase{
+	@Column(column = "contect")
+	public String contect; 
+	
+	@Column(column = "isaskd" ,defaultValue="0")
+	public String isAskd;
+	
+	@Column(column = "serviceid")
+	public String serviceId;
+
+}
+
+
+全部使用注解 如上 一个表结构就创建成功了
+
+新建一张表的同时 要新建一个表维护类
+
+继承AbsDbOperation 实现相关操作
+
+默认：清空表，更新表中的某个字段，新增数据 ，查询数据这个需要自己实现
+
+
+3.
+图片加载
+可以参考demo中的例子
