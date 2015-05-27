@@ -38,7 +38,7 @@ public class CpApplication extends Application {
 	public String imei;
 	// 即时通讯系统
 	private EmsgClient mEmsgClient = null;
-	public EmsgManager mEmsgManager;
+	public  EmsgManager mEmsgManager;
 	// 联网系统
 	public XutilHttpPack mHttpPack;
 	// 数据库系统
