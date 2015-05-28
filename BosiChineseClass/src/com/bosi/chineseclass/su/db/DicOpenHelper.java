@@ -20,37 +20,47 @@ public class DicOpenHelper extends SQLiteOpenHelper {
     private final static int VERSION = 1;
     private final static String DB_NAME = "dict.db";
     private final static String DB_PATH = "/data/data/"
-            + BSApplication.getInstance().getPackageName() + "/"
-            + "databases";
+            + BSApplication.getInstance().getPackageName() + "/" + "databases";
     private final Context mContext;
 
     public DicOpenHelper(Context context) {
         this(context, DB_NAME, null, VERSION);
     }
 
-    public DicOpenHelper(Context context, String name, CursorFactory factory, int version) {
+    public DicOpenHelper(Context context, String name, CursorFactory factory,
+            int version) {
         super(context, name, factory, version);
         mContext = context;
         checkDb();
     }
 
     private void checkDb() {
-        Log.e("print", "onCreate");
-        if (!FileUtils.isExist(DB_PATH + "/" + DB_NAME)) {
-            FileUtils.mkdir(DB_PATH, DB_NAME);
-            copyToDb();
-            Log.e("print", "judge----------1");
-        } else {
-            // 判定大小
-            int size = 0;
-            boolean flag = FileUtils.judeSize(DB_PATH + "/" + DB_NAME, size);
-            if (!flag) {
-                Log.e("print", "delete");
-                File file = new File(DB_PATH + "/" + DB_NAME);
-                file.delete();
+        try {
+            Log.i("print", "onCreate");
+            if (!FileUtils.isExist(DB_PATH + "/" + DB_NAME)) {
                 FileUtils.mkdir(DB_PATH, DB_NAME);
                 copyToDb();
+                Log.i("print", "judge----------1");
+            } else {
+                // 判定大小
+                long db = mContext.getDatabasePath(DB_NAME).length();
+                long assets =0;
+                InputStream in = mContext.getAssets().open(DB_NAME);
+                assets = in.available();
+                Log.i("print",db+"--------db------------");
+                Log.i("print",assets+"-------assets-------------");
+                boolean flag = db > assets;
+                if (!flag) {
+                    Log.i("print", "delete");
+                    File file = new File(DB_PATH + "/" + DB_NAME);
+                    file.delete();
+                    FileUtils.mkdir(DB_PATH, DB_NAME);
+                    copyToDb();
+                }
             }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
@@ -65,7 +75,7 @@ public class DicOpenHelper extends SQLiteOpenHelper {
         FileOutputStream fos = null;
         try {
             in = mContext.getAssets().open(DB_NAME);
-            fos = new FileOutputStream(file);
+            fos = new FileOutputStream(file,false);
             byte[] buffer = new byte[1024];
             int count = 0;
             while ((count = (in.read(buffer, 0, 1024))) > 0) {
@@ -95,50 +105,6 @@ public class DicOpenHelper extends SQLiteOpenHelper {
             in = null;
             fos = null;
         }
-    }
-
-    class CopyTask extends AsyncTask {
-
-        @Override
-        protected Object doInBackground(Object... params) {
-            File file = new File(DB_PATH + "/" + DB_NAME);
-            InputStream in = null;
-            FileOutputStream fos = null;
-            try {
-                in = mContext.getAssets().open(DB_NAME);
-                fos = new FileOutputStream(file);
-                byte[] buffer = new byte[1024];
-                int count = 0;
-                while ((count = (in.read(buffer, 0, 1024))) > 0) {
-                    fos.write(buffer, 0, count);
-                }
-                fos.flush();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (in != null) {
-                        in.close();
-                    }
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                try {
-                    if (fos != null) {
-                        fos.close();
-                    }
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                in = null;
-                fos = null;
-            }
-            return null;
-        }
-
     }
 
     @Override

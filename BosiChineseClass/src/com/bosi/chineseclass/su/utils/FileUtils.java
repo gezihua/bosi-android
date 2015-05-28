@@ -7,7 +7,7 @@ public class FileUtils {
 
     public static void mkdir(String db_path, String db_path2) {
         try {
-            File file = new File(db_path+"/"+db_path);
+            File file = new File(db_path+"/"+db_path2);
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdir();
             }
