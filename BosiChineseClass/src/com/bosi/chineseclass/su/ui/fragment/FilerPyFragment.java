@@ -173,13 +173,6 @@ public class FilerPyFragment extends AbsFilterFragment {
     }
 
     @Override
-    public void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-        init();
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFilteredList = new ArrayList<String>();

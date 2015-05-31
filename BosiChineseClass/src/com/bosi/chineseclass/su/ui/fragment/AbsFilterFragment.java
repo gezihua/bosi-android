@@ -15,6 +15,7 @@ public abstract class AbsFilterFragment extends BaseFragment {
         // TODO Auto-generated method stub
         super.onStart();
         mInflater = LayoutInflater.from(getActivity());
+        init();
     }
 
     @Override

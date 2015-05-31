@@ -56,6 +56,8 @@ public class DbUtils {
                 while (cursor.moveToNext()) {
                     list.add(cursor.getString(cursor.getColumnIndex("zi")));
                 }
+                cursor.close();
+                cursor = null;
                 return list;
             }
         } catch (Exception e) {
@@ -65,4 +67,23 @@ public class DbUtils {
         return null;
     }
 
+    public ArrayList<Entity> getFilterListByStoke(String begin) {
+        if (!TextUtils.isEmpty(begin)) {
+            ArrayList<Entity> list = new ArrayList<Entity>();
+            DicOpenHelper openHelper = new DicOpenHelper(mContext);
+            SQLiteDatabase database = openHelper.getReadableDatabase();
+            Cursor curosr = database.query("zbh", null, "begin = ?", new String[] {
+                    begin
+            }, null, null, null);
+            while (curosr.moveToNext()) {
+                Entity temp = new Entity();
+                temp.id = curosr.getString(curosr.getColumnIndex("xuhao"));
+                temp.stokes = curosr.getString(curosr.getColumnIndex("bihua"));
+                temp.word = curosr.getString(curosr.getColumnIndex("zi"));
+                list.add(temp);
+            }
+            return list;
+        }
+        return null;
+    }
 }

@@ -5,7 +5,6 @@
     android:orientation="horizontal" >
 
     <LinearLayout
-        android:id="stoke_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
@@ -18,33 +17,37 @@
             android:text="@string/dict_stoke" />
 
         <Button
+            android:id="@+id/hen_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
         <Button
+            android:id="@+id/shu_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
         <Button
+            android:id="@+id/pie_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
         <Button
+            android:id="@+id/dian_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
         <Button
+            android:id="@+id/zhe_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="stoke_res"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
