@@ -2,6 +2,7 @@
 package com.bosi.chineseclass.su.ui.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import com.bosi.chineseclass.BaseFragment;
@@ -14,8 +15,13 @@ public abstract class AbsFilterFragment extends BaseFragment {
     public void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        mInflater = LayoutInflater.from(getActivity());
         init();
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
+        mInflater = LayoutInflater.from(getActivity());
     }
 
     @Override

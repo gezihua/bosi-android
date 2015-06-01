@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.su.ui.fragment.FilerPyFragment;
+import com.bosi.chineseclass.su.ui.fragment.FiterStokeFragment;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class DictionaryAcitvity extends BaseActivity {
         final ArrayList<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new FilerPyFragment());
         fragments.add(new FilerPyFragment());
-        fragments.add(new FilerPyFragment());
+        fragments.add(new FiterStokeFragment());
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
 
             @Override

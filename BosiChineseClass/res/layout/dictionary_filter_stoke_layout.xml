@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="@string/dict_stoke" />
 
         <Button
@@ -52,6 +52,12 @@
         android:layout_height="match_parent"
         android:layout_weight="5"
         android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="笔画数" />
 
         <Spinner
             android:id="@+id/filter_spinner"
