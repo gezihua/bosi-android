@@ -55,14 +55,18 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activitys.SampleHolderActivity"
+            android:screenOrientation="landscape"
+            >
+            
+            
+        </activity>
         <meta-data android:value="5565412967e58e1de800669e" android:name="UMENG_APPKEY"/>
         <meta-data android:value="DEFAULT" android:name="UMENG_CHANNEL"/>
-        
-        
     </application>
 
 </manifest>
