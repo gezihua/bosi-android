@@ -1,4 +1,5 @@
-package com.zy.booking.wedget;
+package com.bosi.chineseclass.views;
+
 
 import java.util.ArrayList;
 
@@ -8,15 +9,18 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * 自动换行view 当view的宽度到达屏幕的时候 自动换行
+/** 
+ * 自动换行的viewgroup
+ * 
+ * @author zhujohnle
+ * @modify   ＋  reason
  */
-public class FlowLayout extends ViewGroup {
+public class AutoChangeLineViewGroup extends ViewGroup {
 	public static final int DEFAULT_SPACING = 20;
 	/** 横向间隔 */
 	private int mHorizontalSpacing = DEFAULT_SPACING;
 	/** 纵向间隔 */
-	private int mVerticalSpacing = DEFAULT_SPACING;
+	private int mVerticalSpacing = 10;
 	/** 是否需要布局，只用于第一次 */
 	boolean mNeedLayout = true;
 	/** 当前行已用的宽度，由子View宽度加上横向间隔 */
@@ -26,11 +30,9 @@ public class FlowLayout extends ViewGroup {
 	private Line mLine = null;
 	/** 最大的行数 */
 	private int mMaxLinesCount = Integer.MAX_VALUE;
-	private Context mContext;
 
-	public FlowLayout(Context context) {
+	public AutoChangeLineViewGroup(Context context) {
 		super(context);
-		this.mContext = context;
 	}
 
 	public void setHorizontalSpacing(int spacing) {
@@ -79,7 +81,7 @@ public class FlowLayout extends ViewGroup {
 			}
 			
 			int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(sizeWidth,
-					modeWidth == MeasureSpec.EXACTLY ? MeasureSpec.AT_MOST
+					modeWidth == MeasureSpec.EXACTLY ?MeasureSpec.AT_MOST 
 							: modeWidth);
 			int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
 					sizeHeight,
@@ -87,7 +89,7 @@ public class FlowLayout extends ViewGroup {
 							: modeHeight);
 			// 测量child
 			child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
-
+			
 			if (mLine == null) {
 				mLine = new Line();
 			}
@@ -222,7 +224,7 @@ public class FlowLayout extends ViewGroup {
 						topOffset = 0;
 					}
 					// 把剩余空间平均到每个View上
-					childWidth = childWidth + splitSpacing;
+//					childWidth = childWidth + splitSpacing;
 					view.getLayoutParams().width = childWidth;
 					if (splitSpacing > 0) {// View的长度改变了，需要重新measure
 						int widthMeasureSpec = MeasureSpec.makeMeasureSpec(

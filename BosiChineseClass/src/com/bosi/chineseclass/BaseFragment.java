@@ -1,10 +1,5 @@
 package com.bosi.chineseclass;
 
-
-
-
-
-
 import com.lidroid.xutils.ViewUtils;
 
 import android.os.Bundle;
@@ -21,7 +16,7 @@ public abstract class BaseFragment extends Fragment {
 	View mBaseView;
 	
 	
-	BaseActivity mActivity;
+	protected BaseActivity mActivity;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,5 +56,5 @@ public abstract class BaseFragment extends Fragment {
 	/**
 	 * 做一些初始化数据  但是不用在此方法中做相关网络数据 等耗时操作 （防止viewpagger 预加载导致 白屏）
 	 * */
-	abstract void afterViewInject();
+	protected abstract void afterViewInject();
 }

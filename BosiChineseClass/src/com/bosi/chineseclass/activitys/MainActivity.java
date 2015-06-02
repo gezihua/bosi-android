@@ -1,14 +1,15 @@
 
 package com.bosi.chineseclass.activitys;
 
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.su.db.DicOpenHelper;
+import com.bosi.chineseclass.control.PinYinLearnControl;
+import com.bosi.chineseclass.control.SampleHolderControlMake;
 
 public class MainActivity extends BaseActivity {
     @Override
@@ -22,15 +23,21 @@ public class MainActivity extends BaseActivity {
         // // TODO Auto-generated catch block
         // e.printStackTrace();
         // }
+        
         init();
     }
+    
     private void init(){
         Button btn = (Button) findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DicOpenHelper helper = new DicOpenHelper(getBaseContext());
-                SQLiteDatabase database = helper.getReadableDatabase();
+//                DicOpenHelper helper = new DicOpenHelper(getBaseContext());
+//                SQLiteDatabase database = helper.getReadableDatabase();
+            	
+            	Intent mIntent = new Intent(mContext,SampleHolderActivity.class);
+            	mIntent.putExtra(SampleHolderControlMake.mControlName, PinYinLearnControl.class);
+            	startActivity(mIntent);
             }
         });
     }
