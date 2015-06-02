@@ -1,6 +1,7 @@
 
 package com.bosi.chineseclass.su.ui.fragment;
 
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
             if (i == 0) {
                 strs[0] = "全部";
             } else {
-                strs[i] = "" + i;
+                strs[i] = String.valueOf(i);
             }
         }
         ArrayAdapter pyAdapter = new ArrayAdapter<>(getActivity(),
@@ -133,6 +134,7 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
             if (position == 0) {
                 mStokesList = mFirstFilterList;
             } else {
+                Log.e("print", "StokesSelectedListener");
                 filterByStoke(String.valueOf(position));
             }
             ((BaseAdapter) (mResult.getAdapter())).notifyDataSetChanged();
@@ -145,13 +147,13 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
         }
 
         private void filterByStoke(String stoke) {
-            if (mStokesList == null) {
-                mStokesList = new ArrayList<Entity>();
-            }
-            mStokesList.clear();
+            mStokesList = new ArrayList<Entity>();
+            Log.e("print", "-------filterByStoke");
             for (int i = 0; i < mFirstFilterList.size(); i++) {
                 Entity entity = mFirstFilterList.get(i);
+                Log.e("print", "-------" + entity.stokes);
                 if (entity.stokes.equals(stoke)) {
+                    Log.e("print", "-------exe");
                     mStokesList.add(entity);
                 }
 
