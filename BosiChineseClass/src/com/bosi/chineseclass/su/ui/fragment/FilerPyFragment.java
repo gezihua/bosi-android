@@ -36,7 +36,7 @@ public class FilerPyFragment extends AbsFilterFragment {
         mWordsGridView = (GridView) getActivity().findViewById(R.id.result_show_words);
         mPySpinner = (Spinner) getActivity().findViewById(R.id.result_py_filter);
 
-        ArrayAdapter pyAdapter = new ArrayAdapter<>(getActivity(),
+        ArrayAdapter pyAdapter = new ArrayAdapter(getActivity(),
                 android.R.layout.simple_spinner_item, WordUtils.WORDLIST);
         pyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // 设置默认值

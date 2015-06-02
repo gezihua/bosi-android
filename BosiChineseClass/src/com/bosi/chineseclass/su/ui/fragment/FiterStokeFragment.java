@@ -4,15 +4,21 @@ package com.bosi.chineseclass.su.ui.fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Entity;
+import com.emsg.sdk.EmsgClient.MsgTargetType;
+
+import u.aly.s;
 
 import java.util.ArrayList;
 
@@ -27,6 +33,7 @@ import java.util.ArrayList;
  */
 public class FiterStokeFragment extends AbsFilterFragment implements OnClickListener {
     private ArrayList<Entity> mFirstFilterList = new ArrayList<Entity>();
+    private ArrayList<Entity> mStokesList = new ArrayList<Entity>();
     private Spinner mSpinner;
     private View mEmptyView;
     private GridView mResult;
@@ -55,24 +62,27 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
         mSpinner.setVisibility(View.VISIBLE);
         // mSpinner.setOnItemSelectedListener(new SpinnerSelectedListener());
         mSpinner.setSelection(0);
-        
+
         mResult = (GridView) getActivity().findViewById(R.id.filter_result);
         mResult.setAdapter(new ResultAdapter());
+        mResult.setVisibility(View.GONE);
+        mEmptyView.setVisibility(View.VISIBLE);
     }
-    private class ResultAdapter extends BaseAdapter{
+
+    private class ResultAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            if (mFirstFilterList!=null) {
-                return mFirstFilterList.size();
+            if (mStokesList != null) {
+                return mStokesList.size();
             }
             return 0;
         }
 
         @Override
         public Object getItem(int position) {
-            if (mFirstFilterList!=null&&mFirstFilterList.size()>0) {
-                return mFirstFilterList.size();
+            if (mStokesList != null && mStokesList.size() > 0) {
+                return mStokesList.size();
             }
             return null;
         }
@@ -85,14 +95,68 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
-            return null;
+            ViewHolder holder = null;
+            if (convertView == null) {
+                holder = new ViewHolder();
+                holder.text = (TextView) mInflater.inflate(R.layout.py_grid_item, null, false);
+            } else {
+                holder = ((ViewHolder) convertView.getTag());
+            }
+            holder.text.setText(mStokesList.get(position).word);
+            convertView = holder.text;
+            convertView.setTag(holder);
+            return convertView;
         }
-        
+
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+            // if (condition) {
+            //
+            // }
+        }
+
+        private class ViewHolder {
+            TextView text;
+        }
+
     }
 
     public void setSpinnerAdapter(SpinnerAdapter adapter) {
         mSpinner.setAdapter(adapter);
+        mSpinner.setOnItemSelectedListener(new StokesSelectedListener());
+    }
+
+    private class StokesSelectedListener implements OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            if (position == 0) {
+                mStokesList = mFirstFilterList;
+            } else {
+                filterByStoke(String.valueOf(position));
+            }
+            ((BaseAdapter) (mResult.getAdapter())).notifyDataSetChanged();
+            mResult.invalidate();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+
+        private void filterByStoke(String stoke) {
+            if (mStokesList == null) {
+                mStokesList = new ArrayList<Entity>();
+            }
+            mStokesList.clear();
+            for (int i = 0; i < mFirstFilterList.size(); i++) {
+                Entity entity = mFirstFilterList.get(i);
+                if (entity.stokes.equals(stoke)) {
+                    mStokesList.add(entity);
+                }
+
+            }
+        }
 
     }
 
@@ -104,6 +168,7 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
 
     @Override
     public void onClick(View v) {
+        mEmptyView.setVisibility(View.GONE);
         int id = v.getId();
         int begin = 0;
         switch (id) {
@@ -135,7 +200,11 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
         if (begin != 0) {
             mFirstFilterList = DbUtils.getInstance(getActivity()).getFilterListByStoke(
                     String.valueOf(begin));
+            mStokesList = mFirstFilterList;
+            mResult.invalidate();
+            ((BaseAdapter) (mResult.getAdapter())).notifyDataSetChanged();
         }
+        mResult.setVisibility(View.VISIBLE);
 
     }
 
