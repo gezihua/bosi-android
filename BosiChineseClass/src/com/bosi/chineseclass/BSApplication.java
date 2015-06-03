@@ -17,6 +17,7 @@ public class BSApplication extends Application{
 			storageManagerInit();
 			mActivityStack = new AppActivityStack();
 			
+			
 		}
 		public static BSApplication mApplication=null;
 		

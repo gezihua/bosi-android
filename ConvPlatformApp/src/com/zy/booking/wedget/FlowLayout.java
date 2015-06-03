@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-import android.accounts.AbstractAccountAuthenticator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * @data 2015年1月8日
+ * 自动换行view 当view的宽度到达屏幕的时候 自动换行
  */
 public class FlowLayout extends ViewGroup {
 	public static final int DEFAULT_SPACING = 20;
