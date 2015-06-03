@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import u.aly.cu;
+
 import java.util.ArrayList;
 
 public class DbUtils {
@@ -74,7 +76,7 @@ public class DbUtils {
             SQLiteDatabase database = openHelper.getReadableDatabase();
             Cursor curosr = database.query("zbh", null, "begin = ?", new String[] {
                     begin
-            }, null, null, null);
+            }, null, null, "bihua");
             while (curosr.moveToNext()) {
                 Entity temp = new Entity();
                 temp.id = curosr.getString(curosr.getColumnIndex("xuhao"));
@@ -83,6 +85,21 @@ public class DbUtils {
                 list.add(temp);
             }
             return list;
+        }
+        return null;
+    }
+
+    public ArrayList<String> getFilterListByRadical(String valueOf) {
+        if (!TextUtils.isEmpty(valueOf)) {
+            ArrayList<String> list = new ArrayList<String>();
+            Cursor cursor = null;
+            DicOpenHelper openHelper = new DicOpenHelper(mContext);
+            SQLiteDatabase database = openHelper.getReadableDatabase();
+            if (valueOf.equals("0")) {
+                cursor = database.query("bsbh", null, "bihua > 0", null, null, null, "bihua");
+            } else {
+                
+            }
         }
         return null;
     }

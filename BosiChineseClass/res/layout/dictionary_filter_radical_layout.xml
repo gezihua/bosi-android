@@ -45,7 +45,7 @@
             android:layout_height="wrap_content" />
 
         <GridView
-            android:id="@+id/reslut_list"
+            android:id="@+id/reslut_grid"
             android:numColumns="auto_fit"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
