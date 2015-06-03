@@ -11,7 +11,6 @@ public class FilterRadicalFragment  extends AbsFilterFragment{
 
     @Override
     protected View getBasedView() {
-        // TODO Auto-generated method stub
         return null;
     }
 
