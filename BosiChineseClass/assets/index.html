@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<!--[if lt IE 9]>
+  <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+<![endif]-->
+<style type="text/css">
+
+header, footer, nav, section, aside {
+	margin-bottom:20px;
+}
+nav, section, aside {
+	min-height:200px;
+}
+header, footer {
+	min-height:40px;
+	background:#FF0;
+}
+footer {
+	clear:left;
+}
+nav{
+	float:left;
+	width:20%;
+	background:#CCC;
+}
+section{
+	float:left;
+	width:55%;
+	background:#000;
+}
+aside{
+	float:right;
+	width:25%;
+	background:#F00;
+}
+</style>
+</head>
+
+<body>
+<header></header>
+<nav></nav>
+<section></section>
+<aside></aside>
+<footer></footer>
+
+
+<script language="JavaScript">
+a = 7 //最大随机数（图片总数）
+var pp = Math.random();
+var foot = Math.round(pp * (a-1))+1;
+function create() {
+this.src = ''
+this.alt = ''
+}
+b = new Array()
+for(var i=1; i<=a; i++) { b[i] = new create() }
+b[1].src    = "素材/6-6-6-min1-850x587.jpg"
+b[1].alt    = "PS1"
+b[2].src    = "http://www.itblo.com/uploads/allimg/080224/0852581.jpg"
+b[2].alt    = "PS2"
+b[3].src    = "http://www.itblo.com/uploads/allimg/080224/0852582.jpg"
+b[3].alt    = "PS3"
+b[4].src    = "http://www.itblo.com/uploads/allimg/080224/0852583.jpg"
+b[4].alt    = "PS4"
+b[5].src    = "http://www.itblo.com/uploads/allimg/080224/0852584.jpg"
+b[5].alt    = "PS5"
+b[6].src    = "http://www.itblo.com/uploads/allimg/080224/0852585.jpg"
+b[6].alt    = "PS6"
+b[7].src    = "http://www.itblo.com/uploads/allimg/080224/0852586.jpg"
+b[7].alt    = "PS7"
+var pic = "";
+pic += '<img src='+b[foot].src+' border="1"'+' alt='+b[foot].alt+'>';
+document.write(pic)
+</script>
+<script type="text/javascript">
+	function reImg(){
+		var img = document.getElementById("Img");
+		img.src = "Img?rnd=" + Math.random();
+	}
+</script>
+<center>
+    <img id="Img" src="Img" alt="验证码"  />
+    <a href="#" onclick="reImg();">看不清，换一张</a>
+</center>
+
+</body>
+</html>
+
