@@ -1,9 +1,6 @@
 
 package com.bosi.chineseclass.su.ui.fragment;
 
-import android.R.integer;
-import android.content.Entity;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,11 +11,11 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.su.db.DbUtils;
+import com.bosi.chineseclass.su.db.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +38,8 @@ public class FilterRadicalFragment extends AbsFilterFragment {
         setResultAdapter();
         setFilterListAdapter();
         setResultGridAdapter();
+        setResultOnItemClick(mResultGridView);
+        mFilterListView.setOnItemClickListener(new FilterOnItemClickListener());
     }
 
     private void setResultGridAdapter() {
@@ -50,25 +49,28 @@ public class FilterRadicalFragment extends AbsFilterFragment {
     private void setFilterListAdapter() {
         mFilterListView.setAdapter(new FilterAdapter());
     }
-    private class FilterOnItemClickListener implements OnItemClickListener{
+
+    private class FilterOnItemClickListener implements OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (position<=mFilterList.size()&&mFilterList!=null) {
-                List<String> lists=DbUtils.getInstance(getActivity()).getFilterBu(mFilterList.get(position));
-                if (lists!=null&&lists.size()>0) {
+            if (position <= mFilterList.size() && mFilterList != null) {
+                List<String> lists = DbUtils.getInstance(getActivity()).getFilterBu(
+                        mFilterList.get(position));
+                if (lists != null && lists.size() > 0) {
                     String bu = lists.get(0);
                     mResultList = DbUtils.getInstance(getActivity()).getFilterRadicalsBy(bu);
                 }
             }
         }
-        
+
     }
-    private class FilterAdapter extends  BaseAdapter{
+
+    private class FilterAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            if (mFilterList!=null) {
+            if (mFilterList != null) {
                 return mFilterList.size();
             }
             return 0;
@@ -76,7 +78,7 @@ public class FilterRadicalFragment extends AbsFilterFragment {
 
         @Override
         public Object getItem(int position) {
-            if (mFilterList!=null&&mFilterList.size()>=position) {
+            if (mFilterList != null && mFilterList.size() >= position) {
                 mFilterList.get(position);
             }
             return null;
@@ -90,10 +92,10 @@ public class FilterRadicalFragment extends AbsFilterFragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder =null;
-            if (convertView==null) {
+            ViewHolder viewHolder = null;
+            if (convertView == null) {
                 viewHolder = new ViewHolder();
-                viewHolder.text = (TextView) mInflater.inflate(R.layout.py_grid_item, null,false);
+                viewHolder.text = (TextView) mInflater.inflate(R.layout.py_grid_item, null, false);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
@@ -101,10 +103,11 @@ public class FilterRadicalFragment extends AbsFilterFragment {
             convertView.setTag(viewHolder);
             return convertView;
         }
-        private class ViewHolder{
+
+        private class ViewHolder {
             TextView text;
         }
-        
+
     }
 
     private void setResultAdapter() {
@@ -139,7 +142,6 @@ public class FilterRadicalFragment extends AbsFilterFragment {
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-            // TODO Auto-generated method stub
 
         }
 
@@ -153,6 +155,11 @@ public class FilterRadicalFragment extends AbsFilterFragment {
 
     @Override
     public void afterViewInject() {
+    }
+
+    @Override
+    public String getSelectedRstWord(int postion) {
+        return mResultList.get(postion).word;
     }
 
 }

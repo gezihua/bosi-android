@@ -49,6 +49,7 @@ public class FilerPyFragment extends AbsFilterFragment {
         mPyGridView.setOnItemClickListener(new PyOnItemClickListener());
         
         mWordsGridView.setAdapter(new WordsAdapter());
+        setResultOnItemClick(mPyGridView);
     }
 
     private class PyOnItemClickListener implements OnItemClickListener {
@@ -185,6 +186,11 @@ public class FilerPyFragment extends AbsFilterFragment {
     @Override
     public void afterViewInject() {
         mFilteredList = DbUtils.getInstance(getActivity()).getFilterListByPy("A");
+    }
+
+    @Override
+    public String getSelectedRstWord(int postion) {
+        return mSecondFilterList.get(postion);
     }
 
 }

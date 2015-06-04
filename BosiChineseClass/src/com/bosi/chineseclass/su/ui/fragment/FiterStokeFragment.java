@@ -68,6 +68,7 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
         mResult.setAdapter(new ResultAdapter());
         mResult.setVisibility(View.GONE);
         mEmptyView.setVisibility(View.VISIBLE);
+        setResultOnItemClick(mResult);
     }
 
     private class ResultAdapter extends BaseAdapter {
@@ -112,9 +113,6 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
         @Override
         public void notifyDataSetChanged() {
             super.notifyDataSetChanged();
-            // if (condition) {
-            //
-            // }
         }
 
         private class ViewHolder {
@@ -208,6 +206,11 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
         }
         mResult.setVisibility(View.VISIBLE);
 
+    }
+
+    @Override
+    public String getSelectedRstWord(int postion) {
+        return mStokesList.get(postion).word;
     }
 
 }
