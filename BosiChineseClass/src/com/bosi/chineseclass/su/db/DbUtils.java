@@ -6,9 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import u.aly.cu;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class DbUtils {
     private static DbUtils sDbUtils;
@@ -98,8 +97,50 @@ public class DbUtils {
             if (valueOf.equals("0")) {
                 cursor = database.query("bsbh", null, "bihua > 0", null, null, null, "bihua");
             } else {
-                
+                cursor = database.query("bsbh", null, "bihua", new String[] {
+                        valueOf
+                }, null, null, null);
+
             }
+            while (cursor.moveToNext()) {
+                list.add(cursor.getString(cursor.getColumnIndex("bushow")));
+            }
+            return list;
+        }
+        return null;
+    }
+
+    public List<String> getFilterBu(String string) {
+        if (!TextUtils.isEmpty(string)) {
+            ArrayList<String> list = new ArrayList<String>();
+            Cursor cursor = null;
+            DicOpenHelper openHelper = new DicOpenHelper(mContext);
+            SQLiteDatabase database = openHelper.getReadableDatabase();
+            cursor = database.query("bsbh", null, "bushow = ?", new String[] {
+                    string
+            }, null, null, null);
+            while (cursor.moveToNext()) {
+                list.add(cursor.getString(cursor.getColumnIndex("bushow")));
+            }
+            return list;
+        }
+        return null;
+    }
+
+    public ArrayList<Entity> getFilterRadicalsBy(String bu) {
+        if (!TextUtils.isEmpty(bu)) {
+            ArrayList<Entity> list = new ArrayList<Entity>();
+            Cursor cursor = null;
+            DicOpenHelper openHelper = new DicOpenHelper(mContext);
+            SQLiteDatabase database = openHelper.getReadableDatabase();
+            cursor = database.query("bsbh", null, "bu = ?", new String[] {
+                    bu
+            }, null, null, null);
+            while (cursor.moveToNext()) {
+//                Entity temp = new Entity();
+//                temp.word = 
+            }
+            return list;
         }
         return null;
     }

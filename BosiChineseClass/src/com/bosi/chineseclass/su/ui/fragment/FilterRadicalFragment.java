@@ -3,16 +3,22 @@ package com.bosi.chineseclass.su.ui.fragment;
 
 import android.R.integer;
 import android.content.Entity;
+import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.su.db.DbUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +44,71 @@ public class FilterRadicalFragment extends AbsFilterFragment {
     }
 
     private void setResultGridAdapter() {
-        
+
     }
 
     private void setFilterListAdapter() {
-        // TODO Auto-generated method stub
+        mFilterListView.setAdapter(new FilterAdapter());
+    }
+    private class FilterOnItemClickListener implements OnItemClickListener{
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if (position<=mFilterList.size()&&mFilterList!=null) {
+                List<String> lists=DbUtils.getInstance(getActivity()).getFilterBu(mFilterList.get(position));
+                if (lists!=null&&lists.size()>0) {
+                    String bu = lists.get(0);
+                    mResultList = DbUtils.getInstance(getActivity()).getFilterRadicalsBy(bu);
+                }
+            }
+        }
+        
+    }
+    private class FilterAdapter extends  BaseAdapter{
+
+        @Override
+        public int getCount() {
+            if (mFilterList!=null) {
+                return mFilterList.size();
+            }
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            if (mFilterList!=null&&mFilterList.size()>=position) {
+                mFilterList.get(position);
+            }
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            // TODO Auto-generated method stub
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder viewHolder =null;
+            if (convertView==null) {
+                viewHolder = new ViewHolder();
+                viewHolder.text = (TextView) mInflater.inflate(R.layout.py_grid_item, null,false);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+            viewHolder.text.setText(mFilterList.get(position));
+            convertView.setTag(viewHolder);
+            return convertView;
+        }
+        private class ViewHolder{
+            TextView text;
+        }
         
     }
 
     private void setResultAdapter() {
-        
+
     }
 
     private void setFilterAdapter() {
@@ -72,7 +133,8 @@ public class FilterRadicalFragment extends AbsFilterFragment {
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mFilterList = DbUtils.getInstance(getActivity()).getFilterListByRadical(String.valueOf(position));
+            mFilterList = DbUtils.getInstance(getActivity()).getFilterListByRadical(
+                    String.valueOf(position));
         }
 
         @Override
