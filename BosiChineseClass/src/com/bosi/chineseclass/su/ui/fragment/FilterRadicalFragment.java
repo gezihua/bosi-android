@@ -100,6 +100,7 @@ public class FilterRadicalFragment extends AbsFilterFragment {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             viewHolder.text.setText(mFilterList.get(position));
+            convertView = viewHolder.text;
             convertView.setTag(viewHolder);
             return convertView;
         }

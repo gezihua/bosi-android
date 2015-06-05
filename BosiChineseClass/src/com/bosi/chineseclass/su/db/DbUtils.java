@@ -100,47 +100,63 @@ public class DbUtils {
                 cursor = database.query("bsbh", null, "bihua", new String[] {
                         valueOf
                 }, null, null, null);
-
             }
             while (cursor.moveToNext()) {
                 list.add(cursor.getString(cursor.getColumnIndex("bushow")));
             }
+            cursor.close();
+            cursor = null;
             return list;
         }
         return null;
     }
 
     public List<String> getFilterBu(String string) {
-        if (!TextUtils.isEmpty(string)) {
-            ArrayList<String> list = new ArrayList<String>();
-            Cursor cursor = null;
-            DicOpenHelper openHelper = new DicOpenHelper(mContext);
-            SQLiteDatabase database = openHelper.getReadableDatabase();
-            cursor = database.query("bsbh", null, "bushow = ?", new String[] {
-                    string
-            }, null, null, null);
-            while (cursor.moveToNext()) {
-                list.add(cursor.getString(cursor.getColumnIndex("bushow")));
+        try {
+            if (!TextUtils.isEmpty(string)) {
+                ArrayList<String> list = new ArrayList<String>();
+                Cursor cursor = null;
+                DicOpenHelper openHelper = new DicOpenHelper(mContext);
+                SQLiteDatabase database = openHelper.getReadableDatabase();
+                cursor = database.query("bsbh", null, "bushow = ?", new String[] {
+                        string
+                }, null, null, null);
+                while (cursor.moveToNext()) {
+                    list.add(cursor.getString(cursor.getColumnIndex("bushow")));
+                }
+                cursor.close();
+                cursor = null;
+                return list;
             }
-            return list;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         return null;
     }
 
     public ArrayList<Entity> getFilterRadicalsBy(String bu) {
-        if (!TextUtils.isEmpty(bu)) {
-            ArrayList<Entity> list = new ArrayList<Entity>();
-            Cursor cursor = null;
-            DicOpenHelper openHelper = new DicOpenHelper(mContext);
-            SQLiteDatabase database = openHelper.getReadableDatabase();
-            cursor = database.query("bsbh", null, "bu = ?", new String[] {
-                    bu
-            }, null, null, null);
-            while (cursor.moveToNext()) {
-//                Entity temp = new Entity();
-//                temp.word = 
+        try {
+            if (!TextUtils.isEmpty(bu)) {
+                ArrayList<Entity> list = new ArrayList<Entity>();
+                Cursor cursor = null;
+                DicOpenHelper openHelper = new DicOpenHelper(mContext);
+                SQLiteDatabase database = openHelper.getReadableDatabase();
+                cursor = database.query("bsbh", null, "bu = ?", new String[] {
+                        bu
+                }, null, null, null);
+                while (cursor.moveToNext()) {
+                    Entity temp = new Entity();
+                    temp.word = cursor.getString(cursor.getColumnIndex("zi"));
+                    temp.stokes = cursor.getString(cursor.getColumnIndex("sbh"));
+                }
+                cursor.close();
+                cursor = null;
+                return list;
             }
-            return list;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         return null;
     }
