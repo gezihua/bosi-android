@@ -1,6 +1,7 @@
 
 package com.bosi.chineseclass.su.ui.fragment;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -38,8 +39,11 @@ public class FilterRadicalFragment extends AbsFilterFragment {
         setResultAdapter();
         setFilterListAdapter();
         setResultGridAdapter();
+        
         setResultOnItemClick(mResultGridView);
+        mFilterSpinner.setOnItemSelectedListener(new SpinnerSelectedListener());
         mFilterListView.setOnItemClickListener(new FilterOnItemClickListener());
+        
     }
 
     private void setResultGridAdapter() {
@@ -129,7 +133,6 @@ public class FilterRadicalFragment extends AbsFilterFragment {
         pyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // 设置默认值
         mFilterSpinner.setVisibility(View.VISIBLE);
-        mFilterSpinner.setOnItemSelectedListener(new SpinnerSelectedListener());
         mFilterSpinner.setAdapter(pyAdapter);
     }
 
@@ -139,6 +142,9 @@ public class FilterRadicalFragment extends AbsFilterFragment {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             mFilterList = DbUtils.getInstance(getActivity()).getFilterListByRadical(
                     String.valueOf(position));
+            ((BaseAdapter)mFilterListView.getAdapter()).notifyDataSetChanged();
+            mFilterListView.invalidate();
+            Log.e("print", ""+position);
         }
 
         @Override

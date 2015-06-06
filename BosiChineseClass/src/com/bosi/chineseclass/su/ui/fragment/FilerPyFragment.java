@@ -49,7 +49,7 @@ public class FilerPyFragment extends AbsFilterFragment {
         mPyGridView.setOnItemClickListener(new PyOnItemClickListener());
         
         mWordsGridView.setAdapter(new WordsAdapter());
-        setResultOnItemClick(mPyGridView);
+        setResultOnItemClick(mWordsGridView);
     }
 
     private class PyOnItemClickListener implements OnItemClickListener {
@@ -190,7 +190,8 @@ public class FilerPyFragment extends AbsFilterFragment {
 
     @Override
     public String getSelectedRstWord(int postion) {
-        return mSecondFilterList.get(postion);
+//        return mSecondFilterList.get(postion);
+        return null;
     }
 
 }

@@ -97,7 +97,7 @@ public class DbUtils {
             if (valueOf.equals("0")) {
                 cursor = database.query("bsbh", null, "bihua > 0", null, null, null, "bihua");
             } else {
-                cursor = database.query("bsbh", null, "bihua", new String[] {
+                cursor = database.query("bsbh", null, "bihua=?", new String[] {
                         valueOf
                 }, null, null, null);
             }

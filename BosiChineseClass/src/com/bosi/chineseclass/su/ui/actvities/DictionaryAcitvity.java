@@ -4,6 +4,7 @@ package com.bosi.chineseclass.su.ui.actvities;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.bosi.chineseclass.BaseActivity;
@@ -31,7 +32,7 @@ public class DictionaryAcitvity extends BaseActivity {
         fragments.add(new FilerPyFragment());
         fragments.add(new FilterRadicalFragment());
         fragments.add(new FiterStokeFragment());
-        FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+        FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
             @Override
             public int getCount() {
