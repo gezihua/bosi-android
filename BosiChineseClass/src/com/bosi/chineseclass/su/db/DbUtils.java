@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +123,8 @@ public class DbUtils {
                         string
                 }, null, null, null);
                 while (cursor.moveToNext()) {
+                    String temp = cursor.getString(cursor.getColumnIndex("bushow"));
+                    Log.e("print", "temp"+temp);
                     list.add(cursor.getString(cursor.getColumnIndex("bushow")));
                 }
                 cursor.close();
@@ -142,13 +145,14 @@ public class DbUtils {
                 Cursor cursor = null;
                 DicOpenHelper openHelper = new DicOpenHelper(mContext);
                 SQLiteDatabase database = openHelper.getReadableDatabase();
-                cursor = database.query("bsbh", null, "bu = ?", new String[] {
+                cursor = database.query("bushou", null, "bu = ?", new String[] {
                         bu
                 }, null, null, null);
                 while (cursor.moveToNext()) {
                     Entity temp = new Entity();
                     temp.word = cursor.getString(cursor.getColumnIndex("zi"));
                     temp.stokes = cursor.getString(cursor.getColumnIndex("sbh"));
+                    list.add(temp);
                 }
                 cursor.close();
                 cursor = null;
