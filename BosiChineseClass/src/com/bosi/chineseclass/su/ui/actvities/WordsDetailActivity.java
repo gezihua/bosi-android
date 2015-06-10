@@ -12,11 +12,8 @@ import android.widget.ImageView;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
-import com.android.volley.toolbox.ImageLoader.ImageContainer;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.su.db.DbUtils;
