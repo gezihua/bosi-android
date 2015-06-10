@@ -70,6 +70,10 @@
             android:name="com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name="com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity"
+            android:screenOrientation="landscape" >
+        </activity>
          <activity
             android:name=".activitys.SampleHolderActivity"
             android:screenOrientation="landscape"

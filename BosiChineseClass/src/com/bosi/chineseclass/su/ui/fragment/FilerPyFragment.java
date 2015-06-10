@@ -190,8 +190,7 @@ public class FilerPyFragment extends AbsFilterFragment {
 
     @Override
     public String getSelectedRstWord(int postion) {
-//        return mSecondFilterList.get(postion);
-        return null;
+        return mSecondFilterList.get(postion);
     }
 
 }

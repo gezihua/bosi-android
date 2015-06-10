@@ -4,8 +4,11 @@ package com.bosi.chineseclass.su.db;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.UserDictionary.Words;
 import android.text.TextUtils;
 import android.util.Log;
+
+import u.aly.cu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,7 +127,7 @@ public class DbUtils {
                 }, null, null, null);
                 while (cursor.moveToNext()) {
                     String temp = cursor.getString(cursor.getColumnIndex("bushow"));
-                    Log.e("print", "temp"+temp);
+                    Log.e("print", "temp" + temp);
                     list.add(cursor.getString(cursor.getColumnIndex("bushow")));
                 }
                 cursor.close();
@@ -157,6 +160,33 @@ public class DbUtils {
                 cursor.close();
                 cursor = null;
                 return list;
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Word getExplain(String word) {
+        try {
+            if (!TextUtils.isEmpty(word)) {
+                DicOpenHelper openHelper = new DicOpenHelper(mContext);
+                SQLiteDatabase database = openHelper.getReadableDatabase();
+                Cursor cursor = database.query("zidian", null, "zitou = ?", null, null, null, null);
+                Word words = new Word();
+                if (cursor != null && cursor.moveToFirst()) {
+                    words.refid = cursor.getString(cursor.getColumnIndex("refid"));
+                    words.pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+                    words.cy = cursor.getString(cursor.getColumnIndex("cy"));
+                    words.cysy = cursor.getString(cursor.getColumnIndex("cysy"));
+                    words.yanbian = cursor.getString(cursor.getColumnIndex("yanbian"));
+                    words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
+                    words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
+                }
+                cursor.close();
+                cursor = null;
+                return words;
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
