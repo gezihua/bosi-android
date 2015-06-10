@@ -8,14 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.control.PinYinLearnControl;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
+import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
+import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.su.db.DicOpenHelper;
 import com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
@@ -45,6 +48,21 @@ public class MainActivity extends Activity {
 //                Intent mIntent = new Intent(mContext, SampleHolderActivity.class);
 //                mIntent.putExtra(SampleHolderControlMake.mControlName, PinYinLearnControl.class);
 //                startActivity(mIntent);
+            }
+        });
+
+        Button bt_jbzy = (Button) findViewById(R.id.bt_zy);
+        bt_jbzy.setOnClickListener(new View.OnClickListener() {
+            
+            @Override
+            public void onClick(View arg0) {
+                DicOpenHelper helper = new DicOpenHelper(getBaseContext());
+                SQLiteDatabase database = helper.getReadableDatabase();
+
+                BSApplication.getInstance().mDbManager = new DbManager(mContext);
+
+                Intent ziyuanIntent = new Intent(mContext, ZiYuanActivity.class);
+                startActivity(ziyuanIntent);
             }
         });
     }

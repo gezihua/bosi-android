@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="2"
+    android:background="#fff6e7">
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/bg_jbzy_category_circle"/>
+
+    <com.bosi.chineseclass.han.view.CircleLayout
+        android:id="@+id/normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2" >
+
+        <ImageView
+            android:id="@+id/ziyuan_icon_game"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/ziyuan_icon_game" />
+
+        <ImageView
+            android:id="@+id/ziyuan_icon_other"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:background="@drawable/ziyuan_icon_other" />
+
+        <ImageView
+            android:id="@+id/ziyuan_icon_ziran"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:background="@drawable/ziyuan_icon_ziran" />
+
+        <ImageView
+            android:id="@+id/ziyuan_icon_zhiwu"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:background="@drawable/ziyuan_icon_zhiwu" />
+
+        <ImageView
+            android:id="@+id/ziyuan_icon_ren"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:background="@drawable/ziyuan_icon_ren" />
+
+        <TextView
+            android:id="@+id/ziyuan_icon_qiwu"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:background="@drawable/ziyuan_icon_qiwu" />
+    </com.bosi.chineseclass.han.view.CircleLayout>
+
+    <Button
+        android:id="@+id/bt_zjjzy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="专家讲字源" >
+    </Button>
+
+</RelativeLayout>
