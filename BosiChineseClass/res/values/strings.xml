@@ -1,8 +1,7 @@
 <resources>
 
-    <string name="app_name">博思语文</string>
-    <string name = "sm_learn_dital">b#p#m#f#d#t#n#l#g#k#h#j#q#x#zh#ch#sh#r#z#c#s#w#y#w</string>
-    
-    <string name ="ym_learn_dital">a#o#e#i#u#v#ai#ei#ui#ao#ou#iu#ie#ve#er#an#en#in#un#vn#ang#eng#ing#ong</string>
+    <string name="sm_learn_dital">b#p#m#f#d#t#n#l#g#k#h#j#q#x#zh#ch#sh#r#z#c#s#w#y#w</string>
+    <string name="dict_stoke">笔画</string>
+    <string name="ym_learn_dital">a#o#e#i#u#v#ai#ei#ui#ao#ou#iu#ie#ve#er#an#en#in#un#vn#ang#eng#ing#ong</string>
 
 </resources>
