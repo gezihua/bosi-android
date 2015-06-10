@@ -23,6 +23,7 @@ import com.bosi.chineseclass.su.utils.MyVolley;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,8 @@ public class WordsDetailActivity extends BaseActivity {
     private Button mPlayButton = null;
     private TextView mExplainTextView;
     private ViewPager mWordDtail;
-    private TabWidget mWordDetailTab;
     private TextView mYtTextView;
+    private TabPageIndicator mIndicator;
 
     private void init() {
         mOracleImg = (ImageView) findViewById(R.id.oracle_img);
@@ -51,8 +52,8 @@ public class WordsDetailActivity extends BaseActivity {
         mPlayButton = (Button) findViewById(R.id.sound_play);
         mExplainTextView = (TextView) findViewById(R.id.word_explain);
         mWordDtail = (ViewPager) findViewById(R.id.word_detail_body);
-        mWordDetailTab = (TabWidget) findViewById(R.id.word_detail_tab);
         mYtTextView = (TextView) findViewById(R.id.ytzi);
+        mIndicator = (TabPageIndicator) findViewById(R.id.indicator);
         String word = onRecieveIntent();
         mWordTextView.setText(word);
         loadFromRemote();
@@ -107,6 +108,8 @@ public class WordsDetailActivity extends BaseActivity {
                 return sExplain[position];
             }
         });
+        mIndicator.setTabNames(sExplain);
+        mIndicator.setViewPager(mWordDtail);
 
     }
 
