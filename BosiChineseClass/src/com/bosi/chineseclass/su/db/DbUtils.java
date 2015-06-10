@@ -173,10 +173,11 @@ public class DbUtils {
             if (!TextUtils.isEmpty(word)) {
                 DicOpenHelper openHelper = new DicOpenHelper(mContext);
                 SQLiteDatabase database = openHelper.getReadableDatabase();
-                Cursor cursor = database.query("zidian", null, "zitou = ?", null, null, null, null);
+                Cursor cursor = database.query("zidian", null, "zitou = ?", new String[]{word} , null, null, null);
                 Word words = new Word();
                 if (cursor != null && cursor.moveToFirst()) {
                     words.refid = cursor.getString(cursor.getColumnIndex("refid"));
+                    Log.e("print", words.refid+"-----------------------");
                     words.pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
                     words.cy = cursor.getString(cursor.getColumnIndex("cy"));
                     words.cysy = cursor.getString(cursor.getColumnIndex("cysy"));

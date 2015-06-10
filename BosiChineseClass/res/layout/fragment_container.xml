@@ -14,16 +14,17 @@
         <TextView
             android:id="@+id/detail_word"
             android:layout_width="match_parent"
-            android:textSize="40sp"
+            android:layout_height="80dp"
+            android:gravity="center"
             android:textColor="#ff422108"
-            android:layout_height="80dp" />
+            android:textSize="40sp" />
 
         <Button
             android:id="@+id/sound_play"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="left"
-            android:text="播放" />
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:text="@string/play_word" />
     </LinearLayout>
 
     <LinearLayout
@@ -35,7 +36,7 @@
 
         <TextView
             android:id="@+id/ytzi"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="80dp" />
 
         <TextView
@@ -43,10 +44,16 @@
             android:layout_width="match_parent"
             android:layout_height="80dp" />
 
+        <TabWidget
+            android:id="@+id/word_detail_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <android.support.v4.view.ViewPager
             android:id="@+id/word_detail_body"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+        </android.support.v4.view.ViewPager>
     </LinearLayout>
 
     <LinearLayout
@@ -58,8 +65,8 @@
 
         <ImageView
             android:id="@+id/oracle_word"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
 
         <ImageView
             android:id="@+id/oracle_img"
