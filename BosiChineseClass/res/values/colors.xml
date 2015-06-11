@@ -2,4 +2,5 @@
 <resources>
 
     <color name ="bosi_tt_cm_color">#000000</color>
+    <color name="bihua_webview_color">#fdf3d7</color>
 </resources>

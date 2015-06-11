@@ -93,7 +93,7 @@ public enum Techniques {
 
     DropOut(DropOutAnimator.class),
     Landing(LandingAnimator.class),
-    //TakingOff(TakingOffAnimator.class),
+//    TakingOff(TakingOffAnimator.class),
 
     Flash(FlashAnimator.class),
     Pulse(PulseAnimator.class),

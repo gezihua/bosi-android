@@ -51,7 +51,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.bosi.chineseclass.activitys.MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -74,6 +74,35 @@
             android:name=".activitys.SampleHolderActivity"
             android:screenOrientation="landscape"
             >
+        </activity>
+        <activity
+            android:name=".activitys.SampleHolderActivity"
+            android:screenOrientation="landscape"
+            >          
+        </activity>
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.GameActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.ZiYuanActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.ZjjzyAcitivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.ZyObjectActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.ZyCategoryActivity"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 </manifest>
