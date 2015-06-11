@@ -41,5 +41,11 @@
          android:text="字原字典"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    
+     <Button
+        android:id="@+id/btn_feedback"
+         android:text="反馈"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

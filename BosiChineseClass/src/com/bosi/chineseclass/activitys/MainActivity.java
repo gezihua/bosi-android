@@ -15,23 +15,28 @@ import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
 import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.su.db.DicOpenHelper;
 import com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
 
+@ContentView(R.layout.main)
 public class MainActivity extends BaseActivity {
+	
+	FeedbackAgent agent;
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
-        setContentView(R.layout.main);
 
         UmengUpdateAgent.update(this);
-        // try {
-        // getAssets().open("dict.db",0);
-        // } catch (IOException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-
+        agent = new FeedbackAgent(this); 
+        //agent.sync();
         init();
+    }
+   //测试友盟反馈
+    @OnClick(R.id.btn_feedback)
+    public void actionFeedBack(View mView){
+    	agent.startFeedbackActivity();
     }
 
     private void init() {

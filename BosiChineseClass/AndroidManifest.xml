@@ -50,7 +50,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.bosi.chineseclass.activitys.MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,6 +61,7 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5565412967e58e1de800669e" />
+        
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="DEFAULT" />
@@ -104,7 +105,18 @@
             android:screenOrientation="landscape" >
         </activity>
         
-          <activity android:name=".activitys.ReportErrorActivity"
+          <activity
+            android:name="com.umeng.fb.ConversationActivity"
+            android:label="@string/umeng_fb_title"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name="com.umeng.fb.HelpActivity"
+            android:label="@string/umeng_fb_title"
+            android:launchMode="singleTop"/>
+
+        
+        <activity android:name=".activitys.ReportErrorActivity"
             android:process=":remotereporterror" 
             android:exported="true"
             android:screenOrientation="landscape"
