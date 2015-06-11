@@ -68,6 +68,7 @@
 
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity"
+            android:theme="@style/StyledIndicators"
             android:screenOrientation="landscape" >
         </activity>
         <activity
