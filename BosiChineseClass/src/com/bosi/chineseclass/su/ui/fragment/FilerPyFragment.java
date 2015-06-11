@@ -49,7 +49,7 @@ public class FilerPyFragment extends AbsFilterFragment {
         mPyGridView.setOnItemClickListener(new PyOnItemClickListener());
         
         mWordsGridView.setAdapter(new WordsAdapter());
-        setResultOnItemClick(mPyGridView);
+        setResultOnItemClick(mWordsGridView);
     }
 
     private class PyOnItemClickListener implements OnItemClickListener {
