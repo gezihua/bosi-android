@@ -8,4 +8,7 @@
     <string name="bt_03_jbzy">基本字源</string>
     <string name="jbzy_bihua_array">2#3#4#5#6#7#8#9#10#11#12以上</string>
     <string name="jbzy_bihua_12">12以上</string>
+    
+    <string name="dialog_title_exit">留下点什么</string>
+    
 </resources>

@@ -77,7 +77,7 @@ public class CrashHandler  implements Thread.UncaughtExceptionHandler {
         Intent mIntent = new Intent(mContext, ReportErrorActivity.class);
         mIntent.putExtra(ReportErrorActivity.KEY_ERRORMESG, crashReport);
         BSApplication.getInstance().mActivityStack.pop().startActivity(mIntent);
-
+        BSApplication.getInstance().destroySystem();
         //这个地方要把当前进程给关闭了 否则的话 就是僵尸 内存已经被清空
         return true;
     }
