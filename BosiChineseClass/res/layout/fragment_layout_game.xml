@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bosi.demo.GameActivity" >
+
+    <LinearLayout
+        android:id="@+id/game_step_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/game_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/game_step_layout"
+        android:horizontalSpacing="5dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="8"
+        android:verticalSpacing="5dp" >
+    </GridView>
+
+    <LinearLayout 
+        android:id="@+id/game_success_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="#ffdab7"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <ImageView
+            android:src="@drawable/success_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView 
+            android:id="@+id/game_success_bt_next_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textSize="20dp"
+            android:text="进入下一关"/>
+        <TextView 
+            android:id="@+id/game_success_bt_restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="重新开始本关"/>
+    </LinearLayout>"
+
+</RelativeLayout>

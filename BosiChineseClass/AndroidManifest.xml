@@ -9,7 +9,6 @@
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-    <!-- 用于创建覆盖物 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
@@ -75,10 +74,40 @@
             android:name="com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity"
             android:screenOrientation="landscape" >
         </activity>
-         <activity
+           <activity
             android:name=".activitys.SampleHolderActivity"
             android:screenOrientation="landscape"
             >
         </activity>
+        <activity
+            android:name=".activitys.SampleHolderActivity"
+            android:screenOrientation="landscape"
+            >          
+        </activity>
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.GameActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.ZiYuanActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.ZjjzyAcitivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.ZyObjectActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name="com.bosi.chineseclass.han.activitys.ZyCategoryActivity"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 </manifest>
+
