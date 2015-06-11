@@ -1,0 +1,20 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0e85df" >
+
+    <WebView
+        android:id="@+id/webview_zy_object"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    
+    <ImageView 
+        android:id="@+id/bt_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/close_selector"/>
+
+</RelativeLayout>

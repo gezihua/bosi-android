@@ -77,7 +77,7 @@ import com.daimajia.androidanimations.library.specials.RollInAnimator;
 import com.daimajia.androidanimations.library.specials.RollOutAnimator;
 import com.daimajia.androidanimations.library.specials.in.DropOutAnimator;
 import com.daimajia.androidanimations.library.specials.in.LandingAnimator;
-import com.daimajia.androidanimations.library.specials.out.TakingOffAnimator;
+//import com.daimajia.androidanimations.library.specials.out.TakingOffAnimator;
 import com.daimajia.androidanimations.library.zooming_entrances.ZoomInAnimator;
 import com.daimajia.androidanimations.library.zooming_entrances.ZoomInDownAnimator;
 import com.daimajia.androidanimations.library.zooming_entrances.ZoomInLeftAnimator;
@@ -93,7 +93,7 @@ public enum Techniques {
 
     DropOut(DropOutAnimator.class),
     Landing(LandingAnimator.class),
-    TakingOff(TakingOffAnimator.class),
+//    TakingOff(TakingOffAnimator.class),
 
     Flash(FlashAnimator.class),
     Pulse(PulseAnimator.class),
