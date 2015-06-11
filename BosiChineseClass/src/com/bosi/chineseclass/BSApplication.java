@@ -24,7 +24,7 @@ public class BSApplication extends Application{
 			
 			mActivityStack = new AppActivityStack();
 			
-			
+			CrashHandler.getInstance().init(this);
 		}
 		public static BSApplication mApplication=null;
 		

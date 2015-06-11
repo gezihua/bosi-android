@@ -12,6 +12,8 @@
     <!-- 用于创建覆盖物 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    
 
     <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" >
     </permission>
@@ -104,5 +106,11 @@
             android:name="com.bosi.chineseclass.han.activitys.ZyCategoryActivity"
             android:screenOrientation="landscape" >
         </activity>
+        
+        <activity android:name=".activitys.ReportErrorActivity"
+            android:process=":remotereporterror" 
+            android:exported="true"
+            android:screenOrientation="landscape"
+            ></activity>
     </application>
 </manifest>
