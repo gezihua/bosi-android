@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
-
-    <Button
-        android:id="@+id/btn"
+ <Button
+        android:id="@+id/btn_pinyinlearn"
+        android:text="拼音学习"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+  <Button
+        android:id="@+id/btn_pinyinhzcs"
+        android:text="汉字常识"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+   <Button
+       android:id="@+id/btn_jczy"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:text="基础资源" />
+   <Button
+       android:id="@+id/btn_bphz"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:text="爆破汉字" />
+      <Button
+       android:id="@+id/btn_bpcy"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:text="爆破成语" />
+    
     <Button
         android:id="@+id/bt_zy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bt_03_jbzy"/>
+    
+    <Button
+        android:id="@+id/btn"
+         android:text="字原字典"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

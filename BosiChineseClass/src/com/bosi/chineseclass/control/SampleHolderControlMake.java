@@ -1,15 +1,11 @@
 package com.bosi.chineseclass.control;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+
 import java.util.ArrayList;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
-import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.activitys.SampleHolderActivity;
 import com.bosi.chineseclass.activitys.SampleHolderActivity.ISampleControlInterface;
 

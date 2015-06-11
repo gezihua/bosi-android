@@ -1,7 +1,7 @@
 
 package com.bosi.chineseclass.activitys;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,12 +11,11 @@ import android.widget.Button;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.control.PinYinLearnControl;
-import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
 import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.su.db.DicOpenHelper;
 import com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity;
+import com.umeng.update.UmengUpdateAgent;
 
 public class MainActivity extends BaseActivity {
     @Override
@@ -24,6 +23,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(arg0);
         setContentView(R.layout.main);
 
+        UmengUpdateAgent.update(this);
         // try {
         // getAssets().open("dict.db",0);
         // } catch (IOException e) {
