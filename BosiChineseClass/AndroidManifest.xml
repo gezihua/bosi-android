@@ -9,7 +9,6 @@
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-    <!-- 用于创建覆盖物 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
@@ -51,7 +50,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.bosi.chineseclass.activitys.MainActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -68,9 +67,14 @@
 
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity"
+            android:theme="@style/StyledIndicators"
             android:screenOrientation="landscape" >
         </activity>
-         <activity
+        <activity
+            android:name="com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+           <activity
             android:name=".activitys.SampleHolderActivity"
             android:screenOrientation="landscape"
             >
@@ -106,3 +110,4 @@
         </activity>
     </application>
 </manifest>
+
