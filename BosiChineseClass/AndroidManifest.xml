@@ -114,7 +114,10 @@
             android:name="com.umeng.fb.HelpActivity"
             android:label="@string/umeng_fb_title"
             android:launchMode="singleTop"/>
-
+ <activity
+            android:name=".activitys.HzcsActivity"
+            android:screenOrientation="landscape" >
+        </activity>
         
         <activity android:name=".activitys.ReportErrorActivity"
             android:process=":remotereporterror" 

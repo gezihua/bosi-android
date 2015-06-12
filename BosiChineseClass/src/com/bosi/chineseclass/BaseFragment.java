@@ -14,7 +14,6 @@ public abstract class BaseFragment extends Fragment {
 	
 	protected View mBaseView;
 	
-	
 	protected BaseActivity mActivity;
 
 	@Override
@@ -27,29 +26,22 @@ public abstract class BaseFragment extends Fragment {
 		afterViewInject();
 		return mView;
 	}
+	
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
 	};
-
-	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		mActivity = (BaseActivity) getActivity();
 	}
-
-
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 	}
 
-	
-	
 	protected abstract View getBasedView();
 	
 	/**

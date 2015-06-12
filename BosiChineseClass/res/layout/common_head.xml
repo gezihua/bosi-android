@@ -15,7 +15,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:paddingBottom="12dp"
-        android:background="@drawable/common_head_left" />
+        android:text="返回"
+        />
 
     <TextView
         android:id="@+id/common_head_middle"

@@ -7,7 +7,10 @@ import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
-
+/**
+ * 用于自定义 反馈界面
+ * 
+ * */
 @ContentView(R.layout.activity_feedback)
 public class FeedBackActivity extends BaseActivity{
 
@@ -29,3 +32,32 @@ public class FeedBackActivity extends BaseActivity{
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

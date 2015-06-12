@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:id="@+id/umeng_update_frame"
-        android:layout_width="280dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@drawable/umeng_update_dialog_bg"

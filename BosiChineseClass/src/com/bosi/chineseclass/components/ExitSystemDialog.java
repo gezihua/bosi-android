@@ -18,11 +18,9 @@ public class ExitSystemDialog  {
 	
 	public ExitSystemDialog(BaseActivity mActivity){
 		this.mActivity =  mActivity;
-		
 		mDialog = new  android.app.AlertDialog.Builder(mActivity).create();
 		mDialog.show();
 		initExitSystemDialog();
-		
 		//mFbagent.sync();
 	}
 	
@@ -34,7 +32,7 @@ public class ExitSystemDialog  {
 	}
 	@OnClick(R.id.dialog_exit_bt_normal)
     public void actionNormal(View mView){
-		MobclickAgent.onEvent(mActivity, "ID_NORMAL");
+		MobclickAgent.onEvent(mActivity, "ID_NORMAL","ACTION_NORMAL");
 		mDialog.dismiss();
 		BSApplication.getInstance().destroySystem();
 	}
@@ -46,7 +44,6 @@ public class ExitSystemDialog  {
 	
 	private void initExitSystemDialog(){
 		mFbagent = new FeedbackAgent(mActivity);
-		
 		View mViewExit = View.inflate(mActivity, R.layout.dialog_layout_exit, null);
 		ViewUtils.inject(this, mViewExit);
 		mDialog.setCanceledOnTouchOutside(false);

@@ -18,6 +18,7 @@ public class ZiYuanActivity extends BaseActivity{
 
     @ViewInject(R.id.headactionbar)
     View mHeadActionBar;
+    
     HeadLayoutComponents mHeadActionBarComp;
 
     private FragmentManager mFragManager;

@@ -2,11 +2,11 @@ package com.bosi.chineseclass.control;
 
 import java.util.ArrayList;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.bosi.chineseclass.BaseActivity;
-import com.bosi.chineseclass.activitys.SampleHolderActivity;
 import com.bosi.chineseclass.activitys.SampleHolderActivity.ISampleControlInterface;
 import com.bosi.chineseclass.fragments.PyLearnFragment;
 import com.bosi.chineseclass.fragments.PyLearnFragment.CategoryPinyin;

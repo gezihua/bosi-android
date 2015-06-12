@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/common_head"
+             android:id="@+id/headactionbar"
+        
+         />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/icon_basic_bg" >
+
+        <ImageView
+            android:id="@+id/activity_hzcs_iv_hint"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/icon_bg_hzcs"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignLeft="@+id/activity_hzcs_iv_hzqy"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_marginLeft="74dp"
+            android:id="@+id/activity_hzcs_iv_zzff"
+            android:background="@drawable/icon_hzcs_zzff"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="85dp"
+            android:layout_toRightOf="@+id/activity_hzcs_iv_hint"
+            android:background="@drawable/icon_hzcs_hzyb"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/activity_hzcs_iv_hzqy"
+            android:layout_marginRight="74dp"
+            android:background="@drawable/icon_hzcs_qwhz"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/activity_hzcs_iv_hzqy"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/activity_hzcs_iv_hint"
+            android:layout_marginLeft="67dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/icon_hzcs_hzqy"
+            android:scaleType="centerCrop" />
+    </RelativeLayout>
+
+</LinearLayout>
