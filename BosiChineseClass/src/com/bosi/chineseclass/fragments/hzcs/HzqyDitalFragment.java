@@ -1,7 +1,9 @@
 package com.bosi.chineseclass.fragments.hzcs;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar.LayoutParams;
 import android.os.Build;
+import android.text.Layout;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -100,6 +102,9 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 
 		// 伏羲八卦
 		ImageView mIvFxbg = new ImageView(mActivity);
+		LayoutParams mLayoutParmas = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+		mLayoutParmas.setMargins(20, 20, 0, 0);
+		mIvFxbg.setLayoutParams(mLayoutParmas);
 		mIvFxbg.setBackground(getResources().getDrawable(R.drawable.icon_fxbg));
 
 		mIvFxbg.setOnClickListener(new OnClickListener() {
