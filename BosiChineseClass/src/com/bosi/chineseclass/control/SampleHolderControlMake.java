@@ -16,11 +16,30 @@ import com.bosi.chineseclass.activitys.SampleHolderActivity.ISampleControlInterf
 public class SampleHolderControlMake implements ISampleControlInterface{
 	
 
-	ISampleControlInterface mControl;
+	IActivityControl mControl;
+	
 	public static final  String mControlName = "controlname";
 	
 	public SampleHolderControlMake(SampleHolderActivity mActivity,Intent mBundler){
-		mControl = new PinYinLearnControl();
+//		mControl = new PinYinLearnControl();
+//		mControl.onCreate(mBundler);
+		String className = "com.bosi.chineseclass.control."+ mBundler.getStringExtra(mControlName);
+		try {
+			Class mLoadingClass = Class.forName(className);
+			try {
+				mControl =	(IActivityControl) mLoadingClass.newInstance();
+				mControl.onCreate(mBundler);
+				mControl.setContext(mActivity);
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@Override

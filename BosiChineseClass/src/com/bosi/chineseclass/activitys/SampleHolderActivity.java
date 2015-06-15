@@ -65,7 +65,7 @@ public class SampleHolderActivity extends BaseActivity{
 		}
 	};
 	//static 接口才能被外面识别	我就告诉外面 我需要哪些东西 不需要知道他是怎么给我的 因为我就负责显示
-	public static interface ISampleControlInterface{
+	public static interface ISampleControlInterface {
 		public ArrayList<Fragment> getFragments();
 	}
 }

@@ -2,10 +2,15 @@ package com.bosi.chineseclass.control;
 
 import com.bosi.chineseclass.BaseActivity;
 
-import android.os.Bundle;
+import com.bosi.chineseclass.activitys.SampleHolderActivity.ISampleControlInterface;
+import android.content.Intent;
 
-public abstract class IActivityControl {
-	public abstract void onCreate(Bundle mBundle);
+public abstract class IActivityControl implements ISampleControlInterface{
+	
+//	public IActivityControl(){
+//		
+//	}
+	public abstract void onCreate(Intent mBundle);
 	public abstract void onResume();
 	public abstract void onDestroy();
 	

@@ -14,4 +14,20 @@ public class HzybDitalFragment extends AbsHzcsFragment{
 		
 	}
 
+
+	@Override
+	public void actionLeft(View mView) {
+		
+	}
+
+	@Override
+	public void actionRight(View mView) {
+		
+	}
+
+	@Override
+	public void initMenu() {
+		
+	}
+
 }
