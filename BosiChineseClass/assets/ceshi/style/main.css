@@ -1,0 +1,114 @@
+body
+{
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-family:"Microsoft Yahei",微软雅黑,宋体,Arial,Sans-serif;
+}
+#main
+{
+	margin:-100px auto auto -280px;
+	padding:32px 16px 0px 80px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	width:364px;
+	height:268px;
+	background:#f9f3e3;
+	border-radius:20px;
+}
+#top
+{
+	text-align:left;
+}
+#top #text
+{
+	font-size:50px;
+	font-weight:bold;
+	color:#9C403D;
+}
+#phonetic
+{
+	margin:0;
+	font-family:Arial,Sans-serif;
+	color:#419FD0;
+	text-align:left;
+	font-size:25px;
+}
+#imgExample
+{
+	margin:0px 10px;
+	float:left;
+}
+#main ul#tabMainNav
+{
+	margin:20px 0px 0px 0px;
+	padding:0;
+	height:29px;
+	list-sytle:none;
+	text-align:right;
+}
+#main ul#tabMainNav li
+{
+	width:89px;
+	height:29px;
+	line-height:29px;
+	background:url(../images/tabBg.png) no-repeat;
+	display:inline-block;
+	text-align:center;
+	cursor:pointer;
+	font-weight:bolder;
+	font-size:18px;
+	text-shadow:0px 0px 8px #FFFFFF;
+	color:#000000;
+}
+#mainContainer
+{
+	margin:0px 0px 0px 316px;
+	padding:8px 16px 16px 8px;
+	width:524px;
+	height:331px;
+	background:url(../images/image65.png);
+	text-align:left;
+}
+#contentContainer
+{
+	padding:20px;
+	width:484px;
+	height:291px;
+	background:#FFFFCC;
+}
+.tabContent
+{
+	display:none;
+}
+.tabContent p
+{
+	margin:0;
+}
+#textSource
+{
+	font-family:楷体,"Microsoft Yahei",微软雅黑,宋体,Arial,Sans-serif;
+	text-indent:46px;
+	font-weight:bold;
+	font-size:23px;
+	line-height:180%;
+	text-align:left;
+}
+#textExample ul
+{
+	margin:0px auto 20px auto;
+	list-style:none;
+	width:80%;
+	border-bottom:2px solid #990000;
+	text-align:center;
+}
+#textExample ul li
+{
+	display:inline-block;
+	font-weight:bold;
+	font-size:23px;
+	width:30px;
+	height:30px;
+	cursor:pointer;
+}

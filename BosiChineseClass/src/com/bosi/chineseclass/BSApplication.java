@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 
+import com.bosi.chineseclass.components.ExitSystemDialog;
 import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.utils.AppActivityStack;
 import com.sromku.simple.storage.SimpleStorage;
@@ -47,6 +48,11 @@ public class BSApplication extends Application{
 			mStorage.createDirectory(AppDefine.FilePathDefine.APP_GLOBLEFILEPATH, false);
 		}
 		
+       // 退出系统要点赞
+		public void exitApp(){
+			ExitSystemDialog mDialog = new ExitSystemDialog((BaseActivity) mActivityStack.peek());
+			mDialog.mDialog.show();
+		}
 		public void destroySystem() {
 	        try {
 	            isBaiduServiceRunningKill();

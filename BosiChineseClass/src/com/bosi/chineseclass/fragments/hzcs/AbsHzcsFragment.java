@@ -10,8 +10,8 @@ import com.bosi.chineseclass.XutilImageLoader;
 
 //汉字常识的基础功能
 public abstract class AbsHzcsFragment extends BaseFragment {
-	XutilImageLoader mImageLoader;
 	
+	XutilImageLoader mImageLoader;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

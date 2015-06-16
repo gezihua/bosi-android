@@ -3,6 +3,7 @@ package com.bosi.chineseclass.activitys;
 import android.content.Intent;
 
 
+
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,6 @@ import android.widget.Button;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.components.ExitSystemDialog;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
 import com.bosi.chineseclass.han.db.DbManager;
@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity {
 	}
 	@OnClick(R.id.btn_pinyinlearn)
 	public void actionPyLearn(View mView){
-		Intent mIntent = new Intent(this,SampleHolderActivity.class);
+		Intent mIntent = new Intent(this,WebViewActivity.class);
 		mIntent.putExtra(SampleHolderControlMake.mControlName, "PinYinLearnControl");
 		startActivity(mIntent);
 		
@@ -46,9 +46,8 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	public void onBackPressed() {
-
-		ExitSystemDialog mDialog = new ExitSystemDialog(this);
-		mDialog.mDialog.show();
+		BSApplication.getInstance().exitApp();
+		
 	}
 
 	private void init() {
