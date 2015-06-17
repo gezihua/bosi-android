@@ -4,6 +4,7 @@ import android.content.Context;
 
 
 import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
 
 /**
@@ -18,6 +19,7 @@ public class XutilImageLoader {
     private final int DRAWABLE_LOADING  = R.drawable.ic_launcher;
     BitmapUtils mBitmapUtils;
     BitmapDisplayConfig mConfig;
+    HttpUtils mHttpUtils;
     Context mContext ;
     public XutilImageLoader(Context mContext){
     	this.mContext = mContext ;
@@ -28,6 +30,7 @@ public class XutilImageLoader {
     mBitmapUtils = new BitmapUtils(mContext);
     mBitmapUtils.configDefaultLoadFailedImage(DRAWABLE_LOADFILE);
     mBitmapUtils.configDefaultLoadingImage( DRAWABLE_LOADING);
+    
     }
     
     public BitmapUtils getBitmapFactory(){

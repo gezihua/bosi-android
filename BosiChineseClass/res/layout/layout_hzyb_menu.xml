@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="250dp"
+     android:background="@drawable/hzyb_menubg"
+    android:orientation="vertical" >
+    <!-- jjzlk -->
+    <Button
+                android:id="@+id/bt_hzyb_dital_jgw"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:background="@drawable/hzyb_jgw_normal"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="18dp"
+                ></Button>
+
+            <Button
+                android:id="@+id/bt_hzyb_dital_jw"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/hzyb_jw_normal" />
+            
+            
+            <Button
+                android:id="@+id/bt_hzyb_dital_zs"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/hzyb_zs_normal" />
+            
+             <Button
+                android:id="@+id/bt_hzyb_dital_ls"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/hzyb_ls_normal" />
+    
+              <Button
+                android:id="@+id/bt_hzyb_dital_ks"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/hzyb_ks_normal" />
+
+</LinearLayout>

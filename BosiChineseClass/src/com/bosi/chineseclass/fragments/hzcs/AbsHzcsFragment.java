@@ -1,17 +1,15 @@
 package com.bosi.chineseclass.fragments.hzcs;
 
 import android.os.Bundle;
-
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
+import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 
 //汉字常识的基础功能
 public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickListener{
@@ -28,6 +26,10 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	String mCurrentData[];
 	int currentPosition = -1;
 
+	View mViewHead;
+	
+	HeadLayoutComponents mHeadActionBar;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,6 +57,10 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 		mBtLeft.setOnClickListener(this);
 		mBtRight = (Button) mBaseView.findViewById(R.id.bt_hzcs_dital_right);
 		mBtRight.setOnClickListener(this);
+		
+		mViewHead = mBaseView.findViewById(R.id.headactionbar);
+		
+		mHeadActionBar = new HeadLayoutComponents(mActivity,mViewHead);
 		initMenu();
 	}
 

@@ -2,6 +2,7 @@ package com.bosi.chineseclass.fragments.hzcs;
 
 import android.annotation.TargetApi;
 
+
 import android.os.Build;
 import android.view.View;
 import com.bosi.chineseclass.R;
@@ -15,7 +16,7 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	@OnClick(R.id.bt_hzcs_dital_jsjs)
 	public void actionClickJsJs(View mView){
 		mCurrentData = new String[1];
-		mCurrentData[0] = "assets/hzqy/jsjs.png";
+		mCurrentData[0] = "http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/fjsjs/fjsjs-1.png";
 		mBtRight.setVisibility(View.GONE);
 		mBtLeft.setVisibility(View.GONE);
 		currentPosition = 0;
@@ -26,8 +27,8 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	public void actionClickCjzz(View mView){
 
 		mCurrentData = new String[2];
-		mCurrentData[0] = "assets/hzqy/cjzz0.png";
-		mCurrentData[1] = "assets/hzqy/cjzz1.png";
+		mCurrentData[0] = "http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/cjzz/cjzz-1.png";
+		mCurrentData[1] = "http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/cjzz/cjzz-2.png";
 		mBtRight.setVisibility(View.VISIBLE);
 		mBtLeft.setVisibility(View.GONE);
 		currentPosition = 0;
@@ -38,7 +39,7 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	@OnClick(R.id.bt_hzcs_dital_fxbg)
 	public void actionClickFxbg(View mView){
 		mCurrentData = new String[1];
-		mCurrentData[0] = "assets/hzqy/fxbg.png";
+		mCurrentData[0] = "http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/fxbg/fxbg-1.png";
 		mBtRight.setVisibility(View.GONE);
 		mBtLeft.setVisibility(View.GONE);
 		currentPosition = 0;
@@ -51,11 +52,16 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 		mImageLoader.getBitmapFactory().display(mIvDital,
 				"assets/hzqy/hzqy.png");
 		
-		View mMenuView = View.inflate(mActivity, R.layout.layout_hzqy_menu, mLayoutMenu);
-		
+		View mMenuView = View.inflate(mActivity, R.layout.layout_hzqy_menu, null);
+		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
 		mBtLeft.setVisibility(View.GONE);
 		mBtRight.setVisibility(View.GONE);
+	}
+
+	@Override
+	protected void afterViewInject() {
+		super.afterViewInject();
 	}
 
 
