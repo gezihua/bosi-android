@@ -2,15 +2,18 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TabWidget;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
@@ -44,6 +47,8 @@ public class WordsDetailActivity extends BaseActivity {
     private ViewPager mWordDtail;
     private TextView mYtTextView;
     private TabPageIndicator mIndicator;
+    private FragmentManager mFragManager;
+    private VideoView mVideoView;
 
     private void init() {
         mOracleImg = (ImageView) findViewById(R.id.oracle_img);
@@ -54,6 +59,7 @@ public class WordsDetailActivity extends BaseActivity {
         mWordDtail = (ViewPager) findViewById(R.id.word_detail_body);
         mYtTextView = (TextView) findViewById(R.id.ytzi);
         mIndicator = (TabPageIndicator) findViewById(R.id.indicator);
+        mVideoView = (VideoView) findViewById(R.id.dictionary_video);
         String word = onRecieveIntent();
         mWordTextView.setText(word);
         loadFromRemote();
@@ -124,6 +130,11 @@ public class WordsDetailActivity extends BaseActivity {
     private void loadFromRemote() {
         // 这里需要请求四中四种资源
         // 1. 声音 2.动画 3. 字体图片 4 示意图片
+        loadImage();
+        loadVideoAndSound();
+    }
+
+    private void loadImage() {
         MyVolley.getInstance(this)
                 .loadImage(
                         "http://developer.android.com/images/training/system-ui.png",
@@ -158,6 +169,19 @@ public class WordsDetailActivity extends BaseActivity {
 
                             }
                         });
+
+    }
+
+    private void loadVideoAndSound() {
+        mVideoView.setMediaController(new MediaController(this));
+        //TODO:设置正确的专家讲字源路径
+        String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/120001.mp4";
+        playVideo(path);
+    }
+    private void playVideo(String path) {
+        mVideoView.setVideoURI(Uri.parse(path));
+        mVideoView.requestFocus();
+        mVideoView.start();
     }
 
     private final static String ORACLE_IMG = "";
