@@ -22,11 +22,9 @@ public class HzcsActivity extends BaseActivity{
 	HeadLayoutComponents mHeadActionBar;
 	
 	
-	
     @Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		
 		mHeadActionBar = new HeadLayoutComponents(this, mViewHead);
 	}
 	//造字方法

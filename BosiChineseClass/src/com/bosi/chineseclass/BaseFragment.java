@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 
 public abstract class BaseFragment extends Fragment {
+	
 	protected LayoutInflater inflater;
 	
 	protected View mBaseView;
@@ -21,10 +22,10 @@ public abstract class BaseFragment extends Fragment {
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		this.inflater = inflater;
-		View mView =  getBasedView();
-		ViewUtils.inject(this, mView);
+		mBaseView =  getBasedView();
+		ViewUtils.inject(this, mBaseView);
 		afterViewInject();
-		return mView;
+		return mBaseView;
 	}
 	
 	public void onActivityCreated(Bundle savedInstanceState) {

@@ -24,31 +24,8 @@
             android:orientation="vertical"
             android:scaleType="fitXY" >
             
-            <Button
-                android:id="@+id/bt_hzcs_dital_jsjs"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/bg_cjzz_normal"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="18dp"
-                ></Button>
-
-            <Button
-                android:id="@+id/bt_hzcs_dital_cjzz"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/bg_cjzz_normal" />
+            <!-- <include layout="@layout/layout_hzqy_menu"/> 放在代码里面去做--> 
             
-            
-            <Button
-                android:id="@+id/bt_hzcs_dital_fxbg"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/bg_cjzz_normal" />
 
         </LinearLayout>
 
@@ -58,7 +35,6 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="10dp" >
-
             
             <TextView
                 android:layout_width="100dp"

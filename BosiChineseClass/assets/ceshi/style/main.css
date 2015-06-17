@@ -1,19 +1,21 @@
-body
+﻿body
 {
 	margin:0;
 	padding:0;
 	text-align:center;
+
 	font-family:"Microsoft Yahei",微软雅黑,宋体,Arial,Sans-serif;
 }
 #main
 {
-	margin:-100px auto auto -280px;
+	
+margin:-300px auto auto -480px;
 	padding:32px 16px 0px 80px;
 	position:absolute;
 	left:50%;
 	top:50%;
-	width:364px;
-	height:268px;
+	width:864px;
+	height:568px;
 	background:#f9f3e3;
 	border-radius:20px;
 }
