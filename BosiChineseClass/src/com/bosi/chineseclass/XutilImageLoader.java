@@ -1,5 +1,7 @@
 package com.bosi.chineseclass;
 
+import java.io.File;
+
 import android.content.Context;
 
 
@@ -27,7 +29,10 @@ public class XutilImageLoader {
     }
     
     private void init(){
-    mBitmapUtils = new BitmapUtils(mContext);
+    BSApplication.getInstance().mStorage.createDirectory("cache",false);
+    
+    mBitmapUtils = new BitmapUtils(mContext,BSApplication.getInstance().mStorage.getFile("cache").getAbsolutePath());
+    mBitmapUtils.configDiskCacheEnabled(true);
     mBitmapUtils.configDefaultLoadFailedImage(DRAWABLE_LOADFILE);
     mBitmapUtils.configDefaultLoadingImage( DRAWABLE_LOADING);
     

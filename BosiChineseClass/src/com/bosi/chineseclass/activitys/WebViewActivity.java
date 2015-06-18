@@ -31,7 +31,7 @@ public class WebViewActivity extends BaseActivity{
 	        webSettings.setBuiltInZoomControls(true);
 	        // 加载需要显示的网页
 	        // 这个是不行滴  加载不了滴
-	        String url = "file:///android_asset/tuniu/index.html";
+	        String url = "http://manage1.bsccedu.com/temp/1.html";
 	        // 设置Web视图
 	        webview.setWebViewClient(new WebViewClient());
 	        //webview.setWebChromeClient(new MyWebChromeClient());

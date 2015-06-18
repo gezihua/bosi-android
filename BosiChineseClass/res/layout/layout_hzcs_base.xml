@@ -17,13 +17,12 @@
 
         <LinearLayout
             android:id="@+id/ll_hzcs_leftmenu"
-            android:layout_width="90dp"
-            android:layout_height="250dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="vertical"
             android:gravity="center"
            >
-            <include layout="@layout/layout_hzqy_menu" />
             
 
         </LinearLayout>
