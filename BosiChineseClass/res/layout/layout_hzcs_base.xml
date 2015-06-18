@@ -23,8 +23,6 @@
             android:orientation="vertical"
             android:gravity="center"
            >
-            
-
         </LinearLayout>
 
         <RelativeLayout
@@ -49,6 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                 android:layout_marginRight="10dp"
                 android:background="@drawable/hzcs_dital_contentbg"
                 android:gravity="center"
                 android:orientation="vertical" >
@@ -57,11 +57,10 @@
                     android:id="@+id/iv_hzcs_dital"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
                     android:layout_margin="10dp"
-                    android:scaleType="fitXY" />
+                     />
             </LinearLayout>
-
-            
 
             <Button
                 android:id="@+id/bt_hzcs_dital_right"

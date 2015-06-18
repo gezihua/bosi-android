@@ -15,4 +15,9 @@ public class QwhzDitalFragment extends AbsHzcsFragment{
 		
 	}
 
+	@Override
+	public void initWholeArray() {
+		
+	}
+
 }

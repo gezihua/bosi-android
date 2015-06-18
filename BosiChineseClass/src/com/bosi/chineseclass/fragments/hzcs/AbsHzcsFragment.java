@@ -1,5 +1,7 @@
 package com.bosi.chineseclass.fragments.hzcs;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +12,9 @@ import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
+import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 
 //汉字常识的基础功能
 public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickListener{
@@ -66,7 +71,6 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	}
 
 	public abstract void initMenu();
-	public abstract void downloadimgs();
 
 	public void actionLeft(View mView) {
 		currentPosition--;
@@ -115,6 +119,56 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 		}
 	}
 
+	public abstract void initWholeArray();
+	
+	/*---------------添加下载模块----------------*/
+	
+	
+	
+     int loadedData = -1;
+	
+	String [] mAllDataArray ;
+	
+	public void downloadimgs() {
+		initWholeArray();
+		updateProgress();
+		for(int i =0;i<mAllDataArray.length;i++){
+			mImageLoader.getBitmapFactory().display(mIvDital,
+					mAllDataArray[i],new BitmapLoadCallBack<View>() {
+
+						@Override
+						public void onLoadCompleted(View container, String uri,
+								Bitmap bitmap, BitmapDisplayConfig config,
+								BitmapLoadFrom from) {
+							updateProgress();
+						}
+
+						@Override
+						public void onLoadFailed(View container, String uri,
+								Drawable drawable) {
+							updateProgress();
+						}
+						
+						@Override
+						public void onLoading(View container, String uri,
+								BitmapDisplayConfig config, long total,
+								long current) {
+							super.onLoading(container, uri, config, total, current);
+						}
+						
+					});
+		}
+		
+	}
+
+	private void updateProgress(){
+		loadedData++;
+		mActivity.updateProgress(loadedData,mAllDataArray.length-1);
+		if(loadedData==mAllDataArray.length-1){
+			mActivity.dismissProgress();
+		}
+	
+	}
 	
 
 }

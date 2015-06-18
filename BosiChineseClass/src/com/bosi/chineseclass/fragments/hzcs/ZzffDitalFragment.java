@@ -15,4 +15,9 @@ public class ZzffDitalFragment extends AbsHzcsFragment{
 		
 	}
 
+	@Override
+	public void initWholeArray() {
+		
+	}
+
 }

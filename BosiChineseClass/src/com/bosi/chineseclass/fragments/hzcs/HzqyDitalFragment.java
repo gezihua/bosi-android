@@ -47,7 +47,6 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 		mBtLeft.setVisibility(View.GONE);
 		currentPosition = 0;
 		updateDitalPg();
-	
 	}
 	
 	@OnClick(R.id.bt_hzcs_dital_fxbg)
@@ -63,7 +62,7 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	@Override
 	public void initMenu() {
 		mImageLoader.getBitmapFactory().display(mIvDital,
-				"assets/hzqy/hzqy.png");
+				"assets/hzqy/cjzz.png");
 		
 		View mMenuView = View.inflate(mActivity, R.layout.layout_hzqy_menu, null);
 		mLayoutMenu.addView(mMenuView);
@@ -116,7 +115,6 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 						public void onLoading(View container, String uri,
 								BitmapDisplayConfig config, long total,
 								long current) {
-							// TODO Auto-generated method stub
 							super.onLoading(container, uri, config, total, current);
 						}
 						
@@ -132,6 +130,11 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 			mActivity.dismissProgress();
 		}
 	
+	}
+	@Override
+	public void initWholeArray() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
