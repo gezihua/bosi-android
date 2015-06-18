@@ -30,5 +30,10 @@ public class HzybDitalFragment extends AbsHzcsFragment{
 		super.afterViewInject();
 	}
 
+	@Override
+	public void downloadimgs() {
+		
+	}
+
 
 }

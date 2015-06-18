@@ -10,4 +10,9 @@ public class QwhzDitalFragment extends AbsHzcsFragment{
 		
 	}
 
+	@Override
+	public void downloadimgs() {
+		
+	}
+
 }

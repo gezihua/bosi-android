@@ -33,6 +33,7 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(savedInstanceState !=null)return;
 		mImageLoader = new XutilImageLoader(mActivity);
 	}
 
@@ -65,6 +66,7 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	}
 
 	public abstract void initMenu();
+	public abstract void downloadimgs();
 
 	public void actionLeft(View mView) {
 		currentPosition--;

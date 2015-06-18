@@ -10,4 +10,9 @@ public class ZzffDitalFragment extends AbsHzcsFragment{
 		
 	}
 
+	@Override
+	public void downloadimgs() {
+		
+	}
+
 }

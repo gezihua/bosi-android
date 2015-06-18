@@ -38,8 +38,11 @@ public class BaseActivity extends FragmentActivity {
 		mLoadingDialog = new LoadingDialog(this);
 		mLoadingDialog.show();
 	}
-	public void updateProgress(int progress){
-		mLoadingDialog.updateProgress(progress);
+	public void updateProgress(int progress,int max){
+		if(mLoadingDialog==null){
+			showLoadingDialog();
+		}
+		mLoadingDialog.updateProgress(progress,max);
 	}
 	public void dismissProgress(){
 		mLoadingDialog.dismiss();

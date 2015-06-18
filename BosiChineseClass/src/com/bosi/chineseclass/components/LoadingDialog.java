@@ -45,7 +45,8 @@ public class LoadingDialog {
 		mDialog.setCanceledOnTouchOutside(false);
 	}
 	
-	public void updateProgress(int progress){
+	public void updateProgress(int progress,int max){
+		mProgressBar.setMax(max);
 		if(progress>0)
 		mProgressBar.setProgress(progress);
 	}

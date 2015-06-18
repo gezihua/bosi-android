@@ -10,7 +10,7 @@
 
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" >
     </permission>
@@ -42,6 +42,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name="com.bosi.chineseclass.BSApplication"
         android:allowBackup="true"
@@ -61,45 +62,40 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5565412967e58e1de800669e" />
-        
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="DEFAULT" />
 
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity"
-            android:theme="@style/StyledIndicators"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/StyledIndicators" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity"
             android:screenOrientation="landscape" >
         </activity>
-           <activity
+        <activity
             android:name=".activitys.SampleHolderActivity"
-            android:screenOrientation="landscape"
-            >
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.GameActivity"
             android:screenOrientation="landscape" >
         </activity>
-
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZiYuanActivity"
             android:screenOrientation="landscape" >
         </activity>
-
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZjjzyAcitivity"
             android:screenOrientation="landscape" >
         </activity>
-
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZyObjectActivity"
             android:screenOrientation="landscape" >
         </activity>
-
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZyCategoryActivity"
             android:screenOrientation="landscape" >
@@ -108,28 +104,25 @@
             android:name=".activitys.WebViewActivity"
             android:screenOrientation="landscape" >
         </activity>
-        
-          <activity
+        <activity
             android:name="com.umeng.fb.ConversationActivity"
             android:label="@string/umeng_fb_title"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTop"/>
-
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
         <activity
             android:name="com.umeng.fb.HelpActivity"
             android:label="@string/umeng_fb_title"
-            android:launchMode="singleTop"/>
- 		<activity
+            android:launchMode="singleTop" />
+        <activity
             android:name=".activitys.HzcsActivity"
             android:screenOrientation="landscape" >
         </activity>
-        
-        <activity android:name=".activitys.ReportErrorActivity"
-            android:process=":remotereporterror" 
+        <activity
+            android:name=".activitys.ReportErrorActivity"
             android:exported="true"
-            android:screenOrientation="landscape"
-            ></activity>
+            android:process=":remotereporterror"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
-</manifest>
 
-  
+</manifest>

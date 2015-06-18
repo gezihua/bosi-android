@@ -2,6 +2,7 @@ package com.bosi.chineseclass.activitys;
 
 import java.util.ArrayList;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -33,11 +34,14 @@ public class SampleHolderActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle mBundler) {
 		super.onCreate(mBundler);
-		
 		mControlMaker = new SampleHolderControlMake(this, getIntent());
 		setupViewPagger();
 	}
 	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
 	/**
 	 * for set up the viewpager common used
 	 */

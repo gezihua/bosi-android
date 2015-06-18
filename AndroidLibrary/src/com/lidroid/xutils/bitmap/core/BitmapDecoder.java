@@ -15,6 +15,7 @@
 
 package com.lidroid.xutils.bitmap.core;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,7 +29,7 @@ public class BitmapDecoder {
 
     private BitmapDecoder() {
     }
-
+    @SuppressLint("NewApi")
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, BitmapSize maxSize, Bitmap.Config config) {
         synchronized (lock) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -49,7 +50,7 @@ public class BitmapDecoder {
             }
         }
     }
-
+    @SuppressLint("NewApi")
     public static Bitmap decodeSampledBitmapFromFile(String filename, BitmapSize maxSize, Bitmap.Config config) {
         synchronized (lock) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -70,7 +71,7 @@ public class BitmapDecoder {
             }
         }
     }
-
+    @SuppressLint("NewApi")
     public static Bitmap decodeSampledBitmapFromDescriptor(FileDescriptor fileDescriptor, BitmapSize maxSize, Bitmap.Config config) {
         synchronized (lock) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -83,7 +84,7 @@ public class BitmapDecoder {
             if (config != null) {
                 options.inPreferredConfig = config;
             }
-            try {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+            try {
                 return BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
             } catch (Throwable e) {
                 LogUtils.e(e.getMessage(), e);
@@ -91,7 +92,7 @@ public class BitmapDecoder {
             }
         }
     }
-
+    @SuppressLint("NewApi")
     public static Bitmap decodeSampledBitmapFromByteArray(byte[] data, BitmapSize maxSize, Bitmap.Config config) {
         synchronized (lock) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -112,7 +113,7 @@ public class BitmapDecoder {
             }
         }
     }
-
+    @SuppressLint("NewApi")
     public static Bitmap decodeResource(Resources res, int resId) {
         synchronized (lock) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -126,7 +127,7 @@ public class BitmapDecoder {
             }
         }
     }
-
+    @SuppressLint("NewApi")
     public static Bitmap decodeFile(String filename) {
         synchronized (lock) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -140,7 +141,7 @@ public class BitmapDecoder {
             }
         }
     }
-
+    @SuppressLint("NewApi")
     public static Bitmap decodeFileDescriptor(FileDescriptor fileDescriptor) {
         synchronized (lock) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -155,7 +156,8 @@ public class BitmapDecoder {
         }
     }
 
-    public static Bitmap decodeByteArray(byte[] data) {
+    @SuppressLint("NewApi")
+	public static Bitmap decodeByteArray(byte[] data) {
         synchronized (lock) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPurgeable = true;
