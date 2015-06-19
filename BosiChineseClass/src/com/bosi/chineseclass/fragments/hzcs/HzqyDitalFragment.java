@@ -1,17 +1,13 @@
 package com.bosi.chineseclass.fragments.hzcs;
 
 import android.annotation.TargetApi;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+
 
 
 import android.os.Build;
 import android.view.View;
 import com.bosi.chineseclass.R;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
-import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
-import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 //汉字起源
@@ -83,57 +79,12 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	String mDataArrayCjzz [];
 	String mDataArrayFxbg [];
 	
-	int loadedData = -1;
-	
-	String [] mAllDataArray ;
 	@Override
-	public void downloadimgs() {
-		
+	public void initWholeArray() {
 		mAllDataArray = new String [mDataArrayJsjs.length+mDataArrayCjzz.length+mDataArrayFxbg.length];
-		updateProgress();
 		System.arraycopy(mDataArrayJsjs, 0, mAllDataArray, 0, mDataArrayJsjs.length);
 		System.arraycopy(mDataArrayCjzz, 0, mAllDataArray, mDataArrayJsjs.length, mDataArrayCjzz.length);
 		System.arraycopy(mDataArrayFxbg, 0, mAllDataArray,  mDataArrayJsjs.length+mDataArrayCjzz.length, mDataArrayFxbg.length);
-		for(int i =0;i<mAllDataArray.length;i++){
-			mImageLoader.getBitmapFactory().display(mIvDital,
-					mAllDataArray[i],new BitmapLoadCallBack<View>() {
-
-						@Override
-						public void onLoadCompleted(View container, String uri,
-								Bitmap bitmap, BitmapDisplayConfig config,
-								BitmapLoadFrom from) {
-							updateProgress();
-						}
-
-						@Override
-						public void onLoadFailed(View container, String uri,
-								Drawable drawable) {
-							updateProgress();
-						}
-						
-						@Override
-						public void onLoading(View container, String uri,
-								BitmapDisplayConfig config, long total,
-								long current) {
-							super.onLoading(container, uri, config, total, current);
-						}
-						
-					});
-		}
-		
-	}
-
-	private void updateProgress(){
-		loadedData++;
-		mActivity.updateProgress(loadedData,mAllDataArray.length-1);
-		if(loadedData==mAllDataArray.length-1){
-			mActivity.dismissProgress();
-		}
-	
-	}
-	@Override
-	public void initWholeArray() {
-		// TODO Auto-generated method stub
 		
 	}
 

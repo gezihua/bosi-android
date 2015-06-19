@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 
 import com.bosi.chineseclass.activitys.SampleHolderActivity;
 import com.bosi.chineseclass.activitys.SampleHolderActivity.ISampleControlInterface;
+import com.bosi.chineseclass.utils.ReflectUtils;
 
 /**
  * 使用SampleHolderActivity 页面的需要在这里注册
@@ -21,25 +22,12 @@ public class SampleHolderControlMake implements ISampleControlInterface{
 	public static final  String mControlName = "controlname";
 	
 	public SampleHolderControlMake(SampleHolderActivity mActivity,Intent mBundler){
-//		mControl = new PinYinLearnControl();
-//		mControl.onCreate(mBundler);
-		String className = "com.bosi.chineseclass.control."+ mBundler.getStringExtra(mControlName);
-		try {
-			Class mLoadingClass = Class.forName(className);
-			try {
-				mControl =	(IActivityControl) mLoadingClass.newInstance();
-				mControl.onCreate(mBundler);
-				mControl.setContext(mActivity);
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		mControl = ReflectUtils.getObjectFromPackage("com.bosi.chineseclass.control", mBundler.getStringExtra(mControlName), IActivityControl.class);
+		if(mControl ==null){
+			mControl = new HzcsDitalContarol();
 		}
-		
+		mControl.onCreate(mBundler);
+		mControl.setContext(mActivity);
 	}
 	
 	@Override

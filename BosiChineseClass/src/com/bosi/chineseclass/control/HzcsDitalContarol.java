@@ -3,13 +3,14 @@ package com.bosi.chineseclass.control;
 import java.util.ArrayList;
 
 
+
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import com.bosi.chineseclass.BaseActivity;
+import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.activitys.SampleHolderActivity.ISampleControlInterface;
-import com.bosi.chineseclass.fragments.hzcs.HzqyDitalFragment;
-import com.bosi.chineseclass.fragments.hzcs.HzybDitalFragment;
+import com.bosi.chineseclass.utils.ReflectUtils;
 
 public class HzcsDitalContarol extends IActivityControl implements ISampleControlInterface{
 
@@ -18,11 +19,7 @@ public class HzcsDitalContarol extends IActivityControl implements ISampleContro
 	@Override
 	public ArrayList<Fragment> getFragments() {
 		ArrayList<Fragment> mFragments = new ArrayList<Fragment>();
-		if(mFragmentName.equals("HzqyDitalFragment")){
-			mFragments.add(new HzqyDitalFragment());
-		}else if(mFragmentName.equals("HzybDitalFragment")){
-			mFragments.add(new HzybDitalFragment());
-		}
+		mFragments.add(ReflectUtils.getObjectFromPackage("com.bosi.chineseclass.fragments.hzcs", mFragmentName,BaseFragment.class));
 		return mFragments;
 	}
 

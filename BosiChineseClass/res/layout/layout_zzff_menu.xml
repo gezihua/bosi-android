@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <!--  造字方法  xzhxjz-->
+    <LinearLayout
+        android:layout_width="90dp"
+        android:layout_height="250dp"
+        android:orientation="vertical"
+        android:background="@drawable/zzff_menubg" >
+
+        <Button
+            android:id="@+id/bt_zzff_dital_xx"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/zzff_xx_selector" >
+        </Button>
+
+        <Button
+            android:id="@+id/bt_zzff_dital_zs"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/zzff_zs_selector" />
+
+        <Button
+            android:id="@+id/bt_zzff_dital_hy"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/zzff_hy_selector" />
+        
+        
+        <Button
+            android:id="@+id/bt_zzff_dital_xs"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/zzff_xs_selector" />
+        
+        
+        <Button
+            android:id="@+id/bt_zzff_dital_jj"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/zzff_jj_selector" />
+        
+        
+        <Button
+            android:id="@+id/bt_zzff_dital_zz"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/zzff_zz_selector" />
+    </LinearLayout>
+
+</LinearLayout>

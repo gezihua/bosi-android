@@ -9,17 +9,19 @@
         layout="@layout/common_head" >
     </include>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl_hzcs_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/hzqy_ditalbg"
+         android:background="@drawable/quhz_bg"
         android:orientation="horizontal" >
 
         <LinearLayout
             android:id="@+id/ll_hzcs_leftmenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:orientation="vertical"
             android:gravity="center"
            >
@@ -28,8 +30,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginRight="20dp"
+           
             android:layout_marginTop="10dp" >
             
             <TextView
@@ -82,6 +85,6 @@
                 android:background="@drawable/hzqy_dital_content_pre" >
             </Button>
         </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity {
 	}
 	@OnClick(R.id.btn_pinyinlearn)
 	public void actionPyLearn(View mView){
-		Intent mIntent = new Intent(this,WebViewActivity.class);
+		Intent mIntent = new Intent(this,SampleHolderControlMake.class);
 		mIntent.putExtra(SampleHolderControlMake.mControlName, "PinYinLearnControl");
 		startActivity(mIntent);
 		

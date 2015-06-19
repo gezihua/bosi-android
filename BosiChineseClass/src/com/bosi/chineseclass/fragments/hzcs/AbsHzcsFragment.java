@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.fragments.hzcs;
 
 import android.graphics.Bitmap;
+
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,9 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	
 	HeadLayoutComponents mHeadActionBar;
 	
+	View mViewBody;
+
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,6 +70,8 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 		
 		mViewHead = mBaseView.findViewById(R.id.headactionbar);
 		
+		mViewBody = mBaseView.findViewById(R.id.rl_hzcs_body);
+		displayBgView();
 		mHeadActionBar = new HeadLayoutComponents(mActivity,mViewHead);
 		initMenu();
 	}
@@ -119,15 +125,17 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 		}
 	}
 
+	protected void displayBgView(){
+		mViewBody.setBackgroundResource(R.drawable.hzqy_ditalbg);
+	}
 	public abstract void initWholeArray();
 	
 	/*---------------添加下载模块----------------*/
 	
 	
-	
      int loadedData = -1;
 	
-	String [] mAllDataArray ;
+	 String [] mAllDataArray ;
 	
 	public void downloadimgs() {
 		initWholeArray();
@@ -167,7 +175,6 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 		if(loadedData==mAllDataArray.length-1){
 			mActivity.dismissProgress();
 		}
-	
 	}
 	
 

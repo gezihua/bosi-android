@@ -2,6 +2,7 @@ package com.bosi.chineseclass.activitys;
 
 
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -30,11 +31,11 @@ public class HzcsActivity extends BaseActivity{
 	//造字方法
 	@OnClick(R.id.iv_hzcs_zzff)
 	public void actionZzff(View mView){
-		
+		_intentTo_("ZzffDitalFragment");
 	}
 	@OnClick(R.id.iv_hzcs_qwhz)
 	public void actionQwhz(View mView){
-		
+		_intentTo_("QwhzDitalFragment");
 	}
 	@OnClick(R.id.iv_hzcs_hzyb)
 	public void actionHzyb(View mView){
@@ -45,14 +46,8 @@ public class HzcsActivity extends BaseActivity{
 	public void actionHzqy(View mView){
 		_intentTo_("HzqyDitalFragment");
 	}
-	//汉字演变
-	public void actionHzyb(){
-		
-	}
-	//趣味汉字
-	public void actionQwhz(){
-		
-	}
+	
+	
 
 	
 	private void _intentTo_(String frgmentName){

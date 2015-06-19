@@ -61,17 +61,12 @@ public class HzybDitalFragment extends AbsHzcsFragment{
 	private void initArrays(){
 		
 	}
-	
-
-	@Override
-	public void downloadimgs() {
-		
-	}
 	@Override
 	public void initWholeArray() {
-		// TODO Auto-generated method stub
 		
 	}
+	
+
 
 
 }
