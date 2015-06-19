@@ -37,7 +37,7 @@ public class FilerPyFragment extends AbsFilterFragment {
         mPySpinner = (Spinner) getActivity().findViewById(R.id.result_py_filter);
 
         ArrayAdapter pyAdapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_spinner_item, WordUtils.WORDLIST);
+                R.layout.spiner_item, WordUtils.WORDLIST);
         pyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // 设置默认值
         mPySpinner.setVisibility(View.VISIBLE);

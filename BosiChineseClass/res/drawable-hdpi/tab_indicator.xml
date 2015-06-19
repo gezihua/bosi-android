@@ -1,8 +1,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/indivitor_default_color" android:state_pressed="false" android:state_selected="false"/>
-    <item android:drawable="@color/indivitor_default_color" android:state_pressed="true" android:state_selected="false"/>
-    <item android:drawable="@drawable/base_tabpager_indicator_selected" android:state_pressed="false" android:state_selected="true"/>
-    <item android:drawable="@drawable/base_tabpager_indicator_selected" android:state_pressed="true" android:state_selected="true"/>
+    <item android:drawable="@drawable/indivator_default_color" android:state_pressed="false" android:state_selected="false"/>
+    <item android:drawable="@drawable/indivator_default_color" android:state_pressed="true" android:state_selected="false"/>
+    <item android:drawable="@drawable/indivator_selected_drawable" android:state_pressed="false" android:state_selected="true"/>
+    <item android:drawable="@drawable/indivator_selected_drawable" android:state_pressed="true" android:state_selected="true"/>
 
 </selector>

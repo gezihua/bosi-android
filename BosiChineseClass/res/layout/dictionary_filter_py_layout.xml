@@ -11,16 +11,52 @@
         android:layout_weight="3"
         android:orientation="vertical" >
 
-        <Spinner
-            android:id="@+id/result_py_filter"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="拼音" />
+
+            <Spinner
+                android:id="@+id/result_py_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/spiner_background" />
+        </LinearLayout>
 
         <GridView
             android:id="@+id/result_show"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:numColumns="3" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/main_background"
+            android:numColumns="3"
+            android:padding="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/dic_divider_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,6 +70,11 @@
             android:id="@+id/result_show_words"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/main_background"
             android:numColumns="5" />
     </LinearLayout>
 

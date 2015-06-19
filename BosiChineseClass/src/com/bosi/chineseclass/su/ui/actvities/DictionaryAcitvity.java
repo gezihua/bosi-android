@@ -7,12 +7,15 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.View;
 
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.ui.fragment.FilerPyFragment;
 import com.bosi.chineseclass.su.ui.fragment.FilterRadicalFragment;
 import com.bosi.chineseclass.su.ui.fragment.FiterStokeFragment;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
@@ -21,6 +24,8 @@ public class DictionaryAcitvity extends BaseActivity {
     private final static String sTitleList[] = {
             "拼音","部首","起笔"
     };
+    View mHeadActionBar;
+    HeadLayoutComponents mHeadActionBarComp;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -28,8 +33,17 @@ public class DictionaryAcitvity extends BaseActivity {
         setContentView(R.layout.dictionary_main_layout);
         init();
     }
+    private void initHeadActionBarComp() {
+        mHeadActionBarComp = new HeadLayoutComponents(this, mHeadActionBar);
+
+        mHeadActionBarComp.setTextMiddle("资源字典", -1);
+        mHeadActionBarComp.setDefaultLeftCallBack(true);
+        mHeadActionBarComp.setDefaultRightCallBack(true);
+    }
 
     private void init() {
+        mHeadActionBar = findViewById(R.id.dic_headactionbar);
+        initHeadActionBarComp();
         final ArrayList<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new FilerPyFragment());
         fragments.add(new FilterRadicalFragment());
