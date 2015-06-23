@@ -2,12 +2,11 @@ package com.bosi.chineseclass.control;
 
 import java.util.ArrayList;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
+
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import com.bosi.chineseclass.BaseActivity;
-import com.bosi.chineseclass.activitys.SampleHolderActivity;
-import com.bosi.chineseclass.activitys.SampleHolderActivity.ISampleControlInterface;
 import com.bosi.chineseclass.fragments.PyLearnFragment;
 import com.bosi.chineseclass.fragments.PyLearnFragment.CategoryPinyin;
 
@@ -16,7 +15,7 @@ import com.bosi.chineseclass.fragments.PyLearnFragment.CategoryPinyin;
  * 
  * 
  */
-public class PinYinLearnControl extends IActivityControl implements ISampleControlInterface{
+public class PinYinLearnControl extends IActivityControl {
 
 	ArrayList<Fragment> mFragments  = null;
 	
@@ -33,7 +32,7 @@ public class PinYinLearnControl extends IActivityControl implements ISampleContr
 		return mFragments;
 	}
   
-	public void onCreate(Bundle mBundle) {
+	public void onCreate(Intent mBundle) {
 		
 	}
 

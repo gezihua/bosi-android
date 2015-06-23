@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_actionbar_main_acivity"
     android:orientation="horizontal"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp" >
+   >
 
     <TextView
         android:id="@+id/common_head_left"
@@ -15,7 +14,10 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:paddingBottom="12dp"
-        android:background="@drawable/common_head_left" />
+        android:text="返回"
+        android:layout_marginLeft="10dp"
+        android:textColor="#ffffff"
+        />
 
     <TextView
         android:id="@+id/common_head_middle"
@@ -34,7 +36,9 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_horizontal"
         android:gravity="center_vertical"
+        android:layout_marginRight="10dp"
         android:paddingBottom="12dp"
+         android:textColor="#ffffff"
         android:text="退出" />
 
 </RelativeLayout>

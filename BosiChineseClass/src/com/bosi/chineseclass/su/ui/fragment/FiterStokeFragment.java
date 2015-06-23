@@ -2,6 +2,7 @@
 package com.bosi.chineseclass.su.ui.fragment;
 
 import android.util.Log;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Entity;
-import com.emsg.sdk.EmsgClient.MsgTargetType;
 
 import u.aly.s;
 
@@ -56,7 +56,7 @@ public class FiterStokeFragment extends AbsFilterFragment implements OnClickList
                 strs[i] = String.valueOf(i);
             }
         }
-        ArrayAdapter pyAdapter = new ArrayAdapter<>(getActivity(),
+        ArrayAdapter pyAdapter = new ArrayAdapter(getActivity(),
                 android.R.layout.simple_spinner_item, strs);
         pyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         setSpinnerAdapter(pyAdapter);

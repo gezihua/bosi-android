@@ -1,13 +1,15 @@
 package com.bosi.chineseclass.han.components;
 
+
+import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.R;
+
 
 import android.app.Activity;
 
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class HeadLayoutComponents extends BaseComponents {
@@ -36,6 +38,7 @@ public class HeadLayoutComponents extends BaseComponents {
         mTvLeft = (TextView) mFatherView.findViewById(R.id.common_head_left);
         mTvMiddle = (TextView) mFatherView.findViewById(R.id.common_head_middle);
         mTvRight = (TextView) mFatherView.findViewById(R.id.common_head_right);
+        setDefaultLeftCallBack(true);
     }
 
     public void setDefaultLeftCallBack(boolean isLeftCallBack) {
@@ -60,6 +63,7 @@ public class HeadLayoutComponents extends BaseComponents {
                 @Override
                 public void onClick(View arg0) {
                     //TODO:退出整个系统
+                	BSApplication.getInstance().exitApp();
                 }
             });
         }

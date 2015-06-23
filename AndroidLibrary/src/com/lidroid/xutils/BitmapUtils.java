@@ -15,6 +15,7 @@
 
 package com.lidroid.xutils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -99,7 +100,8 @@ public class BitmapUtils implements TaskHandler {
         return this;
     }
 
-    public BitmapUtils configDefaultLoadingImage(Bitmap bitmap) {
+    @SuppressLint("NewApi")
+	public BitmapUtils configDefaultLoadingImage(Bitmap bitmap) {
         defaultDisplayConfig.setLoadingDrawable(new BitmapDrawable(context.getResources(), bitmap));
         return this;
     }
@@ -114,7 +116,8 @@ public class BitmapUtils implements TaskHandler {
         return this;
     }
 
-    public BitmapUtils configDefaultLoadFailedImage(Bitmap bitmap) {
+    @SuppressLint("NewApi")
+	public BitmapUtils configDefaultLoadFailedImage(Bitmap bitmap) {
         defaultDisplayConfig.setLoadFailedDrawable(new BitmapDrawable(context.getResources(), bitmap));
         return this;
     }
@@ -507,7 +510,7 @@ public class BitmapUtils implements TaskHandler {
                 return container;
             }
 
-            return null;
+            return container;
         }
     }
 }

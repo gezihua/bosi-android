@@ -4,7 +4,11 @@ package com.bosi.chineseclass.su.db;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.UserDictionary.Words;
 import android.text.TextUtils;
+import android.util.Log;
+
+import u.aly.cu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +101,7 @@ public class DbUtils {
             if (valueOf.equals("0")) {
                 cursor = database.query("bsbh", null, "bihua > 0", null, null, null, "bihua");
             } else {
-                cursor = database.query("bsbh", null, "bihua", new String[] {
+                cursor = database.query("bsbh", null, "bihua=?", new String[] {
                         valueOf
                 }, null, null, null);
             }
@@ -122,6 +126,8 @@ public class DbUtils {
                         string
                 }, null, null, null);
                 while (cursor.moveToNext()) {
+                    String temp = cursor.getString(cursor.getColumnIndex("bushow"));
+                    Log.e("print", "temp" + temp);
                     list.add(cursor.getString(cursor.getColumnIndex("bushow")));
                 }
                 cursor.close();
@@ -142,17 +148,46 @@ public class DbUtils {
                 Cursor cursor = null;
                 DicOpenHelper openHelper = new DicOpenHelper(mContext);
                 SQLiteDatabase database = openHelper.getReadableDatabase();
-                cursor = database.query("bsbh", null, "bu = ?", new String[] {
+                cursor = database.query("bushou", null, "bu = ?", new String[] {
                         bu
                 }, null, null, null);
                 while (cursor.moveToNext()) {
                     Entity temp = new Entity();
                     temp.word = cursor.getString(cursor.getColumnIndex("zi"));
                     temp.stokes = cursor.getString(cursor.getColumnIndex("sbh"));
+                    list.add(temp);
                 }
                 cursor.close();
                 cursor = null;
                 return list;
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Word getExplain(String word) {
+        try {
+            if (!TextUtils.isEmpty(word)) {
+                DicOpenHelper openHelper = new DicOpenHelper(mContext);
+                SQLiteDatabase database = openHelper.getReadableDatabase();
+                Cursor cursor = database.query("zidian", null, "zitou = ?", new String[]{word} , null, null, null);
+                Word words = new Word();
+                if (cursor != null && cursor.moveToFirst()) {
+                    words.refid = cursor.getString(cursor.getColumnIndex("refid"));
+                    Log.e("print", words.refid+"-----------------------");
+                    words.pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+                    words.cy = cursor.getString(cursor.getColumnIndex("cy"));
+                    words.cysy = cursor.getString(cursor.getColumnIndex("cysy"));
+                    words.yanbian = cursor.getString(cursor.getColumnIndex("yanbian"));
+                    words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
+                    words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
+                }
+                cursor.close();
+                cursor = null;
+                return words;
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block

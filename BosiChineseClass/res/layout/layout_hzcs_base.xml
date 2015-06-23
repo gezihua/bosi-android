@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/headactionbar"
+        layout="@layout/common_head" >
+    </include>
+
+    <RelativeLayout
+        android:id="@+id/rl_hzcs_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:background="@drawable/quhz_bg"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_hzcs_leftmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:gravity="center"
+           >
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="90dp"
+            android:layout_marginRight="20dp"
+           
+            android:layout_marginTop="10dp" >
+            
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/hzqy_dital_contenttitlebg"
+                android:gravity="center"
+                android:text="仓基照字"
+                android:textColor="#000000"
+                android:textSize="14sp" >
+            </TextView>
+            <LinearLayout
+                android:id="@+id/ll_hzcs_rightfunction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                 android:layout_marginRight="10dp"
+                android:background="@drawable/hzcs_dital_contentbg"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_hzcs_dital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:layout_margin="10dp"
+                     />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_hzcs_dital_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ll_hzcs_rightfunction"
+                android:layout_alignRight="@+id/ll_hzcs_rightfunction"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/hzqy_dital_content_next" >
+            </Button>
+
+            <Button
+                android:id="@+id/bt_hzcs_dital_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ll_hzcs_rightfunction"
+                android:layout_alignLeft="@+id/ll_hzcs_rightfunction"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/hzqy_dital_content_pre" >
+            </Button>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

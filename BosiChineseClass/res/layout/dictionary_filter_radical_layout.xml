@@ -12,7 +12,7 @@
         android:orientation="vertical" >
 
         <Spinner
-            android:id="@+id/filter_spinner"
+            android:id="@+id/filter_spinner_rad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -35,18 +35,19 @@
         android:orientation="vertical" >
 
         <Spinner
-            android:id="@+id/result_spinner"
+            android:id="@+id/result_spinner_rad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/result_text"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <GridView
-            android:id="@+id/reslut_grid"
-            android:numColumns="auto_fit"
+            android:id="@+id/reslut_grid_rad"
+            android:numColumns="5"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

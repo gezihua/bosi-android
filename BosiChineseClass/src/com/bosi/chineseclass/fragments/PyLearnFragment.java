@@ -23,8 +23,8 @@ public class PyLearnFragment extends BaseFragment {
 	
 	CategoryPinyin mCategory;
 	
-	@ViewInject(R.id.ll_pinyin_sym)
-	LinearLayout mLinearPinyin;
+	@ViewInject(R.id.ll_pylearn_leftbody)
+	LinearLayout mLinearPinyinLeft;
 	
 	
 	AutoChangeLineViewGroup mAutoViewGroup;
@@ -49,7 +49,7 @@ public class PyLearnFragment extends BaseFragment {
 	}
 	private void initComponents(){
 		mAutoViewGroup = new AutoChangeLineViewGroup(mActivity);
-		mLinearPinyin.addView(mAutoViewGroup);
+		mLinearPinyinLeft.addView(mAutoViewGroup);
 	}
 	
 	private void addPinYinNameDital(){
