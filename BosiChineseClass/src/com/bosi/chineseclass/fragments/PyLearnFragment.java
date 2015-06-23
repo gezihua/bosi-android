@@ -2,6 +2,7 @@ package com.bosi.chineseclass.fragments;
 
 
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,11 +56,10 @@ public class PyLearnFragment extends BaseFragment {
 	private void addPinYinNameDital(){
 		for(int i= 0; i<marrayForLearn.length;i++){
 			TextView mTextView = new TextView(mActivity);
-			
 			mTextView.setTextSize(20);
-			mTextView.setBackgroundColor(Color.BLUE);
+			mTextView.setBackgroundColor(Color.YELLOW);
 			mTextView.setText(marrayForLearn[i]);
-			mTextView.setPadding(20, 0, 20, 0);
+			mTextView.setGravity(Gravity.CENTER);
 			mAutoViewGroup.addView(mTextView);
 			
 		}

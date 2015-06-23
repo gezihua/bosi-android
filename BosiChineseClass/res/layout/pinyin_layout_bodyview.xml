@@ -16,45 +16,99 @@
         android:orientation="horizontal"
         android:background="@drawable/pyxx_bg"
         >
+
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            
-            
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
             <LinearLayout
-            android:layout_width="180dp"
-            android:layout_height="match_parent"
-            android:id="@+id/ll_pylearn_leftbody"
-            android:orientation="vertical"
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:background="#ffffff"
-             />
+                android:id="@+id/ll_pylearn_leftbody"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:orientation="vertical" >
+            </LinearLayout>
+
             <ImageView
                 android:id="@+id/iv_pyxx_sm"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/pyxx_sm_bg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
-                ></ImageView>
-        <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/pyxy_ym_bg"
-                android:layout_marginLeft="50dp"
-                ></ImageView>
-            
+                android:layout_marginTop="10dp"
+                android:background="@drawable/pyxx_sm_bg" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/pyxy_ym_bg" />
+
         </RelativeLayout>
-        
-        
+        <ImageView
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/pingyin_learn_spit" />
         
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/ll_pylearn_rightbody"
             android:orientation="vertical"
-            ></LinearLayout>
+            >
+            <LinearLayout
+                android:id="@+id/pinyinlearn_"
+                 android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_marginTop="10dp"
+                 android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                >
+                
+                
+                
+            </LinearLayout>
+             <LinearLayout
+                android:id="@+id/pinyinlearn_menu_bt"
+                 android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                 android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                >
+                 <Button
+                     android:layout_width="match_parent"
+                     android:layout_weight="1"
+                     android:layout_height="30dp"
+                     ></Button>
+                 <Button
+                     android:layout_width="match_parent"
+                     android:layout_weight="1"
+                     android:layout_height="30dp"
+                     ></Button>
+                 <Button
+                    android:layout_width="match_parent"
+                     android:layout_weight="1"
+                     android:layout_height="30dp"
+                     ></Button>
+                 
+             </LinearLayout>
+             
+             <LinearLayout
+                android:id="@+id/pinyinlearn_dital"
+                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                 android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                ></LinearLayout>
+            
+        </LinearLayout>
         </LinearLayout>
     
 
