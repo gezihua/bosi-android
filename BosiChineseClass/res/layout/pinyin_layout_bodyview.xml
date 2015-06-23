@@ -75,7 +75,7 @@
              <LinearLayout
                 android:id="@+id/pinyinlearn_menu_bt"
                  android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                  android:orientation="horizontal"
                 android:layout_marginRight="10dp"
@@ -83,17 +83,23 @@
                  <Button
                      android:layout_width="match_parent"
                      android:layout_weight="1"
-                     android:layout_height="30dp"
+                     android:layout_height="40dp"
+                     android:text="发音要领"
+                     android:background="@drawable/pingying_learn_btbg"
                      ></Button>
                  <Button
                      android:layout_width="match_parent"
                      android:layout_weight="1"
-                     android:layout_height="30dp"
+                     android:layout_height="40dp"
+                     android:background="@drawable/pingying_learn_btbg"
+                     android:text="拼一拼"
                      ></Button>
                  <Button
                     android:layout_width="match_parent"
                      android:layout_weight="1"
-                     android:layout_height="30dp"
+                     android:layout_height="40dp"
+                     android:background="@drawable/pingying_learn_btbg"
+                     android:text="读一读"
                      ></Button>
                  
              </LinearLayout>
