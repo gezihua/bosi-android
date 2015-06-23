@@ -13,7 +13,6 @@
         android:id="@+id/rl_hzcs_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:background="@drawable/quhz_bg"
         android:orientation="horizontal" >
 
         <LinearLayout
@@ -36,12 +35,13 @@
             android:layout_marginTop="10dp" >
             
             <TextView
+                android:id="@+id/tv_hzcsdital_title"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/hzqy_dital_contenttitlebg"
                 android:gravity="center"
-                android:text="仓基照字"
+                android:text="xxxx"
                 android:textColor="#000000"
                 android:textSize="14sp" >
             </TextView>
@@ -51,7 +51,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
-                 android:layout_marginRight="10dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginBottom="30dp"
                 android:background="@drawable/hzcs_dital_contentbg"
                 android:gravity="center"
                 android:orientation="vertical" >
@@ -60,8 +61,8 @@
                     android:id="@+id/iv_hzcs_dital"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_margin="10dp"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
                      />
             </LinearLayout>
 

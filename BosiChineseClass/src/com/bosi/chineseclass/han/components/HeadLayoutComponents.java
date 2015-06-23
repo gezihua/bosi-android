@@ -39,6 +39,7 @@ public class HeadLayoutComponents extends BaseComponents {
         mTvMiddle = (TextView) mFatherView.findViewById(R.id.common_head_middle);
         mTvRight = (TextView) mFatherView.findViewById(R.id.common_head_right);
         setDefaultLeftCallBack(true);
+        setDefaultRightCallBack(true);
     }
 
     public void setDefaultLeftCallBack(boolean isLeftCallBack) {
@@ -62,7 +63,6 @@ public class HeadLayoutComponents extends BaseComponents {
 
                 @Override
                 public void onClick(View arg0) {
-                    //TODO:退出整个系统
                 	BSApplication.getInstance().exitApp();
                 }
             });

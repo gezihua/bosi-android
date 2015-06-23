@@ -12,7 +12,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class LoadingDialog {
 
-	AlertDialog mDialog;
+	public AlertDialog mDialog;
 
 	BaseActivity mActivity;
 
@@ -24,10 +24,11 @@ public class LoadingDialog {
 	
 	public LoadingDialog(BaseActivity mActivity) {
 		this.mActivity = mActivity;
-		mDialog = new android.app.AlertDialog.Builder(mActivity).create();
 	}
 	
 	public void show(){
+		if(mDialog!=null &&mDialog.isShowing())return;
+		mDialog = new android.app.AlertDialog.Builder(mActivity).create();
 		mDialog.show();
 		initExitSystemDialog();
 	}
@@ -39,9 +40,7 @@ public class LoadingDialog {
 		View mViewExit = View.inflate(mActivity,
 				R.layout.dialog_layout_loading, null);
 		ViewUtils.inject(this, mViewExit);
-		mProgressBar.setMax(100);
 		mDialog.setContentView(mViewExit);
-		mDialog.setCancelable(false);
 		mDialog.setCanceledOnTouchOutside(false);
 	}
 	

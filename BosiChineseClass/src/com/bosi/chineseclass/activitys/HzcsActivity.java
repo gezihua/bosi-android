@@ -27,6 +27,7 @@ public class HzcsActivity extends BaseActivity{
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		mHeadActionBar = new HeadLayoutComponents(this, mViewHead);
+		mHeadActionBar.setTextMiddle("汉字常识", -1);
 	}
 	//造字方法
 	@OnClick(R.id.iv_hzcs_zzff)
@@ -46,9 +47,6 @@ public class HzcsActivity extends BaseActivity{
 	public void actionHzqy(View mView){
 		_intentTo_("HzqyDitalFragment");
 	}
-	
-	
-
 	
 	private void _intentTo_(String frgmentName){
 		Intent mIntent = new Intent(this,SampleHolderActivity.class);

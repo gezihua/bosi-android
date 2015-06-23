@@ -69,8 +69,6 @@
                 android:layout_marginRight="10dp"
                 >
                 
-                
-                
             </LinearLayout>
              <LinearLayout
                 android:id="@+id/pinyinlearn_menu_bt"
