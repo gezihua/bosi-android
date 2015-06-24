@@ -17,5 +17,9 @@ public class AppDefine {
         
         public static final String ZY_OBJECT_ID = "id_zyObject";
     }
+    
+    public static class URLDefine{
+    	public static final String URL_PINYINVOICE="http://www.yuwen100.cn/yuwen100/hzzy/Android/pyxx/";
+    }
 
 }

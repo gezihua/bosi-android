@@ -77,6 +77,7 @@ public class BaseActivity extends FragmentActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		BSApplication.getInstance().mActivityStack.remove(this);
+		System.gc();
 	}
 
 	@Override

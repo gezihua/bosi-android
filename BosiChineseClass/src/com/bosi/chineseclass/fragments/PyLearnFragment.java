@@ -1,9 +1,11 @@
 package com.bosi.chineseclass.fragments;
 
 import java.io.IOException;
+
 import java.util.Properties;
 
-import android.graphics.Color;
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
@@ -24,10 +27,10 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * @author zhujohnle 拼音学习的页面 包括声母和韵母
  * 
  */
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class PyLearnFragment extends BaseFragment {
 
 	String[] marrayForLearn = null;
-
 
 	@ViewInject(R.id.ll_pylearn_leftbody)
 	LinearLayout mLinearPinyinLeft;
@@ -64,6 +67,9 @@ public class PyLearnFragment extends BaseFragment {
 		mPressedZm = "a";
 		initBasicPinYin(CategoryPinyin.YM);
 		addPinYinNameDital();
+		
+		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm
+				+ SUFFIX_FYYL));
 	}
 
 	@OnClick(R.id.iv_pyxx_sm)
@@ -72,6 +78,8 @@ public class PyLearnFragment extends BaseFragment {
 		mImageViewSm.bringToFront();
 		initBasicPinYin(CategoryPinyin.SM);
 		addPinYinNameDital();
+		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm
+				+ SUFFIX_FYYL));
 	}
 
 	@Override
@@ -99,6 +107,9 @@ public class PyLearnFragment extends BaseFragment {
 		for (int i = 0; i < marrayForLearn.length; i++) {
 			final TextView mTextView = new TextView(mActivity);
 			mTextView.setTextSize(20);
+			mTextView.setPadding(5, 3, 5, 3);
+			mTextView.setBackground(getResources().getDrawable(R.drawable.pingying_learn_zibg));
+			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -108,9 +119,7 @@ public class PyLearnFragment extends BaseFragment {
 							+ SUFFIX_FYYL));
 				}
 			});
-			mTextView.setBackgroundColor(Color.YELLOW);
 			mTextView.setText(marrayForLearn[i]);
-			mTextView.setGravity(Gravity.CENTER);
 			mAutoViewGroup.addView(mTextView);
 		}
 	}
@@ -137,7 +146,8 @@ public class PyLearnFragment extends BaseFragment {
 
 	@OnClick(R.id.bt_pingyinlearn_dyd)
 	public void actionDyd(View mView) {
-		showdydDital(getPropertiesFromKey(mPressedZm + SUFFIX_DYD).split("#"));
+		showdydDital(getPropertiesFromKey(mPressedZm + SUFFIX_DYD).split("#"),
+				getPropertiesFromKey(mPressedZm + SUFFIX_DYDD).split("#"));
 	}
 
 	private void showPresentPressedZmFyyl(String msg) {
@@ -173,19 +183,29 @@ public class PyLearnFragment extends BaseFragment {
 	/**
 	 * 更换读一读的数据内容
 	 * 
-	 * 
 	 * */
-	private void showdydDital(String[] mArrays) {
+	private void showdydDital(String[] mArrays,final String[] voiceSouce) {
 		if (mArrays == null||mArrays.length==0)
 			return;
 		mLayoutDital.removeAllViews();
 		AutoChangeLineViewGroup mAutoChangeLineView = new AutoChangeLineViewGroup(
 				mActivity);
 		for (int i = 0; i < mArrays.length; i++) {
+			final int mViewPositon = i;
 			View mView = View.inflate(mActivity, R.layout.item_pinyinlearn_pyp,
 					null);
 			TextView mTextView = (TextView) mView
 					.findViewById(R.id.tv_pinyinlearn_item_dyd);
+			final View mViewVoice = (TextView) mView
+					.findViewById(R.id.bt_pinyinlearn_item_dyd);
+			mViewVoice.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					String voiceSouceValue = voiceSouce[mViewPositon];
+					String urlForVoice = AppDefine.URLDefine.URL_PINYINVOICE+mPressedZm+"/"+voiceSouceValue+".mp3";
+				}
+			});
 			mTextView.setTextSize(20);
 			mTextView.setText(mArrays[i]);
 			mAutoChangeLineView.addView(mView);
@@ -227,11 +247,11 @@ public class PyLearnFragment extends BaseFragment {
 		super.onDestroy();
 		mPorperties.clear();
 		mPorperties = null;
-
 	}
 
 	public enum CategoryPinyin {
 		SM, YM
 	}
 
+	
 }

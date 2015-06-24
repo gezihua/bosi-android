@@ -11,7 +11,7 @@
         >
          <Button
         android:layout_marginLeft="5dp"
-        android:id="@+id/iv_pinyinlearn_item_dyd"
+        android:id="@+id/bt_pinyinlearn_item_dyd"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/pinyinlearn_voice_selector"
