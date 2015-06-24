@@ -4,6 +4,7 @@ import android.content.Intent;
 
 
 
+
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,6 @@ import com.bosi.chineseclass.su.db.DicOpenHelper;
 import com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
 @ContentView(R.layout.main)
@@ -26,9 +26,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-
 		UmengUpdateAgent.update(this);
-		MobclickAgent.updateOnlineConfig(this); // 自定义事件转化相关
 		init();
 	}
 	@OnClick(R.id.btn_pinyinlearn)

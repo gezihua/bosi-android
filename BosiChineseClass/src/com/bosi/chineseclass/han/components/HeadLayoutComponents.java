@@ -44,7 +44,6 @@ public class HeadLayoutComponents extends BaseComponents {
 
     public void setDefaultLeftCallBack(boolean isLeftCallBack) {
         if (isLeftCallBack) {
-            this.setTextLeft("", R.drawable.common_head_left);
             mTvLeft.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -58,7 +57,6 @@ public class HeadLayoutComponents extends BaseComponents {
 
     public void setDefaultRightCallBack(boolean isLeftCallBack) {
         if (isLeftCallBack) {
-            this.setTextLeft("", -1);
             mTvRight.setOnClickListener(new OnClickListener() {
 
                 @Override

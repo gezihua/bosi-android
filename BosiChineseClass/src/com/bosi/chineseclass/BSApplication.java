@@ -6,12 +6,14 @@ import java.util.List;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
+import android.os.Handler;
 
 import com.bosi.chineseclass.components.ExitSystemDialog;
 import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.utils.AppActivityStack;
 import com.sromku.simple.storage.SimpleStorage;
 import com.sromku.simple.storage.Storage;
+import com.umeng.analytics.MobclickAgent;
 
 public class BSApplication extends Application{
      	// 文件系统
@@ -30,6 +32,8 @@ public class BSApplication extends Application{
 			mActivityStack = new AppActivityStack();
 			
 //			CrashHandler.getInstance().init(this);
+			MobclickAgent.setAutoLocation(false);
+			MobclickAgent.setDebugMode(false);
 		}
 		
 		public static BSApplication mApplication=null;
@@ -54,18 +58,26 @@ public class BSApplication extends Application{
 			mDialog.mDialog.show();
 		}
 		public void destroySystem() {
-	        try {
-	            isBaiduServiceRunningKill();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	        for (Activity mActivity : mActivityStack) {
-	            if (mActivity != null && !mActivity.isFinishing()) {
-	                mActivity.finish();
-	            }
-	        }
-	        android.os.Process.killProcess(android.os.Process.myPid());
-	        System.exit(1);
+			
+			new Handler().postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					 try {
+				            isBaiduServiceRunningKill();
+				        } catch (Exception e) {
+				            e.printStackTrace();
+				        }
+				        for (Activity mActivity : mActivityStack) {
+				            if (mActivity != null && !mActivity.isFinishing()) {
+				                mActivity.finish();
+				            }
+				        }
+				        android.os.Process.killProcess(android.os.Process.myPid());
+				        System.exit(1);
+				}
+			}, 1000);
+	       
 	    }
 
 	    // 检查服务运行状态
