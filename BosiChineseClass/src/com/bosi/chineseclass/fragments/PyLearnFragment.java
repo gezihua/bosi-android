@@ -3,9 +3,6 @@ package com.bosi.chineseclass.fragments;
 import java.io.IOException;
 
 import java.util.Properties;
-
-import u.aly.cp;
-
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.Gravity;
@@ -273,7 +270,7 @@ public class PyLearnFragment extends BaseFragment {
 		HeadLayoutComponents mHeadActionbar = new HeadLayoutComponents(
 				mActivity, mViewHeadbar);
 		mHeadActionbar.setTextMiddle("拼音学习", -1);
-		mMediaPlayerPools = new MediaPlayerPools();
+		mMediaPlayerPools = new MediaPlayerPools(mActivity);
 		setup();
 		mPorperties = new Properties();
 		try {

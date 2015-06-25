@@ -2,14 +2,17 @@ package com.bosi.chineseclass.components;
 
 import java.io.IOException;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 
 public class MediaPlayerPools {
 
 	MediaPlayer mMediaPlayer;
 	
-	public MediaPlayerPools(){
+	Context mContext;
+	public MediaPlayerPools(Context mContext ){
 		initMediaPlayer();
+		this.mContext = mContext;
 	}
 
 	public void initMediaPlayer() {
@@ -24,7 +27,9 @@ public class MediaPlayerPools {
 			mMediaPlayer = null;
 		}
 	}
-
+	
+	
+	//可以播放网络音乐不过可能会卡顿
 	public void playMediaFile(String mediaFile) {
 		try {
 			mMediaPlayer.reset();
