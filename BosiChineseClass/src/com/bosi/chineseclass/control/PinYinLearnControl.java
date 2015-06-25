@@ -13,7 +13,6 @@ import com.bosi.chineseclass.fragments.PyLearnFragment.CategoryPinyin;
 /**
  * 
  * 
- * 
  */
 public class PinYinLearnControl extends IActivityControl {
 
@@ -22,7 +21,7 @@ public class PinYinLearnControl extends IActivityControl {
 	
 	public PinYinLearnControl() {
 		mFragments = new ArrayList<Fragment>();
-		PyLearnFragment mSmFragment = new PyLearnFragment(CategoryPinyin.SM);
+		PyLearnFragment mSmFragment = new PyLearnFragment();
 		mFragments.add(mSmFragment);
 	}
 	

@@ -20,8 +20,8 @@ public class BaseActivity extends FragmentActivity {
 
 	protected Activity mContext;
 
-	private LoadingDialog mLoadingDialog;
-
+	public LoadingDialog mLoadingDialog;
+	
 	private final Object mSyObject = new Object();
 
 	@Override
@@ -30,6 +30,7 @@ public class BaseActivity extends FragmentActivity {
 		this.mContext = this;
 		ViewUtils.inject(this);
 		BSApplication.getInstance().mActivityStack.push(this);
+		mLoadingDialog = new LoadingDialog(this);
 	}
 
 	public String getResourceFromId(int id) {
@@ -38,16 +39,12 @@ public class BaseActivity extends FragmentActivity {
 
 	public void showLoadingDialog() {
 		synchronized (mSyObject) {
-			if (mLoadingDialog != null && mLoadingDialog.mDialog.isShowing()) {
-				return;
-			}
-			mLoadingDialog = new LoadingDialog(this);
 			mLoadingDialog.show();
 		}
 	}
 
 	public void updateProgress(int progress, int max) {
-		if (mLoadingDialog == null||!mLoadingDialog.mDialog.isShowing()) {
+		if (mLoadingDialog.mDialog==null) {
 			showLoadingDialog();
 		}
 		mLoadingDialog.updateProgress(progress, max);

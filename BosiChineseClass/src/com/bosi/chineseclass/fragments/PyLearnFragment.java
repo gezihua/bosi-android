@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import java.util.Properties;
 
+import u.aly.cp;
+
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.Gravity;
@@ -16,8 +18,11 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bosi.chineseclass.AppDefine;
+import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.components.MediaPlayerPools;
+import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -52,10 +57,12 @@ public class PyLearnFragment extends BaseFragment {
 
 	@ViewInject(R.id.iv_pyxx_ym)
 	ImageView mImageViewYm;
-	
+
 	@ViewInject(R.id.headactionbar)
 	View mViewHeadbar;
 	
+	MediaPlayerPools mMediaPlayerPools;
+
 	private final String SUFFIX_FYYL = "_f";
 	private final String SUFFIX_PYP = "_p";
 	private final String SUFFIX_DYD = "_d";
@@ -64,30 +71,25 @@ public class PyLearnFragment extends BaseFragment {
 	@OnClick(R.id.iv_pyxx_ym)
 	public void acitonYm(View mView) {
 		mImageViewYm.bringToFront();
-		mPressedZm = "a";
+		mPressedZm = "y";
 		initBasicPinYin(CategoryPinyin.YM);
 		addPinYinNameDital();
-		
-		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm
-				+ SUFFIX_FYYL));
+
+		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
 	@OnClick(R.id.iv_pyxx_sm)
 	public void acitonSm(View mView) {
-		mPressedZm = "b";
+		mPressedZm = "a";
 		mImageViewSm.bringToFront();
 		initBasicPinYin(CategoryPinyin.SM);
 		addPinYinNameDital();
-		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm
-				+ SUFFIX_FYYL));
+		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
 	@Override
 	protected View getBasedView() {
 		return View.inflate(mActivity, R.layout.pinyin_layout_bodyview, null);
-	}
-
-	public PyLearnFragment(CategoryPinyin mCategory) {
 	}
 
 
@@ -102,19 +104,50 @@ public class PyLearnFragment extends BaseFragment {
 		mLinearPinyinLeft.addView(mAutoViewGroup);
 	}
 
+	/**
+	 * 
+	 * 当前文件夹目录
+	 * 
+	 * */
+	private String getFolderPath(){
+		
+		return AppDefine.FilePathDefine.APP_PINYINLEARNPATH
+				+ mPressedZm + "/";
+	}
+	
+	private String getAbsoultFilePath(){
+		return BSApplication.getInstance().mStorage
+		.getFile(getFolderPath()).getAbsolutePath()+"/";
+	}
 	private void addPinYinNameDital() {
 		mAutoViewGroup.removeAllViews();
 		for (int i = 0; i < marrayForLearn.length; i++) {
 			final TextView mTextView = new TextView(mActivity);
 			mTextView.setTextSize(20);
+			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setPadding(5, 3, 5, 3);
-			mTextView.setBackground(getResources().getDrawable(R.drawable.pingying_learn_zibg));
+			mTextView.setBackground(getResources().getDrawable(
+					R.drawable.pingying_learn_zibg));
 			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View arg0) {
+					// 检查固定的目录是否有下载数据 如果没有则需要创建下载
 					mPressedZm = mTextView.getText().toString();
+					String mCurrentFoderName =getFolderPath();
+					BSApplication.getInstance().mStorage
+							.createDirectory(mCurrentFoderName);
+					String filePath = getAbsoultFilePath();
+
+					String[] mFilePath = getDownLoadUrlsBaseCurrentSouce();
+					if (mFilePath != null && mFilePath.length > 0) {
+						int files = BSApplication.getInstance().mStorage
+								.getFile(mCurrentFoderName).list().length;
+						if (mFilePath.length != files)
+							mDownLoadControl.downloadFiles(filePath,
+									getDownLoadUrlsBaseCurrentSouce());
+					}
 					showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm
 							+ SUFFIX_FYYL));
 				}
@@ -146,8 +179,7 @@ public class PyLearnFragment extends BaseFragment {
 
 	@OnClick(R.id.bt_pingyinlearn_dyd)
 	public void actionDyd(View mView) {
-		showdydDital(getPropertiesFromKey(mPressedZm + SUFFIX_DYD).split("#"),
-				getPropertiesFromKey(mPressedZm + SUFFIX_DYDD).split("#"));
+		showdydDital(getPropertiesFromKey(mPressedZm + SUFFIX_DYD).split("#"));
 	}
 
 	private void showPresentPressedZmFyyl(String msg) {
@@ -170,6 +202,7 @@ public class PyLearnFragment extends BaseFragment {
 		for (int i = 0; i < mArrays.length; i++) {
 			TextView mTextView = new TextView(mActivity);
 			mTextView.setTextSize(20);
+			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setText(mArrays[i]);
 			LinearLayout.LayoutParams mLayoutParams = new LayoutParams(
 					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1);
@@ -184,14 +217,14 @@ public class PyLearnFragment extends BaseFragment {
 	 * 更换读一读的数据内容
 	 * 
 	 * */
-	private void showdydDital(String[] mArrays,final String[] voiceSouce) {
-		if (mArrays == null||mArrays.length==0)
+	private void showdydDital(String[] mArrays) {
+		if (mArrays == null || mArrays.length == 0)
 			return;
 		mLayoutDital.removeAllViews();
 		AutoChangeLineViewGroup mAutoChangeLineView = new AutoChangeLineViewGroup(
 				mActivity);
 		for (int i = 0; i < mArrays.length; i++) {
-			final int mViewPositon = i;
+			final int tagPosition = i;
 			View mView = View.inflate(mActivity, R.layout.item_pinyinlearn_pyp,
 					null);
 			TextView mTextView = (TextView) mView
@@ -199,11 +232,13 @@ public class PyLearnFragment extends BaseFragment {
 			final View mViewVoice = (TextView) mView
 					.findViewById(R.id.bt_pinyinlearn_item_dyd);
 			mViewVoice.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View arg0) {
-					String voiceSouceValue = voiceSouce[mViewPositon];
-					String urlForVoice = AppDefine.URLDefine.URL_PINYINVOICE+mPressedZm+"/"+voiceSouceValue+".mp3";
+				String [] 	mVideoNames = getPropertiesFromKey(mPressedZm + SUFFIX_DYDD)
+						.split("#");
+				String fileName = mVideoNames[tagPosition]+AppDefine.STUFFDEFICE.STUFF_VOICE;
+				playVoice(getAbsoultFilePath()+fileName);
 				}
 			});
 			mTextView.setTextSize(20);
@@ -229,10 +264,16 @@ public class PyLearnFragment extends BaseFragment {
 		}
 	}
 
+	DownLoadResouceControl mDownLoadControl;
+
 	@Override
 	protected void afterViewInject() {
-		HeadLayoutComponents mHeadActionbar = new HeadLayoutComponents(mActivity, mViewHeadbar);
+
+		mDownLoadControl = new DownLoadResouceControl(mActivity);
+		HeadLayoutComponents mHeadActionbar = new HeadLayoutComponents(
+				mActivity, mViewHeadbar);
 		mHeadActionbar.setTextMiddle("拼音学习", -1);
+		mMediaPlayerPools = new MediaPlayerPools();
 		setup();
 		mPorperties = new Properties();
 		try {
@@ -240,6 +281,7 @@ public class PyLearnFragment extends BaseFragment {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
 	@Override
@@ -253,5 +295,27 @@ public class PyLearnFragment extends BaseFragment {
 		SM, YM
 	}
 
+	private void playVoice(String fileName){
+		mMediaPlayerPools.playMediaFile(fileName);
+	}
 	
+	private void playVideo(String fileName){
+		
+	}
+	private String[] getDownLoadUrlsBaseCurrentSouce() {
+
+		String[] mVoiceUrls = getPropertiesFromKey(mPressedZm + SUFFIX_DYDD)
+				.split("#");
+		String[] mUrlSoruce = new String[mVoiceUrls.length];
+		// 组拼
+		for (int i = 0; i < mVoiceUrls.length; i++) {
+			String voiceSouceValue = mVoiceUrls[i];
+			String urlForVoice = AppDefine.URLDefine.URL_PINYINVOICE
+					+ mPressedZm + "/" + voiceSouceValue + ".mp3";
+			mUrlSoruce[i] = urlForVoice;
+		}
+
+		return mUrlSoruce;
+	}
+
 }

@@ -1,6 +1,8 @@
 package com.bosi.chineseclass.components;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface.OnDismissListener;
+
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,11 +27,16 @@ public class LoadingDialog {
 	public LoadingDialog(BaseActivity mActivity) {
 		this.mActivity = mActivity;
 	}
-	
+	OnDismissListener mOnDismissListener;
+	public void setOnDismissListener(OnDismissListener mOnDismissListener){
+		this.mOnDismissListener = mOnDismissListener;
+	}
 	public void show(){
-		if(mDialog!=null &&mDialog.isShowing())return;
+		if(mDialog!=null &&mDialog.isShowing()||mActivity.isFinishing())return;
 		mDialog = new android.app.AlertDialog.Builder(mActivity).create();
 		mDialog.show();
+		
+		mDialog.setOnDismissListener(mOnDismissListener);
 		initExitSystemDialog();
 	}
 	

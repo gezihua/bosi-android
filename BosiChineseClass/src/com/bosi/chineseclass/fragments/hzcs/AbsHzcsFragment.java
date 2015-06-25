@@ -175,7 +175,6 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 						
 					});
 	    	}
-		
 	}
 
 	private void updateProgress(){

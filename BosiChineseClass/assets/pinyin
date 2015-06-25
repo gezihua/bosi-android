@@ -1,17 +1,17 @@
-
 b_f=双唇紧闭，阻碍气流，然后双唇突然放开，让气流冲出，读音轻短。
 b_p=ba#bo#bi#bu#bao
-b_d=bà ba 爸爸#bēn bō 奔波#bǎn běn 版本#biǎo bái 表白
+b_d=bà ba 爸爸#bēn bō 奔波# bǎn běn 版本#biǎo bái 表白
 b_dd=baba#benbo#banben#biaobai
 
 p_f=双唇紧闭，阻碍气流，然后双唇突然放开，气流迸出成音。
 p_p=pa#po#pi#pu#pan
-p_d=piān páng 偏旁#pǐn pái 品牌 #pī píng 批评#pī pàn 批判
+p_d=piān páng 偏旁#pǐn pái 品牌#pī píng 批评#pī pàn 批判
 p_dd=pianpang#pinpai#piping#pipan
+
 
 m_f=双唇紧闭，舌后缩，气流从鼻腔出来，打开嘴，声带颤动。
 m_p=ma#mo#me#mi#mu
-m_d=mā mɑ 妈妈#miàn mó 面膜#mì mì 秘密 #měi miào 美妙
+m_d=mā mɑ 妈妈#miàn mó 面膜#mì mì 秘密#měi miào 美妙
 m_dd=mama#mianmo#mimi#meimiao
 
 
@@ -33,6 +33,245 @@ t_dd=touteng#tuanti#tiantang#tantu
 
 
 n_f=舌尖抵住上牙床，气流从鼻腔通过，同时冲开舌尖的阻碍，声带颤动。
-n_P=na#ne#ni#nu 
-n_d=niú nǎi 牛奶#nǎi nai 奶奶#nán fāng南方#néng nài 能耐
+n_P=na#ne#ni#WWnu 
+n_d=niú nǎi 牛奶#nǎi nai 奶奶#nán fāng  南方#néng nài 能耐
 n_dd=niunai#nainai#nanfang#nengnai
+
+l_f=嘴唇稍开，舌尖抵住上牙床，声带颤动，气流从舌尖两边流出。
+l_p=la#le#li#lu 
+l_d=lái lì 来历#lǎo lao 姥姥#liàng lì# 亮丽#lì liàng 力量
+l_dd=laili#laolao#liangli#liliang
+
+g_f=舌根前部抵住软腭阻碍气流，让气流冲破舌根的阻碍，爆发成声。
+g_p=ge#gu#gou#gun#guo
+g_d=guǎng gào 广告#gǒng gù 巩固#gǎi gé 改革#gē ge 哥哥
+g_dd=guanggao#gonggu#gaige#gege
+
+k_f=舌根前部，抵住上软腭，阻碍气流，让气流冲破舌根的阻碍，迸发成声。
+k_p=ka#ke#ku#kao#kui
+k_d=kě kǒu 可口#kāi kuò 开阔#kǎn kě 坎坷#kǒu kě 口渴
+k_dd=kekou#kaikuo#kanke#kouke
+
+h_f=舌根抬高，接近软腭，形成窄缝，气流从缝中挤出，摩擦成音。
+h_p=ha#he#hu#hen#hou
+h_d=huī huáng 辉煌#hùn hé 混合#huì huà 绘画#huáng hūn 黄昏
+h_dd=huihuang#hunhe#huihua#huanghun
+
+j_f=舌尖抵住下门齿，舌面前部紧贴硬腭，气流从窄缝中冲出，摩擦成音。
+j_P=ji#ju#jin#jiu#jue
+j_d=jiǎng jiū 讲究#jiāo jì 交际#jī jí 积极#jiě jie 姐姐
+j_dd=jiangjiu#jiaoji#jiji#jiejie
+
+q_f=舌面前部贴住硬腭，气流冲破舌根的阻碍，摩擦成音。
+q_p=qi#qu#qie#qin#quan
+q_d=qīnqíng 亲情#qīng qiǎo 轻巧#qīng quán 清泉#qì qiú 气球
+q_dd=qinqing#qingqiao#qiangquan#qiqiu
+
+x_f=舌尖抵住下门齿，舌面前部抬高靠近硬腭，形成窄缝，气流从缝中挤出，摩擦成音。
+x_p=xi# xu# xiu# xiao# xue
+x_d=xué xí 学习#xiǎo xué 小学#xiáng xì 详细 # xià xuě 下雪
+x_dd=xuexi#xiaoxue#xiangxi#xiaxue
+
+
+zh_f=舌尖上翘，抵住硬腭前部，有较弱的气流冲开舌尖阻碍，从缝中挤出，摩擦成音。
+zh_p=zha#zhu#zhi#zhe#zhui
+zh_d=zhè zhōu 这周#zhèng zhì政治#zhuān zhí专职#zhēn zhū 珍珠
+zh_dd=zhezhou#zhegzhi#zhuanzhi#zhenzhu
+
+ch_f=舌尖上翘，抵住硬腭前部，有较强的气流冲开舌尖阻碍，从缝中挤出，摩擦成音。
+ch_p=cha#che#ch#ichu#chou
+ch_d=chū chāi 出差#cháng chéng 长城#chóu chàng 惆怅#chéng chuán 乘船     
+ch_dd=chuchai#changcheng#chouchang#chengchuan
+
+
+sh_f=舌尖上翘，抵住硬腭前部，留出窄缝，气流从窄缝中挤出，摩擦成音。
+sh_p=sha#she#shi#shu#shui
+sh_d=shì shí 事实#shuāng shǒu 双手#shǒu shù 手术#shǎn shuò 闪烁
+sh_dd=shishi#shuangshou#shoushu#shanshuo
+
+
+r_f=舌尖上翘，靠近硬腭前部，留出窄缝，嗓子用力发音，气流从窄缝中挤出，摩擦成音，声带颤动。
+r_p=re#ri#ru#rao#ruan
+r_d=réng rán 仍然róu ruǎn 柔软róng rù 融入róu rèn 柔韧
+r_dd=rengran#rouruan#rongru#rouren
+
+
+
+z_f=舌尖抵住上门齿背，阻碍气流，让较弱的气流冲开舌尖阻碍，从窄缝中挤出，摩擦成音。
+z_p=za#ze#zu#zao#zuo
+z_d=zuò zhě 作者#zá zhì 杂志#zì zhǔ 自主#zǔ zhī 组织
+z_dd=zuozhe#zazhi#zizhu#zuzhi
+
+
+c_f=舌尖抵住上门齿背，阻碍气流，让较强的气流从缝中挤出，摩擦成音。
+c_p=ca#ce#ci#cu#cao
+c_d=céng cì 层次#cóng cǐ 从此#cāi cè 猜测#cuī cù 催促
+c_dd=cengci#congci#chace#cuicu
+
+
+s_f=舌尖接近上门齿背，留出窄缝，气流从舌尖的窄缝中挤出，摩擦成音。
+s_p=sa#se#si#su#sao
+s_d=suí shí 随时#sù shí 素食#sù shè 宿舍#suì shù 岁数
+s_dd=suishi#sushi#sushe#suishu
+
+
+y_f=嘴微张成扁平状，舌尖抵住下齿龈，舌面抬高，靠近上硬腭，声带颤动。
+y_p=ya#yi#ye#yue#yu
+y_d=yī fú 衣服#shù yè 树叶#yuè liànɡ 月亮#yǔ zhū 雨珠
+y_dd=yifu#shuye#yueliang#yuzhu
+
+
+w_f=嘴唇拢圆，突出成小孔，舌面后部隆起，声带颤动。
+w_p=wa#wo#wu#wai#wei
+w_d=wǎ piàn 瓦片#wò shì 卧室#wǔ shuì 午睡#wèi ɡuó 魏国
+w_dd=wapian#woshi#wushui#weiguo
+
+
+
+a_f=嘴唇自然张开，舌放平，舌头中间微隆，声带颤动。
+a_p=ba#pa#ma#fa#da
+a_d=bā jiāo 芭蕉#pá  pō 爬坡#dà xiàng大象# fā fèn 发奋
+a_dd=bajiao#papo#daxiang#fafen
+
+
+o_f=嘴唇成圆行，微翘起，舌头向后缩，舌面后部隆起，舌居中，声带颤动。
+o_p=ao#bo#po#mo#fo
+o_d=bō bào 播报#pó po 婆婆#mó miè 磨灭#fó fǎ 佛法
+o_dd=bobao#popo#momie#fofa
+
+
+e_f=嘴半开，舌位靠后，嘴角向两边展开成扁形，声带颤动。
+e_p=de#te#ne#le
+e_d=dé dàng 得当#tè bié 特别#kè qì 客气#lè qù 乐趣
+e_dd=dedang#tebie#keqi#lequ
+
+
+i_f=嘴微张成扁平状，舌尖抵住下齿龈，舌面抬高，靠近上硬腭，声带颤动。
+i_p=bi#pi#qi#di
+i_d=bǐ shùn 笔顺#pí qì 脾气#qí qiú 祈求#dì diǎn 地点
+i_dd=bishun#piqi#qiqiu#didian
+
+
+u_f=嘴唇拢圆，突出成小孔，舌面后部隆起，声带颤动。
+u_p=bu#pu#mu#du
+u_d=bú bì 不必#pù bù 瀑布#shù mù 树木#dú shū 读书
+u_dd=bubi#pubu#shumu#shumu#dushu
+
+
+v_f=嘴唇成圆形，接近闭拢，舌尖抵住下齿龈，舌面前部隆起，声带颤动。
+v_p=nü#lü
+v_d=guī lǜ 规律#nǚ wā 女娲#lǚ tú 旅途#lǜ yīn 绿荫
+v_dd=guilu#nuwa#lutu#luyin
+
+
+ai_f=先发a的音，然后滑向i，气流不中断，读音轻短。
+ai_p=bai#pai#mai#dai
+ai_d=bái cài 白菜#pái míng 排名#mài miáo 麦苗#kǒu dài 口袋
+ai_dd=baicai#paiming#maimiao#koudai
+
+
+ei_f=先发e的音，然后滑向i，气流不中断，读音轻短。
+ei_p=bei#pei#mei#fei
+ei_d=bèi zhù 备注#péi bàn 陪伴 měi róng 美容   fēi shì 飞逝
+ei_dd=beizhu#peiban#meirong#feishi
+
+
+ui_f=ui的发音轻短，然后滑向ei，嘴形由圆到扁。
+ui_p=dui#tui#gui#kui
+ui_d=duì dài 对待#tuī duàn 推断#guī dìng 规定#kuī jiǎ 盔甲
+ui_dd=duidai#tuiduan#guiding#kuijia
+
+
+ao_f=先发a的音，然后舌尖后缩，舌根向上抬，嘴形拢成圆形，轻轻的滑向o。
+ao_p=bao#pao#mao#dao
+ao_d=bāo zhuāng 包装#pǎo bù 跑步#mào mì 茂密#dào dá 到达
+ao_dd=baozhuang#paobu#maomi#daoda
+
+
+ou_f=先发o的音，嘴唇渐收拢，舌根抬高，口型由大圆到小圆。
+ou_p=pou#fou#dou#tou
+ou_d=bù ǒu 布偶#ǒu piàn 藕片#tóu yuán 投缘#fǒu dìng 否定
+ou_dd=buou#oupian#touyuan#fouding
+
+
+iu_f=先发i，然后向ou滑动，口型由扁到圆。
+iu_p=miu#diu#niu#liu
+iu_d=diū shī 丢失#niǔ dài 纽带#liú chuán 留传#miù lùn 谬论
+iu_dd=diushi#niudai#liuchuan#miunun
+
+
+ie_f=先发i，再发e，气流不中断。
+ie_p=bie#pie#mie#die
+ie_d=fēn bié 分别#xiāo miè 消灭#diē luò 跌落#hú dié 蝴蝶
+ie_dd=fenbie#xiaomie#dieluo#hudie
+
+
+ue_f=先发u的音，然后向e滑动，口型由圆到扁。
+ue_p=nüe#lüe#que#xue
+ue_d=quē diǎn 缺点#xué xiào 学校#nüè dài 虐待#lüè duó 掠夺
+ue_dd=quedian#xuexiao#nuedai#lueduo
+
+
+
+er_f=舌位居中发e的音，然后舌尖向硬腭卷起，两个字母同时发音。
+er_p=er
+er_d=ěr duo 耳朵
+er_dd=erduo
+
+
+
+an_f=先发a的音，然后舌尖逐渐抬起，顶住上牙床发n的音。
+an_p=ban#pan#man#fan
+an_d=bān chē 班车#guāng pán 光盘#mǎn zú 满足#fǎn fù 反复
+an_dd=banche#guangpan#manzu#fanfu
+
+
+
+en_f=先发e的音，然后舌面抬高，舌尖抵住上牙床，气流从鼻腔泄出，发n的音。
+en_p=ben#pen#men#fen
+en_d=bēn bō 奔波#pēn wù 喷雾#mén líng 门铃#fèn dòu 奋斗
+en_dd=benbo#penwu#menling#fendou
+
+
+in_f=先发i的音，然后舌尖抵住下门齿背，舌面渐至硬腭，气流从鼻腔泄出，发n的音。
+in_p=bin#pin#min#lin
+in_d=binke宾客#pintu拼图#minjian民间#shù lín 树林
+in_dd=binke#pintu#minjian#shulin
+
+
+un_f=先发u的音，然后舌尖抵住上牙床，接着发n的音，气流从鼻腔泄出。
+un_p=dun#tun#lun#gun
+un_d=máo dùn 矛盾#tún tián 屯田#lùn tán 论坛#gǔn dòng 滚动
+un_dd=maodun#tuntian#luntan#gundong
+
+
+vn_f=先发ü的音，然后舌头上抬，抵住上牙床，气流从鼻腔泄出，发n的音。
+vn_p=jun#qun#xun#yun
+vn_d=bái yún 白云
+vn_dd=baiyun
+
+
+
+ang_f=先发a的音，然后舌根抵住上软腭，气流从鼻腔泄出，发后鼻音尾ng的音。
+ang_p=bang#pang#mang#fang
+ang_d=bāng máng 帮忙#páng dà 庞大#máng guǒ 芒果#fáng dǐng 房顶
+ang_dd=bangmang#pangda#mangguo#fangding
+
+
+
+eng_f=先发e的音，然后舌尖抵住下牙床，舌根后缩抵住软腭发ng音，气流从鼻腔泄出。
+eng_p=beng#peng#meng#feng
+eng_d=bèng fā 迸发#péng bó 蓬勃#méng dòng 萌动#fēng dù 风度
+eng_dd=bengfa#pengbo#mengdong#fengdu
+
+
+ing_f=舌尖触下齿龈，舌面隆起至硬腭，鼻腔共鸣成音。
+ing_p=bing#ping#ming#ding
+ing_d=bīng diāo 冰雕#píng dàn 平淡#míng dài 明代#dìng dān 订单
+ing_dd=bingdiao#pingdan#mingdai#dingdan
+
+
+ong_f=先发o的音，然后舌根后缩抵住软腭，舌面隆起，嘴唇拢圆，鼻腔共鸣成音。
+ong_p=dong#tong#nong#long
+ong_d=dòng shǒu 冻手#tóng gōng 童工#nóng mín 农民#lóng dōng 隆冬
+ong_dd=dongshou#tonggong#nongmin#longdong
