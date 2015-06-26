@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.control.SampleControl;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
 import com.bosi.chineseclass.han.db.DbManager;
@@ -41,7 +42,15 @@ public class MainActivity extends BaseActivity {
 		Intent mIntent = new Intent(this,HzcsActivity.class);
 		startActivity(mIntent);
 	}
+	@OnClick(R.id.btn_bphz)
+	public void actionBphz(View mView){
+		Intent mIntent = new Intent(this,SampleHolderActivity.class);
+		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"BphzLevFragment"});
+		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+		startActivity(mIntent);
+	}
 
+	
 	@Override
 	public void onBackPressed() {
 		BSApplication.getInstance().exitApp();

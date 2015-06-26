@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.control.HzcsDitalContarol;
+import com.bosi.chineseclass.control.HzcsDitalControl;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -50,8 +50,8 @@ public class HzcsActivity extends BaseActivity{
 	
 	private void _intentTo_(String frgmentName){
 		Intent mIntent = new Intent(this,SampleHolderActivity.class);
-		mIntent.putExtra(SampleHolderControlMake.mControlName, "HzcsDitalContarol");
-		mIntent.putExtra(HzcsDitalContarol.KEY_HZCSFUNCNAME, frgmentName);
+		mIntent.putExtra(SampleHolderControlMake.mControlName, "HzcsDitalControl");
+		mIntent.putExtra(HzcsDitalControl.KEY_HZCSFUNCNAME, frgmentName);
 		startActivity(mIntent);
 	}
 
