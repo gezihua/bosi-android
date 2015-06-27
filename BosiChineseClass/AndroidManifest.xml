@@ -73,7 +73,8 @@
         </activity>
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/StyledIndicators" >
         </activity>
         <activity
             android:name=".activitys.SampleHolderActivity"
@@ -123,15 +124,17 @@
             android:process=":remotereporterror"
             android:screenOrientation="landscape" >
         </activity>
-              <service
-    android:name="com.umeng.update.net.DownloadingService"
-    android:process=":DownloadingService" >
-</service>
-<activity 
-    android:name="com.umeng.update.UpdateDialogActivity"
-     android:screenOrientation="landscape"
-    android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-</activity>
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService" >
+        </service>
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>

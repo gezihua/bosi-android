@@ -58,6 +58,13 @@ public class WordPadView extends View {
 		this.screenHeight = 400;
 		init();
 	}
+	public void rest(){
+	    if (mCanvas!=null) {
+	        mPath.reset();
+	        mCanvas.drawPath(mPath, mPaint);
+	        invalidate();
+        }
+	}
 
 	// 清除画板
 	public void clear() {
