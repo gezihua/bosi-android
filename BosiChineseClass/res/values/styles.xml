@@ -1,10 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="android:Theme.Light" />
-
-    <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:windowNoTitle">true</item>
-    </style>
+    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen"></style>
 
     <style name="bosi_textstyle_title">
         <item name="android:textSize">16sp</item>
@@ -26,4 +22,5 @@
         <item name="android:fadingEdge">horizontal</item>
         <item name="android:fadingEdgeLength">8dp</item>
     </style>
+
 </resources>

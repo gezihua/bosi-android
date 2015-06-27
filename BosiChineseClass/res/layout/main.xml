@@ -2,16 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/bosi_index_bg"
+   
+>
 
+    
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pic_bosi_index_title"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="30dp"
+    >
+</ImageView>
+
+
+<LinearLayout 
+    android:layout_marginTop="40dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    >
+    <Button
+        android:id="@+id/btn_pinyinlearn"
+        android:background="@drawable/a1_selector"
+        android:layout_width="55dp"
+        android:layout_height="160dp" />
+  <Button
+        android:id="@+id/main_btn_hzcs"
+        android:background="@drawable/a2_selector"
+        android:layout_width="55dp"
+        android:layout_height="160dp" />
+
+   <Button
+       android:id="@+id/bt_zy"
+       android:layout_width="55dp"
+       android:layout_height="160dp"
+       android:background="@drawable/a3_selector"
+       />
+   <Button
+       android:id="@+id/btn_bphz"
+       android:layout_width="55dp"
+       android:layout_height="160dp"
+     android:background="@drawable/a4_selector" />
+      <Button
+       android:id="@+id/btn_bpcy"
+       android:layout_width="55dp"
+       android:layout_height="160dp"
+       android:background="@drawable/a5_selector"/>
+    
     <Button
         android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/bt_zy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/bt_03_jbzy"/>
+        android:layout_width="55dp"
+        android:layout_height="160dp"
+         android:background="@drawable/a6_selector"
+       />
+    
+    
+    
+</LinearLayout>
+ 
 
 </LinearLayout>

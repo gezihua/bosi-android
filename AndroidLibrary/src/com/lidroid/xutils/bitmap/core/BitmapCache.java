@@ -15,6 +15,7 @@
 
 package com.lidroid.xutils.bitmap.core;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
@@ -414,7 +415,8 @@ public class BitmapCache {
         return bitmap;
     }
 
-    private synchronized Bitmap rotateBitmapIfNeeded(String uri, BitmapDisplayConfig config, Bitmap bitmap) {
+    @SuppressLint("NewApi")
+	private synchronized Bitmap rotateBitmapIfNeeded(String uri, BitmapDisplayConfig config, Bitmap bitmap) {
         Bitmap result = bitmap;
         if (config != null && config.isAutoRotation()) {
             File bitmapFile = this.getBitmapFileFromDiskCache(uri);

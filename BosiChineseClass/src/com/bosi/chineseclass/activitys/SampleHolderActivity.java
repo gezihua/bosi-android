@@ -2,6 +2,7 @@ package com.bosi.chineseclass.activitys;
 
 import java.util.ArrayList;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -33,11 +34,14 @@ public class SampleHolderActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle mBundler) {
 		super.onCreate(mBundler);
-		
 		mControlMaker = new SampleHolderControlMake(this, getIntent());
 		setupViewPagger();
 	}
 	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
 	/**
 	 * for set up the viewpager common used
 	 */
@@ -65,7 +69,7 @@ public class SampleHolderActivity extends BaseActivity{
 		}
 	};
 	//static 接口才能被外面识别	我就告诉外面 我需要哪些东西 不需要知道他是怎么给我的 因为我就负责显示
-	public static interface ISampleControlInterface{
+	public static interface ISampleControlInterface {
 		public ArrayList<Fragment> getFragments();
 	}
 }

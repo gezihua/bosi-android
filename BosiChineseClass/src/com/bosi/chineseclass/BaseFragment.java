@@ -1,4 +1,3 @@
-
 package com.bosi.chineseclass;
 
 import com.lidroid.xutils.ViewUtils;
@@ -51,3 +50,4 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void afterViewInject();
 }
+

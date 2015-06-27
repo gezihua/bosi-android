@@ -136,7 +136,6 @@ public abstract class PriorityAsyncTask<Params, Progress, Result> implements Tas
      * @see #doInBackground
      * @see #onCancelled(Object)
      */
-    @SuppressWarnings({"UnusedDeclaration"})
     protected void onPostExecute(Result result) {
     }
 
@@ -359,11 +358,7 @@ public abstract class PriorityAsyncTask<Params, Progress, Result> implements Tas
     }
 
     private void finish(Result result) {
-        if (isCancelled()) {
-            onCancelled(result);
-        } else {
-            onPostExecute(result);
-        }
+    	  onPostExecute(result);
     }
 
     private static class InternalHandler extends Handler {

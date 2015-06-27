@@ -170,12 +170,17 @@ public class AutoChangeLineViewGroup extends ViewGroup {
 	/** 新增加一行 */
 	private boolean newLine() {
 		mLines.add(mLine);
-		if (mLines.size() < mMaxLinesCount) {
+		if (mLines.size() < mMaxLinesCount||(mChindSizeEnoughSize!=-1&&getChildCount()==mChindSizeEnoughSize)) {
 			mLine = new Line();
 			mUsedWidth = 0;
 			return true;
 		}
 		return false;
+	}
+	
+	int mChindSizeEnoughSize = -1;
+	public void setChildsEnoughSize(int mChindSizeEnoughSize){
+		this.mChindSizeEnoughSize = mChindSizeEnoughSize;
 	}
 
 	// ==========================================================================
