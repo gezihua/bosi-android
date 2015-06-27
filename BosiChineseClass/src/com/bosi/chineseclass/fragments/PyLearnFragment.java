@@ -18,8 +18,10 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.components.MediaPlayerPools;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
+import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -30,7 +32,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * 
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class PyLearnFragment extends BaseFragment {
+public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 
 	String[] marrayForLearn = null;
 
@@ -58,7 +60,14 @@ public class PyLearnFragment extends BaseFragment {
 	@ViewInject(R.id.headactionbar)
 	View mViewHeadbar;
 	
+	@ViewInject(R.id.iv_pinyinlearn_reader)
+	
+	ImageView mImageReader;
+	
+	
 	MediaPlayerPools mMediaPlayerPools;
+	
+	XutilImageLoader mImageLoader;
 
 	private final String SUFFIX_FYYL = "_f";
 	private final String SUFFIX_PYP = "_p";
@@ -71,7 +80,7 @@ public class PyLearnFragment extends BaseFragment {
 		mPressedZm = "y";
 		initBasicPinYin(CategoryPinyin.YM);
 		addPinYinNameDital();
-
+		downLoadFilesBaseCurrentZiMu();
 		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
@@ -81,6 +90,7 @@ public class PyLearnFragment extends BaseFragment {
 		mImageViewSm.bringToFront();
 		initBasicPinYin(CategoryPinyin.SM);
 		addPinYinNameDital();
+		downLoadFilesBaseCurrentZiMu();
 		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
@@ -132,19 +142,7 @@ public class PyLearnFragment extends BaseFragment {
 				public void onClick(View arg0) {
 					// 检查固定的目录是否有下载数据 如果没有则需要创建下载
 					mPressedZm = mTextView.getText().toString();
-					String mCurrentFoderName =getFolderPath();
-					BSApplication.getInstance().mStorage
-							.createDirectory(mCurrentFoderName);
-					String filePath = getAbsoultFilePath();
-
-					String[] mFilePath = getDownLoadUrlsBaseCurrentSouce();
-					if (mFilePath != null && mFilePath.length > 0) {
-						int files = BSApplication.getInstance().mStorage
-								.getFile(mCurrentFoderName).list().length;
-						if (mFilePath.length != files)
-							mDownLoadControl.downloadFiles(filePath,
-									getDownLoadUrlsBaseCurrentSouce());
-					}
+					downLoadFilesBaseCurrentZiMu();
 					showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm
 							+ SUFFIX_FYYL));
 				}
@@ -154,6 +152,21 @@ public class PyLearnFragment extends BaseFragment {
 		}
 	}
 
+	private void downLoadFilesBaseCurrentZiMu(){
+		String mCurrentFoderName =getFolderPath();
+		BSApplication.getInstance().mStorage
+				.createDirectory(mCurrentFoderName);
+		String filePath = getAbsoultFilePath();
+
+		String[] mFilePath = getDownLoadUrlsBaseCurrentSouce();
+		if (mFilePath != null && mFilePath.length > 0) {
+			int files = BSApplication.getInstance().mStorage
+					.getFile(mCurrentFoderName).list().length;
+			if (mFilePath.length != files)
+				mDownLoadControl.downloadFiles(filePath,
+						mFilePath);
+		}
+	}
 	private String getPropertiesFromKey(String key) {
 		String value = mPorperties.getProperty(key);
 
@@ -278,6 +291,9 @@ public class PyLearnFragment extends BaseFragment {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		mImageLoader = new XutilImageLoader(mActivity);
 		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
@@ -296,14 +312,20 @@ public class PyLearnFragment extends BaseFragment {
 		mMediaPlayerPools.playMediaFile(fileName);
 	}
 	
-	private void playVideo(String fileName){
+	private void playVideoRead(){
 		
+	}
+	private void playVideoWrite(){
+		
+	}
+	private void displayCurrentZmbg(){
+		mImageLoader.getBitmapFactory().display(mImageReader, getAbsoultFilePath()+mPressedZm+".jpg");
 	}
 	private String[] getDownLoadUrlsBaseCurrentSouce() {
 
 		String[] mVoiceUrls = getPropertiesFromKey(mPressedZm + SUFFIX_DYDD)
 				.split("#");
-		String[] mUrlSoruce = new String[mVoiceUrls.length];
+		String[] mUrlSoruce = new String[mVoiceUrls.length+3];
 		// 组拼
 		for (int i = 0; i < mVoiceUrls.length; i++) {
 			String voiceSouceValue = mVoiceUrls[i];
@@ -311,8 +333,24 @@ public class PyLearnFragment extends BaseFragment {
 					+ mPressedZm + "/" + voiceSouceValue + ".mp3";
 			mUrlSoruce[i] = urlForVoice;
 		}
-
+		mUrlSoruce[mVoiceUrls.length] =  AppDefine.URLDefine.URL_PINYINVOICE
+				+ mPressedZm + "/" + mPressedZm+".mp4";
+		
+		mUrlSoruce[mVoiceUrls.length+1] =  AppDefine.URLDefine.URL_PINYINVOICE
+				+ mPressedZm + "/" + mPressedZm+"-1.mp4";
+		
+		mUrlSoruce[mVoiceUrls.length+2] =  AppDefine.URLDefine.URL_PINYINVOICE
+				+ mPressedZm + "/" + mPressedZm+".jpg";
 		return mUrlSoruce;
+	}
+
+	@Override
+	public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
+		if(mCurrentSize ==wholeSize){
+			//该播放mp4的播放mp4 该显示图片的显示图片
+			
+			displayCurrentZmbg();
+		}
 	}
 
 }

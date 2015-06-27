@@ -26,6 +26,11 @@ public class DownLoadResouceControl {
 		public void onDownLoadCallback(int mCurrentSize, int wholeSize);
 	}
 
+	DownloadCallback mDownLoadCallBack;
+	
+	public void setOnDownLoadCallback(DownloadCallback mDownLoadCallBack){
+		this.mDownLoadCallBack = mDownLoadCallBack;
+	}
 	int loadedData = -1;
 
 	BaseActivity mActivity;
@@ -86,6 +91,7 @@ public class DownLoadResouceControl {
 		loadedData++;
 		mActivity.updateProgress(loadedData, mCurrentData.length);
 		if (loadedData == mCurrentData.length) {
+			mDownLoadCallBack.onDownLoadCallback(loadedData, mCurrentData.length);
 			mActivity.dismissProgress();
 			loadedData = 0;
 		}
