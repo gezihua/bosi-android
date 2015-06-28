@@ -280,6 +280,8 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 	protected void afterViewInject() {
 
 		mDownLoadControl = new DownLoadResouceControl(mActivity);
+		mDownLoadControl.setOnDownLoadCallback(this);
+		
 		HeadLayoutComponents mHeadActionbar = new HeadLayoutComponents(
 				mActivity, mViewHeadbar);
 		mHeadActionbar.setTextMiddle("拼音学习", -1);
@@ -348,7 +350,6 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 	public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
 		if(mCurrentSize ==wholeSize){
 			//该播放mp4的播放mp4 该显示图片的显示图片
-			
 			displayCurrentZmbg();
 		}
 	}

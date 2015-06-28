@@ -91,6 +91,7 @@ public class DownLoadResouceControl {
 		loadedData++;
 		mActivity.updateProgress(loadedData, mCurrentData.length);
 		if (loadedData == mCurrentData.length) {
+			if(mDownLoadCallBack!=null)
 			mDownLoadCallBack.onDownLoadCallback(loadedData, mCurrentData.length);
 			mActivity.dismissProgress();
 			loadedData = 0;
