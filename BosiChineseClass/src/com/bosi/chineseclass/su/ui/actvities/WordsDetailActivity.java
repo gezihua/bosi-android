@@ -1,24 +1,31 @@
 
 package com.bosi.chineseclass.su.ui.actvities;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TabWidget;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Word;
 import com.bosi.chineseclass.su.ui.fragment.TextViewFragment;
+import com.bosi.chineseclass.su.ui.view.WordPadView;
 import com.bosi.chineseclass.su.utils.MyVolley;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.callback.RequestCallBack;
@@ -28,24 +35,52 @@ import com.viewpagerindicator.TabPageIndicator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WordsDetailActivity extends BaseActivity {
-    @Override
-    protected void onCreate(Bundle arg0) {
-        super.onCreate(arg0);
-        setContentView(R.layout.fragment_container);
-        init();
-    }
+import u.aly.di;
 
+import android.view.View;
+import android.view.View.OnClickListener;
+
+;
+
+public class WordsDetailActivity extends BaseActivity implements
+        OnClickListener {
+    View mHeadActionBar;
+    HeadLayoutComponents mHeadActionBarComp;
     private ImageView mOracleImg = null;
     private ImageView mOracleWord = null;
+
     private TextView mWordTextView = null;
     private Button mPlayButton = null;
     private TextView mExplainTextView;
     private ViewPager mWordDtail;
     private TextView mYtTextView;
     private TabPageIndicator mIndicator;
+    private FragmentManager mFragManager;
+    private VideoView mVideoView;
+    private Button mPadView;
+    private final static String[] sExplain = {
+            "基本示意", "完整示意", "成语典故"
+    };
+    private final static String ORACLE_IMG = "";
+
+    private final static String ORACLE_WORD = "";
+
+    private <T> void asynload(String url, RequestCallBack<T> callBack) {
+        HttpUtils utils = new HttpUtils();
+        utils.send(HttpMethod.GET, url, callBack);
+    }
+
+    private void createTabBtn(String word) {
+
+    }
+
+    private TextViewFragment creaTextViewFragment(String word) {
+        return new TextViewFragment(word);
+    }
 
     private void init() {
+        mHeadActionBar = findViewById(R.id.deatail_headactionbar);
+        initHeadActionBarComp();
         mOracleImg = (ImageView) findViewById(R.id.oracle_img);
         mOracleWord = (ImageView) findViewById(R.id.oracle_word);
         mWordTextView = (TextView) findViewById(R.id.detail_word);
@@ -54,16 +89,117 @@ public class WordsDetailActivity extends BaseActivity {
         mWordDtail = (ViewPager) findViewById(R.id.word_detail_body);
         mYtTextView = (TextView) findViewById(R.id.ytzi);
         mIndicator = (TabPageIndicator) findViewById(R.id.indicator);
+        mVideoView = (VideoView) findViewById(R.id.video_pad).findViewById(R.id.dictionary_video);
+        mPadView = (Button) findViewById(R.id.word_pad);
+        mPadView.setOnClickListener(this);
         String word = onRecieveIntent();
         mWordTextView.setText(word);
         loadFromRemote();
         loadFromDb(word);
     }
 
+    private void initHeadActionBarComp() {
+        mHeadActionBarComp = new HeadLayoutComponents(this, mHeadActionBar);
+
+        mHeadActionBarComp.setTextMiddle("字源字典", -1);
+        mHeadActionBarComp.setDefaultLeftCallBack(true);
+        mHeadActionBarComp.setDefaultRightCallBack(true);
+    }
+
     private void loadFromDb(String word) {
         Word detail = DbUtils.getInstance(this).getExplain(word);
         showDetail(detail);
         showExplain(detail);
+    }
+
+    private void loadFromRemote() {
+        // 这里需要请求四中四种资源
+        // 1. 声音 2.动画 3. 字体图片 4 示意图片
+        loadImage();
+        loadVideoAndSound();
+    }
+
+    private void loadImage() {
+        MyVolley.getInstance(this).loadImage(
+                "http://www.uimaker.com/uploads/allimg/120801/1_120801005405_1.png",
+                new ImageLoader.ImageListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+
+                    }
+
+                    @Override
+                    public void onResponse(
+                            ImageLoader.ImageContainer imageContainer, boolean b) {
+                        if (imageContainer.getBitmap() != null) {
+                            mOracleImg.setImageBitmap(imageContainer
+                                    .getBitmap());
+                        }
+                    }
+                });
+        MyVolley.getInstance(this).loadImage(
+                "http://www.uimaker.com/uploads/allimg/120801/1_120801005405_1.png",
+                new ImageLoader.ImageListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+
+                    }
+
+                    @Override
+                    public void onResponse(
+                            ImageLoader.ImageContainer imageContainer, boolean b) {
+                        if (imageContainer.getBitmap() != null) {
+                            mOracleWord.setImageBitmap(imageContainer
+                                    .getBitmap());
+                        }
+                    }
+                });
+
+    }
+
+    private void loadVideoAndSound() {
+        mVideoView.setMediaController(new MediaController(this));
+        // TODO:设置正确的专家讲字源路径
+        String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/120001.mp4";
+        playVideo(path);
+    }
+
+    @Override
+    public void onClick(View arg0) {
+        int id = arg0.getId();
+        switch (id) {
+            case R.id.word_pad: {
+                showWordPad();
+                break;
+            }
+
+            default:
+                break;
+        }
+
+    }
+
+    @Override
+    protected void onCreate(Bundle arg0) {
+        super.onCreate(arg0);
+        setContentView(R.layout.fragment_container);
+        init();
+
+    }
+
+    private String onRecieveIntent() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            String word = intent.getExtras().getString("word", "");
+            return word;
+        }
+        return null;
+    }
+
+    private void playVideo(String path) {
+        mVideoView.setVideoURI(Uri.parse(path));
+        mVideoView.requestFocus();
+        mVideoView.start();
     }
 
     private void showDetail(Word detail) {
@@ -81,16 +217,13 @@ public class WordsDetailActivity extends BaseActivity {
 
     }
 
-    private final static String[] sExplain = {
-            "基本示意", "完整示意", "成语典故"
-    };
-
     private void showExplain(Word detail) {
         final List<TextViewFragment> fragments = new ArrayList<TextViewFragment>();
         fragments.add(new TextViewFragment(detail.yanbian));
         fragments.add(new TextViewFragment(detail.cy));
         fragments.add(new TextViewFragment(detail.cysy));
-        mWordDtail.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        mWordDtail.setAdapter(new FragmentPagerAdapter(
+                getSupportFragmentManager()) {
 
             @Override
             public int getCount() {
@@ -113,68 +246,20 @@ public class WordsDetailActivity extends BaseActivity {
 
     }
 
-    private void createTabBtn(String word) {
-
-    }
-
-    private TextViewFragment creaTextViewFragment(String word) {
-        return new TextViewFragment(word);
-    }
-
-    private void loadFromRemote() {
-        // 这里需要请求四中四种资源
-        // 1. 声音 2.动画 3. 字体图片 4 示意图片
-        MyVolley.getInstance(this)
-                .loadImage(
-                        "http://developer.android.com/images/training/system-ui.png",
-                        new ImageLoader.ImageListener() {
-                            @Override
-                            public void onResponse(ImageLoader.ImageContainer imageContainer,
-                                    boolean b) {
-                                if (imageContainer.getBitmap() != null) {
-                                    mOracleImg.setImageBitmap(imageContainer.getBitmap());
-                                }
-                            }
-
-                            @Override
-                            public void onErrorResponse(VolleyError volleyError) {
-
-                            }
-                        });
-        MyVolley.getInstance(this)
-                .loadImage(
-                        "http://developer.android.com/images/training/system-ui.png",
-                        new ImageLoader.ImageListener() {
-                            @Override
-                            public void onResponse(ImageLoader.ImageContainer imageContainer,
-                                    boolean b) {
-                                if (imageContainer.getBitmap() != null) {
-                                    mOracleWord.setImageBitmap(imageContainer.getBitmap());
-                                }
-                            }
-
-                            @Override
-                            public void onErrorResponse(VolleyError volleyError) {
-
-                            }
-                        });
-    }
-
-    private final static String ORACLE_IMG = "";
-    private final static String ORACLE_WORD = "";
-
-    private String onRecieveIntent() {
-        Intent intent = getIntent();
-        if (intent != null) {
-            String word = intent.getExtras().getString("word", "");
-            return word;
-        }
-        return null;
-    }
-
-    private <T> void asynload(String url, RequestCallBack<T> callBack) {
-        HttpUtils utils = new HttpUtils();
-        utils.send(HttpMethod.GET, url, callBack);
+    private void showWordPad() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = View.inflate(this, R.layout.word_pad, null);
+        final WordPadView padView = (WordPadView) view.findViewById(R.id.wordpad);
+        Button reset = (Button) view.findViewById(R.id.rest);
+        reset.setOnClickListener(new View.OnClickListener() {
+            
+            @Override
+            public void onClick(View arg0) {
+                padView.rest();
+            }
+        });
+        AlertDialog dialog = builder.setView(view).create();
+        dialog.show();
     }
 
 }

@@ -2,76 +2,151 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/deatail_headactionbar"
+        layout="@layout/common_head" />
 
     <LinearLayout
-        android:id="@+id/first"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical" >
+        android:background="@drawable/bg_fragment_jbzy"
+        android:orientation="horizontal"
+        android:padding="5dp" >
 
-        <TextView
-            android:id="@+id/detail_word"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:gravity="center"
-            android:textColor="#ff422108"
-            android:textSize="40sp" />
+        <LinearLayout
+            android:id="@+id/first"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="2"
+            android:background="#ffffffff"
+            android:orientation="vertical"
+            android:paddingEnd="5dp" >
 
-        <Button
-            android:id="@+id/sound_play"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:text="@string/play_word" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_fragment_bihua_bihuashu"
+                android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/second"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="4"
-        android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/detail_word"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:textColor="#ff422108"
+                    android:textSize="40sp" />
 
-        <TextView
-            android:id="@+id/ytzi"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp" />
+                <Button
+                    android:id="@+id/sound_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:text="@string/play_word" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/word_explain"
-            android:layout_width="match_parent"
-            android:layout_height="80dp" />
+            <include
+                android:id="@+id/video_pad"
+                layout="@layout/video_pad" />
 
-        <com.viewpagerindicator.TabPageIndicator
-            android:id="@+id/indicator"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/word_pad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="0dp"
+                android:text="写字板" />
+        </LinearLayout>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/word_detail_body"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </android.support.v4.view.ViewPager>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/second_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="5"
+            android:background="#ffffffff"
+            android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/third"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical" >
+            <RelativeLayout
+                android:id="@+id/second_up"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
 
-        <ImageView
-            android:id="@+id/oracle_word"
-            android:layout_width="80dp"
-            android:layout_height="80dp" />
+                <ImageView
+                    android:id="@+id/oracle_img"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="0dp" />
 
-        <ImageView
-            android:id="@+id/oracle_img"
-            android:layout_width="80dp"
-            android:layout_height="80dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/indivitor_default_color" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="#ffffffff" >
+
+                <ImageView
+                    android:id="@+id/oracle_word"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true" />
+
+                <TextView
+                    android:id="@+id/ytzi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@id/oracle_word" />
+
+                <TextView
+                    android:id="@+id/word_explain"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/ytzi"
+                    android:layout_toLeftOf="@id/oracle_word"
+                    android:background="@drawable/main_background"
+                    android:padding="5dp" />
+
+                <com.viewpagerindicator.TabPageIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/word_explain"
+                    android:layout_toLeftOf="@id/oracle_word"
+                    android:paddingEnd="80dp" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/word_detail_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/indicator"
+                    android:layout_toLeftOf="@id/oracle_word"
+                    android:background="@drawable/main_background"
+                    android:padding="5dp" >
+                </android.support.v4.view.ViewPager>
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
