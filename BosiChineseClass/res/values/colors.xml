@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name ="bosi_tt_cm_color">#000000</color>
+    <color name="bosi_tt_cm_color">#000000</color>
     <color name="bihua_webview_color">#fdf3d7</color>
+    <color name="indivitor_back_color">#ffa5572c</color>
+    <color name="indivitor_default_color">#ffb58d73</color>
+    <color name="indivitor_selected_color">#ffedfdd7</color>
     <color name ="main_yello">#c88a51</color>
 </resources>

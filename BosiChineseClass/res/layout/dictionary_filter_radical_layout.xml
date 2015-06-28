@@ -24,7 +24,24 @@
         <ListView
             android:id="@+id/filter_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/main_background"
+            android:padding="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <include
+            android:id="@+id/devider"
+            layout="@layout/center_devider" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,15 +58,15 @@
 
         <TextView
             android:id="@+id/result_text"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
         <GridView
             android:id="@+id/reslut_grid_rad"
-            android:numColumns="5"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:numColumns="5" />
     </LinearLayout>
 
 </LinearLayout>
