@@ -9,6 +9,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
@@ -34,11 +36,11 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 
 	View mViewHead;
 	
-	HeadLayoutComponents mHeadActionBar;
+	protected HeadLayoutComponents mHeadActionBar;
 	
 	View mViewBody;
 
-	
+	TextView mTvDitalTitle;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,6 +70,8 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 		mBtRight = (Button) mBaseView.findViewById(R.id.bt_hzcs_dital_right);
 		mBtRight.setOnClickListener(this);
 		
+		
+		mTvDitalTitle = (TextView) mBaseView.findViewById(R.id.tv_hzcsdital_title);
 		mViewHead = mBaseView.findViewById(R.id.headactionbar);
 		
 		mViewBody = mBaseView.findViewById(R.id.rl_hzcs_body);
@@ -79,6 +83,7 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	public abstract void initMenu();
 
 	public void actionLeft(View mView) {
+		mBtRight.setVisibility(View.VISIBLE);
 		currentPosition--;
 		if (currentPosition < 0)
 			return;
@@ -91,6 +96,7 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	}
 
 	public void actionRight(View mView) {
+		mBtLeft.setVisibility(View.VISIBLE);
 		currentPosition++;
 		if (currentPosition == mCurrentData.length) {
 			return;
@@ -106,10 +112,15 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	
 	
 	protected void updateDitalPg() {
+		if(mCurrentData==null)return;
+		if(currentPosition==-1||currentPosition==mCurrentData.length){
+			currentPosition=0;
+		}
 		mImageLoader.getBitmapFactory().display(mIvDital,
 				mCurrentData[currentPosition]);
 	}
 
+	protected abstract void downLoadImageOverAction();
 	@Override
 	public void onClick(View mView) {
 		switch (mView.getId()) {
@@ -128,21 +139,19 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	protected void displayBgView(){
 		mViewBody.setBackgroundResource(R.drawable.hzqy_ditalbg);
 	}
-	public abstract void initWholeArray();
 	
 	/*---------------添加下载模块----------------*/
 	
 	
      int loadedData = -1;
 	
-	 String [] mAllDataArray ;
 	
 	public void downloadimgs() {
-		initWholeArray();
+		loadedData = -1;
 		updateProgress();
-		for(int i =0;i<mAllDataArray.length;i++){
+		for(int i =0;i<mCurrentData.length;i++){
 			mImageLoader.getBitmapFactory().display(mIvDital,
-					mAllDataArray[i],new BitmapLoadCallBack<View>() {
+					mCurrentData[i],new BitmapLoadCallBack<View>() {
 
 						@Override
 						public void onLoadCompleted(View container, String uri,
@@ -165,15 +174,16 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 						}
 						
 					});
-		}
-		
+	    	}
 	}
 
 	private void updateProgress(){
 		loadedData++;
-		mActivity.updateProgress(loadedData,mAllDataArray.length-1);
-		if(loadedData==mAllDataArray.length-1){
+		mActivity.updateProgress(loadedData,mCurrentData.length);
+		if(loadedData==mCurrentData.length){
 			mActivity.dismissProgress();
+			downLoadImageOverAction();
+			loadedData=0;
 		}
 	}
 	

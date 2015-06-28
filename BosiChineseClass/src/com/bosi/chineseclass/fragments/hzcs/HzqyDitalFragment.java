@@ -13,27 +13,22 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 //汉字起源
 public class HzqyDitalFragment extends AbsHzcsFragment {
 
-
 	
 	private void initDataArray(){
-		mDataArrayJsjs = new String[1];
-		mDataArrayJsjs[0]="http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/cjzz/cjzz-1.png";
+		mDataArrayJsjs = getResources().getStringArray(R.array.hzcs_hzqy_jsjs_picarray);
 		
-		mDataArrayCjzz= new String[2];
-		mDataArrayCjzz[0] = "http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/cjzz/cjzz-1.png";
-		mDataArrayCjzz[1] = "http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/cjzz/cjzz-2.png";
+		mDataArrayCjzz = getResources().getStringArray(R.array.hzcs_hzqy_cjzz_picarray);
 		
-		
-		mDataArrayFxbg = new String[1];
-		mDataArrayFxbg[0] = "http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/fxbg/fxbg-1.png";
+		mDataArrayFxbg = getResources().getStringArray(R.array.hzcs_hzqy_fxbg_picarray);
 	}
 	@OnClick(R.id.bt_hzcs_dital_jsjs)
 	public void actionClickJsJs(View mView){
 		mCurrentData = mDataArrayJsjs;
 		mBtRight.setVisibility(View.GONE);
 		mBtLeft.setVisibility(View.GONE);
+		mTvDitalTitle.setText("结绳记事");
 		currentPosition = 0;
-		updateDitalPg();
+		downloadimgs();
 	}
 	
 	@OnClick(R.id.bt_hzcs_dital_cjzz)
@@ -41,8 +36,9 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 		mCurrentData = mDataArrayCjzz;
 		mBtRight.setVisibility(View.VISIBLE);
 		mBtLeft.setVisibility(View.GONE);
+		mTvDitalTitle.setText("仓颉造字");
 		currentPosition = 0;
-		updateDitalPg();
+		downloadimgs();
 	}
 	
 	@OnClick(R.id.bt_hzcs_dital_fxbg)
@@ -50,8 +46,9 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 		mCurrentData = mDataArrayFxbg;
 		mBtRight.setVisibility(View.GONE);
 		mBtLeft.setVisibility(View.GONE);
+		mTvDitalTitle.setText("伏羲八卦");
 		currentPosition = 0;
-		updateDitalPg();
+		downloadimgs();
 	}
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -59,7 +56,7 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	public void initMenu() {
 		mImageLoader.getBitmapFactory().display(mIvDital,
 				"assets/hzqy/cjzz.png");
-		
+		mTvDitalTitle.setText("仓颉造字");
 		View mMenuView = View.inflate(mActivity, R.layout.layout_hzqy_menu, null);
 		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
@@ -69,23 +66,19 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 
 	@Override
 	protected void afterViewInject() {
-		
 		super.afterViewInject();
+		mHeadActionBar.setTextMiddle("汉字起源", -1);
+		mTvDitalTitle.setText("汉字起源");
 		initDataArray();
-		downloadimgs();
 	}
 
 	String mDataArrayJsjs [] ;
 	String mDataArrayCjzz [];
 	String mDataArrayFxbg [];
-	
 	@Override
-	public void initWholeArray() {
-		mAllDataArray = new String [mDataArrayJsjs.length+mDataArrayCjzz.length+mDataArrayFxbg.length];
-		System.arraycopy(mDataArrayJsjs, 0, mAllDataArray, 0, mDataArrayJsjs.length);
-		System.arraycopy(mDataArrayCjzz, 0, mAllDataArray, mDataArrayJsjs.length, mDataArrayCjzz.length);
-		System.arraycopy(mDataArrayFxbg, 0, mAllDataArray,  mDataArrayJsjs.length+mDataArrayCjzz.length, mDataArrayFxbg.length);
-		
+	protected void downLoadImageOverAction() {
+		updateDitalPg();
 	}
+	
 
 }

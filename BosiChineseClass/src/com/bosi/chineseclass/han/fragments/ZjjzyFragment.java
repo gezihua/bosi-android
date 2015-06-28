@@ -41,6 +41,7 @@ public class ZjjzyFragment extends BaseFragment {
     }
 
     private void playVideo(String path) {
+    	mVideoView.setScrollContainer(false);
         mVideoView.setVideoURI(Uri.parse(path));
         mVideoView.requestFocus();
         mVideoView.start();

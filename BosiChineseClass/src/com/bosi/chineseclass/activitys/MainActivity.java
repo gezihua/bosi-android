@@ -4,6 +4,7 @@ import android.content.Intent;
 
 
 
+
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.control.SampleControl;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
 import com.bosi.chineseclass.han.db.DbManager;
@@ -18,7 +20,6 @@ import com.bosi.chineseclass.su.db.DicOpenHelper;
 import com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
 @ContentView(R.layout.main)
@@ -26,9 +27,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-
 		UmengUpdateAgent.update(this);
-		MobclickAgent.updateOnlineConfig(this); // 自定义事件转化相关
 		init();
 	}
 	@OnClick(R.id.btn_pinyinlearn)
@@ -43,7 +42,15 @@ public class MainActivity extends BaseActivity {
 		Intent mIntent = new Intent(this,HzcsActivity.class);
 		startActivity(mIntent);
 	}
+	@OnClick(R.id.btn_bphz)
+	public void actionBphz(View mView){
+		Intent mIntent = new Intent(this,SampleHolderActivity.class);
+		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"BphzLevFragment"});
+		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+		startActivity(mIntent);
+	}
 
+	
 	@Override
 	public void onBackPressed() {
 		BSApplication.getInstance().exitApp();

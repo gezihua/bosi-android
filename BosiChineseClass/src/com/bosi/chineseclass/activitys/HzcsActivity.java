@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.control.HzcsDitalContarol;
+import com.bosi.chineseclass.control.HzcsDitalControl;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -27,6 +27,7 @@ public class HzcsActivity extends BaseActivity{
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		mHeadActionBar = new HeadLayoutComponents(this, mViewHead);
+		mHeadActionBar.setTextMiddle("汉字常识", -1);
 	}
 	//造字方法
 	@OnClick(R.id.iv_hzcs_zzff)
@@ -47,13 +48,10 @@ public class HzcsActivity extends BaseActivity{
 		_intentTo_("HzqyDitalFragment");
 	}
 	
-	
-
-	
 	private void _intentTo_(String frgmentName){
 		Intent mIntent = new Intent(this,SampleHolderActivity.class);
-		mIntent.putExtra(SampleHolderControlMake.mControlName, "HzcsDitalContarol");
-		mIntent.putExtra(HzcsDitalContarol.KEY_HZCSFUNCNAME, frgmentName);
+		mIntent.putExtra(SampleHolderControlMake.mControlName, "HzcsDitalControl");
+		mIntent.putExtra(HzcsDitalControl.KEY_HZCSFUNCNAME, frgmentName);
 		startActivity(mIntent);
 	}
 

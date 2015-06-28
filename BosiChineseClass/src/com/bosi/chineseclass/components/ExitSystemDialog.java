@@ -1,5 +1,7 @@
 package com.bosi.chineseclass.components;
 
+import java.util.HashMap;
+
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
@@ -9,6 +11,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 
 import android.app.AlertDialog;
+import android.os.Handler;
 import android.view.View;
 
 public class ExitSystemDialog  {
@@ -26,13 +29,17 @@ public class ExitSystemDialog  {
 	
 	@OnClick(R.id.dialog_exit_bt_good)
 	public void actionGood(View mView){
-		MobclickAgent.onEvent(mActivity, "ID_ZAN");
+		HashMap< String , String> mHashData = new HashMap<String, String>();
+		mHashData.put("actName", mActivity.getClass().getName());
+		MobclickAgent.onEvent(mActivity, "ID_ZAN",mHashData);
 		mDialog.dismiss();
 		BSApplication.getInstance().destroySystem();
 	}
 	@OnClick(R.id.dialog_exit_bt_normal)
     public void actionNormal(View mView){
-		MobclickAgent.onEvent(mActivity, "ID_NORMAL","ACTION_NORMAL");
+		HashMap< String , String> mHashData = new HashMap<String, String>();
+		mHashData.put("actName", mActivity.getClass().getName());
+		MobclickAgent.onEvent(mActivity, "ID_NORMAL",mHashData);
 		mDialog.dismiss();
 		BSApplication.getInstance().destroySystem();
 	}

@@ -1,6 +1,8 @@
 package com.bosi.chineseclass.components;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface.OnDismissListener;
+
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -12,7 +14,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class LoadingDialog {
 
-	AlertDialog mDialog;
+	public AlertDialog mDialog;
 
 	BaseActivity mActivity;
 
@@ -24,11 +26,17 @@ public class LoadingDialog {
 	
 	public LoadingDialog(BaseActivity mActivity) {
 		this.mActivity = mActivity;
-		mDialog = new android.app.AlertDialog.Builder(mActivity).create();
 	}
-	
+	OnDismissListener mOnDismissListener;
+	public void setOnDismissListener(OnDismissListener mOnDismissListener){
+		this.mOnDismissListener = mOnDismissListener;
+	}
 	public void show(){
+		if(mDialog!=null &&mDialog.isShowing()||mActivity.isFinishing())return;
+		mDialog = new android.app.AlertDialog.Builder(mActivity).create();
 		mDialog.show();
+		
+		mDialog.setOnDismissListener(mOnDismissListener);
 		initExitSystemDialog();
 	}
 	
@@ -39,9 +47,7 @@ public class LoadingDialog {
 		View mViewExit = View.inflate(mActivity,
 				R.layout.dialog_layout_loading, null);
 		ViewUtils.inject(this, mViewExit);
-		mProgressBar.setMax(100);
 		mDialog.setContentView(mViewExit);
-		mDialog.setCancelable(false);
 		mDialog.setCanceledOnTouchOutside(false);
 	}
 	

@@ -49,4 +49,5 @@ public abstract class BaseFragment extends Fragment {
 	 * 做一些初始化数据  但是不用在此方法中做相关网络数据 等耗时操作 （防止viewpagger 预加载导致 白屏）
 	 * */
 	protected abstract void afterViewInject();
+	
 }

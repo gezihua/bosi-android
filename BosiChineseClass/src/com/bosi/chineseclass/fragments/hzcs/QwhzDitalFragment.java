@@ -23,19 +23,24 @@ public class QwhzDitalFragment extends AbsHzcsFragment{
 	
 	}
 
-	@Override
-	public void downloadimgs() {
-		
-	}
+
 
 	@Override
-	public void initWholeArray() {
-		
+	protected void afterViewInject() {
+		super.afterViewInject();
+		mTvDitalTitle.setText("趣味汉字");
+		mHeadActionBar.setTextMiddle("趣味汉字", -1);
 	}
+
 
 	@Override
 	protected void displayBgView() {
-		mViewBody.setBackgroundResource(R.drawable.quhz_bg);
+		mViewBody.setBackgroundResource(R.drawable.gd);
+	}
+
+	@Override
+	protected void downLoadImageOverAction() {
+		updateDitalPg();
 	}
 	
 
