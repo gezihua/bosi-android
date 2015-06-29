@@ -24,7 +24,9 @@
                 android:id="@+id/ll_pylearn_leftbody"
                 android:layout_width="190dp"
                 android:layout_height="match_parent"
-                android:layout_margin="9dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom ="9dp"
                 android:background="@drawable/pinyin_sybg"
                 android:paddingTop="40dp"
                 android:paddingLeft="8dp"
@@ -47,17 +49,16 @@
                 android:background="@drawable/pyxx_sm_bg" />
 
         </RelativeLayout>
-        <ImageView
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-       />
+        
         
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/ll_pylearn_rightbody"
             android:orientation="vertical"
+            android:layout_margin="9dp"
+            android:padding="5dp"
+               android:background="@drawable/pinyin_sybg"
             >
             <LinearLayout
                 android:id="@+id/pinyinlearn_"
@@ -65,7 +66,6 @@
                 android:layout_height="110dp"
                 android:layout_marginTop="10dp"
                  android:orientation="horizontal"
-                android:layout_marginRight="10dp"
                 >
                 
                 <VideoView
@@ -99,6 +99,7 @@
                 android:layout_marginTop="10dp"
                  android:orientation="horizontal"
                 android:layout_marginRight="10dp"
+                android:gravity="center_horizontal"
                 >
                  <Button
                      android:id="@+id/bt_pingyinlearn_fyyl"

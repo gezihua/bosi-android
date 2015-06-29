@@ -67,6 +67,7 @@
                 android:layout_alignTop="@+id/activity_hzyb_iv_hint"
                 android:layout_marginLeft="46dp"
                 android:background="@drawable/icon_hzcs_qwhz"
+                
                 android:scaleType="fitXY" />
 
         </RelativeLayout>
