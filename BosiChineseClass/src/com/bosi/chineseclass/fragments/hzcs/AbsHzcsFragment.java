@@ -41,6 +41,7 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	View mViewBody;
 
 	TextView mTvDitalTitle;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,11 +89,12 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 		if (currentPosition < 0)
 			return;
 
+		
+		updateDitalPg();
 		if (currentPosition == 0) {
 			mBtLeft.setVisibility(View.GONE);
 			mBtRight.setVisibility(View.VISIBLE);
 		}
-		updateDitalPg();
 	}
 
 	public void actionRight(View mView) {
@@ -100,21 +102,22 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 		currentPosition++;
 		if (currentPosition == mCurrentData.length) {
 			return;
-
 		}
+		
+		updateDitalPg();
 		if (currentPosition == mCurrentData.length - 1) {
 			mBtRight.setVisibility(View.GONE);
 			mBtLeft.setVisibility(View.VISIBLE);
 
 		}
-		updateDitalPg();
 	}
 	
 	
-	protected void updateDitalPg() {
+	protected synchronized void updateDitalPg() {
 		if(mCurrentData==null)return;
-		if(currentPosition==-1||currentPosition==mCurrentData.length){
+		if(currentPosition==-1||currentPosition>=mCurrentData.length){
 			currentPosition=0;
+			
 		}
 		mImageLoader.getBitmapFactory().display(mIvDital,
 				mCurrentData[currentPosition]);
@@ -147,6 +150,13 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 	
 	
 	public void downloadimgs() {
+		if(mCurrentData.length>1 ){
+			mBtLeft.setVisibility(View.GONE);
+			mBtRight.setVisibility(View.VISIBLE);
+		}else{
+			mBtLeft.setVisibility(View.GONE);
+			mBtRight.setVisibility(View.GONE);
+		}
 		loadedData = -1;
 		updateProgress();
 		for(int i =0;i<mCurrentData.length;i++){
@@ -184,6 +194,7 @@ public abstract class AbsHzcsFragment extends BaseFragment  implements OnClickLi
 			mActivity.dismissProgress();
 			downLoadImageOverAction();
 			loadedData=0;
+			
 		}
 	}
 	

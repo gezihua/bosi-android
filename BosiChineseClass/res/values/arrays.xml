@@ -119,4 +119,61 @@
         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/zaozifangfa/zz/zz-2.jpg</item>
         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/zaozifangfa/zz/zz-3.jpg</item>
     </string-array>
+    
+      
+      <!-- 趣味汉子 -->
+      
+      <string-array name="hzcs_qwhz_zmg_picarray">
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/zmg/zmg-1.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/zmg/zmg-2.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/zmg/zmg-3.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/zmg/zmg-4.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/zmg/zmg-5.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/zmg/zmg-6.jpg</item>
+      </string-array>
+     
+      
+      <string-array name="hzcs_qwhz_qwhz_picarray">
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/qwhz/qwhz-1.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/qwhz/qwhz-2.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/qwhz/qwhz-3.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/qwhz/qwhz-4.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/qwhz/qwhz-5.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/qwhz/qwhz-6.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/qwhz/qwhz-7.jpg</item>
+      </string-array>
+      
+       
+      <string-array name="hzcs_qwhz_xyg_picarray">
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-1.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-2.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-3.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-4.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-5.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-6.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-7.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-8.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-9.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-10.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-11.jpg</item>
+          <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/xyg/xyg-12.jpg</item>
+      </string-array>
+       <string-array name="hzcs_qwhz_cbzqu_picarray">
+         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/cbzqh/cbzqh-1.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/cbzqh/cbzqh-2.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/cbzqh/cbzqh-3.jpg</item>
+      </string-array>
+      
+       
+       
+      
+        
+         <string-array name="hzcs_qwhz_sjxhz_picarray">
+         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-1.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-2.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-3.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-4.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-5.jpg</item>
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-6.jpg</item>
+      </string-array>
 </resources>

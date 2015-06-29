@@ -86,8 +86,8 @@ public class GameFragment extends BaseFragment {
     private List<GameIconInfo> getGameIconList() {
         GameDbOperation gameDbOperation = new GameDbOperation();
         //TODO:sql需要加入mCurrentStep
-//        String sql = "select * from game where step = " + mCurrentStep;
-        String sql = "select * from game";
+        String sql = "select * from game where step = " + mCurrentStep;
+//        String sql = "select * from game";
         List<GameIconInfo> iconList = gameDbOperation.selectDataFromDb(sql);
         return iconList;
     }
@@ -231,10 +231,11 @@ public class GameFragment extends BaseFragment {
             PreferencesUtils.putInt(mActivity, COMPLETE_STEP, mCompleteStep);
         }
         if (mCompleteStep == MAXSTEP) {
-          //TODO:9关全部完成时，怎么显示？
-            Toast.makeText(mActivity, "恭喜您通关了！", Toast.LENGTH_SHORT).show();
+            //完成第九关后，不显示下一关按钮
+            mNextStepTv.setVisibility(View.GONE);
         } else {
-            mSuccessLayout.setVisibility(View.VISIBLE);
+            mNextStepTv.setVisibility(View.VISIBLE);
         }
+        mSuccessLayout.setVisibility(View.VISIBLE);
     }
 }

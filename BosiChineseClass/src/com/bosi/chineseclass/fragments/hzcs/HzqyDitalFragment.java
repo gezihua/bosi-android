@@ -55,7 +55,7 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	@Override
 	public void initMenu() {
 		mImageLoader.getBitmapFactory().display(mIvDital,
-				"assets/hzqy/cjzz.png");
+				"assets/hzqy/hzqy.png");
 		mTvDitalTitle.setText("仓颉造字");
 		View mMenuView = View.inflate(mActivity, R.layout.layout_hzqy_menu, null);
 		mLayoutMenu.addView(mMenuView);
@@ -70,6 +70,7 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 		mHeadActionBar.setTextMiddle("汉字起源", -1);
 		mTvDitalTitle.setText("汉字起源");
 		initDataArray();
+		
 	}
 
 	String mDataArrayJsjs [] ;
