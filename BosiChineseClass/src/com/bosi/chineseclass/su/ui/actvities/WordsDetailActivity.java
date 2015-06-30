@@ -205,10 +205,10 @@ public class WordsDetailActivity extends BaseActivity implements
     private void showDetail(Word detail) {
         String temp = null;
         if (!TextUtils.isEmpty(detail.pinyin)) {
-            temp = "(" + detail.pinyin + ")";
+            temp =  detail.pinyin ;
         }
         if (!TextUtils.isEmpty(detail.ytzi)) {
-            temp += detail.ytzi;
+            temp += "("+detail.ytzi+")";
         }
         mYtTextView.setText(temp);
         if (!TextUtils.isEmpty(detail.shiyi)) {
