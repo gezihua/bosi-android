@@ -1,18 +1,23 @@
 package com.bosi.chineseclass.model;
 
+import java.util.List;
+
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.db.BphzHistory;
+import com.bosi.chineseclass.bean.BphzBean;
 import com.bosi.chineseclass.utils.ViewHolder;
 
-public class BphzLevAdapter extends ComListViewAdapter<BphzHistory> {
 
-	public BphzLevAdapter(Context mContext, BphzHistory mData) {
-		super(mContext, mData);
+//第一个层级的
+public class BphzLevAdapter extends ComListViewAdapter<List<BphzBean>> {
+
+	public BphzLevAdapter(Context mContext,List<BphzBean> mlists) {
+		super(mContext, mlists);
 	}
 
 	@Override
@@ -42,10 +47,31 @@ public class BphzLevAdapter extends ComListViewAdapter<BphzHistory> {
 			mView = View.inflate(context, R.layout.layout_bphz_item_checkpoint,
 					null);
 		}
+		
+		
+		
+		
+		
 		Button mButtonSize = ViewHolder.get(mView, R.id.bt_bphz_item_number);
+		
+		
+		
+		
 		Button mButtonUnRem = ViewHolder.get(mView,
 				R.id.bt_bphz_item_unrenumber);
+		
+		
+		
 		Button mButtonRem = ViewHolder.get(mView, R.id.bt_bphz_item_renumber);
+		if(mListData.size()>0){
+			BphzBean mData = mListData.get(position);
+			if(mData!=null){
+				mButtonSize.setText(mData.mNumberBetween);
+				mButtonUnRem.setText(mData.mUnRemberNum);
+				mButtonRem .setText(mData.mRemberNum);
+			}
+		}
+		
 		int lev = getLevByPosition(position);
 		if (lev == 0) {
 			mButtonSize
@@ -62,6 +88,8 @@ public class BphzLevAdapter extends ComListViewAdapter<BphzHistory> {
 		}
 		return mView;
 	}
+	
+  //用于区分颜色
 
 	private int getLevByPosition(int position) {
 		if (position <= 4) {

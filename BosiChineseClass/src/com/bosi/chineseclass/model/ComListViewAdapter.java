@@ -23,6 +23,11 @@ public class ComListViewAdapter <T> extends BaseAdapter{
     public Object getItem(int args) {
         return null;
     }
+    
+    public void changeDataSource(T t){
+    	this.mListData =t;
+    	notifyDataSetChanged();
+    }
 
     @Override
     public long getItemId(int arg0) {

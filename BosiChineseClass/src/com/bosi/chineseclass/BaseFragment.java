@@ -49,4 +49,15 @@ public abstract class BaseFragment extends Fragment {
 	 * 做一些初始化数据  但是不用在此方法中做相关网络数据 等耗时操作 （防止viewpagger 预加载导致 白屏）
 	 * */
 	protected abstract void afterViewInject();
+	
+	
+	//通过开一个线程去快速的实现一个异步的任务
+	public void AsyTaskBaseThread(final Runnable mTask,final Runnable mResult){
+		new Thread(){
+				public void run(){
+					mTask.run();
+					mResult.run();
+				}
+		}.start();
+	}
 }

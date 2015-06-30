@@ -5,10 +5,13 @@ import android.view.View;
 
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
+import com.bosi.chineseclass.db.BPHZ;
 
 public abstract class AbsBpStasitcViewControl implements OnBpStasticListener {
 
 	protected BpStasticLayout mBpStasticLayout;
+	
+	protected BPHZ mBphz = new BPHZ();
 	
 	public AbsBpStasitcViewControl(Context mContext){
 		mBpStasticLayout = new BpStasticLayout(mContext);
