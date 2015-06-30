@@ -22,5 +22,13 @@
         <item name="android:fadingEdge">horizontal</item>
         <item name="android:fadingEdgeLength">8dp</item>
     </style>
+     <style name="WordDetailStyle" parent="AppTheme">
+        <item name="vpiTabPageIndicatorStyle">@style/WordDetailIndicator</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="WordDetailIndicator" parent="CustomTabPageIndicator">
+        <item name="android:background">@drawable/tab_indicator_word_detail</item>
+    </style>
 
 </resources>

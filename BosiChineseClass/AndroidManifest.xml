@@ -74,7 +74,7 @@
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/StyledIndicators" >
+            android:theme="@style/WordDetailStyle" >
         </activity>
         <activity
             android:name=".activitys.SampleHolderActivity"

@@ -36,7 +36,7 @@ public class DictionaryAcitvity extends BaseActivity {
     private void initHeadActionBarComp() {
         mHeadActionBarComp = new HeadLayoutComponents(this, mHeadActionBar);
 
-        mHeadActionBarComp.setTextMiddle("资源字典", -1);
+        mHeadActionBarComp.setTextMiddle("字源字典", -1);
         mHeadActionBarComp.setDefaultLeftCallBack(true);
         mHeadActionBarComp.setDefaultRightCallBack(true);
     }
