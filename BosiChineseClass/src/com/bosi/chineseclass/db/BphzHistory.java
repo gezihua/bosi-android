@@ -9,8 +9,9 @@ public class BphzHistory extends EntityBase{
 	public String index;
 	
 	@Column(column = "remberNum")
-	public String remberNum;
+	public int remberNum;
 	
 	@Column(column = "unRemberNum")
-	public String unRemberNum;
+	public int unRemberNum;
+	
 }

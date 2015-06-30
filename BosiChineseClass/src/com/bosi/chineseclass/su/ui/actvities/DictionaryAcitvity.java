@@ -2,9 +2,9 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
@@ -15,7 +15,6 @@ import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.ui.fragment.FilerPyFragment;
 import com.bosi.chineseclass.su.ui.fragment.FilterRadicalFragment;
 import com.bosi.chineseclass.su.ui.fragment.FiterStokeFragment;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
