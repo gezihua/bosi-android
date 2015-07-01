@@ -81,7 +81,6 @@
 					android:layout_margin="3dp"
                     android:layout_height="match_parent"
                     android:id="@+id/iv_pinyinlearn_reader"
-                    android:background="@drawable/pinyin_learn_imgbg"
                     ></ImageView>
                 <VideoView
                      android:layout_width="match_parent"

@@ -1,9 +1,11 @@
 package com.bosi.chineseclass.fragments;
 
 import java.io.IOException;
-
 import java.util.Properties;
+
 import android.annotation.TargetApi;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
@@ -23,7 +25,11 @@ import com.bosi.chineseclass.components.MediaPlayerPools;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
+import com.bosi.chineseclass.utils.BubbleImageHelper;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
+import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 

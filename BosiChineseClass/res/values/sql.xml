@@ -12,8 +12,8 @@
 
 <string name="select_bphz_lev1data">select count(*) 
 as countremb 
-,(select count(*) from bphzhistory  where isrember = \'%1$s\' and dictindex &lt;= \'%3$s\') as countunremb
- from bphzhistory where dictindex &lt;= \'%3$s\'  and isrember = \'%2$s\' </string>
+,(select count(*) from bphzhistory  where isrember = \'%1$s\' and dictindex &lt;= \'%3$s\' and dictindex &gt;= \'%4$s\') as countunremb
+ from bphzhistory where dictindex &lt;= \'%3$s\'  and dictindex &gt;= \'%4$s\'  and isrember = \'%2$s\' </string>
     
     
 </resources>

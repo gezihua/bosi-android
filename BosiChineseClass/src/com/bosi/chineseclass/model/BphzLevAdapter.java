@@ -4,12 +4,18 @@ import java.util.List;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.activitys.SampleHolderActivity;
 import com.bosi.chineseclass.bean.BphzBean;
+import com.bosi.chineseclass.control.SampleControl;
+import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.utils.ViewHolder;
 
 
@@ -34,33 +40,49 @@ public class BphzLevAdapter extends ComListViewAdapter<List<BphzBean>> {
 		}
 	}
 
-	private View statisticView(int position, View mView) {
+	protected View statisticView(int position, View mView) {
 		if (mView == null) {
 			mView = View.inflate(context, R.layout.layout_bphz_item_statistic,
 					null);
 		}
 		return mView;
 	}
+	
+	protected void onClickItemNumsBetween( int position ){
+		Intent mIntent = new Intent (context ,SampleHolderActivity.class);
+		PreferencesUtils.putInt(context, "position", position);
+		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"BphzLevvFragment"});
+		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+		context.startActivity(mIntent);
+	}
 
-	private View commonView(int position, View mView) {
+	
+	protected void setItemViewBg(View mView){
+		mView.setBackgroundResource(R.drawable.bphz_levitem_bg);
+	}
+	protected View commonView(final int position, View mView) {
 		if (mView == null) {
 			mView = View.inflate(context, R.layout.layout_bphz_item_checkpoint,
 					null);
 		}
 		
 		
-		
+		LinearLayout mLayoutBody =   ViewHolder.get(mView, R.id.rl_bphz_item_body);
+		setItemViewBg(mLayoutBody);
 		
 		
 		Button mButtonSize = ViewHolder.get(mView, R.id.bt_bphz_item_number);
-		
-		
+		mButtonSize.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				onClickItemNumsBetween(position);
+			}
+		});
 		
 		
 		Button mButtonUnRem = ViewHolder.get(mView,
 				R.id.bt_bphz_item_unrenumber);
-		
-		
 		
 		Button mButtonRem = ViewHolder.get(mView, R.id.bt_bphz_item_renumber);
 		if(mListData.size()>0){
@@ -90,8 +112,7 @@ public class BphzLevAdapter extends ComListViewAdapter<List<BphzBean>> {
 	}
 	
   //用于区分颜色
-
-	private int getLevByPosition(int position) {
+	protected int getLevByPosition(int position) {
 		if (position <= 4) {
 			return 0;
 		} else if (position > 4 && position <= 6) {

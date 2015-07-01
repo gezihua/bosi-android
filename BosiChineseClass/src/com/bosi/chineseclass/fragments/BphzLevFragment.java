@@ -4,6 +4,7 @@ package com.bosi.chineseclass.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -39,12 +40,12 @@ public class BphzLevFragment extends BaseFragment{
 		HeadLayoutComponents mHead = new HeadLayoutComponents(mActivity, mViewHead);
 		mHead.setTextMiddle("爆破汉字", -1);
 		mGridView = new BSGridView(mActivity);
+		mGridView.setGravity(Gravity.CENTER_HORIZONTAL);
 		mGridView.setNumColumns(5);
 		mGridView.setVerticalSpacing(20);
 		mGridView.setCacheColorHint(0);
 		mLayoutBody.addView(mGridView);
 		mGridView.setAdapter(new BphzLevAdapter(mActivity, null));
-		
 		
 	    mBphzLevAdapter = new BphzLevAdapter(mActivity, mAdapterDataList);
 	    mGridView.setAdapter(mBphzLevAdapter);
@@ -91,10 +92,12 @@ public class BphzLevFragment extends BaseFragment{
 		for(int i = 1 ; i < 15 ;i++){
 			BphzBean  mBpHzBean = new BphzBean();
 			mBpHzBean.mDictIndex = i-1;
-			mBpHzBean.mNumberBetween =  mBpHzBean.mDictIndex*500+"-"+(i)*500;
+			String startSize = mBpHzBean.mDictIndex *500+1+"";
+			String endSize = i *500+"";
+			mBpHzBean.mNumberBetween =  startSize+"-"+endSize;
 			
 			String sqlSelectBphzLvStastic =  getResources().getString(R.string.select_bphz_lev1data);
-			String sqlFormat = String.format(sqlSelectBphzLvStastic, "0","1",500*i);
+			String sqlFormat = String.format(sqlSelectBphzLvStastic, "0","1",startSize,endSize);
 			mBphz.getListBpHzBeans(sqlFormat,mBpHzBean);
 			mLists .add(mBpHzBean);
 		}
