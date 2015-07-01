@@ -15,5 +15,5 @@ as countremb
 ,(select count(*) from bphzhistory  where isrember = \'%1$s\' and dictindex &lt;= \'%3$s\' and dictindex &gt;= \'%4$s\') as countunremb
  from bphzhistory where dictindex &lt;= \'%3$s\'  and dictindex &gt;= \'%4$s\'  and isrember = \'%2$s\' </string>
     
-    
+    <string name = "delete_bphz_basedictindexbetween">delete  from bphzhistory where dictindex  &lt;= \'%1$s\'  and dictindex &gt;= \'%2$s\' </string>
 </resources>

@@ -55,7 +55,7 @@ public class BphzLevFragment extends BaseFragment{
 	
 	
 //	模拟一次进度
-	private void getDataAsy(){
+	protected void getDataAsy(){
 		mActivity.updateProgress(1, 2);
 		
 		AsyTaskBaseThread(new Runnable() {
@@ -92,8 +92,8 @@ public class BphzLevFragment extends BaseFragment{
 		for(int i = 1 ; i < 15 ;i++){
 			BphzBean  mBpHzBean = new BphzBean();
 			mBpHzBean.mDictIndex = i-1;
-			String startSize = mBpHzBean.mDictIndex *500+1+"";
-			String endSize = i *500+"";
+			String startSize =( mBpHzBean.mDictIndex *500+1)+"";
+			String endSize = (i *500)+"";
 			mBpHzBean.mNumberBetween =  startSize+"-"+endSize;
 			
 			String sqlSelectBphzLvStastic =  getResources().getString(R.string.select_bphz_lev1data);
