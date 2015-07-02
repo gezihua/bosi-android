@@ -20,6 +20,7 @@ public class ZyCategoryDbOperation extends AbsDbOperation {
                 zyCategoryInfo.setIconPath(mDbModle.getString(ZyCategoryInfo.ICON_PATH));
                 zyCategoryInfo.setWeb_path_id(mDbModle.getString(ZyCategoryInfo.WEB_PATH_ID));
                 zyCategoryInfo.setTitle(mDbModle.getString(zyCategoryInfo.TITLE));
+                zyCategoryInfo.setTitle_background_path(mDbModle.getString(ZyCategoryInfo.TITLE_BACKGROUND_PATH));
                 mData.add(zyCategoryInfo);
             }
         } catch (DbException e) {

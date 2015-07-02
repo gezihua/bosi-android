@@ -42,7 +42,7 @@ public class ZiYuanActivity extends BaseActivity{
     private void initHeadActionBarComp() {
         mHeadActionBarComp = new HeadLayoutComponents(this, mHeadActionBar);
 
-        mHeadActionBarComp.setTextMiddle("基本资源", -1);
+        mHeadActionBarComp.setTextMiddle("基本字源", -1);
         mHeadActionBarComp.setDefaultLeftCallBack(true);
         mHeadActionBarComp.setDefaultRightCallBack(true);
     }
