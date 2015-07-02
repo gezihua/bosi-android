@@ -1,23 +1,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/zy_category_background">
+    android:layout_height="match_parent" >
 
-    <ImageView
+    <com.bosi.chineseclass.han.view.IconImageView
         android:id="@+id/zy_category_item_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </ImageView>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" >
+    </com.bosi.chineseclass.han.view.IconImageView>
 
-    <TextView 
-        android:id="@+id/zy_category_item_title"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/zy_category_item_image"
-        android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:text="测试"/>
+        android:layout_below="@id/zy_category_item_image"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="10dp" >
+
+        <com.bosi.chineseclass.han.view.BosiTextView
+            android:id="@+id/zy_category_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

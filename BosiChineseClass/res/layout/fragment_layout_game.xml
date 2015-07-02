@@ -4,12 +4,24 @@
     android:layout_height="match_parent"
     tools:context="com.bosi.demo.GameActivity" >
 
+    <include
+        android:id="@+id/headactionbar"
+        layout="@layout/common_head" />
+
+    <TextView
+        android:id="@+id/title_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headactionbar"
+        android:layout_marginLeft="15dp"
+        android:text="请将相应的资源图片与字相连接"/>
+
     <LinearLayout
         android:id="@+id/game_step_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/title_game"
+        android:layout_marginLeft="15dp"
         android:orientation="horizontal" >
     </LinearLayout>
 
@@ -21,6 +33,10 @@
         android:horizontalSpacing="5dp"
         android:listSelector="@android:color/transparent"
         android:numColumns="8"
+        android:background="@drawable/game_background"
+        android:paddingLeft="20dp"
+        android:paddingTop="17dp"
+        android:paddingRight="20dp"
         android:verticalSpacing="5dp" >
     </GridView>
 
@@ -29,8 +45,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:background="#ffdab7"
+        android:layout_below="@id/game_step_layout"
+        android:background="@drawable/game_background"
         android:visibility="gone"
+        android:paddingLeft="20dp"
+        android:paddingTop="17dp"
+        android:paddingRight="20dp"
         android:orientation="vertical">
         <ImageView
             android:src="@drawable/success_image"
