@@ -1,5 +1,6 @@
 package com.bosi.chineseclass.han.fragments;
 
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseFragment;
@@ -21,6 +23,10 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 public class ZyCategoryFragment extends BaseFragment {
 
     private int mCategoryType = 0;
+
+    @ViewInject(R.id.title_category)
+    private TextView mTitleTV;
+    private HashMap mTitles;
     
     @ViewInject(R.id.zy_category_grid)
     private GridView mGridView;
@@ -39,15 +45,14 @@ public class ZyCategoryFragment extends BaseFragment {
     @Override
     protected void afterViewInject() {
         mIconList = getZyInfoList();
-        Log.d("HNX", "" + mIconList.size());
-        for (ZyCategoryInfo info : mIconList) {
-            Log.e("HNX", info.getIconPath());
-        }
-        
+
         mIntent = new Intent(mActivity, ZyObjectActivity.class);
 
+        initTitle();
         initGridView();
     }
+
+
 
     public void setCategory(int mCategory) {
         this.mCategoryType = mCategory;
@@ -55,12 +60,29 @@ public class ZyCategoryFragment extends BaseFragment {
 
     private List<ZyCategoryInfo> getZyInfoList() {
         ZyCategoryDbOperation gameDbOperation = new ZyCategoryDbOperation();
-        //TODO:sql需要加入mCurrentStep
         String sql = "select * from zy_category where type = " + mCategoryType;
-//        String sql = "select * from zy_category";
-//        String sql = "select * from zy_category where type = 4";
         List<ZyCategoryInfo> iconList = gameDbOperation.selectDataFromDb(sql);
         return iconList;
+    }
+
+    private void initTitle() {
+        String title = getTitleStr();
+        mTitleTV.setText(title);
+    }
+
+    private String getTitleStr() {
+        HashMap<Integer, String> titles = new HashMap<>();
+        titles.put(AppDefine.ZYDefine.CATEGORY_ZIRAN, getStringByid(R.string.category_ziran));
+        titles.put(AppDefine.ZYDefine.CATEGORY_ZHIWU, getStringByid(R.string.category_zhiwu));
+        titles.put(AppDefine.ZYDefine.CATEGORY_REN, getStringByid(R.string.category_ren));
+        titles.put(AppDefine.ZYDefine.CATEGORY_QIWU, getStringByid(R.string.category_qiwu));
+        titles.put(AppDefine.ZYDefine.CATEGORY_ZIRAN, getStringByid(R.string.category_ziran));
+        String title = String.format(getStringByid(R.string.category_title), titles.get(mCategoryType), mIconList.size());
+        return title;
+    }
+    
+    private String getStringByid(int id){
+        return getResources().getString(id);
     }
 
     private void initGridView() {

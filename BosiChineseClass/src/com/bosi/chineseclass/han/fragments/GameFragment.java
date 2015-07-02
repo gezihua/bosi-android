@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.db.GameDbOperation;
 import com.bosi.chineseclass.han.db.GameIconInfo;
 import com.bosi.chineseclass.han.modle.ImageAdapter;
@@ -25,6 +26,12 @@ import com.bosi.chineseclass.han.util.Utils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class GameFragment extends BaseFragment {
+    @ViewInject(R.id.headactionbar)
+    View mHeadActionBar;
+    HeadLayoutComponents mHeadActionBarComp;
+
+    @ViewInject(R.id.title_game)
+    private TextView mTitleTV;
 
     @ViewInject(R.id.game_grid)
     private GridView mGameGrid;
@@ -49,6 +56,7 @@ public class GameFragment extends BaseFragment {
     private int matchCount = 0;
 
     private String COMPLETE_STEP = "max_step";
+    private String GAME_ICON_NULL = "game_icon_null";
     private int mCompleteStep;
 
     private SoundPool mSoundPool;
@@ -65,6 +73,8 @@ public class GameFragment extends BaseFragment {
 
     @Override
     protected void afterViewInject() {
+        initHeadActionBarComp();
+
         mCompleteStep = PreferencesUtils.getInt(mActivity, COMPLETE_STEP, 0);
         mIconList = getGameIconList();
 
@@ -94,10 +104,12 @@ public class GameFragment extends BaseFragment {
 
 
     private void initStepLayout() {
-        Button stepBt = null;
+        TextView stepBt = null;
         for (int i = 0; i < MAXSTEP; i++ ) {
             final int step = i;
-            stepBt = new Button(getActivity());
+            stepBt = new TextView(getActivity());
+            stepBt.setBackgroundResource(R.drawable.game_step_bt);
+            stepBt.setPadding(20, 14, 20, 14);
             stepBt.setText(String.valueOf(i+1));
 
             stepBt.setOnClickListener(new OnClickListener() {
@@ -126,7 +138,7 @@ public class GameFragment extends BaseFragment {
 
     private void initButtonColor(int btIndex) {
         //TODO:颜色值
-        Button stepBt = (Button) mStepLayout.getChildAt(btIndex);
+        TextView stepBt = (TextView) mStepLayout.getChildAt(btIndex);
         if (btIndex == mCurrentStep) {
             stepBt.setTextColor(getResources().getColor(android.R.color.holo_red_light));
         } else if (btIndex > mCompleteStep){
@@ -146,7 +158,7 @@ public class GameFragment extends BaseFragment {
                     long arg3) {
 
                 String path = mIconList.get(currenItemIndex).getIconPath();
-                if (Utils.isEmpty(path)) {
+                if (path.equals(GAME_ICON_NULL)) {
                     return;
                 }
 
@@ -161,8 +173,8 @@ public class GameFragment extends BaseFragment {
                         mIcon_focuse.setVisibility(View.GONE);
                     }
                     if (isIconMatch(mFirstClickItemIndex,currenItemIndex)) {//判断如果两个图片匹配的话，消失
-                        mIconList.get(mFirstClickItemIndex).setIconPath("");
-                        mIconList.get(currenItemIndex).setIconPath("");
+                        mIconList.get(mFirstClickItemIndex).setIconPath(GAME_ICON_NULL);
+                        mIconList.get(currenItemIndex).setIconPath(GAME_ICON_NULL);
                         mGridAdapter.notifyDataSetChanged();
                         matchCount += 2;
                         playGoodMusic();
@@ -237,5 +249,13 @@ public class GameFragment extends BaseFragment {
             mNextStepTv.setVisibility(View.VISIBLE);
         }
         mSuccessLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void initHeadActionBarComp() {
+        mHeadActionBarComp = new HeadLayoutComponents(mActivity, mHeadActionBar);
+
+        mHeadActionBarComp.setTextMiddle("趣味游戏", -1);
+        mHeadActionBarComp.setDefaultLeftCallBack(true);
+        mHeadActionBarComp.setDefaultRightCallBack(true);
     }
 }
