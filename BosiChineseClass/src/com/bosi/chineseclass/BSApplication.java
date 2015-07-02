@@ -30,7 +30,7 @@ public class BSApplication extends Application {
 		mApplication = this;
 		storageManagerInit();
 
-		/* mDbManager = new DbManager(this); */
+		mDbManager = new DbManager(this);
 
 		mActivityStack = new AppActivityStack();
 

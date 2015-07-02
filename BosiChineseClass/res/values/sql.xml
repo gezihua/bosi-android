@@ -1,0 +1,19 @@
+<resources>
+
+    <string name="select_bphz_baseindex">select * from bphzhistory where isrember = \'0\' and dictindex &lt;= \'%1$s\' </string>
+    
+    <string name = "update_bphz_isrember_baseindex">update bphzhistory set isrember =\'%1$s\' where dictindex = \'%2$s\' </string>
+
+	<string name= "select_bphz_static_numlearn">select count(*) as count from bphzhistory where dictindex &lt;= \'%1$s\'</string>
+
+    <string name= "select_bphz_static_numbaseisrem">and isrember = \'%1$s\'</string>
+    
+    <string name="select_bphz_ditalbasenum">select dictindex from bphzhistory where  dictindex &lt;= \'%1$s\' \'%2$s\'  order by  dictindex asc limit 1</string>
+
+<string name="select_bphz_lev1data">select count(*) 
+as countremb 
+,(select count(*) from bphzhistory  where isrember = \'%1$s\' and dictindex &lt;= \'%3$s\' and dictindex &gt;= \'%4$s\') as countunremb
+ from bphzhistory where dictindex &lt;= \'%3$s\'  and dictindex &gt;= \'%4$s\'  and isrember = \'%2$s\' </string>
+    
+    <string name = "delete_bphz_basedictindexbetween">delete  from bphzhistory where dictindex  &lt;= \'%1$s\'  and dictindex &gt;= \'%2$s\' </string>
+</resources>
