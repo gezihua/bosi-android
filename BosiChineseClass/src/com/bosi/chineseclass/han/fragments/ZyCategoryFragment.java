@@ -71,7 +71,7 @@ public class ZyCategoryFragment extends BaseFragment {
     }
 
     private String getTitleStr() {
-        HashMap<Integer, String> titles = new HashMap<>();
+        HashMap<Integer, String> titles = new HashMap<Integer, String>();
         titles.put(AppDefine.ZYDefine.CATEGORY_ZIRAN, getStringByid(R.string.category_ziran));
         titles.put(AppDefine.ZYDefine.CATEGORY_ZHIWU, getStringByid(R.string.category_zhiwu));
         titles.put(AppDefine.ZYDefine.CATEGORY_REN, getStringByid(R.string.category_ren));

@@ -1,13 +1,14 @@
 package com.bosi.chineseclass.control.bphzControl;
 
-import android.content.Context;
+import com.bosi.chineseclass.components.BpStasticLayout;
 
-import com.bosi.chineseclass.control.AbsBpStasitcViewControl;
 
-public class SampleBphzLearnControl extends AbsBpStasitcViewControl{
+public class StasticUnRemberControl extends AbsBpStasitcViewControl{
 
-	public SampleBphzLearnControl(Context mContext) {
-		super(mContext);
+
+	public StasticUnRemberControl(BpStasticLayout mBpStasticLayout,
+			OnDataChangedListener mDataChangedListener) {
+		super(mBpStasticLayout, mDataChangedListener);
 	}
 
 	@Override
@@ -37,6 +38,12 @@ public class SampleBphzLearnControl extends AbsBpStasitcViewControl{
 
 	@Override
 	public int getUnRemberNum() {
+		return 0;
+	}
+
+	@Override
+	public int getInitRefid() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

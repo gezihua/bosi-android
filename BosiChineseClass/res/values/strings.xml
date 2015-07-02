@@ -17,4 +17,8 @@
     <string name="category_ren">人的身体</string>
     <string name="category_qiwu">器具用具</string>
     <string name="category_dongwu">其他</string>
+    
+     <string name="dialog_clearbphz_levvdata">清除数据后 该组学习记录将被删除 ,是否确认清除?</string>
+     <string name="dialog_clearbphz_levdata">  清除数据后所有的学习记录将被清除,是否确认清除?</string>
+  
 </resources>
