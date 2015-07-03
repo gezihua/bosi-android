@@ -44,7 +44,7 @@ public class BaseActivity extends FragmentActivity {
 	}
 
 	public void updateProgress(int progress, int max) {
-		if (mLoadingDialog.mDialog==null) {
+		if (mLoadingDialog.mDialog==null||!mLoadingDialog.mDialog.isShowing()) {
 			showLoadingDialog();
 		}
 		if(progress == max){
