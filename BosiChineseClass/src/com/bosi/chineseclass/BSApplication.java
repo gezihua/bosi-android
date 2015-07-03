@@ -8,6 +8,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 
 import com.bosi.chineseclass.components.ExitSystemDialog;
+import com.bosi.chineseclass.db.BosiDbManager;
 import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.utils.AppActivityStack;
 import com.lidroid.xutils.HttpUtils;
@@ -21,6 +22,8 @@ public class BSApplication extends Application {
 	public AppActivityStack mActivityStack;
 	// 数据库系统
 	public DbManager mDbManager;
+	
+	public BosiDbManager mDbBosiClass;
 
 	public HttpUtils mHttpUtils;
 
@@ -29,11 +32,8 @@ public class BSApplication extends Application {
 		super.onCreate();
 		mApplication = this;
 		storageManagerInit();
-
-		mDbManager = new DbManager(this);
-
+		mDbBosiClass = new BosiDbManager(this);//项目逻辑
 		mActivityStack = new AppActivityStack();
-
 		mHttpUtils = new HttpUtils();
 		// CrashHandler.getInstance().init(this);
 	}

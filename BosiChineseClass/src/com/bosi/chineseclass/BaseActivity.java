@@ -109,4 +109,13 @@ public class BaseActivity extends FragmentActivity {
 		YoYo.with(Techniques.Shake).duration(700).playOn(mView);
 	}
 
+	//通过开一个线程去快速的实现一个异步的任务
+		public void AsyTaskBaseThread(final Runnable mTask,final Runnable mResult){
+			new Thread(){
+					public void run(){
+						mTask.run();
+						mResult.run();
+					}
+			}.start();
+		}
 }

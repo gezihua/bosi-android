@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BphzBean;
@@ -61,15 +62,19 @@ public class BphzLevvFragment extends BaseFragment{
 	    mLayoutRemoteBody.setVisibility(View.VISIBLE);
 	   
 	    initRemoteView();
-	    getDataAsy();
+	   
 	}
 	
-	
+	@Override
+	public void onResume() {
+		super.onResume();
+		 getDataAsy();
+	}
 //	模拟一次进度
 	private void getDataAsy(){
 		mActivity.updateProgress(1, 2);
 		
-		AsyTaskBaseThread(new Runnable() {
+		mActivity.AsyTaskBaseThread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -110,14 +115,12 @@ public class BphzLevvFragment extends BaseFragment{
 			@Override
 			public void onBt1Click() {
 				// 弹出一个提示框 用于确认是否删除数据
-				int mCurrentStartSize = mCurrentXY*500+1 ;
-				int mCurrentEndSize = mCurrentXY*500+500 ;
-	            String mdeleteSql = getResources().getString(R.string.delete_bphz_basedictindexbetween);
-	            String format = String.format(mdeleteSql, mCurrentStartSize+"",mCurrentEndSize+"");
-	            
-	            mActivity.showToastShort("准备清除数据了"+mCurrentStartSize+"-"+mCurrentEndSize);
-	            // mbphz.deleteDataFromDb(format);
+				int mCurrentStartSize = mCurrentXY*500+1 +AppDefine.ZYDefine.BPHZ_REFID_ADDED;
+				int mCurrentEndSize = mCurrentXY*500+500 +AppDefine.ZYDefine.BPHZ_REFID_ADDED;
+				mbphz.deleteDbBaseBetweenSE(mActivity,mCurrentStartSize,mCurrentEndSize);
+				
 	            mNiftyDialog.dismissBuilder();
+	            getDataAsy();
 			}
 		});
 		mNiftyDialog.showBuilder();
@@ -149,13 +152,10 @@ public class BphzLevvFragment extends BaseFragment{
 		for(int i = 1 ; i < 11 ;i++){
 			BphzBean  mBpHzBean = new BphzBean();
 			mBpHzBean.mDictIndex = i-1;
-			String startSize = (mBpHzBean.mDictIndex*50+1+mCurrentBegan)+"";
-			String endSize = (i*50 +mCurrentBegan)+"";
+			int startSize = mBpHzBean.mDictIndex*50+1+mCurrentBegan;
+			int endSize = i*50 +mCurrentBegan;
 			mBpHzBean.mNumberBetween = startSize+"-"+endSize;
-			
-			String sqlSelectBphzLvStastic =  getResources().getString(R.string.select_bphz_lev1data);
-			String sqlFormat = String.format(sqlSelectBphzLvStastic, "0","1",startSize,endSize);
-			mBphz.getListBpHzBeans(sqlFormat,mBpHzBean);
+			mBphz.getListBpHzBeans(mActivity,AppDefine.ZYDefine.BPHZ_REFID_ADDED+startSize,AppDefine.ZYDefine.BPHZ_REFID_ADDED+endSize,mBpHzBean);
 			mLists.add(mBpHzBean);
 		}
 		

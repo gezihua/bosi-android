@@ -12,9 +12,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" >
-    </permission>
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
     </uses-permission>
     <uses-permission android:name="android.permission.INTERNET" >
@@ -68,12 +65,14 @@
 
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape"
             android:theme="@style/StyledIndicators" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity"
             android:screenOrientation="landscape"
+              android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:theme="@style/StyledIndicators" >
         </activity>
         <activity
@@ -83,30 +82,37 @@
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.GameActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZiYuanActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZjjzyAcitivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZyObjectActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZyCategoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".activitys.WebViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.umeng.fb.ConversationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:label="@string/umeng_fb_title"
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
