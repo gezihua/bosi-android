@@ -48,6 +48,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.bosi.chineseclass.activitys.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
