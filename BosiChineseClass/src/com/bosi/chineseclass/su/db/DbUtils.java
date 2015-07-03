@@ -13,6 +13,8 @@ import u.aly.cu;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bosi.chineseclass.R;
+
 public class DbUtils {
     private static DbUtils sDbUtils;
     private Context mContext;
@@ -168,29 +170,29 @@ public class DbUtils {
         return null;
     }
 
-    public Word getExplain(String word) {
+    public Word getExplain(String word,String id) {
         try {
-            if (!TextUtils.isEmpty(word)) {
-                DicOpenHelper openHelper = new DicOpenHelper(mContext);
-                SQLiteDatabase database = openHelper.getReadableDatabase();
-                Cursor cursor = database.query("zidian", null, "zitou = ?", new String[]{word} , null, null, null);
-                Word words = new Word();
-                if (cursor != null && cursor.moveToFirst()) {
-                    words.refid = cursor.getString(cursor.getColumnIndex("refid"));
-                    Log.e("print", words.refid+"-----------------------");
-                    words.pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
-                    words.cy = cursor.getString(cursor.getColumnIndex("cy"));
-                    words.cysy = cursor.getString(cursor.getColumnIndex("cysy"));
-                    words.yanbian = cursor.getString(cursor.getColumnIndex("yanbian"));
-                    words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
-                    words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
-                }
-                cursor.close();
-                cursor = null;
-                return words;
+
+            DicOpenHelper openHelper = new DicOpenHelper(mContext);
+            SQLiteDatabase database = openHelper.getReadableDatabase();
+            String sql = mContext.getResources().getString(R.string.select_fromzidian_basezitouorid);
+            String sqlFormat = String.format(sql, word,id);
+            Cursor cursor = database.rawQuery(sqlFormat, null);
+            Word words = new Word();
+            if (cursor != null && cursor.moveToFirst()) {
+                words.refid = cursor.getString(cursor.getColumnIndex("refid"));
+                words.pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+                words.cy = cursor.getString(cursor.getColumnIndex("cy"));
+                words.cysy = cursor.getString(cursor.getColumnIndex("cysy"));
+                words.yanbian = cursor.getString(cursor.getColumnIndex("yanbian"));
+                words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
+                words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
             }
+            cursor.close();
+            cursor = null;
+            return words;
+        
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;

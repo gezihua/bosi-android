@@ -10,7 +10,7 @@ public class AppDefine {
 
     public static class ZYDefine {
         public static final String TYPE_CATEGORY = "type_ziyuan_category";
-
+        
         public static final int CATEGORY_ZIRAN = 0;
         public static final int CATEGORY_ZHIWU = 1;
         public static final int CATEGORY_REN = 2;
@@ -18,6 +18,13 @@ public class AppDefine {
         public static final int CATEGORY_OTHER = 4;
 
         public static final String ZY_OBJECT_ID = "id_zyObject";
+        
+        public static final int BPHZ_TAG_REMBER = 0;
+        public static final int BPHZ_TAG_UNREMBER =1;
+        public static final int BPHZ_TAG_NORMAL =2;
+        
+        public static final String EXTRA_DATA_BPHZ_SATSTICSTART = "start";
+        public static final String EXTRA_DATA_BPHZ_SATSTICEND = "end";
     }
 
     public static class URLDefine {

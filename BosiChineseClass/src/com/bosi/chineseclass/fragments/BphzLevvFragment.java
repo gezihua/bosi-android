@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BphzBean;
+import com.bosi.chineseclass.components.NiftyDialogComponents;
+import com.bosi.chineseclass.components.NiftyDialogComponents.OnNiftyCallBack;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
@@ -95,8 +97,34 @@ public class BphzLevvFragment extends BaseFragment{
 	
 	
 	BPHZ mbphz = new BPHZ();
+	NiftyDialogComponents mNiftyDialog;
+	private void showNotifyDialog(){
+		String msgForRemote = getResources().getString(R.string.dialog_clearbphz_levvdata);
+		mNiftyDialog.setUpNifty("确认", "取消", "提示", msgForRemote);
+		mNiftyDialog.setNoftyCallBack(new OnNiftyCallBack() {
+			
+			@Override
+			public void onBt2Click() {
+				mNiftyDialog.dismissBuilder();
+			}
+			@Override
+			public void onBt1Click() {
+				// 弹出一个提示框 用于确认是否删除数据
+				int mCurrentStartSize = mCurrentXY*500+1 ;
+				int mCurrentEndSize = mCurrentXY*500+500 ;
+	            String mdeleteSql = getResources().getString(R.string.delete_bphz_basedictindexbetween);
+	            String format = String.format(mdeleteSql, mCurrentStartSize+"",mCurrentEndSize+"");
+	            
+	            mActivity.showToastShort("准备清除数据了"+mCurrentStartSize+"-"+mCurrentEndSize);
+	            // mbphz.deleteDataFromDb(format);
+	            mNiftyDialog.dismissBuilder();
+			}
+		});
+		mNiftyDialog.showBuilder();
+	}
 	private void initRemoteView(){
 		//delete_bphz_basedictindexbetween
+		mNiftyDialog = new NiftyDialogComponents(mActivity);
 		
 		View mViewRemote = View.inflate(mActivity, R.layout.bphz_levv_remote, null);
 		
@@ -105,14 +133,7 @@ public class BphzLevvFragment extends BaseFragment{
 			
 			@Override
 			public void onClick(View arg0) {
-				// 弹出一个提示框 用于确认是否删除数据
-				int mCurrentStartSize = mCurrentXY*500+1 ;
-				int mCurrentEndSize = mCurrentXY*500+500 ;
-	            String mdeleteSql = getResources().getString(R.string.delete_bphz_basedictindexbetween);
-	            String format = String.format(mdeleteSql, mCurrentStartSize+"",mCurrentEndSize+"");
-	            
-	            mActivity.showToastShort("准备清除数据了"+mCurrentStartSize+"-"+mCurrentEndSize);
-	           // mbphz.deleteDataFromDb(format);
+				showNotifyDialog();
 			}
 		});
 		

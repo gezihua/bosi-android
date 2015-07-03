@@ -84,7 +84,6 @@ public class BphzLevFragment extends BaseFragment{
 		mBphzLevAdapter.changeDataSource(mAdapterDataList);
 	}
 	
-	
 	//放到异步任务中去做
 	private List<BphzBean> getLists(){
 		BPHZ mBphz = new BPHZ();

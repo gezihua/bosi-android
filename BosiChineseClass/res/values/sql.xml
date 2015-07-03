@@ -16,4 +16,6 @@ as countremb
  from bphzhistory where dictindex &lt;= \'%3$s\'  and dictindex &gt;= \'%4$s\'  and isrember = \'%2$s\' </string>
     
     <string name = "delete_bphz_basedictindexbetween">delete  from bphzhistory where dictindex  &lt;= \'%1$s\'  and dictindex &gt;= \'%2$s\' </string>
+    
+    <string name ="select_fromzidian_basezitouorid">select * from zidian where zitou= \'%1$s\'  or refid=\'%2$s\'</string>
 </resources>
