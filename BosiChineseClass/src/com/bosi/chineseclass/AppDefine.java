@@ -23,6 +23,8 @@ public class AppDefine {
         public static final int BPHZ_TAG_UNREMBER =1;
         public static final int BPHZ_TAG_NORMAL =2;
         
+        public static final int BPHZ_REFID_ADDED =  120000;
+        public static final int BPHZ_TOTALNUM = 7000;
         public static final String EXTRA_DATA_BPHZ_SATSTICSTART = "start";
         public static final String EXTRA_DATA_BPHZ_SATSTICEND = "end";
     }

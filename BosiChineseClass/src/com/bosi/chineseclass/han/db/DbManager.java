@@ -6,7 +6,7 @@ import com.lidroid.xutils.DbUtils;
 
 public class DbManager {
     private final static int VERSION = 1;
-    private final static String DB_NAME = "dict.db";
+    private final static String DB_NAME = "bosiclass.db";
 
     private DbUtils mDbUtil;
 

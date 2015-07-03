@@ -28,7 +28,7 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/umeng_fb_arrow_right"
+            android:background="@drawable/bphz_unrember_next"
             android:visibility="gone"
               android:id="@+id/bt_bphz_statistic_next"
             ></Button>

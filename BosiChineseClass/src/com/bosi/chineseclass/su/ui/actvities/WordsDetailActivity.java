@@ -191,7 +191,6 @@ public class WordsDetailActivity extends BaseActivity implements
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		init();
-
 	}
 
 	private String onRecieveIntent() {

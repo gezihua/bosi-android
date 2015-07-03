@@ -26,7 +26,7 @@ public class BpStasticLayout {
 	@ViewInject(R.id.bt_bphz_statistic_unrenumber)
 	public Button mBtUnRember;
 	@ViewInject(R.id.bt_bphz_statistic_next)
-	private Button mNext;
+	private Button mBtNext;
 
 	
 	AbsBpStasitcViewControl mViewControl;
@@ -60,10 +60,14 @@ public class BpStasticLayout {
 	@OnClick(R.id.bt_bphz_statistic_unrenumber)
 	public void actionUnRember(View mView){
 		mOnBpStasticListener.onUnRemberListener();
+		mBtNext.setVisibility(View.VISIBLE);
+		mBtUnRember.setVisibility(View.GONE);
 	}
 	@OnClick(R.id.bt_bphz_statistic_next)
 	public void actionNext(View mView){
 		mOnBpStasticListener.onNextListener();
+		mBtNext.setVisibility(View.GONE);
+		mBtUnRember.setVisibility(View.VISIBLE);
 	}
 	Context mContext;
 	
