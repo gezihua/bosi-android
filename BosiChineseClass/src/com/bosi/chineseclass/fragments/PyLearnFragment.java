@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import android.annotation.TargetApi;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
@@ -25,16 +23,17 @@ import com.bosi.chineseclass.components.MediaPlayerPools;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
-import com.bosi.chineseclass.utils.BubbleImageHelper;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
-import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
-import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
-import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
+import com.bosi.chineseclass.views.VideoView;
+import com.bosi.chineseclass.views.VideoView.MySizeChangeLinstener;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 /**
  * @author zhujohnle 拼音学习的页面 包括声母和韵母
+ * 
+ * 
+ * #bug  当关闭屏幕 再次进入到拼音学习的时候 video videoReader 的大小改变 修改方法在surface change 回掉中再次设置宽和高
  * 
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -50,6 +49,9 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 
 	@ViewInject(R.id.vv_pinyinlearn_reader)
 	VideoView mVideoViewRead;
+	
+	@ViewInject(R.id.vv_pinyinlearn_writer)
+	VideoView mVideoViewWrite;
 
 	@ViewInject(R.id.pinyinlearn_dital)
 	LinearLayout mLayoutDital;
@@ -87,7 +89,6 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 		initBasicPinYin(CategoryPinyin.YM);
 		addPinYinNameDital();
 		downLoadFilesBaseCurrentZiMu();
-		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
 	@OnClick(R.id.iv_pyxx_sm)
@@ -105,7 +106,18 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 		return View.inflate(mActivity, R.layout.pinyin_layout_bodyview, null);
 	}
 
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+//		downLoadFilesBaseCurrentZiMu();
+//		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
+	}
 
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	}
 	private void setup() {
 		initComponents();
 		initBasicPinYin(CategoryPinyin.SM);
@@ -157,6 +169,7 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 			mAutoViewGroup.addView(mTextView);
 		}
 	}
+	
 
 	private void downLoadFilesBaseCurrentZiMu(){
 		String mCurrentFoderName =getFolderPath();
@@ -168,9 +181,14 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 		if (mFilePath != null && mFilePath.length > 0) {
 			int files = BSApplication.getInstance().mStorage
 					.getFile(mCurrentFoderName).list().length;
-			if (mFilePath.length != files)
+			if (mFilePath.length != files){
 				mDownLoadControl.downloadFiles(filePath,
 						mFilePath);
+			}else{
+				displayCurrentZmbg();
+				playVideoRead();
+			}
+				
 		}
 	}
 	private String getPropertiesFromKey(String key) {
@@ -300,8 +318,15 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 			e.printStackTrace();
 		}
 		
-		
+      mVideoViewRead.setMySizeChangeLinstener(new MySizeChangeLinstener() {
+			
+			@Override
+			public void doMyThings() {
+				
+			}
+		});
 		mImageLoader = new XutilImageLoader(mActivity);
+		downLoadFilesBaseCurrentZiMu();
 		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
@@ -321,10 +346,10 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 	}
 	
 	private void playVideoRead(){
-		
-	}
-	private void playVideoWrite(){
-		
+		mVideoViewRead.setVideoPath(getAbsoultFilePath()+mPressedZm+".mp4");
+		mVideoViewRead.start();
+		mVideoViewWrite.setVideoPath(getAbsoultFilePath()+mPressedZm+"-1.mp4");
+		mVideoViewWrite.start();
 	}
 	private void displayCurrentZmbg(){
 		mImageLoader.getBitmapFactory().display(mImageReader, getAbsoultFilePath()+mPressedZm+".jpg");
@@ -357,6 +382,7 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 		if(mCurrentSize ==wholeSize){
 			//该播放mp4的播放mp4 该显示图片的显示图片
 			displayCurrentZmbg();
+			playVideoRead();
 		}
 	}
 

@@ -78,7 +78,7 @@
         </activity>
         <activity
             android:name=".activitys.SampleHolderActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen|"
             android:screenOrientation="landscape" >
         </activity>
         <activity
