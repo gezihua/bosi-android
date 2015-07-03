@@ -64,7 +64,7 @@ public class BphzLevFragment extends BaseFragment {
 	protected void getDataAsy() {
 		mActivity.updateProgress(1, 2);
 
-		AsyTaskBaseThread(new Runnable() {
+		mActivity.AsyTaskBaseThread(new Runnable() {
 
 			@Override
 			public void run() {

@@ -65,6 +65,7 @@
 
         <activity
             android:name="com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape"
             android:theme="@style/StyledIndicators" >
         </activity>
@@ -81,30 +82,37 @@
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.GameActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZiYuanActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZjjzyAcitivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZyObjectActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZyCategoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".activitys.WebViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.umeng.fb.ConversationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:label="@string/umeng_fb_title"
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
