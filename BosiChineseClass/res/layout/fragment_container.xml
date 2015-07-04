@@ -112,19 +112,22 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="5dp" />
 
-                <ImageView
-                    android:id="@+id/oracle_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_toRightOf="@id/ytzi" />
-
                 <View
+                    android:id="@+id/devider"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_alignParentBottom="true"
                     android:background="@color/indivitor_default_color" />
+
+                <ImageView
+                    android:id="@+id/oracle_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@id/devider"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_toRightOf="@id/ytzi" />
             </RelativeLayout>
 
             <RelativeLayout
