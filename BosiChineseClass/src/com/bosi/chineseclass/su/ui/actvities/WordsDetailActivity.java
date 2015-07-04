@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -27,19 +28,15 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.components.BpStasticLayout;
-import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
 import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
 import com.bosi.chineseclass.db.BPHZ;
-import com.bosi.chineseclass.db.BphzHistory;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Word;
 import com.bosi.chineseclass.su.ui.fragment.TextViewFragment;
 import com.bosi.chineseclass.su.ui.view.WordPadView;
 import com.bosi.chineseclass.su.utils.MyVolley;
-import com.daimajia.easing.linear.Linear;
 import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -281,7 +278,7 @@ public class WordsDetailActivity extends BaseActivity implements
 	
 	private void setUpBpWordsControl(){
 		final int TAG= getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG, -1);
-		if(TAG!=-1){
+		if(TAG!=-1){ //如果不是从 未记住过来的需要先 隐藏内容 
 			int tagFromBpLv = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG,AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
 			mBpStasitcLayout = new BpStasticLayout(mContext);
 			mBpStasitcLayout.setViewControl(tagFromBpLv, new OnDataChangedListener() {
