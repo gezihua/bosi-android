@@ -17,7 +17,8 @@
             android:layout_height="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:text="200"
+            android:text="7000"
+            android:id="@+id/bt_bphz_item_number"
             android:background="@drawable/bphz_item_statistic_totalbg"
             android:gravity="center"
             android:layout_marginTop="5dp"
@@ -34,19 +35,20 @@
                  android:id="@+id/bt_bphz_item_unrenumber"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:text="10"
+                android:text="0"
                 android:background="@drawable/bphz_levunlearn_number_bg"
                 ></Button>
              <Button
                   android:id="@+id/bt_bphz_item_renumber"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:text="12"
+                android:text="0"
                 android:background="@drawable/bphz_levlearn_num_bg"
                 ></Button>
         </LinearLayout>
         
          <TextView
+             android:id="@+id/tv_bphz_clearalldata"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginLeft="12dp"

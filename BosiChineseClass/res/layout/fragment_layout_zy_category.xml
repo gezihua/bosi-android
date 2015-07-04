@@ -4,15 +4,22 @@
     android:layout_height="match_parent"
     tools:context="com.bosi.demo.GameActivity" >
 
+    <TextView
+        android:id="@+id/title_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <GridView
         android:id="@+id/zy_category_grid"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@id/game_step_layout"
+        android:layout_below="@id/title_category"
         android:horizontalSpacing="5dp"
         android:listSelector="@android:color/transparent"
-        android:numColumns="8"
-        android:verticalSpacing="5dp" >
+        android:numColumns="7"
+        android:verticalSpacing="4dp"
+        android:padding="15dp"
+        android:background="@drawable/bg_fragment_jbzy" >
     </GridView>
 
 

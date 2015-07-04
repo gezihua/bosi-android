@@ -1,5 +1,7 @@
-
 package com.bosi.chineseclass.su.ui.actvities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -13,18 +15,35 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.text.TextUtils;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+import android.view.View;
+import android.view.View.OnClickListener;
+>>>>>>> zhujohnle-master
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+<<<<<<< HEAD
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+=======
+import com.bosi.chineseclass.AppDefine;
+import com.bosi.chineseclass.BaseActivity;
+import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.components.BpStasticLayout;
+import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
+import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
+import com.bosi.chineseclass.db.BPHZ;
+import com.bosi.chineseclass.db.BphzHistory;
+>>>>>>> zhujohnle-master
 import com.bosi.chineseclass.components.MediaPlayerPools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerListener;
@@ -51,8 +70,22 @@ import u.aly.di;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-;
+import com.bosi.chineseclass.su.utils.MyVolley;
+import com.daimajia.easing.linear.Linear;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.db.sqlite.WhereBuilder;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.viewpagerindicator.TabPageIndicator;
+import com.bosi.chineseclass.components.BpStasticLayout;
+import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
+import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
+import com.bosi.chineseclass.db.BPHZ;
+import com.bosi.chineseclass.db.BphzHistory;
 
+@ContentView(R.layout.fragment_container)
 public class WordsDetailActivity extends BaseActivity implements
         OnClickListener, DownloadCallback, MutilMediaPlayerListener {
     View mHeadActionBar;
@@ -333,7 +366,86 @@ public class WordsDetailActivity extends BaseActivity implements
         AlertDialog dialog = builder.setView(view).create();
         dialog.show();
     }
+    
+    //-------------------------------------------   添加和统计布局的相关内容     --------------------------------------------------------
+    
+    BpStasticLayout mBpStasitcLayout;
+    
+    @ViewInject(R.id.ll_hzdital_stastic)
+    LinearLayout mLayoutStastic;
+    
+    public static final String  EXTRA_NAME_WORDS_TAG = "tag";
+    
+    BPHZ mBphz = new BPHZ();
+    
+    private void setUpBpWordsControl(){
+        final int TAG= getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG, -1);
+        if(TAG!=-1){
+            int tagFromBpLv = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG,AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
+            mBpStasitcLayout = new BpStasticLayout(mContext);
+            mBpStasitcLayout.setViewControl(tagFromBpLv, new OnDataChangedListener() {
+                @Override
+                public void chagePageData(int refid) {
+                    updateUI(refid+"","");
+                }
 
+                @Override
+                public void chagePageData() {
+                    
+                }
+            });
+            mLayoutStastic.addView(mBpStasitcLayout.getBaseView());
+            mLayoutStastic.setVisibility(View.VISIBLE);
+        }else{
+            String word = onRecieveIntent();
+            mWordTextView.setText(word);
+            loadFromRemote();
+            loadFromDb(word);
+        }
+    }
+    
+    private void updateUI(String id,String word){
+        Word detail = DbUtils.getInstance(this).getExplain("",id);
+        showDetail(detail);
+        showExplain(detail);
+    }
+    
+    
+    
+ //------------------------------------------------------------下载播放生意-----------------------------------------------
+      @Override
+    public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
+        try {
+            if (mCurrentSize == wholeSize) {
+                mMutilMediaPlayerTools = new MutilMediaPlayerTools(this, createSoudPaths());
+                mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    private String[] createSoudPaths() {
+        String[] strings = new String [sounds.size()];
+        int i = 0;
+        for (String temp : sounds) {
+            strings[i] = CACHES + "/sounds/" + temp + ".mp3";
+            i++;
+        }
+        return strings;
+    }
+
+    @Override
+    public void finished() {
+        if (mMutilMediaPlayerTools != null) {
+            mMutilMediaPlayerTools.reset();
+            Log.e(TAG, "reset");
+        }
+
+    }
+
+<<<<<<< HEAD
     @Override
     public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
         try {
@@ -367,3 +479,6 @@ public class WordsDetailActivity extends BaseActivity implements
     }
 
 }
+=======
+}
+>>>>>>> zhujohnle-master

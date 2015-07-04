@@ -9,6 +9,7 @@ public interface IDbOperation {
 	
 	public <T extends  List<? extends EntityBase>> T selectDataFromDb(String sql);
 	
+	
 	public boolean deleteDataFromDb(String sql);
 	
 	public boolean updateDataFromDb(String sql);

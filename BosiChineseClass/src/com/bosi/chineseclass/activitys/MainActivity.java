@@ -2,13 +2,8 @@ package com.bosi.chineseclass.activitys;
 
 import android.content.Intent;
 
-
-
-
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
@@ -28,7 +23,7 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		UmengUpdateAgent.update(this);
-		init();
+		getDataAsy();
 	}
 	@OnClick(R.id.btn_pinyinlearn)
 	public void actionPyLearn(View mView){
@@ -50,45 +45,46 @@ public class MainActivity extends BaseActivity {
 		startActivity(mIntent);
 	}
 
+	@OnClick(R.id.bt_zy)
+	public void actionZy(View mView){
+		Intent ziyuanIntent = new Intent(mContext, ZiYuanActivity.class);
+		startActivity(ziyuanIntent);
+	}
+	@OnClick(R.id.btn_zyzd)
+	public void actionZyzd(View mView){
+		
+		Intent intent = new Intent(MainActivity.this, DictionaryAcitvity.class);
+		startActivity(intent);
+	}
+	private void getDataAsy(){
+		updateProgress(1, 2);
+		
+		AsyTaskBaseThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				 new DicOpenHelper(getBaseContext());
+				 BSApplication.getInstance().mDbManager = new DbManager(mContext);
+			}
+		},new Runnable() {
+			
+			@Override
+			public void run() {
+				runOnUiThread( new Runnable() {
+					
+					@Override
+					public void run() {
+						updateProgress(2, 2);
+					}
+				});
+			}
+		});
+	}
+	
 	
 	@Override
 	public void onBackPressed() {
 		BSApplication.getInstance().exitApp();
-		
 	}
 
-	private void init() {
-		Button btn = (Button) findViewById(R.id.btn);
-		btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				DicOpenHelper helper = new DicOpenHelper(getBaseContext());
-				SQLiteDatabase database = helper.getReadableDatabase();
-				Intent intent = new Intent();
-				intent.setClass(MainActivity.this, DictionaryAcitvity.class);
-				startActivity(intent);
-
-				// Intent mIntent = new Intent(mContext,
-				// SampleHolderActivity.class);
-				// mIntent.putExtra(SampleHolderControlMake.mControlName,
-				// PinYinLearnControl.class);
-				// startActivity(mIntent);
-			}
-		});
-
-		Button bt_jbzy = (Button) findViewById(R.id.bt_zy);
-		bt_jbzy.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				DicOpenHelper helper = new DicOpenHelper(getBaseContext());
-				SQLiteDatabase database = helper.getReadableDatabase();
-
-				BSApplication.getInstance().mDbManager = new DbManager(mContext);
-
-				Intent ziyuanIntent = new Intent(mContext, ZiYuanActivity.class);
-				startActivity(ziyuanIntent);
-			}
-		});
-	}
 }

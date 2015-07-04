@@ -8,7 +8,20 @@
     <string name="bt_03_jbzy">基本字源</string>
     <string name="jbzy_bihua_array">2#3#4#5#6#7#8#9#10#11#12以上</string>
     <string name="jbzy_bihua_12">12以上</string>
-    
+
     <string name="dialog_title_exit">留下点什么</string>
+
+    <string name="category_title">和%1$s有关的字源共%2$d个</string>
+    <string name="category_ziran">自然界</string>
+    <string name="category_zhiwu">植物</string>
+    <string name="category_ren">人的身体</string>
+    <string name="category_qiwu">器具用具</string>
+    <string name="category_dongwu">其他</string>
     
+     <string name="dialog_clearbphz_levvdata">清除数据后 该组学习记录将被删除 ,是否确认清除?</string>
+     <string name="dialog_clearbphz_levdata">  清除数据后所有的学习记录将被清除,是否确认清除?</string>
+     <string name ="toast_remote_bphz_term_learnover">已经学习到本组最后一个字</string>
+     
+     <string name ="toast_remote_nothingtolearn">本组没有相应的学习记录</string>
+  
 </resources>

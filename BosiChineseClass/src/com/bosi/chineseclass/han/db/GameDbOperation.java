@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.han.db;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import com.lidroid.xutils.db.table.DbModel;

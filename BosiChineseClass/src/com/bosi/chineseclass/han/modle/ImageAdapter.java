@@ -61,7 +61,6 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             holder = (GridHolder) convertView.getTag();
         }
-        Log.e("HNX", "" + position);
         int iconId = IconUtils.getIconDrawableId(mContext, mIconList, position);
         if (iconId == -1){
             holder.icon.setImageDrawable(null);
