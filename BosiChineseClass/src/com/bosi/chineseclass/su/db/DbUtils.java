@@ -170,35 +170,13 @@ public class DbUtils {
         return null;
     }
 
-    public Word getExplain(String word,String id) {
+    public Word getExplain(String word, String id) {
         try {
-<<<<<<< HEAD
-            if (!TextUtils.isEmpty(word)) {
-                DicOpenHelper openHelper = new DicOpenHelper(mContext);
-                SQLiteDatabase database = openHelper.getReadableDatabase();
-                Cursor cursor = database.query("zidian", null, "zitou = ?", new String[] {
-                        word
-                }, null, null, null);
-                Word words = new Word();
-                if (cursor != null && cursor.moveToFirst()) {
-                    words.refid = cursor.getString(cursor.getColumnIndex("refid"));
-                    Log.e("print", words.refid + "-----------------------");
-                    words.pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
-                    words.cy = cursor.getString(cursor.getColumnIndex("cy"));
-                    words.cysy = cursor.getString(cursor.getColumnIndex("cysy"));
-                    words.yanbian = cursor.getString(cursor.getColumnIndex("yanbian"));
-                    words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
-                    words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
-                }
-                cursor.close();
-                cursor = null;
-                return words;
-=======
-
             DicOpenHelper openHelper = new DicOpenHelper(mContext);
             SQLiteDatabase database = openHelper.getReadableDatabase();
-            String sql = mContext.getResources().getString(R.string.select_fromzidian_basezitouorid);
-            String sqlFormat = String.format(sql, word,id);
+            String sql = mContext.getResources()
+                    .getString(R.string.select_fromzidian_basezitouorid);
+            String sqlFormat = String.format(sql, word, id);
             Cursor cursor = database.rawQuery(sqlFormat, null);
             Word words = new Word();
             if (cursor != null && cursor.moveToFirst()) {
@@ -209,12 +187,11 @@ public class DbUtils {
                 words.yanbian = cursor.getString(cursor.getColumnIndex("yanbian"));
                 words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
                 words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
->>>>>>> zhujohnle-master
             }
             cursor.close();
             cursor = null;
             return words;
-        
+
         } catch (Exception e) {
             e.printStackTrace();
         }

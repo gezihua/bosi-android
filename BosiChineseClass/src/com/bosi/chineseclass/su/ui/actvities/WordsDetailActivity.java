@@ -1,26 +1,18 @@
-package com.bosi.chineseclass.su.ui.actvities;
 
-import java.util.ArrayList;
-import java.util.List;
+package com.bosi.chineseclass.su.ui.actvities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.text.TextUtils;
-<<<<<<< HEAD
 import android.util.Log;
-=======
 import android.view.View;
 import android.view.View.OnClickListener;
->>>>>>> zhujohnle-master
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,25 +22,17 @@ import android.widget.VideoView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-<<<<<<< HEAD
+import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
-=======
-import com.bosi.chineseclass.AppDefine;
-import com.bosi.chineseclass.BaseActivity;
-import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.components.BpStasticLayout;
-import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
-import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
-import com.bosi.chineseclass.db.BPHZ;
-import com.bosi.chineseclass.db.BphzHistory;
->>>>>>> zhujohnle-master
-import com.bosi.chineseclass.components.MediaPlayerPools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerListener;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
+import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
+import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Word;
@@ -59,31 +43,12 @@ import com.bosi.chineseclass.su.utils.MyVolley;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
-import com.viewpagerindicator.TabPageIndicator;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import u.aly.di;
-
-import android.view.View;
-import android.view.View.OnClickListener;
-
-import com.bosi.chineseclass.su.utils.MyVolley;
-import com.daimajia.easing.linear.Linear;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.db.sqlite.WhereBuilder;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.TabPageIndicator;
-import com.bosi.chineseclass.components.BpStasticLayout;
-import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
-import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
-import com.bosi.chineseclass.db.BPHZ;
-import com.bosi.chineseclass.db.BphzHistory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @ContentView(R.layout.fragment_container)
 public class WordsDetailActivity extends BaseActivity implements
@@ -104,7 +69,7 @@ public class WordsDetailActivity extends BaseActivity implements
     private VideoView mVideoView;
     private Button mPadView;
     private final static String[] sExplain = {
-            "基本示意", "完整示意", "成语典故"
+            "基本释义", "完整释义", "成语典故"
     };
     private final static String ORACLE_IMG = "";
 
@@ -124,11 +89,14 @@ public class WordsDetailActivity extends BaseActivity implements
     }
 
     private DownLoadResouceControl mDownLoadControl;
+    private View mSoundContainer;
 
     private void init() {
         mDownLoadControl = new DownLoadResouceControl(this);
         mHeadActionBar = findViewById(R.id.deatail_headactionbar);
         initHeadActionBarComp();
+        mSoundContainer = findViewById(R.id.sound_container);
+        mSoundContainer.setOnClickListener(this);
         mOracleImg = (ImageView) findViewById(R.id.oracle_img);
         mOracleWord = (ImageView) findViewById(R.id.oracle_word);
         mWordTextView = (TextView) findViewById(R.id.detail_word);
@@ -137,13 +105,13 @@ public class WordsDetailActivity extends BaseActivity implements
         mWordDtail = (ViewPager) findViewById(R.id.word_detail_body);
         mYtTextView = (TextView) findViewById(R.id.ytzi);
         mIndicator = (TabPageIndicator) findViewById(R.id.indicator);
+        mIndicator.setVisibility(View.VISIBLE);
         mVideoView = (VideoView) findViewById(R.id.video_pad).findViewById(R.id.dictionary_video);
         mPadView = (Button) findViewById(R.id.word_pad);
         mPadView.setOnClickListener(this);
         mPlayButton.setOnClickListener(this);
         String word = onRecieveIntent();
         mWordTextView.setText(word);
-        loadFromRemote();
         loadFromDb(word);
     }
 
@@ -156,22 +124,23 @@ public class WordsDetailActivity extends BaseActivity implements
     }
 
     private void loadFromDb(String word) {
-        Word detail = DbUtils.getInstance(this).getExplain(word);
+        Word detail = DbUtils.getInstance(this).getExplain(word, "");
         showDetail(detail);
         showExplain(detail);
         loadSound(detail);
+        loadFromRemote(detail);
     }
 
-    private void loadFromRemote() {
+    private void loadFromRemote(Word detail) {
         // 这里需要请求四中四种资源
         // 1. 声音 2.动画 3. 字体图片 4 示意图片
-        loadImage();
-        loadVideoAndSound();
+        loadImage(detail);
+        loadVideoAndSound(detail);
     }
 
-    private void loadImage() {
+    private void loadImage(Word wordDetail) {
         MyVolley.getInstance(this).loadImage(
-                "http://www.uimaker.com/uploads/allimg/120801/1_120801005405_1.png",
+                "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zxtu/" + wordDetail.refid + ".jpg",
                 new ImageLoader.ImageListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
@@ -188,7 +157,7 @@ public class WordsDetailActivity extends BaseActivity implements
                     }
                 });
         MyVolley.getInstance(this).loadImage(
-                "http://www.uimaker.com/uploads/allimg/120801/1_120801005405_1.png",
+                "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zytu/" + wordDetail.refid + ".jpg",
                 new ImageLoader.ImageListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
@@ -207,10 +176,10 @@ public class WordsDetailActivity extends BaseActivity implements
 
     }
 
-    private void loadVideoAndSound() {
+    private void loadVideoAndSound(Word detail) {
         mVideoView.setMediaController(new MediaController(this));
         // TODO:设置正确的专家讲字源路径
-        String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/120001.mp4";
+        String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/" + detail.refid + ".mp4";
         playVideo(path);
     }
 
@@ -250,7 +219,7 @@ public class WordsDetailActivity extends BaseActivity implements
                 showWordPad();
                 break;
             }
-            case R.id.sound_play: {
+            case R.id.sound_container: {
                 playSound();
                 break;
             }
@@ -325,8 +294,8 @@ public class WordsDetailActivity extends BaseActivity implements
     private void showExplain(Word detail) {
         final List<TextViewFragment> fragments = new ArrayList<TextViewFragment>();
         fragments.add(new TextViewFragment(detail.yanbian));
-        fragments.add(new TextViewFragment(detail.cy));
         fragments.add(new TextViewFragment(detail.cysy));
+        fragments.add(new TextViewFragment(detail.cy));
         mWordDtail.setAdapter(new FragmentPagerAdapter(
                 getSupportFragmentManager()) {
 
@@ -366,86 +335,52 @@ public class WordsDetailActivity extends BaseActivity implements
         AlertDialog dialog = builder.setView(view).create();
         dialog.show();
     }
-    
-    //-------------------------------------------   添加和统计布局的相关内容     --------------------------------------------------------
-    
+
+    // ------------------------------------------- 添加和统计布局的相关内容
+    // --------------------------------------------------------
+
     BpStasticLayout mBpStasitcLayout;
-    
+
     @ViewInject(R.id.ll_hzdital_stastic)
     LinearLayout mLayoutStastic;
-    
-    public static final String  EXTRA_NAME_WORDS_TAG = "tag";
-    
+
+    public static final String EXTRA_NAME_WORDS_TAG = "tag";
+
     BPHZ mBphz = new BPHZ();
-    
-    private void setUpBpWordsControl(){
-        final int TAG= getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG, -1);
-        if(TAG!=-1){
-            int tagFromBpLv = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG,AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
+
+    private void setUpBpWordsControl() {
+        final int TAG = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG, -1);
+        if (TAG != -1) {
+            int tagFromBpLv = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG,
+                    AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
             mBpStasitcLayout = new BpStasticLayout(mContext);
             mBpStasitcLayout.setViewControl(tagFromBpLv, new OnDataChangedListener() {
                 @Override
                 public void chagePageData(int refid) {
-                    updateUI(refid+"","");
+                    updateUI(refid + "", "");
                 }
 
                 @Override
                 public void chagePageData() {
-                    
+
                 }
             });
             mLayoutStastic.addView(mBpStasitcLayout.getBaseView());
             mLayoutStastic.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             String word = onRecieveIntent();
             mWordTextView.setText(word);
-            loadFromRemote();
             loadFromDb(word);
         }
     }
-    
-    private void updateUI(String id,String word){
-        Word detail = DbUtils.getInstance(this).getExplain("",id);
+
+    private void updateUI(String id, String word) {
+        Word detail = DbUtils.getInstance(this).getExplain("", id);
         showDetail(detail);
         showExplain(detail);
     }
-    
-    
-    
- //------------------------------------------------------------下载播放生意-----------------------------------------------
-      @Override
-    public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
-        try {
-            if (mCurrentSize == wholeSize) {
-                mMutilMediaPlayerTools = new MutilMediaPlayerTools(this, createSoudPaths());
-                mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
-            }
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
 
-    private String[] createSoudPaths() {
-        String[] strings = new String [sounds.size()];
-        int i = 0;
-        for (String temp : sounds) {
-            strings[i] = CACHES + "/sounds/" + temp + ".mp3";
-            i++;
-        }
-        return strings;
-    }
-
-    @Override
-    public void finished() {
-        if (mMutilMediaPlayerTools != null) {
-            mMutilMediaPlayerTools.reset();
-            Log.e(TAG, "reset");
-        }
-
-    }
-
-<<<<<<< HEAD
+    // ------------------------------------------------------------下载播放生意-----------------------------------------------
     @Override
     public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
         try {
@@ -460,7 +395,7 @@ public class WordsDetailActivity extends BaseActivity implements
     }
 
     private String[] createSoudPaths() {
-        String[] strings = new String [sounds.size()];
+        String[] strings = new String[sounds.size()];
         int i = 0;
         for (String temp : sounds) {
             strings[i] = CACHES + "/sounds/" + temp + ".mp3";
@@ -479,6 +414,3 @@ public class WordsDetailActivity extends BaseActivity implements
     }
 
 }
-=======
-}
->>>>>>> zhujohnle-master
