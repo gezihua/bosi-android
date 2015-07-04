@@ -100,7 +100,7 @@ public class WordsDetailActivity extends BaseActivity implements
         mOracleImg = (ImageView) findViewById(R.id.oracle_img);
         mOracleWord = (ImageView) findViewById(R.id.oracle_word);
         mWordTextView = (TextView) findViewById(R.id.detail_word);
-        mPlayButton = (Button) findViewById(R.id.sound_play);
+//        mPlayButton = (Button) findViewById(R.id.sound_play);
         mExplainTextView = (TextView) findViewById(R.id.word_explain);
         mWordDtail = (ViewPager) findViewById(R.id.word_detail_body);
         mYtTextView = (TextView) findViewById(R.id.ytzi);
@@ -109,7 +109,7 @@ public class WordsDetailActivity extends BaseActivity implements
         mVideoView = (VideoView) findViewById(R.id.video_pad).findViewById(R.id.dictionary_video);
         mPadView = (Button) findViewById(R.id.word_pad);
         mPadView.setOnClickListener(this);
-        mPlayButton.setOnClickListener(this);
+//        mPlayButton.setOnClickListener(this);
         String word = onRecieveIntent();
         mWordTextView.setText(word);
         loadFromDb(word);

@@ -22,14 +22,15 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:background="@android:color/transparent"
-            android:orientation="vertical"
-            android:paddingEnd="5dp" >
+            android:orientation="vertical" >
 
             <RelativeLayout
                 android:id="@+id/sound_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/bg_fragment_bihua_bihuashu" >
 
                 <TextView
@@ -42,31 +43,32 @@
                     android:textColor="#ff422108"
                     android:textSize="40sp" />
 
-                <Button
-                    android:id="@+id/sound_play"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@id/detail_word"
-                    android:background="@drawable/sound_play_btn" />
-
                 <TextView
                     android:id="@+id/detail_word_py"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@id/detail_word"
-                    android:layout_toLeftOf="@id/sound_play"
                     android:text="@string/play_word_py" />
+
+                <ImageView
+                    android:id="@+id/sound_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_word"
+                    android:layout_toRightOf="@id/detail_word_py"
+                    android:src="@drawable/sound_play_btn" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/zuo" >
 
                 <include
                     android:id="@+id/video_pad"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     layout="@layout/video_pad" />
 
                 <TextView
@@ -74,6 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@id/video_pad"
+                    android:layout_alignParentTop="true"
                     android:text="书写笔顺" />
 
                 <Button
