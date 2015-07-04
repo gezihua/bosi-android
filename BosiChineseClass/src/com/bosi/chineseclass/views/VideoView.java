@@ -38,38 +38,26 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 	 * ��ƵURI·��
 	 */
 	private Uri mUri;
-	/**
-	 * ��Ƶ����Ƶ�ļ�����ʱ���ܳ���
-	 */
+	
 	private int mDuration;
 	
 	private Context mContext;
 
-	// all possible internal states
 	private static final int STATE_ERROR = -1;
-	/**
-	 * MediaPlayer�Ŀ���״̬
-	 */
+	
 	private static final int STATE_IDLE = 0;
-	/**
-	 * MediaPlayer����׼����״̬
-	 */
+	
 	private static final int STATE_PREPARING = 1;
-	/**
-	 * MediaPlayer׼�����˵�״̬
-	 */
+	
+	
 	private static final int STATE_PREPARED = 2;
-	/**
-	 * MediaPlayer�����е�״̬
-	 */
+	
+	
 	private static final int STATE_PLAYING = 3;
-	/**
-	 * MediaPlayer��ͣ��״̬
-	 */
+	
+	
 	private static final int STATE_PAUSED = 4;
-	/**
-	 * MediaPlayer������ɵ�״̬
-	 */
+	
 	private static final int STATE_PLAYBACK_COMPLETED = 5;
 
 	// mCurrentState is a VideoView object's current state.
@@ -77,164 +65,63 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 	// For instance, regardless the VideoView object's current state,
 	// calling pause() intends to bring the object to a target state
 	// of STATE_PAUSED.
-	/**Ĭ���ǿ���״̬w
-	 */
 	private int mCurrentState = STATE_IDLE;
-	/**Ĭ���ǿ���״̬
-	 */
+	
 	private int mTargetState = STATE_IDLE;
 
 	// All the stuff we need for playing and showing a video
-	/**
-	 * ���ź���ʾ��Ƶ��Ҫ,����ʾ��Ƶ�İ����ࡣ
-	 */
+	
 	private SurfaceHolder mSurfaceHolder = null;
-	/**
-	 * ������Ƶ��������ʵ���ǿ�����ࡣ
-	 */
+	
 	private MediaPlayer mMediaPlayer = null;
-	/**
-	 * ��Ƶ�ļ�����ʱ��ʾ���
-	 */
+	
 	private int mVideoWidth;
-	/**
-	 * ��Ƶ�ļ�����ʱ��ʾ�߶�
-	 */
+	
 	private int mVideoHeight;
-	/**
-	 * ��Ƶ�ļ�����ʱ��ʾ�߶�
-	 */
+	
 	private int mSurfaceWidth;
 	private int mSurfaceHeight;
-	/**
-	 * ý�������壬��������ͣ�������ˡ��϶����Ȱ�ť�Ϳؼ���
-	 */
+	
 	private MediaController mMediaController;
-	/**
-	 * ������������Ƶ����Ƶ����Ƶ�������MediaPlayer����߼�����-�����Ҳ������ˡ�
-	 */
+	
 	private OnCompletionListener mOnCompletionListener;
-	/**
-	 * add by yangguangfu
-	 * ������������Ƶ����Ƶ����Ƶ����ǰ�û���
-	 */
+	
 	private OnBufferingUpdateListener mOnBufferingUpdateListener;
-	/**
-	 * ������������Ƶ����Ƶ����Ƶ����ǰ׼������MediaPlayer����߸ü�����-����׼���ÿ��Բ����˵����ҿ�ʼ�����ˡ�
-	 */
 	private MediaPlayer.OnPreparedListener mOnPreparedListener;
 	
 	 private MediaPlayer.OnInfoListener mOnInfoListener;
-	/**
-	 * 
-	 * ������Ƶ������İٷֱȣ�������ʾ�û�����Ƶ���ض����ˣ��ò����û����ż���
-	 */
 	
 	private int mCurrentBufferPercentage;
-	/**
-	 * 
-	 * ��������MediaPlayer������Ƶʱ�����߲�����Ƶʱ�������?MediaPlayer����߸ü�����-"���������Ҳ��ŵ���Ƶ��ʽ��AVI�����Ҳ�֧�֣��Ҳ�����"
-	 */
 	private OnErrorListener mOnErrorListener;
 	private int mSeekWhenPrepared; // recording the seek position while
-	/**
-	 * �Ƿ�����ͣ
-	 */
 	private boolean mCanPause;
-	/**
-	 * �Ƿ��ܿ���
-	 */
 	private boolean mCanSeekBack;
-	/**
-	 * �Ƿ��ܿ��
-	 */
 	private boolean mCanSeekForward;
-	
-	/**
-	 *  add by yangguangfu
-	 *  �Զ�������������ڼ������δ�С�Ƿ�ı�
-	 */
 	private MySizeChangeLinstener mMyChangeLinstener;
-	/**
-	 *  add by yangguangfu
-	 *  �Զ�������������ڼ������δ�С�Ƿ�ı�
-	 */
-	interface MySizeChangeLinstener {
+	public interface MySizeChangeLinstener {
 		void doMyThings();
 	}
-
-	/**
-	 *  add by yangguangfu
-	 *  �Զ�������������ڼ������δ�С�Ƿ�ı�,�����ṩ����������á�
-	 */
 	public void setMySizeChangeLinstener(MySizeChangeLinstener l) {
 		mMyChangeLinstener = l;
 	}
-	/**
-	 * 
-	 * context ��ͼ���е�Ӧ�ó��������ģ�ͨ������Է��ʵ�ǰ���⡢��Դ�ȵȡ�
-	 */
 	public VideoView(Context context) {
 		super(context);
 		initVideoView();
 		// add by yangguangfu
 		this.mContext = context;
 	}
-	/**
-	 * 
-	 * context ��ͼ���е�Ӧ�ó��������ģ�ͨ������Է��ʵ�ǰ���⡢��Դ�ȵȡ� attrs ������
-	
-	 *	ͼ�� XML ��ǩ���Լ��ϡ�
-	 */
 	public VideoView(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 		initVideoView();
-		// add by yangguangfu
 		this.mContext = context;
 	}
-	/**
-	 * 
-	 * context ��ͼ���е�Ӧ�ó��������ģ�ͨ������Է��ʵ�ǰ���⡢��Դ�ȵȡ�
-	 * 
-	 * attrs ������ͼ�� XML ��ǩ���Լ��ϡ�
-	 * 
-	 * defStyle Ӧ�õ���ͼ��Ĭ�Ϸ�����Ϊ 0 ��Ӧ�ã�������ǰ�����еģ���� ��ֵ��
-
-���ǵ�ǰ�����е�������Դ����������ȷ�ķ����ԴID��
-	 */
 	public VideoView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initVideoView();
-		// add by yangguangfu
 		this.mContext = context;
 	}
-	/**
-	 * ��ʹ�� View ǰ��Ҫ���õķ���. ֪ͨView��������ߴ����.
-	 * ����Լ���д�Ļ������������Сע����Ҫ����setMeasuredDimension(int, int);�������
-
-		���ÿ� ����С.
-	 */
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// Log.i("@@@@", "onMeasure");
-		// Modify by yangguangfu
-		// int width = getDefaultSize(mVideoWidth, widthMeasureSpec);
-		// int height = getDefaultSize(mVideoHeight, heightMeasureSpec);
-		// if (mVideoWidth > 0 && mVideoHeight > 0) {
-		// if (mVideoWidth * height > width * mVideoHeight) {
-		// // Log.i("@@@", "image too tall, correcting");
-		// height = width * mVideoHeight / mVideoWidth;
-		// } else if (mVideoWidth * height < width * mVideoHeight) {
-		// // Log.i("@@@", "image too wide, correcting");
-		// width = height * mVideoWidth / mVideoHeight;
-		// } else {
-		// // Log.i("@@@", "aspect ratio is correct: " +
-		// // width+"/"+height+"="+
-		// // mVideoWidth+"/"+mVideoHeight);
-		// }
-		// }
-		// // Log.i("@@@@@@@@@@", "setting size: " + width + 'x' + height);
-		// setMeasuredDimension(width, height);
 
 		int width = getDefaultSize(mVideoWidth, widthMeasureSpec);
 		int height = getDefaultSize(mVideoHeight, heightMeasureSpec);
@@ -291,16 +178,11 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 	private void initVideoView() {
 		mVideoWidth = 0;
 		mVideoHeight = 0;
-		// ��SurfaceView��ǰ�ĳ�����һ���ص��������û������������Ǻ���
 		getHolder().addCallback(mSHCallback);
-		// ��������SurfaceView��ά���Լ��Ļ�����,���ǵȴ���Ļ����Ⱦ���潫�������͵��û���ǰ
 		getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 		
 //		getHolder().setType(SurfaceHolder.SURFACE_TYPE_NORMAL);//�����
-		// ͨ��setFocusable().������SurfaceView���ܽ�����ʸ�,
 		setFocusable(true);
-		// ��Ӧ�ڴ���ģʽ�£�����Ե���isFocusableInTouchMode().����֪�Ƿ��н�������Ӧ�㴥��
-		// Ҳ����ͨ��setFocusableInTouchMode().�������Ƿ��н�������Ӧ�㴥���ʸ�.
 		setFocusableInTouchMode(true);
 		// ���û�������ĳ������ۼ�����ʱ�������requestFocus().���������
 		requestFocus();
@@ -319,16 +201,13 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 	 * @param uri ��Ƶ����Ƶ·��
 	 */
 	public void setVideoURI(Uri uri) {
-		mUri =Uri.parse("http://www.yuwen100.cn/yuwen100/hzzy/jbzy-clips/video/1.wmv") ;
+		this.mUri = uri;
 		mSeekWhenPrepared = 0;
 		openVideo();
-		//��ĳЩ�������ͼ�Ĳ���ʧЧʱ���ø÷������÷���������ͼ����˳����á�
 		requestLayout();
-		//������ͼ
 		invalidate();
 	}
 	/**
-	 * ֹͣ���ţ����ͷ���Դ����MediaPlayer���ڿ���״̬��
 	 */
 	public void stopPlayback() {
 		if (mMediaPlayer != null) {
@@ -347,8 +226,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 			// not ready for playback just yet, will try again later
 			return;
 		}
-		// Tell the music playback service to pause
-		// TODO: these constants need to be published somewhere in the
 		// framework.
 		Intent i = new Intent("com.android.music.musicservicecommand");
 		i.putExtra("command", "pause");
@@ -420,7 +297,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 		public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
 			mVideoWidth = mp.getVideoWidth();
 			mVideoHeight = mp.getVideoHeight();
-			//add by yangguangfu
 			if (mMyChangeLinstener != null) {
 				mMyChangeLinstener.doMyThings();
 			}
@@ -651,6 +527,8 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 				int h) {
 			mSurfaceWidth = w;
 			mSurfaceHeight = h;
+			
+			getHolder().setFixedSize(mSurfaceWidth, mSurfaceHeight);
 			boolean isValidState = (mTargetState == STATE_PLAYING);
 			boolean hasValidSize = (mVideoWidth == w && mVideoHeight == h);
 			if (mMediaPlayer != null && isValidState && hasValidSize) {
@@ -662,6 +540,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 					mMediaController.show();
 				}
 			}
+			
 		}
 
 		public void surfaceCreated(SurfaceHolder holder) {
@@ -866,7 +745,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 		return mCanSeekBack;
 	}
 	/**
-	 * �Ƿ�MediaPlayer�ܷ���
 	 */
 	public boolean canSeekForward() {
 		return mCanSeekForward;

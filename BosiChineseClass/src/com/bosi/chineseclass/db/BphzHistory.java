@@ -3,14 +3,16 @@ package com.bosi.chineseclass.db;
 import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Table;
 
-@Table(name = "bphzhistory", execAfterTableCreated = "CREATE UNIQUE INDEX bphz_history_index ON bphzhistory(index)") 
+@Table(name = "bphzhistory", execAfterTableCreated = "CREATE UNIQUE INDEX bphz_history_uniue ON bphzhistory(dictindex)")
 public class BphzHistory extends EntityBase{
-	@Column(column = "index")
-	public String index;
 	
-	@Column(column = "remberNum")
-	public String remberNum;
+	public static final String DICTINDEX = "dictindex";
 	
-	@Column(column = "unRemberNum")
-	public String unRemberNum;
+	public static final String ISREMBER = "isrember";
+	@Column(column = "dictindex")
+	public int dictindex;
+	//0 是未记住
+	@Column(column = "isrember", defaultValue = "0")
+	public int  isRember;
+	
 }

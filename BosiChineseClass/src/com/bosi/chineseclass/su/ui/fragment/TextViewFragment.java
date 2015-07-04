@@ -18,6 +18,9 @@ public class TextViewFragment extends BaseFragment {
         this.mWord = mWord;
     }
 
+    public TextViewFragment(){
+    	
+    }
     @Override
     protected View getBasedView() {
         mRootView = LayoutInflater.from(getActivity()).inflate(R.layout.dictionary_fragment_text,

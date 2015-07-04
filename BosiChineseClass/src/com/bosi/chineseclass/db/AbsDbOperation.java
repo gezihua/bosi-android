@@ -3,13 +3,13 @@ package com.bosi.chineseclass.db;
 
 
 import com.bosi.chineseclass.BSApplication;
-import com.bosi.chineseclass.han.db.DbManager;
+
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
 
 
 public abstract class AbsDbOperation implements IDbOperation{
-	DbManager mDbManager = BSApplication.getInstance().mDbManager;
+	BosiDbManager mDbManager = BSApplication.getInstance().mDbBosiClass;
 	@Override
 	public boolean saveData(EntityBase mEntity) {
 		
@@ -41,7 +41,7 @@ public abstract class AbsDbOperation implements IDbOperation{
 		}
 	}
 	
-	public DbManager getDBDbManager(){
+	public BosiDbManager getDBDbManager(){
 	    return mDbManager;
 	}
 	
