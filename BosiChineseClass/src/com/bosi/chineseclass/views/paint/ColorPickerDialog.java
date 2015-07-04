@@ -218,10 +218,8 @@ public class ColorPickerDialog extends Dialog {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// dialog��view�Ĺ۲���
 		OnColorChangedListener l = new OnColorChangedListener() {
 			public void colorChanged(int color) {
-				// ���ù۲��ߵĽӿ�
 				mListener.colorChanged(color);
 				dismiss();
 			}
@@ -231,6 +229,6 @@ public class ColorPickerDialog extends Dialog {
 		layout.setPadding(30, 20, 20, 30);
 		setContentView(layout);
 		setCanceledOnTouchOutside(true);
-		setTitle("ѡ��һ����ɫ");
+		setTitle("颜色选择");
 	}
 }
