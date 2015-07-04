@@ -173,11 +173,13 @@ public class DbUtils {
             if (!TextUtils.isEmpty(word)) {
                 DicOpenHelper openHelper = new DicOpenHelper(mContext);
                 SQLiteDatabase database = openHelper.getReadableDatabase();
-                Cursor cursor = database.query("zidian", null, "zitou = ?", new String[]{word} , null, null, null);
+                Cursor cursor = database.query("zidian", null, "zitou = ?", new String[] {
+                        word
+                }, null, null, null);
                 Word words = new Word();
                 if (cursor != null && cursor.moveToFirst()) {
                     words.refid = cursor.getString(cursor.getColumnIndex("refid"));
-                    Log.e("print", words.refid+"-----------------------");
+                    Log.e("print", words.refid + "-----------------------");
                     words.pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
                     words.cy = cursor.getString(cursor.getColumnIndex("cy"));
                     words.cysy = cursor.getString(cursor.getColumnIndex("cysy"));
@@ -193,6 +195,34 @@ public class DbUtils {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public List<String> getPyList(String pinyin) {
+        try {
+            String[] pys = pinyin.split("/");
+            if (pys != null) {
+                DicOpenHelper openHelper = DicOpenHelper.getInstance(mContext);
+                SQLiteDatabase database = openHelper.getReadableDatabase();
+                List<String> pyList = new ArrayList<String>();
+                for (String temp : pys) {
+                    Cursor cursor = database.query("unipy", null, "pinyin = ?", new String[] {
+                            temp
+                    }, null, null, null);
+                    while (cursor.moveToNext()) {
+                        String tempString = cursor.getString(cursor.getColumnIndex("pyj"));
+                        Log.e("print", tempString);
+                        pyList.add(tempString);
+                    }
+                }
+                return pyList;
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Log.e("print", e.getMessage());
+        }
+
         return null;
     }
 }

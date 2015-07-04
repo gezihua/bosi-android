@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.su.utils.FileUtils;
+import com.gitonway.lee.niftymodaldialogeffects.lib.effects.NewsPaper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,9 +22,20 @@ public class DicOpenHelper extends SQLiteOpenHelper {
     private final static String DB_PATH = "/data/data/"
             + BSApplication.getInstance().getPackageName() + "/" + "databases";
     private final Context mContext;
+    public static DicOpenHelper sDicOpenHelper;
+    private final static Object sLOCK = new Object();
 
     public DicOpenHelper(Context context) {
         this(context, DB_NAME, null, VERSION);
+    }
+
+    public static synchronized DicOpenHelper getInstance(Context context) {
+        synchronized (sLOCK) {
+            if (sDicOpenHelper == null) {
+                sDicOpenHelper = new DicOpenHelper(context);
+            }
+            return sDicOpenHelper;
+        }
     }
 
     public DicOpenHelper(Context context, String name, CursorFactory factory,
@@ -43,11 +55,11 @@ public class DicOpenHelper extends SQLiteOpenHelper {
             } else {
                 // 判定大小
                 long db = mContext.getDatabasePath(DB_NAME).length();
-                long assets =0;
+                long assets = 0;
                 InputStream in = mContext.getAssets().open(DB_NAME);
                 assets = in.available();
-                Log.i("print",db+"--------db------------");
-                Log.i("print",assets+"-------assets-------------");
+                Log.i("print", db + "--------db------------");
+                Log.i("print", assets + "-------assets-------------");
                 boolean flag = db > assets;
                 if (!flag) {
                     Log.i("print", "delete");
@@ -74,7 +86,7 @@ public class DicOpenHelper extends SQLiteOpenHelper {
         FileOutputStream fos = null;
         try {
             in = mContext.getAssets().open(DB_NAME);
-            fos = new FileOutputStream(file,false);
+            fos = new FileOutputStream(file, false);
             byte[] buffer = new byte[1024];
             int count = 0;
             while ((count = (in.read(buffer, 0, 1024))) > 0) {
