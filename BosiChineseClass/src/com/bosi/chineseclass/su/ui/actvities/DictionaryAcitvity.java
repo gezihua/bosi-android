@@ -1,6 +1,7 @@
 
 package com.bosi.chineseclass.su.ui.actvities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.View;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
+import com.bosi.chineseclass.han.components.HeadLayoutComponents.SearchableAction;
 import com.bosi.chineseclass.su.ui.fragment.FilerPyFragment;
 import com.bosi.chineseclass.su.ui.fragment.FilterRadicalFragment;
 import com.bosi.chineseclass.su.ui.fragment.FiterStokeFragment;
@@ -19,7 +21,7 @@ import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 
-public class DictionaryAcitvity extends BaseActivity {
+public class DictionaryAcitvity extends BaseActivity implements SearchableAction {
     private final static String sTitleList[] = {
             "拼音","部首","起笔"
     };
@@ -38,6 +40,8 @@ public class DictionaryAcitvity extends BaseActivity {
         mHeadActionBarComp.setTextMiddle("字源字典", -1);
         mHeadActionBarComp.setDefaultLeftCallBack(true);
         mHeadActionBarComp.setDefaultRightCallBack(true);
+        mHeadActionBarComp.showSearchable();
+        mHeadActionBarComp.setSearchableAction(this);
     }
 
     private void init() {
@@ -92,6 +96,13 @@ public class DictionaryAcitvity extends BaseActivity {
         indicator.setTabNames(sTitleList);
         indicator.setViewPager(viewPager);
        
+    }
+    @Override
+    public void search(String word) {
+        Intent intent = new Intent();
+        intent.putExtra("word", word);
+        intent.setClass(this, WordsDetailActivity.class);
+        startActivity(intent);        
     }
 
 }
