@@ -2,6 +2,7 @@ package com.bosi.chineseclass.su.ui.actvities;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -36,6 +37,7 @@ import com.bosi.chineseclass.su.db.Word;
 import com.bosi.chineseclass.su.ui.fragment.TextViewFragment;
 import com.bosi.chineseclass.su.ui.view.WordPadView;
 import com.bosi.chineseclass.su.utils.MyVolley;
+import com.bosi.chineseclass.views.PaintPadWindow;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -106,6 +108,8 @@ public class WordsDetailActivity extends BaseActivity implements
 		mHeadActionBarComp.setTextMiddle("字源字典", -1);
 		mHeadActionBarComp.setDefaultLeftCallBack(true);
 		mHeadActionBarComp.setDefaultRightCallBack(true);
+		
+		mPaintWindow = new PaintPadWindow(mContext);
 	}
 
 	private void loadFromDb(String word) {
@@ -247,23 +251,34 @@ public class WordsDetailActivity extends BaseActivity implements
 		mIndicator.setViewPager(mWordDtail);
 
 	}
+	
+	PaintPadWindow mPaintWindow ;
 
 	private void showWordPad() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		View view = View.inflate(this, R.layout.word_pad, null);
-		final WordPadView padView = (WordPadView) view
-				.findViewById(R.id.wordpad);
-		Button reset = (Button) view.findViewById(R.id.rest);
-		reset.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				padView.rest();
-			}
-		});
-		AlertDialog dialog = builder.setView(view).create();
-		dialog.show();
+		
+		mPaintWindow.createFloatView();
+//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//		View view = View.inflate(this, R.layout.word_pad, null);
+//		final WordPadView padView = (WordPadView) view
+//				.findViewById(R.id.wordpad);
+//		Button reset = (Button) view.findViewById(R.id.rest);
+//		reset.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View arg0) {
+//				padView.rest();
+//			}
+//		});
+//		AlertDialog dialog = builder.setView(view).create();
+//		dialog.show();
+		
+		
 	}
+	public void onBackPressed() {
+		super.onBackPressed();
+		mPaintWindow.dismissView();
+		
+	};
 	
 	//-------------------------------------------   添加和统计布局的相关内容     --------------------------------------------------------
 	
@@ -295,6 +310,7 @@ public class WordsDetailActivity extends BaseActivity implements
 			mLayoutStastic.addView(mBpStasitcLayout.getBaseView());
 			mLayoutStastic.setVisibility(View.VISIBLE);
 		}else{
+			mLayoutStastic.setVisibility(View.GONE);
 			String word = onRecieveIntent();
 			mWordTextView.setText(word);
 			loadFromRemote();
