@@ -43,12 +43,19 @@
                     android:textColor="#ff422108"
                     android:textSize="40sp" />
 
+                <View
+                    android:id="@+id/center_devider"
+                    android:layout_width="1dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/detail_word"
+                    android:layout_centerHorizontal="true" />
+
                 <TextView
                     android:id="@+id/detail_word_py"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_below="@id/detail_word"
+                    android:layout_toLeftOf="@id/center_devider"
                     android:text="@string/play_word_py" />
 
                 <ImageView
@@ -56,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detail_word"
-                    android:layout_toRightOf="@id/detail_word_py"
+                    android:layout_toRightOf="@id/center_devider"
                     android:src="@drawable/sound_play_btn" />
             </RelativeLayout>
 
@@ -65,27 +72,30 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/zuo" >
 
-                <include
-                    android:id="@+id/video_pad"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    layout="@layout/video_pad" />
-
                 <TextView
                     android:id="@+id/shuxiebishu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@id/video_pad"
                     android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
                     android:text="书写笔顺" />
+
+                <include
+                    android:id="@+id/video_pad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/shuxiebishu"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    layout="@layout/video_pad" />
 
                 <Button
                     android:id="@+id/word_pad"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/video_pad"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/kaqi" />
             </RelativeLayout>
         </LinearLayout>
