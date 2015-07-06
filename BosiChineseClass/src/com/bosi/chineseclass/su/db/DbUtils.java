@@ -170,13 +170,13 @@ public class DbUtils {
         return null;
     }
 
-    public Word getExplain(String word,String id) {
+    public Word getExplain(String word, String id) {
         try {
-
             DicOpenHelper openHelper = new DicOpenHelper(mContext);
             SQLiteDatabase database = openHelper.getReadableDatabase();
-            String sql = mContext.getResources().getString(R.string.select_fromzidian_basezitouorid);
-            String sqlFormat = String.format(sql, word,id);
+            String sql = mContext.getResources()
+                    .getString(R.string.select_fromzidian_basezitouorid);
+            String sqlFormat = String.format(sql, word, id);
             Cursor cursor = database.rawQuery(sqlFormat, null);
             Word words = new Word();
             if (cursor != null && cursor.moveToFirst()) {
@@ -191,10 +191,38 @@ public class DbUtils {
             cursor.close();
             cursor = null;
             return words;
-        
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public List<String> getPyList(String pinyin) {
+        try {
+            String[] pys = pinyin.split("/");
+            if (pys != null) {
+                DicOpenHelper openHelper = DicOpenHelper.getInstance(mContext);
+                SQLiteDatabase database = openHelper.getReadableDatabase();
+                List<String> pyList = new ArrayList<String>();
+                for (String temp : pys) {
+                    Cursor cursor = database.query("unipy", null, "pinyin = ?", new String[] {
+                            temp
+                    }, null, null, null);
+                    while (cursor.moveToNext()) {
+                        String tempString = cursor.getString(cursor.getColumnIndex("pyj"));
+                        Log.e("print", tempString);
+                        pyList.add(tempString);
+                    }
+                }
+                return pyList;
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Log.e("print", e.getMessage());
+        }
+
         return null;
     }
 }

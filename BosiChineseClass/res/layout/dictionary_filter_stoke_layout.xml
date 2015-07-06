@@ -18,7 +18,8 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
+            android:background="@drawable/bphz_levv_stastic_bg"
             android:gravity="center"
             android:text="@string/dict_stoke" />
 
@@ -28,6 +29,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@drawable/pingying_learn_btbg"
             android:text="横起笔"
             android:textSize="15sp" />
 
@@ -37,6 +39,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@drawable/pingying_learn_btbg"
             android:text="竖起笔"
             android:textSize="15sp" />
 
@@ -46,6 +49,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@drawable/pingying_learn_btbg"
             android:text="撇起笔"
             android:textSize="15sp" />
 
@@ -55,6 +59,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@drawable/pingying_learn_btbg"
             android:text="点起笔"
             android:textSize="15sp" />
 
@@ -64,6 +69,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@drawable/pingying_learn_btbg"
             android:text="折起笔"
             android:textSize="15sp" />
     </LinearLayout>

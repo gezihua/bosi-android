@@ -11,28 +11,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_fragment_jbzy"
+        android:layout_margin="0dp"
+        android:background="@drawable/back"
         android:orientation="horizontal"
-        android:padding="5dp" >
+        android:padding="10dp" >
 
         <LinearLayout
             android:id="@+id/first"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:background="#ffffffff"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingEnd="5dp" >
+            android:layout_margin="5dp"
+            android:background="@android:color/transparent"
+            android:orientation="vertical" >
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/sound_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/bg_fragment_bihua_bihuashu"
-                android:orientation="vertical" >
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_fragment_bihua_bihuashu" >
 
                 <TextView
                     android:id="@+id/detail_word"
@@ -44,27 +47,61 @@
                     android:textColor="#ff422108"
                     android:textSize="40sp" />
 
-                <Button
+                <View
+                    android:id="@+id/center_devider"
+                    android:layout_width="1dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/detail_word"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:id="@+id/detail_word_py"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_word"
+                    android:layout_toLeftOf="@id/center_devider"
+                    android:text="@string/play_word_py" />
+
+                <ImageView
                     android:id="@+id/sound_play"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:text="@string/play_word" />
-            </LinearLayout>
+                    android:layout_below="@id/detail_word"
+                    android:layout_toRightOf="@id/center_devider"
+                    android:src="@drawable/sound_play_btn" />
+            </RelativeLayout>
 
-            <include
-                android:id="@+id/video_pad"
-                layout="@layout/video_pad" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/zuo" >
 
-            <Button
-                android:id="@+id/word_pad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="0dp"
-                android:text="写字板" />
+                <TextView
+                    android:id="@+id/shuxiebishu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="书写笔顺" />
+
+                <include
+                    android:id="@+id/video_pad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/shuxiebishu"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    layout="@layout/video_pad" />
+
+                <Button
+                    android:id="@+id/word_pad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/kaqi" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -75,7 +112,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:layout_weight="5"
-            android:background="#ffffffff"
+            android:background="@android:color/transparent"
             android:orientation="vertical" >
 
             <RelativeLayout
@@ -84,25 +121,37 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" >
 
-                <ImageView
-                    android:id="@+id/oracle_img"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginEnd="0dp" />
+                <TextView
+                    android:id="@+id/ytzi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="5dp" />
 
                 <View
+                    android:id="@+id/devider"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_alignParentBottom="true"
                     android:background="@color/indivitor_default_color" />
+
+                <ImageView
+                    android:id="@+id/oracle_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@id/devider"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_toRightOf="@id/ytzi" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"
-                android:background="#ffffffff" >
+                android:background="@android:color/transparent" >
 
                 <ImageView
                     android:id="@+id/oracle_word"
@@ -111,16 +160,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true" />
 
-                <TextView
-                    android:id="@+id/ytzi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_toLeftOf="@id/oracle_word" />
-
                 <com.viewpagerindicator.TabPageIndicator
                     android:id="@+id/indicator"
-                    android:layout_width="120dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/word_explain"
@@ -133,9 +175,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/indicator"
+                    android:layout_margin="5dp"
+                    android:layout_toLeftOf="@+id/ll_hzdital_stastic"
                     android:background="@drawable/main_background"
                     android:padding="5dp" >
-
                 </android.support.v4.view.ViewPager>
 
                 <LinearLayout
@@ -147,21 +190,19 @@
                     android:background="#000000"
                     android:gravity="center"
                     android:orientation="vertical" >
-
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/word_explain"
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_above="@+id/ll_hzdital_stastic"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="2dp"
                     android:layout_toLeftOf="@+id/ll_hzdital_stastic"
                     android:background="@drawable/main_background"
                     android:padding="5dp" />
-
             </RelativeLayout>
-
         </LinearLayout>
     </LinearLayout>
 
