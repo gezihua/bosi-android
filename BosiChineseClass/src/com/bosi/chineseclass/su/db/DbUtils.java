@@ -171,13 +171,14 @@ public class DbUtils {
     }
 
     public Word getExplain(String word, String id) {
+    	  Cursor cursor =null;
         try {
             DicOpenHelper openHelper = new DicOpenHelper(mContext);
             SQLiteDatabase database = openHelper.getReadableDatabase();
             String sql = mContext.getResources()
                     .getString(R.string.select_fromzidian_basezitouorid);
             String sqlFormat = String.format(sql, word, id);
-            Cursor cursor = database.rawQuery(sqlFormat, null);
+            cursor = database.rawQuery(sqlFormat, null);
             Word words = new Word();
             if (cursor != null && cursor.moveToFirst()) {
                 words.refid = cursor.getString(cursor.getColumnIndex("refid"));
@@ -188,12 +189,15 @@ public class DbUtils {
                 words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
                 words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
             }
-            cursor.close();
-            cursor = null;
+          
             return words;
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+        	if(cursor!=null&&!cursor.isClosed()){
+        		 cursor.close();
+        	}
         }
         return null;
     }
