@@ -173,7 +173,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 		setLayoutParams(lp);
 	}
 	/**
-	 * ��ʼ��VideoView��������ز���
 	 */
 	private void initVideoView() {
 		mVideoWidth = 0;

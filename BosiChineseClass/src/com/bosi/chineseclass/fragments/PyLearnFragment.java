@@ -24,6 +24,7 @@ import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
+import com.bosi.chineseclass.views.BsVideoViewGroup;
 import com.bosi.chineseclass.views.VideoView;
 import com.bosi.chineseclass.views.VideoView.MySizeChangeLinstener;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -48,10 +49,10 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 	AutoChangeLineViewGroup mAutoViewGroup;
 
 	@ViewInject(R.id.vv_pinyinlearn_reader)
-	VideoView mVideoViewRead;
+	BsVideoViewGroup mVideoViewRead;
 	
 	@ViewInject(R.id.vv_pinyinlearn_writer)
-	VideoView mVideoViewWrite;
+	BsVideoViewGroup mVideoViewWrite;
 
 	@ViewInject(R.id.pinyinlearn_dital)
 	LinearLayout mLayoutDital;
@@ -318,16 +319,10 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 			e.printStackTrace();
 		}
 		
-      mVideoViewRead.setMySizeChangeLinstener(new MySizeChangeLinstener() {
-			
-			@Override
-			public void doMyThings() {
-				
-			}
-		});
 		mImageLoader = new XutilImageLoader(mActivity);
 		downLoadFilesBaseCurrentZiMu();
 		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
+		mVideoViewWrite.setVideoBackGround(R.drawable.pinyin_learn_imgbg);
 	}
 
 	@Override
@@ -346,10 +341,8 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 	}
 	
 	private void playVideoRead(){
-		mVideoViewRead.setVideoPath(getAbsoultFilePath()+mPressedZm+".mp4");
-		mVideoViewRead.start();
-		mVideoViewWrite.setVideoPath(getAbsoultFilePath()+mPressedZm+"-1.mp4");
-		mVideoViewWrite.start();
+		mVideoViewRead.playVideo(getAbsoultFilePath()+mPressedZm+".mp4");
+		mVideoViewWrite.playVideo(getAbsoultFilePath()+mPressedZm+"-1.mp4");
 	}
 	private void displayCurrentZmbg(){
 		mImageLoader.getBitmapFactory().display(mImageReader, getAbsoultFilePath()+mPressedZm+".jpg");

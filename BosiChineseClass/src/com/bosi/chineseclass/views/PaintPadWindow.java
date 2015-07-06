@@ -82,10 +82,11 @@ public class PaintPadWindow {
 	}
 	
 	public void dismissView(){
-		if(wm!=null && mBaseView!=null){
-			wm.removeView(mBaseView);
+		if(wm!=null && mBaseView!=null&&isAdded){
+				wm.removeView(mBaseView);
+				
+				isAdded = false;
 			
-			isAdded = false;
 		}
 	}
 	

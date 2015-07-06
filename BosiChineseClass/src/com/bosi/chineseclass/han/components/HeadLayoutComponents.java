@@ -2,12 +2,12 @@
 package com.bosi.chineseclass.han.components;
 
 import com.bosi.chineseclass.BSApplication;
+
 import com.bosi.chineseclass.R;
 
 import android.app.Activity;
 
 import android.content.Context;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;

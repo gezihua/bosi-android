@@ -63,12 +63,12 @@
             <LinearLayout
                 android:id="@+id/pinyinlearn_"
                  android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="140dp"
                 android:layout_marginTop="10dp"
                  android:orientation="horizontal"
                 >
                 
-                <com.bosi.chineseclass.views.VideoView
+                <com.bosi.chineseclass.views.BsVideoViewGroup
                     android:layout_width="match_parent"
 					android:layout_weight="1"
 					android:layout_margin="3dp"
@@ -79,17 +79,17 @@
                      android:layout_width="match_parent"
 					android:layout_weight="1"
 					android:layout_margin="3dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="110dp"
                     android:id="@+id/iv_pinyinlearn_reader"
                     ></ImageView>
-                <com.bosi.chineseclass.views.VideoView
+                <com.bosi.chineseclass.views.BsVideoViewGroup
                      android:layout_width="match_parent"
 					android:layout_weight="1"
 					android:layout_margin="3dp"
                     android:layout_height="match_parent"
                     android:id="@+id/vv_pinyinlearn_writer"
-                    android:background="@drawable/pinyin_learn_imgbg"
                     />
+                  <!-- android:background="@drawable/pinyin_learn_imgbg" -->
             </LinearLayout>
              <LinearLayout
                 android:id="@+id/pinyinlearn_menu_bt"

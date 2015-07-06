@@ -1,24 +1,16 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
-import android.app.AlertDialog;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
@@ -29,25 +21,20 @@ import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerListener;
+import com.bosi.chineseclass.components.WordDitalExpainComponent;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
 import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
-import com.bosi.chineseclass.han.components.HeadLayoutComponents.SearchableAction;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Word;
-import com.bosi.chineseclass.su.ui.fragment.TextViewFragment;
-import com.bosi.chineseclass.su.ui.view.WordPadView;
 import com.bosi.chineseclass.su.utils.FileUtils;
 import com.bosi.chineseclass.su.utils.MyVolley;
+import com.bosi.chineseclass.views.BsVideoViewGroup;
 import com.bosi.chineseclass.views.PaintPadWindow;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,36 +47,23 @@ public class WordsDetailActivity extends BaseActivity implements
 	HeadLayoutComponents mHeadActionBarComp;
 	private ImageView mOracleImg = null;
 	private ImageView mOracleWord = null;
-
 	private TextView mWordTextView = null;
-	private Button mPlayButton = null;
 	private TextView mExplainTextView;
-	private ViewPager mWordDtail;
 	private TextView mYtTextView;
-	private TabPageIndicator mIndicator;
-	private FragmentManager mFragManager;
-	private VideoView mVideoView;
-	private Button mPadView;
+	private BsVideoViewGroup mVideoView;
+	
+	private ImageButton mPadView;
 	private final static String[] sExplain = { "基本释义", "完整释义", "成语典故" };
 	private final static String ORACLE_IMG = "";
 
 	private final static String ORACLE_WORD = "";
 
-	private <T> void asynload(String url, RequestCallBack<T> callBack) {
-		HttpUtils utils = new HttpUtils();
-		utils.send(HttpMethod.GET, url, callBack);
-	}
-
-	private void createTabBtn(String word) {
-
-	}
-
-	private TextViewFragment creaTextViewFragment(String word) {
-		return new TextViewFragment(word);
-	}
 
 	private DownLoadResouceControl mDownLoadControl;
 	private View mSoundContainer;
+	
+	@ViewInject(R.id.ll_word_dital)
+	View mllExpainBody;
 
 	private void init() {
 		mDownLoadControl = new DownLoadResouceControl(this);
@@ -100,20 +74,15 @@ public class WordsDetailActivity extends BaseActivity implements
 		mOracleImg = (ImageView) findViewById(R.id.oracle_img);
 		mOracleWord = (ImageView) findViewById(R.id.oracle_word);
 		mWordTextView = (TextView) findViewById(R.id.detail_word);
-		// mPlayButton = (Button) findViewById(R.id.sound_play);
 		mExplainTextView = (TextView) findViewById(R.id.word_explain);
-		mWordDtail = (ViewPager) findViewById(R.id.word_detail_body);
 		mYtTextView = (TextView) findViewById(R.id.ytzi);
-		mIndicator = (TabPageIndicator) findViewById(R.id.indicator);
-		mIndicator.setVisibility(View.VISIBLE);
-		mVideoView = (VideoView) findViewById(R.id.video_pad).findViewById(
-				R.id.dictionary_video);
-		mPadView = (Button) findViewById(R.id.word_pad);
+		mVideoView = (BsVideoViewGroup) findViewById(R.id.video_pad);
+		mPadView = (ImageButton) findViewById(R.id.word_pad);
 		mPadView.setOnClickListener(this);
-		// mPlayButton.setOnClickListener(this);
-		setUpBpWordsControl();
 		
+		mExpainComponent = new WordDitalExpainComponent(mContext,mllExpainBody);
 		mPaintPadWindow = new PaintPadWindow(mContext);
+		setUpBpWordsControl();
 	}
 
 	private void load() {
@@ -190,11 +159,9 @@ public class WordsDetailActivity extends BaseActivity implements
 	}
 
 	private void loadVideoAndSound(Word detail) {
-		mVideoView.setMediaController(new MediaController(this));
-		// TODO:设置正确的专家讲字源路径
 		String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/"
 				+ detail.refid + ".mp4";
-		playVideo(path);
+		mVideoView.playVideo(path);
 	}
 
 	private final static String CACHES = "/data/data/"
@@ -246,7 +213,6 @@ public class WordsDetailActivity extends BaseActivity implements
 	}
 	
 	public void onBackPressed() {
-		super.onBackPressed();
 		mPaintPadWindow.dismissView();
 	};
 
@@ -258,7 +224,6 @@ public class WordsDetailActivity extends BaseActivity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		mPaintPadWindow.dismissView();
-		
 	}
 	private MutilMediaPlayerTools mMutilMediaPlayerTools;
 
@@ -298,11 +263,6 @@ public class WordsDetailActivity extends BaseActivity implements
 		return null;
 	}
 
-	private void playVideo(String path) {
-		mVideoView.setVideoURI(Uri.parse(path));
-		mVideoView.requestFocus();
-		mVideoView.start();
-	}
 
 	private void showDetail(Word detail) {
 		String temp = null;
@@ -318,34 +278,9 @@ public class WordsDetailActivity extends BaseActivity implements
 		}
 
 	}
-
+	WordDitalExpainComponent mExpainComponent;
 	private void showExplain(Word detail) {
-		final List<TextViewFragment> fragments = new ArrayList<TextViewFragment>();
-		fragments.add(new TextViewFragment(detail.yanbian));
-		fragments.add(new TextViewFragment(detail.cysy));
-		fragments.add(new TextViewFragment(detail.cy));
-		mWordDtail.setAdapter(new FragmentPagerAdapter(
-				getSupportFragmentManager()) {
-
-			@Override
-			public int getCount() {
-				return 3;
-			}
-
-			@Override
-			public Fragment getItem(int arg0) {
-				return fragments.get(arg0);
-			}
-
-			@Override
-			public CharSequence getPageTitle(int position) {
-				// TODO Auto-generated method stub
-				return sExplain[position];
-			}
-		});
-		mIndicator.setTabNames(sExplain);
-		mIndicator.setViewPager(mWordDtail);
-
+		mExpainComponent.setData(new String[]{detail.yanbian,detail.cysy,detail.cy});
 	}
 
 	// ------------------------------------------- 添加和统计布局的相关内容
@@ -375,7 +310,6 @@ public class WordsDetailActivity extends BaseActivity implements
 
 						@Override
 						public void chagePageData() {
-
 						}
 					});
 			mLayoutStastic.addView(mBpStasitcLayout.getBaseView());
@@ -384,6 +318,7 @@ public class WordsDetailActivity extends BaseActivity implements
 			String word = onRecieveIntent();
 			mWordTextView.setText(word);
 			loadFromDb(word);
+			mLayoutStastic.setVisibility(View.GONE);
 		}
 	}
 

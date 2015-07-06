@@ -12,40 +12,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="0dp"
-        android:background="@drawable/back"
-        android:orientation="horizontal"
-        android:padding="10dp" >
+        android:orientation="horizontal" >
+        
+        
+        
+        
 
         <LinearLayout
             android:id="@+id/first"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:background="@drawable/pinyin_sybg"
             android:gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:background="@android:color/transparent"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp" >
 
             <RelativeLayout
                 android:id="@+id/sound_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/bg_fragment_bihua_bihuashu" >
+                android:layout_height="80dp" >
 
                 <TextView
                     android:id="@+id/detail_word"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/white"
+                    android:layout_height="60dp"
                     android:gravity="center"
                     android:textColor="#ff422108"
-                    android:textSize="40sp" />
+                    android:textSize="30sp" />
 
                 <View
                     android:id="@+id/center_devider"
@@ -60,66 +55,69 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detail_word"
                     android:layout_toLeftOf="@id/center_devider"
-                    android:text="@string/play_word_py" />
+                    android:text="@string/play_word_py"
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/sound_play"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_below="@id/detail_word"
                     android:layout_toRightOf="@id/center_devider"
                     android:src="@drawable/sound_play_btn" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_green_light" >
+            </View>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/zuo" >
-
-                <TextView
-                    android:id="@+id/shuxiebishu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="书写笔顺" />
-
-                <include
+                android:layout_marginTop="5dp" >
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/video_pad"
+                    android:layout_above="@+id/video_pad"
+                    android:background="@android:color/holo_green_light" >
+                </View>
+                <com.bosi.chineseclass.views.BsVideoViewGroup
                     android:id="@+id/video_pad"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/shuxiebishu"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="5dp"
-                    layout="@layout/video_pad" />
+                    android:layout_height="130dp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/word_pad"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/kaqi" />
+                    android:background="@drawable/kaqi"
+                    android:scaleType="fitCenter" />
             </RelativeLayout>
         </LinearLayout>
+        
+        
+        
+        
 
         <LinearLayout
             android:id="@+id/second_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="5"
-            android:background="@android:color/transparent"
+            android:background="@drawable/pinyin_sybg"
             android:orientation="vertical" >
 
             <RelativeLayout
                 android:id="@+id/second_up"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" >
+                android:layout_height="40dp" >
 
                 <TextView
                     android:id="@+id/ytzi"
@@ -128,13 +126,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="5dp" />
-
-                <View
-                    android:id="@+id/devider"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/indivitor_default_color" />
 
                 <ImageView
                     android:id="@+id/oracle_img"
@@ -147,11 +138,17 @@
                     android:layout_toRightOf="@id/ytzi" />
             </RelativeLayout>
 
-            <RelativeLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:background="@android:color/transparent" >
+                android:layout_height="1dp"
+                android:background="@android:color/holo_green_light" >
+            </View>
+
+            <RelativeLayout
+                android:id="@+id/rl_explain"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical" >
 
                 <ImageView
                     android:id="@+id/oracle_word"
@@ -160,38 +157,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true" />
 
-                <com.viewpagerindicator.TabPageIndicator
-                    android:id="@+id/indicator"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/word_explain"
-                    android:layout_toLeftOf="@id/oracle_word"
-                    android:paddingEnd="80dp"
-                    android:visibility="gone" />
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/word_detail_body"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/indicator"
-                    android:layout_margin="5dp"
-                    android:layout_toLeftOf="@+id/ll_hzdital_stastic"
-                    android:background="@drawable/main_background"
-                    android:padding="5dp" >
-                </android.support.v4.view.ViewPager>
-
-                <LinearLayout
-                    android:id="@+id/ll_hzdital_stastic"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:background="#000000"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-                </LinearLayout>
-
                 <TextView
                     android:id="@+id/word_explain"
                     android:layout_width="match_parent"
@@ -199,9 +164,39 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="2dp"
-                    android:layout_toLeftOf="@+id/ll_hzdital_stastic"
-                    android:background="@drawable/main_background"
+                    android:layout_toLeftOf="@+id/oracle_word"
                     android:padding="5dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/holo_green_light" >
+            </View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <include 
+                    layout="@layout/layout_worddital_expain"
+                    android:id="@+id/ll_word_dital"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/ll_hzdital_stastic"
+                    android:orientation="vertical"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/ll_hzdital_stastic"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+                </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

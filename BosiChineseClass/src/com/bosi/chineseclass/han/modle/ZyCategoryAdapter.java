@@ -80,7 +80,7 @@ public class ZyCategoryAdapter extends BaseAdapter {
                 holder.title.setBackgroundResource(title_background_id);
             }
         } else {
-            holder.title.setBackground(null);
+            holder.title.setBackgroundDrawable(null);
         }
         return convertView;
 

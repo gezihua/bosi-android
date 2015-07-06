@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.views;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.GridView;
 
@@ -9,6 +10,8 @@ public class BSGridView extends GridView{
 	boolean isGirdCanScroll;
 	public BSGridView(Context context) {
 		super(context);
+		setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+		setGravity(Gravity.CENTER);
 	}
 
 	@Override

@@ -17,10 +17,9 @@
         android:id="@+id/ll_bphz_body"
         android:orientation="vertical"
         android:layout_margin="10dp"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:background="@drawable/temp_bg"
         >
-        
     </LinearLayout>
         <LinearLayout
             android:layout_marginRight="40dp"
