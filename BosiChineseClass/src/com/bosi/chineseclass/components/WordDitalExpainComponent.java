@@ -2,62 +2,80 @@ package com.bosi.chineseclass.components;
 
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.han.components.BaseComponents;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 
-public class WordDitalExpainComponent extends BaseComponents {
+public class WordDitalExpainComponent extends BaseComponents implements
+		OnClickListener {
 
-	@ViewInject(R.id.bt_worddital_wzsy)
 	TextView mViewWzsy;
-	@ViewInject(R.id.bt_worddital_cydg)
 	TextView mViewCydg;
-	@ViewInject(R.id.bt_worddital_jbsy)
 	TextView mViewJbsy;
-	@ViewInject(R.id.tv_worddital_expain)
 	TextView mTvDital;
-	
-	public String [] mData;
-	public WordDitalExpainComponent(Context mContext,View mView) {
-		super(mContext,mView);
+
+	public String[] mData;
+
+	public WordDitalExpainComponent(Context mContext, View mView) {
+		super(mContext, mView);
 	}
-	
 
 	@Override
 	public void initFatherView() {
-		ViewUtils.inject(this, mFatherView);
+		mViewWzsy = (TextView) mFatherView.findViewById(R.id.bt_worddital_wzsy);
+		mViewWzsy.setOnClickListener(this);
+		mViewCydg = (TextView) mFatherView.findViewById(R.id.bt_worddital_cydg);
+		mViewCydg.setOnClickListener(this);
+		mTvDital = (TextView) mFatherView
+				.findViewById(R.id.tv_worddital_expain);
+		mViewJbsy = (TextView) mFatherView.findViewById(R.id.bt_worddital_jbsy);
+		mViewJbsy.setOnClickListener(this);
 	}
-	
-	public void setData(String [] mData){
-		this.mData =  mData;
+
+	public void setData(String[] mData) {
+		this.mData = mData;
 		actionJbsy(null);
 	}
-	
-	@OnClick(R.id.bt_worddital_wzsy)
-	public void actionWzsy(View mView){
-		if(mData!=null&&mData.length==3){
+
+	public void actionWzsy(View mView) {
+		if (mData != null && mData.length == 3) {
 			mTvDital.setText(mData[1]);
 		}
 	}
-	@OnClick(R.id.bt_worddital_cydg)
-	public void actionCydg(View mView){
-		if(mData!=null&&mData.length==3){
+
+	public void actionCydg(View mView) {
+		if (mData != null && mData.length == 3) {
 			mTvDital.setText(mData[2]);
 		}
 	}
-	
-	@OnClick(R.id.bt_worddital_jbsy)
-	public void actionJbsy(View mView){
-		if(mData!=null&&mData.length==3){
+
+	public void actionJbsy(View mView) {
+		if (mData != null && mData.length == 3) {
 			mTvDital.setText(mData[0]);
 		}
-		
+
 	}
-	
-	
+
+	@Override
+	public void onClick(View mView) {
+		switch (mView.getId()) {
+		case R.id.bt_worddital_wzsy:
+			actionWzsy(mView);
+
+			break;
+		case R.id.bt_worddital_cydg:
+			actionCydg(mView);
+			break;
+		case R.id.bt_worddital_jbsy:
+			actionJbsy(mView);
+
+			break;
+
+		default:
+			break;
+		}
+	}
 
 }
