@@ -2,6 +2,7 @@ package com.bosi.chineseclass.su.ui.actvities;
 
 
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -80,20 +81,12 @@ public class WordsDetailActivity extends BaseActivity implements
 		mPadView = (ImageButton) findViewById(R.id.word_pad);
 		mPadView.setOnClickListener(this);
 		
-		mExpainComponent = new WordDitalExpainComponent(mContext,mllExpainBody);
+		mExpainComponent = new WordDitalExpainComponent(this,mllExpainBody);
 		mPaintPadWindow = new PaintPadWindow(mContext);
+		
 		setUpBpWordsControl();
 	}
 
-	private void load() {
-		String word = onRecieveIntent();
-		load(word);
-	}
-
-	private void load(String word) {
-		mWordTextView.setText(word);
-		loadFromDb(word);
-	}
 
 	private void initHeadActionBarComp() {
 		mHeadActionBarComp = new HeadLayoutComponents(this, mHeadActionBar);
@@ -191,8 +184,6 @@ public class WordsDetailActivity extends BaseActivity implements
 		return strings;
 	}
 
-	private int mCurrentPlayIndex = 0;
-
 	@Override
 	public void onClick(View arg0) {
 		int id = arg0.getId();
@@ -236,7 +227,6 @@ public class WordsDetailActivity extends BaseActivity implements
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		setContentView(R.layout.fragment_container);
 		init();
 
 	}
@@ -312,6 +302,7 @@ public class WordsDetailActivity extends BaseActivity implements
 						public void chagePageData() {
 						}
 					});
+			
 			mLayoutStastic.addView(mBpStasitcLayout.getBaseView());
 			mLayoutStastic.setVisibility(View.VISIBLE);
 		} else {

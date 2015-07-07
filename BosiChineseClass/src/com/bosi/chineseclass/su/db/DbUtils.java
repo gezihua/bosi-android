@@ -2,13 +2,11 @@
 package com.bosi.chineseclass.su.db;
 
 import android.content.Context;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.UserDictionary.Words;
 import android.text.TextUtils;
 import android.util.Log;
-
-import u.aly.cu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +43,8 @@ public class DbUtils {
                 return list;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        }finally{
+        	
         }
         return null;
     }
@@ -68,8 +66,6 @@ public class DbUtils {
                 return list;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         return null;
     }
@@ -164,7 +160,6 @@ public class DbUtils {
                 return list;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;
@@ -222,7 +217,6 @@ public class DbUtils {
                 return pyList;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             Log.e("print", e.getMessage());
         }
