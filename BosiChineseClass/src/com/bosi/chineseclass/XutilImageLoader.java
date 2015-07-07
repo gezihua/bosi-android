@@ -1,10 +1,6 @@
 package com.bosi.chineseclass;
 
-import java.io.File;
-
 import android.content.Context;
-
-
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
@@ -29,13 +25,12 @@ public class XutilImageLoader {
     }
     
     private void init(){
-    BSApplication.getInstance().mStorage.createDirectory("cache",false);
-    
-    mBitmapUtils = new BitmapUtils(mContext,BSApplication.getInstance().mStorage.getFile("cache").getAbsolutePath());
+    String folderPath = AppDefine.FilePathDefine.APP_GLOBLEFILEPATH+"/"+"cache";
+    BSApplication.getInstance().mStorage.createDirectory(folderPath,false);
+    mBitmapUtils = new BitmapUtils(mContext,BSApplication.getInstance().mStorage.getFile(folderPath).getAbsolutePath());
     mBitmapUtils.configDiskCacheEnabled(true);
     mBitmapUtils.configDefaultLoadFailedImage(DRAWABLE_LOADFILE);
     mBitmapUtils.configDefaultLoadingImage( DRAWABLE_LOADING);
-    
     }
     
     public BitmapUtils getBitmapFactory(){

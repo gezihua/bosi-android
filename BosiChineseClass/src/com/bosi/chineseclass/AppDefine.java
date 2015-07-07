@@ -32,6 +32,7 @@ public class AppDefine {
 
     public static class URLDefine {
         public static final String URL_PINYINVOICE = "http://www.yuwen100.cn/yuwen100/hzzy/Android/pyxx/";
+        public static final String URL_PINREADER = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/pinyinread/";
     }
 
     public static class STUFFDEFICE {

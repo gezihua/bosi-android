@@ -13,8 +13,8 @@
         />
     <Button
         android:id="@+id/bt_bsvideo_replay"
-        android:layout_width="50dp"
-         android:layout_height="30dp"
+        android:layout_width="40dp"
+         android:layout_height="26dp"
         android:layout_gravity="right"
         android:background="@drawable/bs_video_replay_bg"
         ></Button>

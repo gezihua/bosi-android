@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.bosi.chineseclass.components.NiftyDialogComponents.OnNiftyCallBack;
 import com.bosi.chineseclass.control.SampleControl;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
+import com.bosi.chineseclass.han.util.Utils;
 import com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity;
 import com.bosi.chineseclass.utils.ViewHolder;
 
@@ -45,7 +47,7 @@ public class BphzLevAdapter extends ComListViewAdapter<List<BphzBean>> {
 		if (position == 14) {
 			return statisticView(position, mView);
 		} else {
-			return commonView(position, mView);
+			return commonView(position, mView,false);
 		}
 	}
 
@@ -179,7 +181,7 @@ public class BphzLevAdapter extends ComListViewAdapter<List<BphzBean>> {
 		mView.setBackgroundResource(R.drawable.bphz_levitem_bg);
 	}
 
-	protected View commonView(final int position, View mView) {
+	protected View commonView(final int position, View mView,boolean isCenter) {
 		if (mView == null) {
 			mView = View.inflate(context, R.layout.layout_bphz_item_checkpoint,
 					null);
@@ -190,6 +192,10 @@ public class BphzLevAdapter extends ComListViewAdapter<List<BphzBean>> {
 		setItemViewBg(mLayoutBody);
 
 		Button mButtonSize = ViewHolder.get(mView, R.id.bt_bphz_item_number);
+		if(isCenter){
+			LinearLayout.LayoutParams mParams = (LayoutParams) mButtonSize.getLayoutParams();
+			mParams.setMargins(Utils.dip2px(context, 10),0, Utils.dip2px(context, 10), 0);
+		}
 		mButtonSize.setOnClickListener(new OnClickListener() {
 
 			@Override

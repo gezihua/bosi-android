@@ -25,7 +25,7 @@ public class BphzLevvAdapter extends BphzLevAdapter {
 
 	@Override
 	public View getView(int position, View mView, ViewGroup arg2) {
-		return commonView(position, mView);
+		return commonView(position, mView,true);
 	}
 
 	@Override

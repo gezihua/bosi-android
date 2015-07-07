@@ -180,6 +180,7 @@ public class DbUtils {
                 words.yanbian = cursor.getString(cursor.getColumnIndex("yanbian"));
                 words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
                 words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
+                words.zitou = cursor.getString(cursor.getColumnIndex("zitou"));
             }
           
             return words;
