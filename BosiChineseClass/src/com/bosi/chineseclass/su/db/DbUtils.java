@@ -125,7 +125,6 @@ public class DbUtils {
                 }, null, null, null);
                 while (cursor.moveToNext()) {
                     String temp = cursor.getString(cursor.getColumnIndex("bushow"));
-                    Log.e("print", "temp" + temp);
                     list.add(cursor.getString(cursor.getColumnIndex("bushow")));
                 }
                 cursor.close();
@@ -133,8 +132,6 @@ public class DbUtils {
                 return list;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         return null;
     }
@@ -218,7 +215,6 @@ public class DbUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("print", e.getMessage());
         }
 
         return null;

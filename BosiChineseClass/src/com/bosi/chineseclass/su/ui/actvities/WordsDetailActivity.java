@@ -24,13 +24,12 @@ import com.bosi.chineseclass.components.MutilMediaPlayerTools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerListener;
 import com.bosi.chineseclass.components.WordDitalExpainComponent;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
-import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
+import com.bosi.chineseclass.control.DownLoadResouceControl.DownLoadInterface;
 import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Word;
-import com.bosi.chineseclass.su.utils.FileUtils;
 import com.bosi.chineseclass.su.utils.MyVolley;
 import com.bosi.chineseclass.views.BsVideoViewGroup;
 import com.bosi.chineseclass.views.PaintPadWindow;
@@ -42,42 +41,51 @@ import java.util.List;
 
 @ContentView(R.layout.fragment_container)
 public class WordsDetailActivity extends BaseActivity implements
-		OnClickListener, DownloadCallback, MutilMediaPlayerListener {
+		OnClickListener, DownLoadInterface, MutilMediaPlayerListener {
 	View mHeadActionBar;
 	private static final String TAG = WordsDetailActivity.class.getSimpleName();
 	HeadLayoutComponents mHeadActionBarComp;
-	private ImageView mOracleImg = null;
-	private ImageView mOracleWord = null;
-	private TextView mWordTextView = null;
-	private TextView mExplainTextView;
-	private TextView mYtTextView;
-	private BsVideoViewGroup mVideoView;
 	
-	private ImageButton mPadView;
-	private final static String[] sExplain = { "基本释义", "完整释义", "成语典故" };
-	private final static String ORACLE_IMG = "";
+	@ViewInject(R.id.oracle_img)
+	 ImageView mOracleImg ;
+	
+	@ViewInject(R.id.oracle_word)
+	 ImageView mOracleWord;
+	
+	@ViewInject(R.id.detail_word)
+	 TextView mWordTextView ;
+	
+	@ViewInject(R.id.word_explain)
+	 TextView mExplainTextView;
+	
+	@ViewInject(R.id.ytzi)
+	 TextView mYtTextView;
+	
+	@ViewInject(R.id.video_pad)
+	 BsVideoViewGroup mVideoView;
+	@ViewInject(R.id.word_pad)
+	 ImageButton mPadView;
 
-	private final static String ORACLE_WORD = "";
-
-
-	private DownLoadResouceControl mDownLoadControl;
+	
+	@ViewInject(R.id.sound_container)
 	private View mSoundContainer;
-	
 	@ViewInject(R.id.ll_word_dital)
 	View mllExpainBody;
+	
+	
+	private DownLoadResouceControl mDownLoadControl;
+	
 
 	private void init() {
 		mDownLoadControl = new DownLoadResouceControl(this);
+		mDownLoadControl.setModelResourceAbs(false);
+		mDownLoadControl.setOnDownLoadCallback(this);
+		
 		mHeadActionBar = findViewById(R.id.deatail_headactionbar);
 		initHeadActionBarComp();
-		mSoundContainer = findViewById(R.id.sound_container);
 		mSoundContainer.setOnClickListener(this);
-		mOracleImg = (ImageView) findViewById(R.id.oracle_img);
-		mOracleWord = (ImageView) findViewById(R.id.oracle_word);
-		mWordTextView = (TextView) findViewById(R.id.detail_word);
-		mExplainTextView = (TextView) findViewById(R.id.word_explain);
-		mYtTextView = (TextView) findViewById(R.id.ytzi);
-		mVideoView = (BsVideoViewGroup) findViewById(R.id.video_pad);
+		
+		
 		mPadView = (ImageButton) findViewById(R.id.word_pad);
 		mPadView.setOnClickListener(this);
 		
@@ -90,7 +98,6 @@ public class WordsDetailActivity extends BaseActivity implements
 
 	private void initHeadActionBarComp() {
 		mHeadActionBarComp = new HeadLayoutComponents(this, mHeadActionBar);
-
 		mHeadActionBarComp.setTextMiddle("字源字典", -1);
 		mHeadActionBarComp.setDefaultLeftCallBack(true);
 		mHeadActionBarComp.setDefaultRightCallBack(true);
@@ -168,10 +175,10 @@ public class WordsDetailActivity extends BaseActivity implements
 		if (!TextUtils.isEmpty(detail.pinyin)) {
 			sounds = DbUtils.getInstance(this).getPyList(detail.pinyin);
 			if (sounds != null && sounds.size() > 0) {
-				FileUtils.mkdir(CACHES + "/sounds");
-				mDownLoadControl.setOnDownLoadCallback(this);
-				mDownLoadControl.downloadFiles(CACHES + "/sounds",
-						createSoundsUrls());
+//				FileUtils.mkdir(CACHES + "/sounds");
+//				mDownLoadControl.setOnDownLoadCallback(this);
+//				mDownLoadControl.downloadFiles(CACHES + "/sounds",
+//						createSoundsUrls());
 			}
 		}
 	}
@@ -329,7 +336,6 @@ public class WordsDetailActivity extends BaseActivity implements
 				mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -350,6 +356,17 @@ public class WordsDetailActivity extends BaseActivity implements
 			mMutilMediaPlayerTools.reset();
 			Log.e(TAG, "reset");
 		}
+	}
 
+
+	@Override
+	public String[] getDownLoadUrls() {
+		return null;
+	}
+
+
+	@Override
+	public String getFolderPath() {
+		return null;
 	}
 }

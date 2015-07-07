@@ -205,7 +205,6 @@ public class FilterRadicalFragment extends AbsFilterFragment {
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-            // TODO Auto-generated method stub
 
         }
 

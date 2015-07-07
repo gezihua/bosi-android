@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.fragments;
 
 import java.io.IOException;
+
 import java.util.Properties;
 
 import android.annotation.TargetApi;
@@ -15,18 +16,14 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.bosi.chineseclass.AppDefine;
-import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.components.MediaPlayerPools;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
-import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
 import com.bosi.chineseclass.views.BsVideoViewGroup;
-import com.bosi.chineseclass.views.VideoView;
-import com.bosi.chineseclass.views.VideoView.MySizeChangeLinstener;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -38,7 +35,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * 
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class PyLearnFragment extends BaseFragment implements DownloadCallback {
+public class PyLearnFragment extends BaseFragment implements com.bosi.chineseclass.control.DownLoadResouceControl.DownLoadInterface {
 
 	String[] marrayForLearn = null;
 
@@ -86,7 +83,7 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 	@OnClick(R.id.iv_pyxx_ym)
 	public void acitonYm(View mView) {
 		mImageViewYm.bringToFront();
-		mPressedZm = "y";
+		mPressedZm = "a";
 		initBasicPinYin(CategoryPinyin.YM);
 		addPinYinNameDital();
 		downLoadFilesBaseCurrentZiMu();
@@ -94,7 +91,7 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 
 	@OnClick(R.id.iv_pyxx_sm)
 	public void acitonSm(View mView) {
-		mPressedZm = "a";
+		mPressedZm = "b";
 		mImageViewSm.bringToFront();
 		initBasicPinYin(CategoryPinyin.SM);
 		addPinYinNameDital();
@@ -130,21 +127,10 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 		mLinearPinyinLeft.addView(mAutoViewGroup);
 	}
 
-	/**
-	 * 
-	 * 当前文件夹目录
-	 * 
-	 * */
-	private String getFolderPath(){
-		
-		return AppDefine.FilePathDefine.APP_PINYINLEARNPATH
-				+ mPressedZm + "/";
+	private String getAbsoultFilePath(){
+		return mDownLoadControl.getAbsFilePath();
 	}
 	
-	private String getAbsoultFilePath(){
-		return BSApplication.getInstance().mStorage
-		.getFile(getFolderPath()).getAbsolutePath()+"/";
-	}
 	private void addPinYinNameDital() {
 		mAutoViewGroup.removeAllViews();
 		for (int i = 0; i < marrayForLearn.length; i++) {
@@ -173,25 +159,14 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 	
 
 	private void downLoadFilesBaseCurrentZiMu(){
-		String mCurrentFoderName =getFolderPath();
-		BSApplication.getInstance().mStorage
-				.createDirectory(mCurrentFoderName);
-		String filePath = getAbsoultFilePath();
-
-		String[] mFilePath = getDownLoadUrlsBaseCurrentSouce();
-		if (mFilePath != null && mFilePath.length > 0) {
-			int files = BSApplication.getInstance().mStorage
-					.getFile(mCurrentFoderName).list().length;
-			if (mFilePath.length != files){
-				mDownLoadControl.downloadFiles(filePath,
-						mFilePath);
-			}else{
-				displayCurrentZmbg();
-				playVideoRead();
-			}
-				
+		boolean isDownLoadSuccess = mDownLoadControl.downloadFiles();
+		if(isDownLoadSuccess){
+			displayCurrentZmbg();
+			playVideoRead();
 		}
 	}
+	
+	
 	private String getPropertiesFromKey(String key) {
 		String value = mPorperties.getProperty(key);
 
@@ -347,7 +322,9 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 	private void displayCurrentZmbg(){
 		mImageLoader.getBitmapFactory().display(mImageReader, getAbsoultFilePath()+mPressedZm+".jpg");
 	}
-	private String[] getDownLoadUrlsBaseCurrentSouce() {
+
+	@Override
+	public String[] getDownLoadUrls() {
 
 		String[] mVoiceUrls = getPropertiesFromKey(mPressedZm + SUFFIX_DYDD)
 				.split("#");
@@ -377,6 +354,13 @@ public class PyLearnFragment extends BaseFragment implements DownloadCallback {
 			displayCurrentZmbg();
 			playVideoRead();
 		}
+		
+	}
+
+	@Override
+	public String getFolderPath() {
+		return AppDefine.FilePathDefine.APP_PINYINLEARNPATH
+				+ mPressedZm + "/";
 	}
 
 }

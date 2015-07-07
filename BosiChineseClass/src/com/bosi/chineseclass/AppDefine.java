@@ -6,6 +6,7 @@ public class AppDefine {
     public static class FilePathDefine {
         public static String APP_GLOBLEFILEPATH = "bosi-chinese";
         public static String APP_PINYINLEARNPATH = "bosi-chinese/Pylearn/";
+        public static String APP_DICTDITALNPATH =  "bosi-chinese/Dict/";
     }
 
     public static class ZYDefine {
