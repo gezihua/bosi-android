@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical" >
   <!--   android:background="@drawable/bphz_levitem_bg" -->
     <LinearLayout
         android:id="@+id/rl_bphz_item_body"
         android:layout_width="125dp"
         android:layout_height="90dp"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <Button

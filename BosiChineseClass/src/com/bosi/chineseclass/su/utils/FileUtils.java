@@ -1,3 +1,4 @@
+
 package com.bosi.chineseclass.su.utils;
 
 import java.io.File;
@@ -7,7 +8,7 @@ public class FileUtils {
 
     public static void mkdir(String db_path, String db_path2) {
         try {
-            File file = new File(db_path+"/"+db_path2);
+            File file = new File(db_path + "/" + db_path2);
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdir();
             }
@@ -15,6 +16,21 @@ public class FileUtils {
                 file.createNewFile();
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return;
+    }
+
+    public static void mkdir(String path) {
+        try {
+            File file = new File(path);
+            if (!file.getParentFile().exists()) {
+                mkdir(file.getParentFile().getPath());
+            }
+            if (!file.exists()) {
+                file.mkdir();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return;

@@ -4,6 +4,7 @@
     <string name="dict_stoke">笔画</string>
     <string name="ym_learn_dital">a#o#e#i#u#v#ai#ei#ui#ao#ou#iu#ie#ve#er#an#en#in#un#vn#ang#eng#ing#ong</string>
     <string name="play_word">播放</string>
+       <string name="play_word_py">读音:</string>
     <string name="app_name">博思语文</string>
     <string name="bt_03_jbzy">基本字源</string>
     <string name="jbzy_bihua_array">2#3#4#5#6#7#8#9#10#11#12以上</string>

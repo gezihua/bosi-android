@@ -2,13 +2,11 @@
 package com.bosi.chineseclass.su.db;
 
 import android.content.Context;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.UserDictionary.Words;
 import android.text.TextUtils;
 import android.util.Log;
-
-import u.aly.cu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +43,8 @@ public class DbUtils {
                 return list;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        }finally{
+        	
         }
         return null;
     }
@@ -68,8 +66,6 @@ public class DbUtils {
                 return list;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         return null;
     }
@@ -164,20 +160,20 @@ public class DbUtils {
                 return list;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;
     }
 
-    public Word getExplain(String word,String id) {
+    public Word getExplain(String word, String id) {
+    	  Cursor cursor =null;
         try {
-
             DicOpenHelper openHelper = new DicOpenHelper(mContext);
             SQLiteDatabase database = openHelper.getReadableDatabase();
-            String sql = mContext.getResources().getString(R.string.select_fromzidian_basezitouorid);
-            String sqlFormat = String.format(sql, word,id);
-            Cursor cursor = database.rawQuery(sqlFormat, null);
+            String sql = mContext.getResources()
+                    .getString(R.string.select_fromzidian_basezitouorid);
+            String sqlFormat = String.format(sql, word, id);
+            cursor = database.rawQuery(sqlFormat, null);
             Word words = new Word();
             if (cursor != null && cursor.moveToFirst()) {
                 words.refid = cursor.getString(cursor.getColumnIndex("refid"));
@@ -188,13 +184,43 @@ public class DbUtils {
                 words.shiyi = cursor.getString(cursor.getColumnIndex("shiyi"));
                 words.ytzi = cursor.getString(cursor.getColumnIndex("ytzi"));
             }
-            cursor.close();
-            cursor = null;
+          
             return words;
-        
+
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+        	if(cursor!=null&&!cursor.isClosed()){
+        		 cursor.close();
+        	}
         }
+        return null;
+    }
+
+    public List<String> getPyList(String pinyin) {
+        try {
+            String[] pys = pinyin.split("/");
+            if (pys != null) {
+                DicOpenHelper openHelper = DicOpenHelper.getInstance(mContext);
+                SQLiteDatabase database = openHelper.getReadableDatabase();
+                List<String> pyList = new ArrayList<String>();
+                for (String temp : pys) {
+                    Cursor cursor = database.query("unipy", null, "pinyin = ?", new String[] {
+                            temp
+                    }, null, null, null);
+                    while (cursor.moveToNext()) {
+                        String tempString = cursor.getString(cursor.getColumnIndex("pyj"));
+                        Log.e("print", tempString);
+                        pyList.add(tempString);
+                    }
+                }
+                return pyList;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("print", e.getMessage());
+        }
+
         return null;
     }
 }

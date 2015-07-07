@@ -13,7 +13,7 @@
 
     <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
         <item name="android:background">@drawable/tab_indicator</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:dividerPadding">8dp</item>
         <item name="android:showDividers">middle</item>
         <item name="android:paddingLeft">10dp</item>
@@ -21,6 +21,16 @@
         <item name="android:layout_height">15dp</item>
         <item name="android:fadingEdge">horizontal</item>
         <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+
+    <style name="WordDetailStyle" parent="AppTheme">
+        <item name="vpiTabPageIndicatorStyle">@style/WordDetailIndicator</item>
+    </style>
+
+    <style name="WordDetailIndicator" parent="CustomTabPageIndicator">
+        <item name="android:background">@drawable/tab_indicator_word_detail</item>
+        <item name="android:dividerPadding">0dp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

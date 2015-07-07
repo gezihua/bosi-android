@@ -1,15 +1,17 @@
+
 package com.bosi.chineseclass.han.components;
 
-
 import com.bosi.chineseclass.BSApplication;
-import com.bosi.chineseclass.R;
 
+import com.bosi.chineseclass.R;
 
 import android.app.Activity;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class HeadLayoutComponents extends BaseComponents {
@@ -40,6 +42,10 @@ public class HeadLayoutComponents extends BaseComponents {
         mTvRight = (TextView) mFatherView.findViewById(R.id.common_head_right);
         setDefaultLeftCallBack(true);
         setDefaultRightCallBack(true);
+        /*
+         * added for search
+         * */
+        initSearchable();
     }
 
     public void setDefaultLeftCallBack(boolean isLeftCallBack) {
@@ -61,7 +67,7 @@ public class HeadLayoutComponents extends BaseComponents {
 
                 @Override
                 public void onClick(View arg0) {
-                	BSApplication.getInstance().exitApp();
+                    BSApplication.getInstance().exitApp();
                 }
             });
         }
@@ -83,8 +89,10 @@ public class HeadLayoutComponents extends BaseComponents {
         mTvRight.setText(text);
         if (resid != -1) {
             mTvRight.setBackgroundResource(resid);
-            /*mTvRight.setLayoutParams(new LinearLayout.LayoutParams(DataTools
-                    .dip2px(mContext, 30), DataTools.dip2px(mContext, 30)));*/
+            /*
+             * mTvRight.setLayoutParams(new LinearLayout.LayoutParams(DataTools
+             * .dip2px(mContext, 30), DataTools.dip2px(mContext, 30)));
+             */
         }
 
     }
@@ -101,5 +109,45 @@ public class HeadLayoutComponents extends BaseComponents {
     public void setRightOnClickListener(OnClickListener mOnclickListener) {
         mTvRight.setOnClickListener(mOnclickListener);
     }
+
+    /*************** -------------------------------这里添加搜索字母的操作------------------------ ***********************/
+
+    private View mSearchableView;
+    private View mSearchConfirm;
+    private EditText mSearch;
+
+    public void initSearchable() {
+        mSearchableView = mFatherView.findViewById(R.id.search);
+        mSearch = (EditText) mSearchableView.findViewById(R.id.seachable);
+        mSearchConfirm = mSearchableView.findViewById(R.id.search_confirm);
+        mSearchConfirm.setOnClickListener(new SearableClickListener());
+    }
+    private class SearableClickListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View arg0) {
+            String text = mSearch.getText().toString();
+            if(!TextUtils.isEmpty(text)){
+                if (mSearchableAction!=null) {
+                    mSearchableAction.search(text);
+                }
+                
+            }
+        }
+        
+    }
+
+    public static interface SearchableAction {
+        public void search(String text);
+    }
+    public void showSearchable(){
+        mSearchableView.setVisibility(View.VISIBLE);
+    }
+    private SearchableAction mSearchableAction;
+
+    public void setSearchableAction(SearchableAction mSearchableAction) {
+        this.mSearchableAction = mSearchableAction;
+    }
+    
 
 }
