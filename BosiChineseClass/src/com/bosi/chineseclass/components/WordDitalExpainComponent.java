@@ -43,18 +43,27 @@ public class WordDitalExpainComponent extends BaseComponents implements
 		if (mData != null && mData.length == 3) {
 			mTvDital.setText(mData[1]);
 		}
+		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_normal);
+		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_selected);
+		mViewJbsy.setBackgroundResource(R.drawable.tab_word_detail_selected);
 	}
 
 	public void actionCydg(View mView) {
 		if (mData != null && mData.length == 3) {
 			mTvDital.setText(mData[2]);
 		}
+		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_selected);
+		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_normal);
+		mViewJbsy.setBackgroundResource(R.drawable.tab_word_detail_selected);
 	}
 
 	public void actionJbsy(View mView) {
 		if (mData != null && mData.length == 3) {
 			mTvDital.setText(mData[0]);
 		}
+		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_selected);
+		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_selected);
+		mViewJbsy.setBackgroundResource(R.drawable.tab_word_detail_normal);
 
 	}
 

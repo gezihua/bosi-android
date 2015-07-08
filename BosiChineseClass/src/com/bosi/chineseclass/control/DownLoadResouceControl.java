@@ -22,6 +22,8 @@ public class DownLoadResouceControl {
 	private List<HttpHandler> mHandlerList;
 
 	boolean isModleResourceAbs = true;
+	
+	int maxLength = 0;
 
 	public void setModelResourceAbs(boolean isModleResourceAbs) {
 		this.isModleResourceAbs = isModleResourceAbs;
@@ -64,16 +66,17 @@ public class DownLoadResouceControl {
 	}
 
 	private boolean isCurrentDownLoadSuccess() {
-		return loadedData == mDownLoadCallBack.getDownLoadUrls().length;
+		return loadedData == maxLength;
 	}
 
 	public boolean downloadFiles() {
-
+		String [] urls = mDownLoadCallBack.getDownLoadUrls();
+		
 		if (mDownLoadCallBack == null
-				|| mDownLoadCallBack.getDownLoadUrls() == null)
+				|| urls == null)
 			return false;
 
-		String[] urls = mDownLoadCallBack.getDownLoadUrls();
+		this.maxLength = urls.length;
 		// 如果没有文件的话 先创建文件
 		final String filePath = getAbsFilePath();
 
@@ -128,11 +131,10 @@ public class DownLoadResouceControl {
 
 	private synchronized void updateProgress() {
 		loadedData++;
-		int total = mDownLoadCallBack.getDownLoadUrls().length;
-		mActivity.updateProgress(loadedData, total);
+		mActivity.updateProgress(loadedData, maxLength);
 		if (isCurrentDownLoadSuccess()) {
 			if (mDownLoadCallBack != null)
-				mDownLoadCallBack.onDownLoadCallback(loadedData, total);
+				mDownLoadCallBack.onDownLoadCallback(loadedData, maxLength);
 			mActivity.dismissProgress();
 			loadedData = 0;
 		}

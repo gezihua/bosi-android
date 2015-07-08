@@ -196,27 +196,37 @@ public class DbUtils {
     }
 
     public List<String> getPyList(String pinyin) {
-        try {
-            String[] pys = pinyin.split("/");
-            if (pys != null) {
-                DicOpenHelper openHelper = DicOpenHelper.getInstance(mContext);
-                SQLiteDatabase database = openHelper.getReadableDatabase();
-                List<String> pyList = new ArrayList<String>();
-                for (String temp : pys) {
-                    Cursor cursor = database.query("unipy", null, "pinyin = ?", new String[] {
-                            temp
-                    }, null, null, null);
-                    while (cursor.moveToNext()) {
-                        String tempString = cursor.getString(cursor.getColumnIndex("pyj"));
-                        Log.e("print", tempString);
-                        pyList.add(tempString);
-                    }
-                }
-                return pyList;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    	String sql = "select pyj from unipy where ";
+    	StringBuilder mSb = new StringBuilder(sql);
+    	Cursor cursor =null;
+    	try{
+    		  String[] pys = pinyin.split("/");
+    		  if(pys !=null&&pys.length>0){
+    			  for(int i=0;i<pys.length;i++){
+    				  mSb.append("pinyin = '"+pys[i]+"' ");
+    				  if(i!=pys.length-1){
+    					  mSb.append(" or ");
+    				  }
+    			  }
+    		  }
+    		  DicOpenHelper openHelper = DicOpenHelper.getInstance(mContext);
+    		  SQLiteDatabase database = openHelper.getReadableDatabase();
+    		  List<String> pyList = new ArrayList<String>();
+    		  cursor = database.rawQuery(mSb.toString(), null);
+    		  while (cursor.moveToNext()) {
+                String tempString = cursor.getString(cursor.getColumnIndex("pyj"));
+                if(!TextUtils.isEmpty(tempString))
+                pyList.add(tempString);
+          }
+    		  return pyList;
+    	}catch(Exception e){
+    		System.out.println(e);
+    	}finally{
+    		if(cursor!=null&&!cursor.isClosed()){
+    			cursor.close();
+    		}
+    	}
+
 
         return null;
     }

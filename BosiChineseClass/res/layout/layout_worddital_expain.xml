@@ -13,7 +13,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:background="@drawable/tab_indicator_word_detail"
             android:text="基本释义" >
         </TextView>
 
@@ -21,7 +20,6 @@
             android:id="@+id/bt_worddital_wzsy"
             android:layout_width="wrap_content"
              android:layout_height="match_parent"
-           android:background="@drawable/tab_indicator_word_detail"
             android:gravity="center"
             android:text="完整释义" >
         </TextView>
@@ -31,7 +29,6 @@
             android:layout_width="wrap_content"
            android:layout_height="match_parent"
             android:gravity="center"
-             android:background="@drawable/tab_indicator_word_detail"
             android:text="成语典故" >
         </TextView>
     </LinearLayout>
@@ -40,14 +37,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
          android:background="@drawable/bphz_ditalexplan_bg"
-         android:layout_marginBottom="5dp"
+          android:padding="14dp"
         >
         <TextView
-            android:padding="5dp"
+           
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tv_worddital_expain"
-        android:layout_marginLeft="15dp"
         android:text="gppd"
         ></TextView>
     </ScrollView>

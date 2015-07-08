@@ -117,13 +117,13 @@ public class WordsDetailActivity extends BaseActivity implements
 
 	private void loadSound(Word detail) {
 		if (!TextUtils.isEmpty(detail.pinyin)) {
-			sounds = DbUtils.getInstance(this).getPyList(detail.pinyin);
-			if (sounds != null && sounds.size() > 0) {
-				// FileUtils.mkdir(CACHES + "/sounds");
-				// mDownLoadControl.setOnDownLoadCallback(this);
-				// mDownLoadControl.downloadFiles(CACHES + "/sounds",
-				// createSoundsUrls());
-			}
+//			sounds = DbUtils.getInstance(this).getPyList(detail.pinyin);
+//			if (sounds != null && sounds.size() > 0) {
+//				// FileUtils.mkdir(CACHES + "/sounds");
+//				// mDownLoadControl.setOnDownLoadCallback(this);
+//				// mDownLoadControl.downloadFiles(CACHES + "/sounds",
+//				// createSoundsUrls());
+//			}
 		}
 	}
 
@@ -209,6 +209,7 @@ public class WordsDetailActivity extends BaseActivity implements
 	BPHZ mBphz = new BPHZ();
 
 	private void setUpBpWordsControl() {
+		updateProgress(0, 1);
 		final int TAG = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG, -1);
 		if (TAG != -1) {
 			int tagFromBpLv = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG,
@@ -233,11 +234,14 @@ public class WordsDetailActivity extends BaseActivity implements
 		} else {
 			mLayoutStastic.setVisibility(View.GONE);
 			String word = getIntent().getStringExtra("word");
+			
 			updateUI("", word);
+			
 			// mWordTextView.setText(word);
 			// loadFromDb(word);
 			// mLayoutStastic.setVisibility(View.GONE);
 		}
+		mDownLoadControl.downloadFiles();
 	}
 
 	private void updateUI(String id, String word) {
@@ -249,15 +253,15 @@ public class WordsDetailActivity extends BaseActivity implements
 	// ------------------------------------------------------------下载播放生意-----------------------------------------------
 	@Override
 	public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
-		try {
-			if (mCurrentSize == wholeSize) {
-				mMutilMediaPlayerTools = new MutilMediaPlayerTools(this,
-						createSoudPaths());
-				mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			if (mCurrentSize == wholeSize) {
+//				mMutilMediaPlayerTools = new MutilMediaPlayerTools(this,
+//						createSoudPaths());
+//				mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private String[] createSoudPaths() {
@@ -277,26 +281,41 @@ public class WordsDetailActivity extends BaseActivity implements
 		}
 	}
 
-	private String[] createSoundsUrls() {
-		String[] strings = new String[sounds.size()];
-		for (int i = 0; i < strings.length; i++) {
-			strings[i] = AppDefine.URLDefine.URL_PINREADER + sounds.get(i)
-					+ ".mp3";
-		}
-		return strings;
-	}
 
 	@Override
 	public String[] getDownLoadUrls() {
-		String mMusUrls[] = createSoundsUrls();
+		String[] urls = null;
+		if (!TextUtils.isEmpty(mCurrentWord.pinyin)) {
+			sounds = DbUtils.getInstance(this).getPyList(mCurrentWord.pinyin);
+			urls =  new String[sounds.size()+3];
+			if (sounds != null && sounds.size() > 0) {
+				for (int i = 0; i < sounds.size(); i++) {
+					urls[i] = AppDefine.URLDefine.URL_PINREADER + sounds.get(i)
+							+ ".mp3";
+					
+					
+				}
+			}
+		}
+		
 		String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/"
 				+ mCurrentWord.refid + ".mp4";
-		return mMusUrls;
+		String pathZxtuPath = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zxtu/"
+				+ mCurrentWord.refid + ".jpg";
+		
+		String pathZytu = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zytu/"
+				+ mCurrentWord.refid + ".jpg";
+		
+		urls[sounds.size()]=path;
+		urls[sounds.size()+1]=pathZxtuPath;
+		urls[sounds.size()+2]=pathZytu;
+		
+		return urls;
 	}
 
 	@Override
 	public String getFolderPath() {
-		return AppDefine.FilePathDefine.APP_DICTDITALNPATH + "";
+		return AppDefine.FilePathDefine.APP_DICTDITALNPATH + mCurrentWord.pinyin+"/";
 	}
 
 	private void loadImage(Word wordDetail) {
