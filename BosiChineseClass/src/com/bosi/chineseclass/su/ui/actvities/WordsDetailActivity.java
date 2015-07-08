@@ -14,6 +14,7 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerListener;
@@ -25,7 +26,6 @@ import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Word;
-import com.bosi.chineseclass.su.utils.MyVolley;
 import com.bosi.chineseclass.views.BsVideoViewGroup;
 import com.bosi.chineseclass.views.PaintPadWindow;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -42,8 +42,8 @@ public class WordsDetailActivity extends BaseActivity implements
 	View mHeadActionBar;
 	HeadLayoutComponents mHeadActionBarComp;
 
-	@ViewInject(R.id.oracle_img)
-	ImageView mOracleImg;
+	@ViewInject(R.id.iv_jfall)
+	ImageView mjfImg;
 
 	@ViewInject(R.id.oracle_word)
 	ImageView mOracleWord;
@@ -68,12 +68,13 @@ public class WordsDetailActivity extends BaseActivity implements
 	View mllExpainBody;
 
 	Word mCurrentWord;
+	
+	XutilImageLoader mImageLoader;
 
 	private DownLoadResouceControl mDownLoadControl;
 
 	private void init() {
 		mDownLoadControl = new DownLoadResouceControl(this);
-		mDownLoadControl.setModelResourceAbs(false);
 		mDownLoadControl.setOnDownLoadCallback(this);
 
 		mHeadActionBar = findViewById(R.id.deatail_headactionbar);
@@ -81,8 +82,9 @@ public class WordsDetailActivity extends BaseActivity implements
 
 		mExpainComponent = new WordDitalExpainComponent(this, mllExpainBody);
 		mPaintPadWindow = new PaintPadWindow(mContext);
-
+		mImageLoader = new XutilImageLoader(mContext);
 		setUpBpWordsControl();
+		
 	}
 
 	/** 初始化头部 */
@@ -99,15 +101,8 @@ public class WordsDetailActivity extends BaseActivity implements
 		showDetail(detail);
 		showExplain(detail);
 		loadSound(detail);
-		loadFromRemote(detail);
 	}
 
-	/** 从网络下载数据 */
-	private void loadFromRemote(Word detail) {
-		// 这里需要请求四中四种资源
-		// 1. 声音 2.动画 3. 字体图片 4 示意图片
-		loadImage(detail);
-	}
 
 	private final static String CACHES = "/data/data/"
 			+ BSApplication.getInstance().getPackageName() + "/caches";
@@ -241,18 +236,25 @@ public class WordsDetailActivity extends BaseActivity implements
 			// loadFromDb(word);
 			// mLayoutStastic.setVisibility(View.GONE);
 		}
-		mDownLoadControl.downloadFiles();
+		
 	}
 
 	private void updateUI(String id, String word) {
 		mCurrentWord = DbUtils.getInstance(this).getExplain(word, id);
 		showDetail(mCurrentWord);
 		showExplain(mCurrentWord);
+		boolean isDownLoadSuccess = mDownLoadControl.downloadFiles();
+		if(isDownLoadSuccess){
+			actionSuccess();
+		}
 	}
 
 	// ------------------------------------------------------------下载播放生意-----------------------------------------------
 	@Override
 	public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
+		if(mCurrentSize == wholeSize){
+			actionSuccess();
+		}
 //		try {
 //			if (mCurrentSize == wholeSize) {
 //				mMutilMediaPlayerTools = new MutilMediaPlayerTools(this,
@@ -287,13 +289,11 @@ public class WordsDetailActivity extends BaseActivity implements
 		String[] urls = null;
 		if (!TextUtils.isEmpty(mCurrentWord.pinyin)) {
 			sounds = DbUtils.getInstance(this).getPyList(mCurrentWord.pinyin);
-			urls =  new String[sounds.size()+3];
+			urls =  new String[sounds.size()+2];
 			if (sounds != null && sounds.size() > 0) {
 				for (int i = 0; i < sounds.size(); i++) {
 					urls[i] = AppDefine.URLDefine.URL_PINREADER + sounds.get(i)
 							+ ".mp3";
-					
-					
 				}
 			}
 		}
@@ -303,59 +303,37 @@ public class WordsDetailActivity extends BaseActivity implements
 		String pathZxtuPath = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zxtu/"
 				+ mCurrentWord.refid + ".jpg";
 		
-		String pathZytu = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zytu/"
-				+ mCurrentWord.refid + ".jpg";
 		
 		urls[sounds.size()]=path;
 		urls[sounds.size()+1]=pathZxtuPath;
-		urls[sounds.size()+2]=pathZytu;
 		
+		String pathZytu = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zytu/"
+				+ mCurrentWord.refid + ".jpg";
+		mImageLoader.getBitmapFactory().display(mOracleWord, pathZytu);
 		return urls;
 	}
 
 	@Override
 	public String getFolderPath() {
-		return AppDefine.FilePathDefine.APP_DICTDITALNPATH + mCurrentWord.pinyin+"/";
+		return AppDefine.FilePathDefine.APP_DICTDITALNPATH + mCurrentWord.refid+"/";
+	}
+	
+	private void actionSuccess(){
+		loadImage() ;
+		playVideo();
+		dismissProgress();
 	}
 
-	private void loadImage(Word wordDetail) {
-		MyVolley.getInstance(this).loadImage(
-				"http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zxtu/"
-						+ wordDetail.refid + ".jpg",
-				new ImageLoader.ImageListener() {
-					@Override
-					public void onErrorResponse(VolleyError volleyError) {
-
-					}
-
-					@Override
-					public void onResponse(
-							ImageLoader.ImageContainer imageContainer, boolean b) {
-						if (imageContainer.getBitmap() != null) {
-							mOracleImg.setImageBitmap(imageContainer
-									.getBitmap());
-						}
-					}
-				});
-		MyVolley.getInstance(this).loadImage(
-				"http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zytu/"
-						+ wordDetail.refid + ".jpg",
-				new ImageLoader.ImageListener() {
-					@Override
-					public void onErrorResponse(VolleyError volleyError) {
-
-					}
-
-					@Override
-					public void onResponse(
-							ImageLoader.ImageContainer imageContainer, boolean b) {
-						if (imageContainer.getBitmap() != null) {
-							mOracleWord.setImageBitmap(imageContainer
-									.getBitmap());
-						}
-					}
-				});
-
+	private void loadImage() {
+		String fileAbs = mDownLoadControl.getAbsFilePath();
+		//从本地读取图片
+		mImageLoader.getBitmapFactory().display(mjfImg, fileAbs+mCurrentWord.refid + ".jpg");
+	}
+	
+	private void playVideo(){
+		//从本地读取视频
+		String fileAbs = mDownLoadControl.getAbsFilePath();
+		mVideoView.playVideo(fileAbs+mCurrentWord.refid + ".mp4");
 	}
 
 }

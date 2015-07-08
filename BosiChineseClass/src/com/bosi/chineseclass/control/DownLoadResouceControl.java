@@ -3,6 +3,7 @@ package com.bosi.chineseclass.control;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
@@ -46,6 +47,7 @@ public class DownLoadResouceControl {
 	int loadedData = -1;
 
 	BaseActivity mActivity;
+	AtomicBoolean isDownLoadOver = new AtomicBoolean(false) ;
 
 	public DownLoadResouceControl(BaseActivity mActivity) {
 		this.mActivity = mActivity;
@@ -70,6 +72,7 @@ public class DownLoadResouceControl {
 	}
 
 	public boolean downloadFiles() {
+		isDownLoadOver .set(false);
 		String [] urls = mDownLoadCallBack.getDownLoadUrls();
 		
 		if (mDownLoadCallBack == null
@@ -94,7 +97,7 @@ public class DownLoadResouceControl {
 			public void onDismiss(DialogInterface arg0) {
 				canclTask();
 				// 如果内容没下载完 则销毁页面 条件是 当前页面上要下载的是固定的
-				if (!isCurrentDownLoadSuccess() && isModleResourceAbs) {
+				if (!isDownLoadOver.get() && isModleResourceAbs) {
 					mActivity.finish();
 				}
 			}
@@ -133,10 +136,12 @@ public class DownLoadResouceControl {
 		loadedData++;
 		mActivity.updateProgress(loadedData, maxLength);
 		if (isCurrentDownLoadSuccess()) {
+			isDownLoadOver .set(true);
 			if (mDownLoadCallBack != null)
 				mDownLoadCallBack.onDownLoadCallback(loadedData, maxLength);
 			mActivity.dismissProgress();
 			loadedData = 0;
+			
 		}
 	}
 

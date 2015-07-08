@@ -26,21 +26,27 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingLeft="2dp"
+            android:layout_marginBottom="5dp"
             android:paddingRight="2dp" >
 
             <RelativeLayout
                 android:id="@+id/sound_container"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_height="60dp" >
+                android:background="@drawable/bphz_levv_item_bg"
+                android:layout_height="75dp" >
 
                 <TextView
                     android:id="@+id/detail_word"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:textColor="#ff422108"
+                    android:background="#ffffff"
                     android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:textSize="30sp" />
 
                 <View
@@ -68,15 +74,11 @@
                     android:src="@drawable/sound_play_btn" />
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/holo_green_light" >
-            </View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                 android:background="#ffffff"
                 android:layout_marginTop="5dp" >
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,18 +87,18 @@
                     android:layout_above="@+id/word_pad"
                     android:layout_alignParentTop="true"
                      android:layout_marginBottom="10dp"
+                    
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="good"
+                        android:text="笔画顺序"
                         android:layout_gravity="center_horizontal"
-                       
                         ></TextView>
                   <com.bosi.chineseclass.views.BsVideoViewGroup
                     android:id="@+id/video_pad"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
-                    android:background="@drawable/bphz_dital_videobg"
                     android:layout_height="match_parent" />
                      
                 </LinearLayout>
@@ -106,7 +108,7 @@
                 <ImageButton
                     android:id="@+id/word_pad"
                     android:layout_width="80dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/kaqi"
@@ -123,7 +125,6 @@
             android:id="@+id/second_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingLeft="10dp"
             android:layout_weight="5"
             android:layout_marginLeft="15dp"
             android:orientation="vertical" >
@@ -142,7 +143,7 @@
                     android:layout_marginBottom="5dp" />
 
                 <ImageView
-                    android:id="@+id/oracle_img"
+                    android:id="@+id/iv_jfall"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -152,6 +153,11 @@
                     android:layout_toRightOf="@id/ytzi" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/line"
+                ></View>
 
             <RelativeLayout
                 android:id="@+id/rl_explain"
