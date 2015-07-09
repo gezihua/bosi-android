@@ -2,19 +2,13 @@
 package com.bosi.chineseclass.su.db;
 
 import android.content.Context;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.bosi.chineseclass.BSApplication;
-import com.bosi.chineseclass.su.utils.FileUtils;
-import com.gitonway.lee.niftymodaldialogeffects.lib.effects.NewsPaper;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class DicOpenHelper extends SQLiteOpenHelper {
     private final static int VERSION = 1;
@@ -48,7 +42,7 @@ public class DicOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+     
     }
 
 

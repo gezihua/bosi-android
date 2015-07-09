@@ -263,6 +263,8 @@ public class WordsDetailActivity extends BaseActivity implements
 							+ ".mp3";
 				}
 			}
+		}else{
+			urls =  new String[2];
 		}
 		
 		String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/"
