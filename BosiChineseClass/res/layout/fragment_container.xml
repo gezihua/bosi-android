@@ -11,43 +11,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/temp_bg"
         android:layout_margin="5dp"
+        android:background="@drawable/temp_bg"
         android:orientation="horizontal" >
-        
-        
-        
 
         <LinearLayout
             android:id="@+id/first"
             android:layout_width="120dp"
             android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingLeft="2dp"
-            android:layout_marginBottom="5dp"
             android:paddingRight="2dp" >
 
             <RelativeLayout
                 android:id="@+id/sound_container"
                 android:layout_width="match_parent"
+                android:layout_height="75dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bphz_levv_item_bg"
-                android:layout_height="75dp" >
+                android:background="@drawable/bphz_levv_item_bg" >
 
                 <TextView
                     android:id="@+id/detail_word"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:gravity="center"
-                    android:textColor="#ff422108"
-                    android:background="#ffffff"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:textSize="30sp" />
+                    android:layout_marginTop="5dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:textColor="#ff422108"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
                 <View
                     android:id="@+id/center_devider"
@@ -74,36 +71,33 @@
                     android:src="@drawable/sound_play_btn" />
             </RelativeLayout>
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                 android:background="#ffffff"
-                android:layout_marginTop="5dp" >
+                android:layout_marginTop="5dp"
+                android:background="#ffffff" >
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_above="@+id/word_pad"
                     android:layout_alignParentTop="true"
-                     android:layout_marginBottom="10dp"
-                    
-                    >
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical" >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="笔画顺序"
                         android:layout_gravity="center_horizontal"
-                        ></TextView>
-                  <com.bosi.chineseclass.views.BsVideoViewGroup
-                    android:id="@+id/video_pad"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-                     
+                        android:text="笔画顺序" >
+                    </TextView>
+
+                    <com.bosi.chineseclass.views.BsVideoViewGroup
+                        android:id="@+id/video_pad"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp" />
                 </LinearLayout>
-                
-               
 
                 <ImageButton
                     android:id="@+id/word_pad"
@@ -111,22 +105,18 @@
                     android:layout_height="40dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/kaqi"
                     android:layout_marginBottom="5dp"
+                    android:background="@drawable/kaqi"
                     android:scaleType="fitCenter" />
             </RelativeLayout>
         </LinearLayout>
-        
-        
-        
-        
 
         <LinearLayout
             android:id="@+id/second_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
             android:layout_marginLeft="15dp"
+            android:layout_weight="5"
             android:orientation="vertical" >
 
             <RelativeLayout
@@ -156,8 +146,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@drawable/line"
-                ></View>
+                android:background="@drawable/line" >
+            </View>
 
             <RelativeLayout
                 android:id="@+id/rl_explain"
@@ -178,27 +168,24 @@
                     android:layout_height="80dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginRight="20dp"
                     android:layout_marginLeft="3dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="2dp"
                     android:layout_toLeftOf="@+id/oracle_word"
                     android:background="@drawable/pinyin_sybg"
                     android:padding="5dp" />
             </RelativeLayout>
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <include 
-                    layout="@layout/layout_worddital_expain"
+                <include
                     android:id="@+id/ll_word_dital"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toLeftOf="@+id/ll_hzdital_stastic"
-                   
-                    />
+                    layout="@layout/layout_worddital_expain" />
 
                 <LinearLayout
                     android:id="@+id/ll_hzdital_stastic"
@@ -206,10 +193,10 @@
                     android:layout_height="100dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                     android:layout_marginLeft="20dp"
-                    android:gravity="center"
-                    android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
                     android:orientation="vertical" >
                 </LinearLayout>
             </RelativeLayout>

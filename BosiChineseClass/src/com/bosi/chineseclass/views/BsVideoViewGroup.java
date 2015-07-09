@@ -24,8 +24,16 @@ public class BsVideoViewGroup extends LinearLayout{
 	@OnClick(R.id.bt_bsvideo_replay)
 	public void actionReplay(View mView){
 		mVideoView.start();
+		if(mOnVideoRestartListener!=null){
+			mOnVideoRestartListener.OnVideoRestarted();
+		}
 	}
 	
+	OnVideoRestartListener mOnVideoRestartListener;
+	
+	public void setOnVideoRestartListener(OnVideoRestartListener mOnVideoRestartListener){
+		this.mOnVideoRestartListener= mOnVideoRestartListener;
+	}
 	public void playVideo(String filePath){
 		mVideoView.setVideoPath(filePath);
 		actionReplay(null);
@@ -49,4 +57,7 @@ public class BsVideoViewGroup extends LinearLayout{
 		mVideoView.setBackground(getContext().getResources().getDrawable(resource));
 	}
 
+	public interface OnVideoRestartListener{
+		public void OnVideoRestarted();
+	}
 }

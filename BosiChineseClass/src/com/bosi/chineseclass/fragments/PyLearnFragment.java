@@ -21,9 +21,11 @@ import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.components.MediaPlayerPools;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
+import com.bosi.chineseclass.control.DownLoadResouceControl.DownLoadInterface;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
 import com.bosi.chineseclass.views.BsVideoViewGroup;
+import com.bosi.chineseclass.views.BsVideoViewGroup.OnVideoRestartListener;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -35,7 +37,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * 
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class PyLearnFragment extends BaseFragment implements com.bosi.chineseclass.control.DownLoadResouceControl.DownLoadInterface {
+public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,OnVideoRestartListener {
 
 	String[] marrayForLearn = null;
 
@@ -161,8 +163,7 @@ public class PyLearnFragment extends BaseFragment implements com.bosi.chinesecla
 	private void downLoadFilesBaseCurrentZiMu(){
 		boolean isDownLoadSuccess = mDownLoadControl.downloadFiles();
 		if(isDownLoadSuccess){
-			displayCurrentZmbg();
-			playVideoRead();
+			notifyUIChanged();
 		}
 	}
 	
@@ -278,7 +279,10 @@ public class PyLearnFragment extends BaseFragment implements com.bosi.chinesecla
 
 	@Override
 	protected void afterViewInject() {
-
+		
+		mVideoViewRead.setOnVideoRestartListener(this);
+		mVideoViewWrite.setOnVideoRestartListener(this);
+		
 		mDownLoadControl = new DownLoadResouceControl(mActivity);
 		mDownLoadControl.setOnDownLoadCallback(this);
 		
@@ -328,7 +332,7 @@ public class PyLearnFragment extends BaseFragment implements com.bosi.chinesecla
 
 		String[] mVoiceUrls = getPropertiesFromKey(mPressedZm + SUFFIX_DYDD)
 				.split("#");
-		String[] mUrlSoruce = new String[mVoiceUrls.length+3];
+		String[] mUrlSoruce = new String[mVoiceUrls.length+4];
 		// 组拼
 		for (int i = 0; i < mVoiceUrls.length; i++) {
 			String voiceSouceValue = mVoiceUrls[i];
@@ -336,6 +340,7 @@ public class PyLearnFragment extends BaseFragment implements com.bosi.chinesecla
 					+ mPressedZm + "/" + voiceSouceValue + ".mp3";
 			mUrlSoruce[i] = urlForVoice;
 		}
+		
 		mUrlSoruce[mVoiceUrls.length] =  AppDefine.URLDefine.URL_PINYINVOICE
 				+ mPressedZm + "/" + mPressedZm+".mp4";
 		
@@ -344,6 +349,12 @@ public class PyLearnFragment extends BaseFragment implements com.bosi.chinesecla
 		
 		mUrlSoruce[mVoiceUrls.length+2] =  AppDefine.URLDefine.URL_PINYINVOICE
 				+ mPressedZm + "/" + mPressedZm+".jpg";
+		
+		mUrlSoruce[mVoiceUrls.length+3] =  AppDefine.URLDefine.URL_PINYINVOICE
+				+ mPressedZm + "/" + mPressedZm+".mp3";
+		
+		http://www.yuwen100.cn/yuwen100/hzzy/Android/pyxx/b/b.mp3
+		/*http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/pinyinread/a4.mp3*/	
 		return mUrlSoruce;
 	}
 
@@ -351,16 +362,28 @@ public class PyLearnFragment extends BaseFragment implements com.bosi.chinesecla
 	public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
 		if(mCurrentSize ==wholeSize){
 			//该播放mp4的播放mp4 该显示图片的显示图片
-			displayCurrentZmbg();
-			playVideoRead();
+			notifyUIChanged();
 		}
-		
 	}
 
+	private void playZiMuVoice(){
+		String fileName =mPressedZm+AppDefine.STUFFDEFICE.STUFF_VOICE;
+		playVoice(getAbsoultFilePath()+fileName);
+	}
+	public void notifyUIChanged(){
+		playZiMuVoice();
+		displayCurrentZmbg();
+		playVideoRead();
+	}
 	@Override
 	public String getFolderPath() {
 		return AppDefine.FilePathDefine.APP_PINYINLEARNPATH
 				+ mPressedZm + "/";
+	}
+
+	@Override
+	public void OnVideoRestarted() {
+		playZiMuVoice();
 	}
 
 }
