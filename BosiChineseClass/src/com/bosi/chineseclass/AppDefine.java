@@ -6,6 +6,7 @@ public class AppDefine {
     public static class FilePathDefine {
         public static String APP_GLOBLEFILEPATH = "bosi-chinese";
         public static String APP_PINYINLEARNPATH = "bosi-chinese/Pylearn/";
+        public static String APP_DICTDITALNPATH =  "bosi-chinese/Dict/";
     }
 
     public static class ZYDefine {
@@ -31,6 +32,7 @@ public class AppDefine {
 
     public static class URLDefine {
         public static final String URL_PINYINVOICE = "http://www.yuwen100.cn/yuwen100/hzzy/Android/pyxx/";
+        public static final String URL_PINREADER = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/pinyinread/";
     }
 
     public static class STUFFDEFICE {

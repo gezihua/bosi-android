@@ -70,7 +70,6 @@ public class DicOpenHelper extends SQLiteOpenHelper {
                 }
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -94,7 +93,6 @@ public class DicOpenHelper extends SQLiteOpenHelper {
             }
             fos.flush();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             try {
@@ -102,7 +100,6 @@ public class DicOpenHelper extends SQLiteOpenHelper {
                     in.close();
                 }
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             try {
@@ -110,7 +107,6 @@ public class DicOpenHelper extends SQLiteOpenHelper {
                     fos.close();
                 }
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             in = null;
@@ -120,7 +116,6 @@ public class DicOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
 
     }
 

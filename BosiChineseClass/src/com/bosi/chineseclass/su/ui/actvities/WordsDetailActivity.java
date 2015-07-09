@@ -1,13 +1,8 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
-
-import android.content.Intent;
-
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,203 +14,140 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerListener;
 import com.bosi.chineseclass.components.WordDitalExpainComponent;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
-import com.bosi.chineseclass.control.DownLoadResouceControl.DownloadCallback;
+import com.bosi.chineseclass.control.DownLoadResouceControl.DownLoadInterface;
 import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Word;
-import com.bosi.chineseclass.su.utils.FileUtils;
-import com.bosi.chineseclass.su.utils.MyVolley;
 import com.bosi.chineseclass.views.BsVideoViewGroup;
 import com.bosi.chineseclass.views.PaintPadWindow;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ContentView(R.layout.fragment_container)
 public class WordsDetailActivity extends BaseActivity implements
-		OnClickListener, DownloadCallback, MutilMediaPlayerListener {
+		DownLoadInterface, MutilMediaPlayerListener {
+	@ViewInject(R.id.deatail_headactionbar)
 	View mHeadActionBar;
-	private static final String TAG = WordsDetailActivity.class.getSimpleName();
 	HeadLayoutComponents mHeadActionBarComp;
-	private ImageView mOracleImg = null;
-	private ImageView mOracleWord = null;
-	private TextView mWordTextView = null;
-	private TextView mExplainTextView;
-	private TextView mYtTextView;
-	private BsVideoViewGroup mVideoView;
-	
-	private ImageButton mPadView;
-	private final static String[] sExplain = { "基本释义", "完整释义", "成语典故" };
-	private final static String ORACLE_IMG = "";
 
-	private final static String ORACLE_WORD = "";
+	@ViewInject(R.id.iv_jfall)
+	ImageView mjfImg;
 
+	@ViewInject(R.id.oracle_word)
+	ImageView mOracleWord;
 
-	private DownLoadResouceControl mDownLoadControl;
+	@ViewInject(R.id.detail_word)
+	TextView mWordTextView;
+
+	@ViewInject(R.id.word_explain)
+	TextView mExplainTextView;
+
+	@ViewInject(R.id.ytzi)
+	TextView mYtTextView;
+
+	@ViewInject(R.id.video_pad)
+	BsVideoViewGroup mVideoView;
+	@ViewInject(R.id.word_pad)
+	ImageButton mPadView;
+
+	@ViewInject(R.id.sound_container)
 	private View mSoundContainer;
-	
 	@ViewInject(R.id.ll_word_dital)
 	View mllExpainBody;
 
+	Word mCurrentWord;
+	
+	XutilImageLoader mImageLoader;
+
+	private DownLoadResouceControl mDownLoadControl;
+
 	private void init() {
 		mDownLoadControl = new DownLoadResouceControl(this);
+		mDownLoadControl.setOnDownLoadCallback(this);
+
 		mHeadActionBar = findViewById(R.id.deatail_headactionbar);
 		initHeadActionBarComp();
-		mSoundContainer = findViewById(R.id.sound_container);
-		mSoundContainer.setOnClickListener(this);
-		mOracleImg = (ImageView) findViewById(R.id.oracle_img);
-		mOracleWord = (ImageView) findViewById(R.id.oracle_word);
-		mWordTextView = (TextView) findViewById(R.id.detail_word);
-		mExplainTextView = (TextView) findViewById(R.id.word_explain);
-		mYtTextView = (TextView) findViewById(R.id.ytzi);
-		mVideoView = (BsVideoViewGroup) findViewById(R.id.video_pad);
-		mPadView = (ImageButton) findViewById(R.id.word_pad);
-		mPadView.setOnClickListener(this);
-		
-		mExpainComponent = new WordDitalExpainComponent(this,mllExpainBody);
+
+		mExpainComponent = new WordDitalExpainComponent(this, mllExpainBody);
 		mPaintPadWindow = new PaintPadWindow(mContext);
-		
+		mImageLoader = new XutilImageLoader(mContext);
 		setUpBpWordsControl();
+		
 	}
 
-
+	/** 初始化头部 */
 	private void initHeadActionBarComp() {
 		mHeadActionBarComp = new HeadLayoutComponents(this, mHeadActionBar);
-
 		mHeadActionBarComp.setTextMiddle("字源字典", -1);
 		mHeadActionBarComp.setDefaultLeftCallBack(true);
 		mHeadActionBarComp.setDefaultRightCallBack(true);
 	}
 
-	private void loadFromDb(String word) {
-		Word detail = DbUtils.getInstance(this).getExplain(word, "");
+	/** 从本地读出基本字源信息 */
+	private void loadFromDb(String word, String id) {
+		Word detail = DbUtils.getInstance(this).getExplain(word, id);
 		showDetail(detail);
 		showExplain(detail);
 		loadSound(detail);
-		loadFromRemote(detail);
 	}
 
-	private void loadFromRemote(Word detail) {
-		// 这里需要请求四中四种资源
-		// 1. 声音 2.动画 3. 字体图片 4 示意图片
-		loadImage(detail);
-		loadVideoAndSound(detail);
-	}
-
-	private void loadImage(Word wordDetail) {
-		MyVolley.getInstance(this).loadImage(
-				"http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zxtu/"
-						+ wordDetail.refid + ".jpg",
-				new ImageLoader.ImageListener() {
-					@Override
-					public void onErrorResponse(VolleyError volleyError) {
-
-					}
-
-					@Override
-					public void onResponse(
-							ImageLoader.ImageContainer imageContainer, boolean b) {
-						if (imageContainer.getBitmap() != null) {
-							mOracleImg.setImageBitmap(imageContainer
-									.getBitmap());
-						}
-					}
-				});
-		MyVolley.getInstance(this).loadImage(
-				"http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zytu/"
-						+ wordDetail.refid + ".jpg",
-				new ImageLoader.ImageListener() {
-					@Override
-					public void onErrorResponse(VolleyError volleyError) {
-
-					}
-
-					@Override
-					public void onResponse(
-							ImageLoader.ImageContainer imageContainer, boolean b) {
-						if (imageContainer.getBitmap() != null) {
-							mOracleWord.setImageBitmap(imageContainer
-									.getBitmap());
-						}
-					}
-				});
-
-	}
-
-	private void loadVideoAndSound(Word detail) {
-		String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/"
-				+ detail.refid + ".mp4";
-		mVideoView.playVideo(path);
-	}
 
 	private final static String CACHES = "/data/data/"
 			+ BSApplication.getInstance().getPackageName() + "/caches";
-	private final static String SOUNDURL = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/pinyinread/";
 
 	// 记录在声音的队列中
 	private List<String> sounds = new ArrayList<String>();
 
 	private void loadSound(Word detail) {
 		if (!TextUtils.isEmpty(detail.pinyin)) {
-			sounds = DbUtils.getInstance(this).getPyList(detail.pinyin);
-			if (sounds != null && sounds.size() > 0) {
-				FileUtils.mkdir(CACHES + "/sounds");
-				mDownLoadControl.setOnDownLoadCallback(this);
-				mDownLoadControl.downloadFiles(CACHES + "/sounds",
-						createSoundsUrls());
-			}
+//			sounds = DbUtils.getInstance(this).getPyList(detail.pinyin);
+//			if (sounds != null && sounds.size() > 0) {
+//				// FileUtils.mkdir(CACHES + "/sounds");
+//				// mDownLoadControl.setOnDownLoadCallback(this);
+//				// mDownLoadControl.downloadFiles(CACHES + "/sounds",
+//				// createSoundsUrls());
+//			}
 		}
 	}
 
-	private String[] createSoundsUrls() {
-		String[] strings = new String[sounds.size()];
-		for (int i = 0; i < strings.length; i++) {
-			strings[i] = SOUNDURL + sounds.get(i) + ".mp3";
-		}
-		return strings;
+	@OnClick(R.id.word_pad)
+	public void actionWordPad(View mView) {
+		showWordPad();
 	}
 
-	@Override
-	public void onClick(View arg0) {
-		int id = arg0.getId();
-		switch (id) {
-		case R.id.word_pad: {
-			showWordPad();
-			break;
-		}
-		case R.id.sound_container: {
-			playSound();
-			break;
-		}
-
-		default:
-			break;
-		}
-
+	@OnClick(R.id.sound_container)
+	public void actionSoundPad(View mView) {
+		playSound();
 	}
-	
+
 	public void onBackPressed() {
 		mPaintPadWindow.dismissView();
 	};
 
 	PaintPadWindow mPaintPadWindow;
-	private void showWordPad(){
+
+	private void showWordPad() {
 		mPaintPadWindow.createFloatView();
 	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		mPaintPadWindow.dismissView();
 	}
+
 	private MutilMediaPlayerTools mMutilMediaPlayerTools;
 
 	private void playSound() {
@@ -228,12 +160,6 @@ public class WordsDetailActivity extends BaseActivity implements
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		init();
-
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
 	}
 
 	@Override
@@ -243,16 +169,6 @@ public class WordsDetailActivity extends BaseActivity implements
 			mMutilMediaPlayerTools.onDestory();
 		}
 	}
-
-	private String onRecieveIntent() {
-		Intent intent = getIntent();
-		if (intent != null) {
-			String word = intent.getExtras().getString("word", "");
-			return word;
-		}
-		return null;
-	}
-
 
 	private void showDetail(Word detail) {
 		String temp = null;
@@ -268,16 +184,18 @@ public class WordsDetailActivity extends BaseActivity implements
 		}
 
 	}
-	WordDitalExpainComponent mExpainComponent;
+
+	/** 用于展示文字的具体示意 */
 	private void showExplain(Word detail) {
-		mExpainComponent.setData(new String[]{detail.yanbian,detail.cysy,detail.cy});
+		mExpainComponent.setData(new String[] { detail.yanbian, detail.cysy,
+				detail.cy });
+		mWordTextView.setText(detail.zitou);
 	}
 
+	WordDitalExpainComponent mExpainComponent;
 	// ------------------------------------------- 添加和统计布局的相关内容
-	// --------------------------------------------------------
 
 	BpStasticLayout mBpStasitcLayout;
-
 	@ViewInject(R.id.ll_hzdital_stastic)
 	LinearLayout mLayoutStastic;
 
@@ -286,6 +204,7 @@ public class WordsDetailActivity extends BaseActivity implements
 	BPHZ mBphz = new BPHZ();
 
 	private void setUpBpWordsControl() {
+		updateProgress(0, 1);
 		final int TAG = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG, -1);
 		if (TAG != -1) {
 			int tagFromBpLv = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG,
@@ -296,42 +215,55 @@ public class WordsDetailActivity extends BaseActivity implements
 						@Override
 						public void chagePageData(int refid) {
 							updateUI(refid + "", "");
+
 						}
 
 						@Override
 						public void chagePageData() {
 						}
 					});
-			
+
 			mLayoutStastic.addView(mBpStasitcLayout.getBaseView());
 			mLayoutStastic.setVisibility(View.VISIBLE);
+
 		} else {
-			String word = onRecieveIntent();
-			mWordTextView.setText(word);
-			loadFromDb(word);
 			mLayoutStastic.setVisibility(View.GONE);
+			String word = getIntent().getStringExtra("word");
+			
+			updateUI("", word);
+			
+			// mWordTextView.setText(word);
+			// loadFromDb(word);
+			// mLayoutStastic.setVisibility(View.GONE);
 		}
+		
 	}
 
 	private void updateUI(String id, String word) {
-		Word detail = DbUtils.getInstance(this).getExplain("", id);
-		showDetail(detail);
-		showExplain(detail);
+		mCurrentWord = DbUtils.getInstance(this).getExplain(word, id);
+		showDetail(mCurrentWord);
+		showExplain(mCurrentWord);
+		boolean isDownLoadSuccess = mDownLoadControl.downloadFiles();
+		if(isDownLoadSuccess){
+			actionSuccess();
+		}
 	}
 
 	// ------------------------------------------------------------下载播放生意-----------------------------------------------
 	@Override
 	public void onDownLoadCallback(int mCurrentSize, int wholeSize) {
-		try {
-			if (mCurrentSize == wholeSize) {
-				mMutilMediaPlayerTools = new MutilMediaPlayerTools(this,
-						createSoudPaths());
-				mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(mCurrentSize == wholeSize){
+			actionSuccess();
 		}
+//		try {
+//			if (mCurrentSize == wholeSize) {
+//				mMutilMediaPlayerTools = new MutilMediaPlayerTools(this,
+//						createSoudPaths());
+//				mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private String[] createSoudPaths() {
@@ -348,8 +280,60 @@ public class WordsDetailActivity extends BaseActivity implements
 	public void finished() {
 		if (mMutilMediaPlayerTools != null) {
 			mMutilMediaPlayerTools.reset();
-			Log.e(TAG, "reset");
 		}
-
 	}
+
+
+	@Override
+	public String[] getDownLoadUrls() {
+		String[] urls = null;
+		if (!TextUtils.isEmpty(mCurrentWord.pinyin)) {
+			sounds = DbUtils.getInstance(this).getPyList(mCurrentWord.pinyin);
+			urls =  new String[sounds.size()+2];
+			if (sounds != null && sounds.size() > 0) {
+				for (int i = 0; i < sounds.size(); i++) {
+					urls[i] = AppDefine.URLDefine.URL_PINREADER + sounds.get(i)
+							+ ".mp3";
+				}
+			}
+		}
+		
+		String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/"
+				+ mCurrentWord.refid + ".mp4";
+		String pathZxtuPath = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zxtu/"
+				+ mCurrentWord.refid + ".jpg";
+		
+		
+		urls[sounds.size()]=path;
+		urls[sounds.size()+1]=pathZxtuPath;
+		
+		String pathZytu = "http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/zytu/"
+				+ mCurrentWord.refid + ".jpg";
+		mImageLoader.getBitmapFactory().display(mOracleWord, pathZytu);
+		return urls;
+	}
+
+	@Override
+	public String getFolderPath() {
+		return AppDefine.FilePathDefine.APP_DICTDITALNPATH + mCurrentWord.refid+"/";
+	}
+	
+	private void actionSuccess(){
+		loadImage() ;
+		playVideo();
+		dismissProgress();
+	}
+
+	private void loadImage() {
+		String fileAbs = mDownLoadControl.getAbsFilePath();
+		//从本地读取图片
+		mImageLoader.getBitmapFactory().display(mjfImg, fileAbs+mCurrentWord.refid + ".jpg");
+	}
+	
+	private void playVideo(){
+		//从本地读取视频
+		String fileAbs = mDownLoadControl.getAbsFilePath();
+		mVideoView.playVideo(fileAbs+mCurrentWord.refid + ".mp4");
+	}
+
 }
