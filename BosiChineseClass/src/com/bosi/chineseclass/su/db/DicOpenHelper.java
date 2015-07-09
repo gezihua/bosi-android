@@ -6,16 +6,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.bosi.chineseclass.BSApplication;
-
-
 public class DicOpenHelper extends SQLiteOpenHelper {
     private final static int VERSION = 1;
     private final static String DB_NAME = "dict.db";
-    private final static String DB_PATH = "/data/data/"
-            + BSApplication.getInstance().getPackageName() + "/" + "databases";
-    private final Context mContext;
     public static DicOpenHelper sDicOpenHelper;
     private final static Object sLOCK = new Object();
 
@@ -35,7 +28,6 @@ public class DicOpenHelper extends SQLiteOpenHelper {
     public DicOpenHelper(Context context, String name, CursorFactory factory,
             int version) {
         super(context, name, factory, version);
-        mContext = context;
     }
 
   

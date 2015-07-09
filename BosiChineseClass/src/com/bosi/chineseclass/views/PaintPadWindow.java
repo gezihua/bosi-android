@@ -1,6 +1,8 @@
 package com.bosi.chineseclass.views;
 
 import com.bosi.chineseclass.BSApplication;
+
+
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.utils.DataTools;
 import com.bosi.chineseclass.views.paint.ColorPickerDialog;
@@ -10,10 +12,9 @@ import com.firstpeople.paintpad.interfaces.PaintViewCallBack;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-
-
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.view.MotionEvent;
 import android.view.View;
@@ -55,10 +56,18 @@ public class PaintPadWindow {
 
 	private PaintView mPaintView;
 	
+	Bitmap mBitmap ;
+	
+	
+	public void onDestroy(){
+		if(mBitmap!=null&&!mBitmap.isRecycled()){
+			mBitmap.recycle();
+		}
+	}
 	private void initBaseView(){
 		mPaintView = (PaintView) mBaseView.findViewById(R.id.paintdialog_paintview);
 		mPaintView.setPenSize(20);
-		
+		mPaintView.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.iv_bgdict));
 		mColorPickDialog = new ColorPickerDialog(mContext, new OnColorChangedListener(){
 
 			@Override
@@ -84,9 +93,7 @@ public class PaintPadWindow {
 	public void dismissView(){
 		if(wm!=null && mBaseView!=null&&isAdded){
 				wm.removeView(mBaseView);
-				
 				isAdded = false;
-			
 		}
 	}
 	

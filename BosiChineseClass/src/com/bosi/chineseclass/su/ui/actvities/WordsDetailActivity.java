@@ -2,6 +2,7 @@ package com.bosi.chineseclass.su.ui.actvities;
 
 import android.os.Bundle;
 
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
@@ -30,9 +31,7 @@ import com.bosi.chineseclass.views.PaintPadWindow;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @ContentView(R.layout.fragment_container)
@@ -109,6 +108,7 @@ public class WordsDetailActivity extends BaseActivity implements
 	}
 
 	public void onBackPressed() {
+		if(mPaintPadWindow!=null)
 		mPaintPadWindow.dismissView();
 	};
 
@@ -121,6 +121,7 @@ public class WordsDetailActivity extends BaseActivity implements
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		mPaintPadWindow.onDestroy();
 		mPaintPadWindow.dismissView();
 	}
 
