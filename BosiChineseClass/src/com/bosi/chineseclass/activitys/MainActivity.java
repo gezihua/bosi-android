@@ -2,6 +2,7 @@ package com.bosi.chineseclass.activitys;
 
 import android.content.Intent;
 
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -13,8 +14,8 @@ import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.control.SampleControl;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
+import com.bosi.chineseclass.han.db.CheckDbUtils;
 import com.bosi.chineseclass.han.db.DbManager;
-import com.bosi.chineseclass.su.db.DicOpenHelper;
 import com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -74,7 +75,10 @@ public class MainActivity extends BaseActivity {
 			
 			@Override
 			public void run() {
-				 new DicOpenHelper(getBaseContext());
+				 boolean isSuccess = CheckDbUtils.checkDb();
+				 if(!isSuccess){
+					 finish();
+				 }
 				 BSApplication.getInstance().mDbManager = new DbManager(mContext);
 			}
 		},new Runnable() {

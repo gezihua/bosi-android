@@ -1,6 +1,8 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
 import android.os.Bundle;
+
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
@@ -8,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
@@ -31,7 +31,6 @@ import com.bosi.chineseclass.views.PaintPadWindow;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,32 +94,8 @@ public class WordsDetailActivity extends BaseActivity implements
 		mHeadActionBarComp.setDefaultRightCallBack(true);
 	}
 
-	/** 从本地读出基本字源信息 */
-	private void loadFromDb(String word, String id) {
-		Word detail = DbUtils.getInstance(this).getExplain(word, id);
-		showDetail(detail);
-		showExplain(detail);
-		loadSound(detail);
-	}
-
-
-	private final static String CACHES = "/data/data/"
-			+ BSApplication.getInstance().getPackageName() + "/caches";
-
 	// 记录在声音的队列中
 	private List<String> sounds = new ArrayList<String>();
-
-	private void loadSound(Word detail) {
-		if (!TextUtils.isEmpty(detail.pinyin)) {
-//			sounds = DbUtils.getInstance(this).getPyList(detail.pinyin);
-//			if (sounds != null && sounds.size() > 0) {
-//				// FileUtils.mkdir(CACHES + "/sounds");
-//				// mDownLoadControl.setOnDownLoadCallback(this);
-//				// mDownLoadControl.downloadFiles(CACHES + "/sounds",
-//				// createSoundsUrls());
-//			}
-		}
-	}
 
 	@OnClick(R.id.word_pad)
 	public void actionWordPad(View mView) {
@@ -133,6 +108,7 @@ public class WordsDetailActivity extends BaseActivity implements
 	}
 
 	public void onBackPressed() {
+		if(mPaintPadWindow!=null)
 		mPaintPadWindow.dismissView();
 	};
 
@@ -145,6 +121,7 @@ public class WordsDetailActivity extends BaseActivity implements
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		mPaintPadWindow.onDestroy();
 		mPaintPadWindow.dismissView();
 	}
 
@@ -152,6 +129,7 @@ public class WordsDetailActivity extends BaseActivity implements
 
 	private void playSound() {
 		if (mMutilMediaPlayerTools != null) {
+			mMutilMediaPlayerTools.setCurrentFilePath(getLocalSoundsPath());
 			mMutilMediaPlayerTools.play();
 		}
 	}
@@ -160,6 +138,8 @@ public class WordsDetailActivity extends BaseActivity implements
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		init();
+		mMutilMediaPlayerTools = new MutilMediaPlayerTools(this);
+		mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
 	}
 
 	@Override
@@ -227,14 +207,9 @@ public class WordsDetailActivity extends BaseActivity implements
 			mLayoutStastic.setVisibility(View.VISIBLE);
 
 		} else {
-			mLayoutStastic.setVisibility(View.GONE);
+			mLayoutStastic.setVisibility(View.INVISIBLE);
 			String word = getIntent().getStringExtra("word");
-			
 			updateUI("", word);
-			
-			// mWordTextView.setText(word);
-			// loadFromDb(word);
-			// mLayoutStastic.setVisibility(View.GONE);
 		}
 		
 	}
@@ -255,25 +230,6 @@ public class WordsDetailActivity extends BaseActivity implements
 		if(mCurrentSize == wholeSize){
 			actionSuccess();
 		}
-//		try {
-//			if (mCurrentSize == wholeSize) {
-//				mMutilMediaPlayerTools = new MutilMediaPlayerTools(this,
-//						createSoudPaths());
-//				mMutilMediaPlayerTools.setMutilMediaPlayerListener(this);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-	}
-
-	private String[] createSoudPaths() {
-		String[] strings = new String[sounds.size()];
-		int i = 0;
-		for (String temp : sounds) {
-			strings[i] = CACHES + "/sounds/" + temp + ".mp3";
-			i++;
-		}
-		return strings;
 	}
 
 	@Override
@@ -282,7 +238,19 @@ public class WordsDetailActivity extends BaseActivity implements
 			mMutilMediaPlayerTools.reset();
 		}
 	}
-
+	
+	
+	public String[] getLocalSoundsPath(){
+		String [] mFilePaths = null;
+		if(sounds!=null &&sounds.size()>0){
+			mFilePaths = new String[sounds.size()];
+			for(int i=0;i<sounds.size();i++){
+				mFilePaths[i] = mDownLoadControl.getAbsFilePath()+sounds.get(i)
+						+ ".mp3";
+			}
+		}
+		return mFilePaths;
+	}
 
 	@Override
 	public String[] getDownLoadUrls() {
@@ -296,6 +264,8 @@ public class WordsDetailActivity extends BaseActivity implements
 							+ ".mp3";
 				}
 			}
+		}else{
+			urls =  new String[2];
 		}
 		
 		String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/"
@@ -322,6 +292,7 @@ public class WordsDetailActivity extends BaseActivity implements
 		loadImage() ;
 		playVideo();
 		dismissProgress();
+		playSound();
 	}
 
 	private void loadImage() {
@@ -329,7 +300,7 @@ public class WordsDetailActivity extends BaseActivity implements
 		//从本地读取图片
 		mImageLoader.getBitmapFactory().display(mjfImg, fileAbs+mCurrentWord.refid + ".jpg");
 	}
-	
+	//420588z  420588zjl
 	private void playVideo(){
 		//从本地读取视频
 		String fileAbs = mDownLoadControl.getAbsFilePath();

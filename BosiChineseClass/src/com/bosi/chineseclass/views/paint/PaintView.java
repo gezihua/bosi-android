@@ -169,7 +169,6 @@ public class PaintView extends View implements UndoCommand {
 
 	@Override
 	public void onDraw(Canvas cv) {
-		cv.drawColor(mBackGroundColor);
 		cv.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
 		if (!isTouchUp) {
 			if (mPaintType != PEN_TYPE.ERASER) {

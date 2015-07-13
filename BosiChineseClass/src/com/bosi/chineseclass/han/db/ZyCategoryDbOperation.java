@@ -29,11 +29,9 @@ public class ZyCategoryDbOperation extends AbsDbOperation {
                 dbModels.clear();
                 dbModels = null;
             }
-
         }
         return (T) mData;
     }
-
     @Override
     public String getDbName() {
         return null;

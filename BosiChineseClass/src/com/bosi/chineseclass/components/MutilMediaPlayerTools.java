@@ -10,10 +10,13 @@ public class MutilMediaPlayerTools implements MediaPlayer.OnCompletionListener {
     private String[] mPaths;
     private MediaPlayerPools mPlayerPools = null;
 
-    public MutilMediaPlayerTools(Context context, String[] paths) {
+    public MutilMediaPlayerTools(Context context) {
         mPlayerPools = new MediaPlayerPools(context);
-        mPaths = paths;
         mPlayerPools.setCompleteListener(this);
+    }
+    
+    public void setCurrentFilePath(String[] paths){
+    	this.mPaths = paths;
     }
 
     public void play() {
