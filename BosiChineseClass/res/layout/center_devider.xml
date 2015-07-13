@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="@drawable/dictionary_divider_back" >
 
     <View
         android:layout_width="2dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:background="@color/indivitor_default_color" />
+        android:background="@color/dictionary_divider_color" />
 
     <View
         android:layout_width="40dp"
@@ -22,6 +23,6 @@
         android:layout_width="2dp"
         android:layout_height="match_parent"
         android:layout_gravity="right"
-        android:background="@color/indivitor_default_color" />
+        android:background="@color/dictionary_divider_color" />
 
 </LinearLayout>
