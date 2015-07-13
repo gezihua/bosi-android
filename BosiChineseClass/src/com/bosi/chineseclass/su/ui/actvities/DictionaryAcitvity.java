@@ -12,11 +12,13 @@ import android.view.View;
 
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents.SearchableAction;
 import com.bosi.chineseclass.su.ui.fragment.FilerPyFragment;
 import com.bosi.chineseclass.su.ui.fragment.FilterRadicalFragment;
 import com.bosi.chineseclass.su.ui.fragment.FiterStokeFragment;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
@@ -27,6 +29,9 @@ public class DictionaryAcitvity extends BaseActivity implements SearchableAction
     };
     View mHeadActionBar;
     HeadLayoutComponents mHeadActionBarComp;
+
+    XutilImageLoader mXutilImageLoader;
+    private View mMainView; 
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -45,6 +50,10 @@ public class DictionaryAcitvity extends BaseActivity implements SearchableAction
     }
 
     private void init() {
+        mMainView = findViewById(R.id.activity_dictionary_main);
+        mXutilImageLoader = new XutilImageLoader(this);
+        mXutilImageLoader.getBitmapFactory().display(mMainView, "assets/zyzd/bg_activity_dictionary.png");
+
         mHeadActionBar = findViewById(R.id.dic_headactionbar);
         initHeadActionBarComp();
         final ArrayList<Fragment> fragments = new ArrayList<Fragment>();
@@ -73,6 +82,7 @@ public class DictionaryAcitvity extends BaseActivity implements SearchableAction
             }
         };
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        mXutilImageLoader.getBitmapFactory().display(viewPager, "assets/zyzd/viewpager_background.png");
         viewPager.setAdapter(adapter);
         TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
         indicator.setOnPageChangeListener(new OnPageChangeListener() {

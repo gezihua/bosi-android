@@ -40,13 +40,13 @@
         android:textColor="#ffffff" />
 
     <include
-        android:layout_marginEnd="10dp"
-        android:layout_centerVertical="true"
         android:id="@+id/search"
+        layout="@layout/dic_seachable_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/dic_seachable_view"
         android:layout_toLeftOf="@id/common_head_right"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="2dp"
         android:visibility="gone" />
 
 </RelativeLayout>

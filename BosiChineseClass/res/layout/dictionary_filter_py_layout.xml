@@ -17,18 +17,20 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="拼音" />
+                android:textSize="16sp"
+                android:textColor="#9b5b3f"
+                android:layout_marginLeft="10dp"
+                android:text="首字母:" />
 
             <Spinner
                 android:id="@+id/result_py_filter"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2" />
+                android:background="@drawable/spinner_selector"/>
         </LinearLayout>
 
         <GridView
@@ -40,6 +42,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/main_background"
+            android:listSelector="@drawable/dictionary_text_back_color_selector"
             android:numColumns="3"
             android:padding="10dp" />
     </LinearLayout>
@@ -70,8 +73,11 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/main_background"
-            android:numColumns="5" />
+            android:background="@drawable/dictionary_reslut_back"
+            android:paddingTop="25dp"
+            android:paddingBottom="10dp"
+            android:listSelector="@drawable/dictionary_text_back_color_selector"
+            android:numColumns="6" />
     </LinearLayout>
 
 </LinearLayout>

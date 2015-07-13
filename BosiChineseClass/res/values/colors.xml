@@ -6,5 +6,9 @@
     <color name="indivitor_back_color">#ffa5572c</color>
     <color name="indivitor_default_color">#ffb58d73</color>
     <color name="indivitor_selected_color">#ffedfdd7</color>
+    <color name="dictionary_divider_color">#a44f32</color>
+    <color name="dictionary_text_color_normal">#715508</color>
+    <color name="dictionary_text_color_selector">#ff7d2d</color>
+    <color name="transparent">#00000000</color>
     <color name ="main_yello">#c88a51</color>
 </resources>

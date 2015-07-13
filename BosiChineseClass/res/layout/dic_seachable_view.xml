@@ -2,22 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_marginEnd="10dp"
-     android:background="#ffffffff"
     android:layout_height="wrap_content" >
 
     <EditText
         android:id="@+id/seachable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#ffffffff"
+        android:background="@drawable/search_back"
         android:hint="这里输入"
+        android:textSize="15sp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
         android:singleLine="true" />
 
     <ImageView
-        android:layout_toRightOf="@id/seachable"
         android:id="@+id/search_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_search"/>"
+        android:layout_toRightOf="@id/seachable"
+        android:src="@drawable/bt_search"/>"
 
 </RelativeLayout>

@@ -7,29 +7,19 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:layout_weight="2"
-        android:background="@drawable/main_background"
-        android:orientation="vertical"
-        android:padding="5dp" >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="@drawable/bphz_levv_stastic_bg"
-            android:gravity="center"
-            android:text="@string/dict_stoke" />
+        android:background="@drawable/bihua_background"
+        android:orientation="vertical" >
 
         <Button
             android:id="@+id/hen_start"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:paddingBottom="10dp"
             android:layout_weight="1"
-            android:background="@drawable/pingying_learn_btbg"
+            android:background="@drawable/bt_bihua_selector"
             android:text="横起笔"
             android:textSize="15sp" />
 
@@ -38,8 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
+            android:paddingBottom="10dp"
             android:layout_weight="1"
-            android:background="@drawable/pingying_learn_btbg"
+            android:background="@drawable/bt_bihua_selector"
             android:text="竖起笔"
             android:textSize="15sp" />
 
@@ -48,8 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
+            android:paddingBottom="10dp"
             android:layout_weight="1"
-            android:background="@drawable/pingying_learn_btbg"
+            android:background="@drawable/bt_bihua_selector"
             android:text="撇起笔"
             android:textSize="15sp" />
 
@@ -58,8 +50,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
+            android:paddingBottom="10dp"
             android:layout_weight="1"
-            android:background="@drawable/pingying_learn_btbg"
+            android:background="@drawable/bt_bihua_selector"
             android:text="点起笔"
             android:textSize="15sp" />
 
@@ -68,8 +61,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
+            android:paddingBottom="10dp"
             android:layout_weight="1"
-            android:background="@drawable/pingying_learn_btbg"
+            android:background="@drawable/bt_bihua_selector"
             android:text="折起笔"
             android:textSize="15sp" />
     </LinearLayout>
@@ -91,27 +85,44 @@
         android:layout_weight="5"
         android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="笔画数" />
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal" >
 
-        <Spinner
-            android:id="@+id/filter_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="选择文字笔画数"
+                android:textColor="#9b5b3f"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/filter_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_selector" />
+        </LinearLayout>
 
         <GridView
             android:id="@+id/filter_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:numColumns="5" />
+            android:background="@drawable/dictionary_reslut_back"
+            android:paddingTop="25dp"
+            android:paddingBottom="10dp"
+            android:listSelector="@drawable/dictionary_text_back_color_selector"
+            android:numColumns="6" />
 
         <TextView
             android:id="@+id/text_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/dictionary_reslut_back"
             android:visibility="gone" />
     </LinearLayout>
 
