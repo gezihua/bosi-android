@@ -216,6 +216,10 @@ public class WordsDetailActivity extends BaseActivity implements
 
 	private void updateUI(String id, String word) {
 		mCurrentWord = DbUtils.getInstance(this).getExplain(word, id);
+		if(mCurrentWord ==null ||TextUtils.isEmpty(mCurrentWord.zitou)){
+			showToastLong("未找到相关字源");
+			mContext.finish();
+		}
 		showDetail(mCurrentWord);
 		showExplain(mCurrentWord);
 		boolean isDownLoadSuccess = mDownLoadControl.downloadFiles();
