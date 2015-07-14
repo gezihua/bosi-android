@@ -11,4 +11,14 @@ as countremb
     <string name ="select_fromzidian_basezitouorid">select * from zidian where zitou= \'%1$s\'  or refid=\'%2$s\'</string>
     
     <string name ="select_dictindexgroup">select dictindex from bphzhistory where  dictindex &lt;=\'%2$s\' and dictindex &gt;=\'%1$s\' and isrember= \'%3$s\' order by dictindex asc </string>
+
+
+
+    <string name ="select_bpcy_dictindexgroup">select dictindex from bpcyhistory where  dictindex &lt;=\'%2$s\' and dictindex &gt;=\'%1$s\' and isrember= \'%3$s\' order by dictindex asc </string>
+    
+<string name="select_bpcy_lev1data">select count(*) 
+as countremb 
+,(select count(*) from bpcyhistory  where isrember = \'%1$d\' and dictindex &lt;= \'%4$d\' and dictindex &gt;= \'%3$d\') as countunremb
+ from bpcyhistory where dictindex &lt;= \'%4$d\'  and dictindex &gt;= \'%3$d\'  and isrember = \'%2$d\' </string>
+<string name = "delete_bpcy_basedictindexbetween">delete  from bpcyhistory where dictindex  &lt;= \'%2$d\'  and dictindex &gt;= \'%1$d\' </string>
 </resources>
