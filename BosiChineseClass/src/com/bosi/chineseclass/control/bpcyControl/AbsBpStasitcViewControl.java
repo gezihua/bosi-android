@@ -1,6 +1,7 @@
-package com.bosi.chineseclass.control.bphzControl;
+package com.bosi.chineseclass.control.bpcyControl;
 
 import android.content.Context;
+
 import android.view.View;
 import android.widget.Toast;
 
@@ -8,7 +9,7 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
-import com.bosi.chineseclass.db.BPHZ;
+import com.bosi.chineseclass.db.BPCY;
 import com.bosi.chineseclass.db.BphzHistory;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
@@ -18,14 +19,14 @@ public abstract class AbsBpStasitcViewControl implements OnBpStasticListener {
 
 	protected BpStasticLayout mBpStasticLayout;
 
-	protected BPHZ mBphz = new BPHZ();
+	protected BPCY mBphz = new BPCY();
 
 	OnDataChangedListener mDataChangedListener;
 
 	Context mContext;
 
 	int dictStart = 1;
-	int dictEnd = 50;
+	int dictEnd = 500;
 
 	public AbsBpStasitcViewControl(BpStasticLayout mBpStasticLayout,
 			OnDataChangedListener mDataChangedListener) {
@@ -87,8 +88,6 @@ public abstract class AbsBpStasitcViewControl implements OnBpStasticListener {
 		public void chagePageData(int refid);
 
 		public void chagePageData();// 如果没有id的话说明还是用当前的id 只是需要将学习的部分 开始介绍一下
-		
-		public void onSampleLoadBefore();
 	}
 
 }

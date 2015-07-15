@@ -3,6 +3,7 @@ package com.bosi.chineseclass.su.ui.actvities;
 import android.os.Bundle;
 
 
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bosi.chineseclass.AppDefine;
-import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
@@ -182,7 +182,8 @@ public class WordsDetailActivity extends BaseActivity implements
 	public static final String EXTRA_NAME_WORDS_TAG = "tag";
 
 	BPHZ mBphz = new BPHZ();
-
+	@ViewInject(R.id.iv_hint_bphz_learn)
+    ImageView mSampleHintView;
 	private void setUpBpWordsControl() {
 		updateProgress(0, 1);
 		final int TAG = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG, -1);
@@ -200,6 +201,18 @@ public class WordsDetailActivity extends BaseActivity implements
 
 						@Override
 						public void chagePageData() {
+							mllExpainBody.setVisibility(View.VISIBLE);
+							mExplainTextView.setVisibility(View.VISIBLE);
+							mSampleHintView.setVisibility(View.GONE);
+						}
+
+						@Override
+						public void onSampleLoadBefore() {
+							mImageLoader.getBitmapFactory().display(mSampleHintView, "assets/hint_bphz_learnbg.jpg");
+							mllExpainBody.setVisibility(View.INVISIBLE);
+							mExplainTextView.setVisibility(View.INVISIBLE);
+							mSampleHintView.setVisibility(View.VISIBLE);
+							
 						}
 					});
 

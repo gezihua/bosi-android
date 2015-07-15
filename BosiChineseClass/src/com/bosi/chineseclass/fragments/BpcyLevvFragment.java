@@ -14,6 +14,7 @@ import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BphzBean;
 import com.bosi.chineseclass.components.NiftyDialogComponents;
 import com.bosi.chineseclass.components.NiftyDialogComponents.OnNiftyCallBack;
+import com.bosi.chineseclass.db.BPCY;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
@@ -102,7 +103,7 @@ public class BpcyLevvFragment extends BaseFragment {
 		mBphzLevAdapter.changeDataSource(mAdapterDataList);
 	}
 
-	BPHZ mbphz = new BPHZ();
+	BPCY mbphz = new BPCY();
 	NiftyDialogComponents mNiftyDialog;
 
 	private void showNotifyDialog() {

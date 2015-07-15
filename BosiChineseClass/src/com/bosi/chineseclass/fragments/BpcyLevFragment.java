@@ -7,6 +7,7 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BphzBean;
+import com.bosi.chineseclass.db.BPCY;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.model.BpcyLevAdapter;
@@ -94,7 +95,7 @@ public class BpcyLevFragment extends BaseFragment{
 
 	// 放到异步任务中去做
 	private List<BphzBean> getLists() {
-		BPHZ mBphz = new BPHZ();
+		BPCY mBphz = new BPCY();
 		List<BphzBean> mLists = new ArrayList<BphzBean>();
 		for (int i = 1; i <= 15; i++) {
 			BphzBean mBpHzBean = new BphzBean();

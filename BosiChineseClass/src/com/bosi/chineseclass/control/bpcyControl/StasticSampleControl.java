@@ -1,4 +1,4 @@
-package com.bosi.chineseclass.control.bphzControl;
+package com.bosi.chineseclass.control.bpcyControl;
 
 import com.bosi.chineseclass.components.BpStasticLayout;
 
@@ -10,7 +10,6 @@ public class StasticSampleControl extends AbsBpStasitcViewControl{
 			OnDataChangedListener mDataChangedListener) {
 		super(mBpStasticLayout, mDataChangedListener);
 		mCurrentDisplayWordId = dictStart;
-		mDataChangedListener.onSampleLoadBefore();
 	}
 
 	@Override

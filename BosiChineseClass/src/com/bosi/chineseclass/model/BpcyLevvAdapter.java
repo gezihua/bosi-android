@@ -37,13 +37,13 @@ public class BpcyLevvAdapter extends BpcyLevAdapter {
 	@Override
 	protected void onClickItemNumsBetween(int position) {
 		// Intent mIntent = new Intent( ); //进入 字典详情页
-		
-		BphzBean mData = mListData.get(position);
-		String array [] =mData.mNumberBetween.split("-");
-	    String numStart =array[0];
-	    String numEnd = array[1];
-		intentToWordDital(AppDefine.ZYDefine.BPHZ_REFID_ADDED+Integer.parseInt(numStart),
-				AppDefine.ZYDefine.BPHZ_REFID_ADDED+Integer.parseInt(numEnd),AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
+//		
+//		BphzBean mData = mListData.get(position);
+//		String array [] =mData.mNumberBetween.split("-");
+//	    String numStart =array[0];
+//	    String numEnd = array[1];
+//		intentToWordDital(AppDefine.ZYDefine.BPHZ_REFID_ADDED+Integer.parseInt(numStart),
+//				AppDefine.ZYDefine.BPHZ_REFID_ADDED+Integer.parseInt(numEnd),AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
 	}
 
 	@Override

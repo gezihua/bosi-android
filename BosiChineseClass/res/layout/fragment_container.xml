@@ -29,21 +29,21 @@
             <RelativeLayout
                 android:id="@+id/sound_container"
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="90dp"
                 android:background="@drawable/bphz_levv_item_bg" >
 
                 <TextView
                     android:id="@+id/detail_word"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
                     android:background="#ffffff"
                     android:gravity="center"
                     android:textColor="#ff422108"
-                    android:textSize="30sp"
+                    android:text="的"
+                    android:textSize="40sp"
                     android:textStyle="bold" />
 
                 <View
@@ -60,6 +60,7 @@
                     android:layout_below="@id/detail_word"
                     android:layout_toLeftOf="@id/center_devider"
                     android:text="@string/play_word_py"
+                    android:layout_marginTop="3dp"
                     android:textSize="12sp" />
 
                 <ImageView
@@ -150,16 +151,24 @@
             </View>
 
             <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rl_ditalbody"
+                >
+                
+                <RelativeLayout
                 android:id="@+id/rl_explain"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_alignParentTop="true"
                 android:orientation="vertical" >
 
                 <ImageView
                     android:id="@+id/oracle_word"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
+                    android:scaleType="fitXY"
                     android:layout_alignParentTop="true" />
 
                 <TextView
@@ -169,7 +178,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="3dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="2dp"
                     android:layout_toLeftOf="@+id/oracle_word"
                     android:background="@drawable/pinyin_sybg"
@@ -178,6 +187,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_below="@+id/rl_explain"
                 android:layout_height="match_parent" >
 
                 <include
@@ -200,6 +210,22 @@
                     android:orientation="vertical" >
                 </LinearLayout>
             </RelativeLayout>
+                <ImageView
+                    android:id="@+id/iv_hint_bphz_learn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/rl_explain"
+                    android:layout_alignRight="@+id/rl_explain"
+                    android:layout_alignTop="@+id/rl_explain"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="120dp"
+                    android:layout_marginBottom="3dp"
+                    android:scaleType="fitXY"
+                    android:visibility="gone"
+                    
+                    ></ImageView>
+            </RelativeLayout>
+            
         </LinearLayout>
     </LinearLayout>
 
