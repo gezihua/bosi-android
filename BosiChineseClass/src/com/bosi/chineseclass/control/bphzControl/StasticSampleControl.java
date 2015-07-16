@@ -10,6 +10,7 @@ public class StasticSampleControl extends AbsBpStasitcViewControl{
 			OnDataChangedListener mDataChangedListener) {
 		super(mBpStasticLayout, mDataChangedListener);
 		mCurrentDisplayWordId = dictStart;
+		mDataChangedListener.onSampleLoadBefore();
 	}
 
 	@Override

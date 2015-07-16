@@ -66,7 +66,7 @@ public class PaintPadWindow {
 	}
 	private void initBaseView(){
 		mPaintView = (PaintView) mBaseView.findViewById(R.id.paintdialog_paintview);
-		mPaintView.setPenSize(20);
+		mPaintView.setPenSize(16);
 		mPaintView.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.iv_bgdict));
 		mColorPickDialog = new ColorPickerDialog(mContext, new OnColorChangedListener(){
 

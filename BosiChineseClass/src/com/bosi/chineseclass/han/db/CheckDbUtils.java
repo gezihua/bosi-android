@@ -84,4 +84,5 @@ public class CheckDbUtils {
 		return false;
 	}
 
+	//把爆破成语的加密文件copy到根目录下 ，临时目录里存放加密文件 根目录存
 }

@@ -18,7 +18,7 @@
         android:orientation="vertical"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:background="@drawable/temp_bg"
+        android:background="@drawable/bp_pagebg"
         >
     </LinearLayout>
         <LinearLayout

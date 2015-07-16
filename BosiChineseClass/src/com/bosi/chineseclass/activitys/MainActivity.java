@@ -57,6 +57,16 @@ public class MainActivity extends BaseActivity {
 		startActivity(mIntent);
 	}
 
+	@OnClick(R.id.btn_bpcy)
+	public void actionBpcy(View mView){
+		Intent mIntent = new Intent(this,SampleHolderActivity.class);
+		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"BpcyLevFragment"});
+		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+		startActivity(mIntent);
+	}
+
+	
+	
 	@OnClick(R.id.bt_zy)
 	public void actionZy(View mView){
 		Intent ziyuanIntent = new Intent(mContext, ZiYuanActivity.class);

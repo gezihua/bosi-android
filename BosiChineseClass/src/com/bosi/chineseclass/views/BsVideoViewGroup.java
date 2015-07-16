@@ -2,6 +2,7 @@ package com.bosi.chineseclass.views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -23,18 +24,23 @@ public class BsVideoViewGroup extends LinearLayout{
 	
 	@OnClick(R.id.bt_bsvideo_replay)
 	public void actionReplay(View mView){
+		mVideoView.setVisibility(View.VISIBLE);
 		mVideoView.start();
 		if(mOnVideoRestartListener!=null){
 			mOnVideoRestartListener.OnVideoRestarted();
 		}
 	}
 	
+	public void resetVideoView(){
+		mVideoView.setVisibility(View.INVISIBLE);
+	}
 	OnVideoRestartListener mOnVideoRestartListener;
 	
 	public void setOnVideoRestartListener(OnVideoRestartListener mOnVideoRestartListener){
 		this.mOnVideoRestartListener= mOnVideoRestartListener;
 	}
 	public void playVideo(String filePath){
+		if(TextUtils.isEmpty(filePath)) return;
 		mVideoView.setVideoPath(filePath);
 		actionReplay(null);
 	}
@@ -45,6 +51,7 @@ public class BsVideoViewGroup extends LinearLayout{
 	public BsVideoViewGroup(Context context,AttributeSet mAttributSet) { 
 		super(context,mAttributSet);
 		addVideoView();
+		resetVideoView();
 	}
 	private void addVideoView(){
 		View mView = View.inflate(getContext(), R.layout.layout_videogroup, null);
