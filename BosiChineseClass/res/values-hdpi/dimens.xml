@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="hzcs_icon_margintop">20dp</dimen>
+    <dimen name="hzcs_icon_marginbottom">39dp</dimen>
+
+    <dimen name="jbzy_bihua_padding_one">5dp</dimen>
+    <dimen name="jbzy_bihua_padding_two">2dp</dimen>
+    <dimen name="jbzy_icon_margintop_bottom">5dp</dimen>
+    <dimen name="jbzy_icon_marginleft_right">55dp</dimen>
+    <dimen name="jbzy_game_vertical_spacing">5dp</dimen>
+</resources>

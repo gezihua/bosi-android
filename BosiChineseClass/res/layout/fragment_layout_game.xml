@@ -25,20 +25,24 @@
         android:orientation="horizontal" >
     </LinearLayout>
 
-    <GridView
-        android:id="@+id/game_grid"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/game_step_layout"
-        android:horizontalSpacing="5dp"
-        android:listSelector="@android:color/transparent"
-        android:numColumns="8"
         android:background="@drawable/game_background"
-        android:paddingLeft="20dp"
-        android:paddingTop="17dp"
-        android:paddingRight="20dp"
-        android:verticalSpacing="5dp" >
-    </GridView>
+        android:padding="10dp" >
+
+        <GridView
+            android:id="@+id/game_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:horizontalSpacing="5dp"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="8"
+            android:verticalSpacing="@dimen/jbzy_game_vertical_spacing" >
+        </GridView>
+    </RelativeLayout>
 
     <LinearLayout 
         android:id="@+id/game_success_layout"
@@ -69,6 +73,6 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="重新开始本关"/>
-    </LinearLayout>"
+    </LinearLayout>
 
 </RelativeLayout>

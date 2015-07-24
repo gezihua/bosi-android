@@ -82,7 +82,6 @@ public class DictionaryAcitvity extends BaseActivity implements SearchableAction
             }
         };
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        mXutilImageLoader.getBitmapFactory().display(viewPager, "assets/zyzd/viewpager_background.png");
         viewPager.setAdapter(adapter);
         TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
         indicator.setOnPageChangeListener(new OnPageChangeListener() {

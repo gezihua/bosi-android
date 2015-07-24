@@ -91,8 +91,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/dictionary_reslut_back"
-            android:paddingTop="25dp"
-            android:paddingBottom="10dp"
             android:listSelector="@drawable/dictionary_text_back_color_selector"
             android:numColumns="6" />
     </LinearLayout>

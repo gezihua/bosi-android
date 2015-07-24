@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/jbzy_icon_margintop_bottom"
             android:background="@drawable/ziyuan_icon_zhiwu" />
 
         <com.bosi.chineseclass.han.view.IconImageView
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="@dimen/jbzy_icon_margintop_bottom"
             android:src="@drawable/ziyuan_icon_game" />
         <View 
             android:id="@+id/ziyuan_center_horizontal"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/ziyuan_center_horizontal"
             android:layout_marginBottom="18dp"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="@dimen/jbzy_icon_marginleft_right"
             android:background="@drawable/ziyuan_icon_ziran" />
 
         <com.bosi.chineseclass.han.view.IconImageView
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ziyuan_center_horizontal"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="@dimen/jbzy_icon_marginleft_right"
             android:layout_marginTop="18dp"
             android:background="@drawable/ziyuan_icon_other" />
 
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/ziyuan_center_horizontal"
             android:layout_marginBottom="18dp"
-            android:layout_marginRight="55dp"
+            android:layout_marginRight="@dimen/jbzy_icon_marginleft_right"
             android:layout_alignParentRight="true"
             android:background="@drawable/ziyuan_icon_ren" />
 
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ziyuan_center_horizontal"
-            android:layout_marginRight="55dp"
+            android:layout_marginRight="@dimen/jbzy_icon_marginleft_right"
             android:layout_marginTop="18dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/ziyuan_icon_qiwu" />
@@ -78,7 +78,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="专家讲字源" >
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/jbzy_zjjzy_bt_selector" >
     </Button>
 
 </RelativeLayout>

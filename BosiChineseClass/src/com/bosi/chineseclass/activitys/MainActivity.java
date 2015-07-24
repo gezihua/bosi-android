@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
@@ -25,7 +25,7 @@ import com.umeng.update.UmengUpdateAgent;
 @ContentView(R.layout.main)
 public class MainActivity extends BaseActivity {
 	@ViewInject(R.id.ll_main_body)
-	LinearLayout mlayoutBody;
+	RelativeLayout mlayoutBody;
 	
 	XutilImageLoader mXutilImageLoader;
 	@Override
