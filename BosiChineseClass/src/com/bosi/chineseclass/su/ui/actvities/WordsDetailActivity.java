@@ -162,8 +162,9 @@ public class WordsDetailActivity extends BaseActivity implements
 		if (!TextUtils.isEmpty(detail.shiyi)) {
 			mExplainTextView.setText(detail.shiyi);
 		}
-
 	}
+	
+	
 
 	/** 用于展示文字的具体示意 */
 	private void showExplain(Word detail) {

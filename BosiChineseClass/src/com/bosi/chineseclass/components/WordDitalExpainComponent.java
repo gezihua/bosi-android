@@ -1,12 +1,20 @@
 package com.bosi.chineseclass.components;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.bean.SpanData;
 import com.bosi.chineseclass.han.components.BaseComponents;
+import com.bosi.chineseclass.utils.BosiUtils;
 
 public class WordDitalExpainComponent extends BaseComponents implements
 		OnClickListener {
@@ -41,7 +49,9 @@ public class WordDitalExpainComponent extends BaseComponents implements
 
 	public void actionWzsy(View mView) {
 		if (mData != null && mData.length == 3) {
-			mTvDital.setText(mData[1]);
+			SpanData mSpanData = BosiUtils.getInsertRelineData(mData[1]);
+			if (!TextUtils.isEmpty(mSpanData.mResouce))
+				mTvDital.setText(mSpanData.mResouce);
 		}
 		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_normal);
 		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_selected);
@@ -50,7 +60,35 @@ public class WordDitalExpainComponent extends BaseComponents implements
 
 	public void actionCydg(View mView) {
 		if (mData != null && mData.length == 3) {
-			mTvDital.setText(mData[2]);
+
+			SpanData mSpanData = BosiUtils.getInsertRelineData(mData[2]);
+			if (mSpanData != null) {
+				if (!TextUtils.isEmpty(mSpanData.mResouce)) {
+					if (mSpanData.mSpaList != null
+							&& mSpanData.mSpaList.size() > 0) {
+						SpannableStringBuilder builder = new SpannableStringBuilder(
+								mSpanData.mResouce);
+						
+						for (int i = 0; i < mSpanData.mSpaList.size(); i++) {
+							Integer[] mIntegerArray = mSpanData.mSpaList.get(i);
+						
+							if (mIntegerArray[0] != null
+									&& mIntegerArray[1] != null){
+								ForegroundColorSpan redSpan = new ForegroundColorSpan(
+										Color.RED);
+								builder.setSpan(redSpan, mIntegerArray[0],
+										mIntegerArray[1],
+										Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+							}
+								
+						}
+						mTvDital.setText(builder);
+					}
+
+				}
+
+			}
+
 		}
 		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_selected);
 		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_normal);
@@ -59,7 +97,9 @@ public class WordDitalExpainComponent extends BaseComponents implements
 
 	public void actionJbsy(View mView) {
 		if (mData != null && mData.length == 3) {
-			mTvDital.setText(mData[0]);
+			SpanData mSpanData = BosiUtils.getInsertRelineData(mData[0]);
+			if (!TextUtils.isEmpty(mSpanData.mResouce))
+				mTvDital.setText(mSpanData.mResouce);
 		}
 		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_selected);
 		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_selected);
