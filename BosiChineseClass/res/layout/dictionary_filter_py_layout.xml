@@ -68,14 +68,12 @@
         <GridView
             android:id="@+id/result_show_words"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/dictionary_reslut_back"
-            android:paddingTop="25dp"
-            android:paddingBottom="10dp"
             android:listSelector="@drawable/dictionary_text_back_color_selector"
             android:numColumns="6" />
     </LinearLayout>

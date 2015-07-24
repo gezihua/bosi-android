@@ -15,7 +15,6 @@
             android:id="@+id/hen_start"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:paddingBottom="10dp"
             android:layout_weight="1"
@@ -113,8 +112,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/dictionary_reslut_back"
-            android:paddingTop="25dp"
-            android:paddingBottom="10dp"
             android:listSelector="@drawable/dictionary_text_back_color_selector"
             android:numColumns="6" />
 

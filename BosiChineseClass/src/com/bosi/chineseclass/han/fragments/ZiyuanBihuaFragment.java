@@ -61,9 +61,9 @@ public class ZiyuanBihuaFragment extends BaseFragment {
             mTextView.setTextSize(17);
             mTextView.setText(mBihuaArray[i]);
             if (mBihuaArray[i].length() < 2) {
-                mTextView.setPadding(14, 0, 14, 0);
+                mTextView.setPadding(getDimenById(R.dimen.jbzy_bihua_padding_one), 0, getDimenById(R.dimen.jbzy_bihua_padding_one), 0);
             } else {
-                mTextView.setPadding(2, 0, 2, 0);
+                mTextView.setPadding(getDimenById(R.dimen.jbzy_bihua_padding_two), 0, getDimenById(R.dimen.jbzy_bihua_padding_two), 0);
             }
 
             mTextView.setOnClickListener(new OnClickListener() {
@@ -84,6 +84,10 @@ public class ZiyuanBihuaFragment extends BaseFragment {
         }
 
         refreshBihuaColor();
+    }
+    
+    private int getDimenById(int id){
+        return (int)mActivity.getResources().getDimension(id);
     }
     
     private void refreshBihuaColor(){

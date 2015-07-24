@@ -9,11 +9,10 @@
         android:id="@+id/dic_headactionbar"
         layout="@layout/common_head" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/activity_dictionary_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -25,25 +24,33 @@
             android:paddingTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/indivitor_back" />
 
-        <!-- <View
+        <ImageView
+            android:id="@+id/indivitor"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="@color/indivitor_back_color" /> -->
+            android:layout_height="wrap_content"
+            android:layout_below="@id/indicator"
+            android:background="@drawable/dictionary_indivitor_background" />
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="10dp"
-            android:paddingRight="5dp"
-            android:layout_gravity="center" >
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/indivitor"
+                android:background="@drawable/viewpager_background"
+                android:layout_marginBottom="12dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp">
         </android.support.v4.view.ViewPager>
 
-    </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/dictionary_viewpager_bottom" />
+
+    </RelativeLayout>
 
 </LinearLayout>
