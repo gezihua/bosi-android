@@ -60,35 +60,7 @@ public class WordDitalExpainComponent extends BaseComponents implements
 
 	public void actionCydg(View mView) {
 		if (mData != null && mData.length == 3) {
-
-			SpanData mSpanData = BosiUtils.getInsertRelineData(mData[2]);
-			if (mSpanData != null) {
-				if (!TextUtils.isEmpty(mSpanData.mResouce)) {
-					if (mSpanData.mSpaList != null
-							&& mSpanData.mSpaList.size() > 0) {
-						SpannableStringBuilder builder = new SpannableStringBuilder(
-								mSpanData.mResouce);
-						
-						for (int i = 0; i < mSpanData.mSpaList.size(); i++) {
-							Integer[] mIntegerArray = mSpanData.mSpaList.get(i);
-						
-							if (mIntegerArray[0] != null
-									&& mIntegerArray[1] != null){
-								ForegroundColorSpan redSpan = new ForegroundColorSpan(
-										Color.RED);
-								builder.setSpan(redSpan, mIntegerArray[0],
-										mIntegerArray[1],
-										Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-							}
-								
-						}
-						mTvDital.setText(builder);
-					}
-
-				}
-
-			}
-
+			BosiUtils.loadTransfDataBaseSquare(mTvDital, mData[2]);
 		}
 		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_selected);
 		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_normal);

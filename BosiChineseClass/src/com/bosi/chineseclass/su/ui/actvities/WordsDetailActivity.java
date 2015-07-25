@@ -15,6 +15,7 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
+import com.bosi.chineseclass.bean.SpanData;
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerListener;
@@ -26,6 +27,7 @@ import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.db.DbUtils;
 import com.bosi.chineseclass.su.db.Word;
+import com.bosi.chineseclass.utils.BosiUtils;
 import com.bosi.chineseclass.views.BsVideoViewGroup;
 import com.bosi.chineseclass.views.PaintPadWindow;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -160,7 +162,7 @@ public class WordsDetailActivity extends BaseActivity implements
 		}
 		mYtTextView.setText(temp);
 		if (!TextUtils.isEmpty(detail.shiyi)) {
-			mExplainTextView.setText(detail.shiyi);
+			BosiUtils.loadTransfDataBaseSquare(mExplainTextView,detail.shiyi);
 		}
 	}
 	
