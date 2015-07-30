@@ -1,5 +1,6 @@
 package com.gitonway.lee.niftymodaldialogeffects.lib;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -96,7 +97,8 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
 
     }
 
-    private void init(Context context) {
+    @SuppressLint("NewApi")
+	private void init(Context context) {
 
         mDialogView = LayoutInflater.from(context).inflate( R.layout.dialog_layout,null);
 
@@ -169,7 +171,6 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
 
     public NiftyDialogBuilder withMessage(CharSequence msg) {
         toggleView(mLinearLayoutMsgView,msg);
-        mLinearLayoutMsgView.setVisibility(View.VISIBLE);
         mMessage.setText(msg);
         return this;
     }

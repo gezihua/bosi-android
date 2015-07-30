@@ -25,4 +25,6 @@
      
      <string name ="toast_remote_nothingtolearn">本组没有相应的学习记录</string>
   
+     <string name = "private_key"></string>
+     <string name = "public_key"></string>
 </resources>

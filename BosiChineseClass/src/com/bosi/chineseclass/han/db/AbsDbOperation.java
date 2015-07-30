@@ -6,13 +6,17 @@ import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
 
 public abstract class AbsDbOperation implements IDbOperation {
-	DbManager mDbManager = BSApplication.getInstance().mDbManager;
+	
+	
+	public static DbManager getDbManager(){
+		return BSApplication.getInstance().mDbManager;
+	}
 
 	@Override
 	public boolean saveData(EntityBase mEntity) {
 
 		try {
-			mDbManager.getContentDb().save(mEntity);
+			getDbManager().getContentDb().save(mEntity);
 			return true;
 		} catch (DbException e) {
 			return false;
@@ -24,7 +28,7 @@ public abstract class AbsDbOperation implements IDbOperation {
 	@Override
 	public boolean deleteDataFromDb(String sql) {
 		try {
-			mDbManager.getContentDb().execNonQuery(sql);
+			getDbManager().getContentDb().execNonQuery(sql);
 			return true;
 		} catch (DbException e) {
 			return false;
@@ -34,7 +38,7 @@ public abstract class AbsDbOperation implements IDbOperation {
 	@Override
 	public boolean updateDataFromDb(String sql) {
 		try {
-			mDbManager.getContentDb().execNonQuery(sql);
+			getDbManager().getContentDb().execNonQuery(sql);
 			LogUtils.i("SQL", sql);
 			return true;
 		} catch (DbException e) {
@@ -43,13 +47,9 @@ public abstract class AbsDbOperation implements IDbOperation {
 		}
 	}
 
-	public DbManager getDBDbManager() {
-		return mDbManager;
-	}
-
 	public void clearDbData() {
 		try {
-			mDbManager.getContentDb()
+			getDbManager().getContentDb()
 					.execNonQuery("delete from " + getDbName());
 		} catch (DbException e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public abstract class AbsDbOperation implements IDbOperation {
 		boolean isInsertSuccess = saveData(mUser);
 		if (!isInsertSuccess) {
 			try {
-				getDBDbManager().getContentDb().update(mUser, mWhereBuilder);
+				getDbManager().getContentDb().update(mUser, mWhereBuilder);
 			} catch (DbException e) {
 			}
 		}

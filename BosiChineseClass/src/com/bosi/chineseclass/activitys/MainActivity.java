@@ -1,5 +1,7 @@
 package com.bosi.chineseclass.activitys;
 
+import java.util.List;
+
 import android.content.Intent;
 
 
@@ -11,15 +13,19 @@ import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
+import com.bosi.chineseclass.bean.BpcyDataBean;
 import com.bosi.chineseclass.control.SampleControl;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
+import com.bosi.chineseclass.db.dict.BPCYDATA;
 import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
 import com.bosi.chineseclass.han.db.CheckDbUtils;
 import com.bosi.chineseclass.han.db.DbManager;
+import com.bosi.chineseclass.han.util.LogUtils;
 import com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
 @ContentView(R.layout.main)
@@ -32,6 +38,7 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		UmengUpdateAgent.update(this);
+		MobclickAgent.updateOnlineConfig(this);
 		getDataAsy();
 		mXutilImageLoader = new XutilImageLoader(this);
 		mXutilImageLoader.getBitmapFactory().display(mlayoutBody, "assets/bosi_index_bg.jpg");
@@ -74,9 +81,30 @@ public class MainActivity extends BaseActivity {
 	}
 	@OnClick(R.id.btn_zyzd)
 	public void actionZyzd(View mView){
-		
 		Intent intent = new Intent(MainActivity.this, DictionaryAcitvity.class);
 		startActivity(intent);
+	}
+	
+	BPCYDATA mBpcy = new BPCYDATA();
+	@OnClick(R.id.encode_bpcy)
+	public void actionEncodeBpcy(View mView){
+		new Thread(){
+			public void run(){
+				for(int i=0 ;i<13300 ;i=i+100){
+					String sqlSelect = getResources().getString(R.string.select_frombpcy);
+					String sqlFormat = String.format(sqlSelect, i+"",(100+i)+"");
+					LogUtils.i("zhujohnle", sqlFormat);
+					List<BpcyDataBean> mList = mBpcy.selectDataFromDb(sqlFormat);
+					try {
+						mBpcy.syncEncryptData(mList);
+						LogUtils.i("zhujohnle", "success"+i);
+					} catch (Exception e) {
+						LogUtils.i("zhujohnle", "failed"+i);
+					}
+				}
+			}
+		}.start();
+		
 	}
 	private void getDataAsy(){
 		updateProgress(1, 2);

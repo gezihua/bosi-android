@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="hzcs_icon_margintop">55dp</dimen>
+    <dimen name="hzcs_icon_marginbottom">60dp</dimen>
+
+    <dimen name="jbzy_icon_margintop_bottom">15dp</dimen>
+    <dimen name="jbzy_icon_marginleft_right">90dp</dimen>
+    <dimen name="jbzy_game_vertical_spacing">20dp</dimen>
+</resources>

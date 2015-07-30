@@ -13,7 +13,7 @@ public class ZyCategoryDbOperation extends AbsDbOperation {
         List<DbModel> dbModels = null;
         ArrayList<ZyCategoryInfo> mData = new ArrayList<ZyCategoryInfo>();
         try {
-            dbModels = mDbManager.getContentDb().findDbModelAll(sql);
+            dbModels = getDbManager().getContentDb().findDbModelAll(sql);
             for (DbModel mDbModle : dbModels) {
                 ZyCategoryInfo zyCategoryInfo = new ZyCategoryInfo();
                 zyCategoryInfo.setType(mDbModle.getInt(ZyCategoryInfo.TYPE));

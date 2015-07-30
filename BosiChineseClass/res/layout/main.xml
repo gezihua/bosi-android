@@ -55,5 +55,13 @@
             android:layout_height="160dp"
             android:background="@drawable/a6_selector" />
     </LinearLayout>
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/encode_bpcy"
+        android:text="加密爆破成语"
+        android:layout_alignParentBottom="true"
+        ></Button>
 
 </RelativeLayout>

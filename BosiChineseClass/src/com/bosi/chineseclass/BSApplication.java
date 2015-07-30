@@ -36,6 +36,7 @@ public class BSApplication extends Application {
 		mActivityStack = new AppActivityStack();
 		mHttpUtils = new HttpUtils();
 		// CrashHandler.getInstance().init(this);
+		MobclickAgent.setDebugMode(true);
 	}
 
 	public static BSApplication mApplication = null;
@@ -62,6 +63,7 @@ public class BSApplication extends Application {
 	}
 
 	public void destroySystem() {
+		MobclickAgent.onKillProcess(this);
 		try {
 			isBaiduServiceRunningKill();
 		} catch (Exception e) {

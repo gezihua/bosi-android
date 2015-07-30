@@ -14,7 +14,7 @@ public class GameDbOperation extends AbsDbOperation {
         List<DbModel> dbModels = null;
         ArrayList<GameIconInfo> mData = new ArrayList<GameIconInfo>();
         try {
-            dbModels = mDbManager.getContentDb().findDbModelAll(sql);
+            dbModels = getDbManager().getContentDb().findDbModelAll(sql);
             for (DbModel mDbModle : dbModels) {
                 GameIconInfo mGameIconInfo = new GameIconInfo();
                 mGameIconInfo.setType(mDbModle.getInt(GameIconInfo.TYPE));

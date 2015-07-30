@@ -167,7 +167,6 @@ public class WordsDetailActivity extends BaseActivity implements
 	}
 	
 	
-
 	/** 用于展示文字的具体示意 */
 	private void showExplain(Word detail) {
 		mExpainComponent.setData(new String[] { detail.yanbian, detail.cysy,

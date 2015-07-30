@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.bean.BphzBean;
+import com.bosi.chineseclass.bean.BpStasticBean;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 
 //第二个层级
 public class BphzLevvAdapter extends BphzLevAdapter {
 
-	public BphzLevvAdapter(Context mContext, List<BphzBean> mlists) {
+	public BphzLevvAdapter(Context mContext, List<BpStasticBean> mlists) {
 		super(mContext, mlists);
 	}
 
@@ -43,7 +43,7 @@ public class BphzLevvAdapter extends BphzLevAdapter {
 	protected void onClickItemNumsBetween(int position) {
 		// Intent mIntent = new Intent( ); //进入 字典详情页
 		
-		BphzBean mData = mListData.get(position);
+		BpStasticBean mData = mListData.get(position);
 		String array [] =mData.mNumberBetween.split("-");
 	    String numStart =array[0];
 	    String numEnd = array[1];

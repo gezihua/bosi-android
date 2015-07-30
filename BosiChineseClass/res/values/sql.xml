@@ -21,4 +21,20 @@ as countremb
 ,(select count(*) from bpcyhistory  where isrember = \'%1$d\' and dictindex &lt;= \'%4$d\' and dictindex &gt;= \'%3$d\') as countunremb
  from bpcyhistory where dictindex &lt;= \'%4$d\'  and dictindex &gt;= \'%3$d\'  and isrember = \'%2$d\' </string>
 <string name = "delete_bpcy_basedictindexbetween">delete  from bpcyhistory where dictindex  &lt;= \'%2$d\'  and dictindex &gt;= \'%1$d\' </string>
+
+
+
+
+
+
+
+
+
+<string name="update_bpcy_baseid">
+    update chengyu set CYCimu =\'%1$s\'  ,  CYFayin = \'%2$s\'   , CYChuchu =\'%3$s\'   , CYJinyi= \'%4$s\'  ,CYFanyi= \'%5$s\' where cybh = \'%6$s\' </string>
+
+<string name="select_frombpcy">select * from chengyu order by cybh limit \'%1$s\',\'%2$s\' </string>
+
+
+
 </resources>

@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.bean.BphzBean;
+import com.bosi.chineseclass.bean.BpStasticBean;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 
 //第二个层级
 public class BpcyLevvAdapter extends BpcyLevAdapter {
 
-	public BpcyLevvAdapter(Context mContext, List<BphzBean> mlists) {
+	public BpcyLevvAdapter(Context mContext, List<BpStasticBean> mlists) {
 		super(mContext, mlists);
 	}
 

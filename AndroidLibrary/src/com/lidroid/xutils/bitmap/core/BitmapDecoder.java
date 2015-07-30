@@ -172,7 +172,7 @@ public class BitmapDecoder {
     }
 
     public static int calculateInSampleSize(BitmapFactory.Options options, int maxWidth, int maxHeight) {
-        final int height = options.outHeight;
+        /*final int height = options.outHeight;
         final int width = options.outWidth;
         int inSampleSize = 1;
 
@@ -190,7 +190,7 @@ public class BitmapDecoder {
             while (totalPixels / (inSampleSize * inSampleSize) > maxTotalPixels) {
                 inSampleSize++;
             }
-        }
-        return inSampleSize;
+        }*/
+        return 1;
     }
 }

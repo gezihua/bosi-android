@@ -16,7 +16,7 @@ import android.widget.LinearLayout.LayoutParams;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.activitys.SampleHolderActivity;
-import com.bosi.chineseclass.bean.BphzBean;
+import com.bosi.chineseclass.bean.BpStasticBean;
 import com.bosi.chineseclass.components.NiftyDialogComponents;
 import com.bosi.chineseclass.components.NiftyDialogComponents.OnNiftyCallBack;
 import com.bosi.chineseclass.control.SampleControl;
@@ -26,11 +26,11 @@ import com.bosi.chineseclass.han.util.Utils;
 import com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity;
 import com.bosi.chineseclass.utils.ViewHolder;
 
-public class BpcyLevAdapter extends ComListViewAdapter<List<BphzBean>>{
+public class BpcyLevAdapter extends ComListViewAdapter<List<BpStasticBean>>{
 
 	BPCY mBphz = new BPCY();
 
-	public BpcyLevAdapter(Context mContext, List<BphzBean> mlists) {
+	public BpcyLevAdapter(Context mContext, List<BpStasticBean> mlists) {
 		super(mContext, mlists);
 		mNiftyDialog = new NiftyDialogComponents(mContext);
 	}
@@ -120,7 +120,7 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BphzBean>>{
 		mButtonUnRem.setText("0");
 
 		if (mListData != null && mListData.size() > 0) {
-			BphzBean mData = mListData.get(position);
+			BpStasticBean mData = mListData.get(position);
 			if (mData != null) {
 				mButtonUnRem.setText(mData.mUnRemberNum);
 				mButtonRem.setText(mData.mRemberNum);
@@ -168,7 +168,7 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BphzBean>>{
 					Toast.LENGTH_SHORT).show();
 			return;
 		}
-		BphzBean mData = mListData.get(position);
+		BpStasticBean mData = mListData.get(position);
 		String array[] = mData.mNumberBetween.split("-");
 		String numStart = array[0];
 		String numEnd = array[1];
@@ -219,7 +219,7 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BphzBean>>{
 		sampleView(position, mView);
 
 		if (mListData != null && mListData.size() > 0) {
-			BphzBean mData = mListData.get(position);
+			BpStasticBean mData = mListData.get(position);
 			if (mData != null) {
 				mButtonSize.setText(mData.mNumberBetween);
 			}

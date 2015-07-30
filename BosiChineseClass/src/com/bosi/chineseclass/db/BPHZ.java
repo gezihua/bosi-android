@@ -7,7 +7,7 @@ import java.util.List;
 import android.content.Context;
 
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.bean.BphzBean;
+import com.bosi.chineseclass.bean.BpStasticBean;
 import com.lidroid.xutils.db.table.DbModel;
 import com.lidroid.xutils.exception.DbException;
 
@@ -40,7 +40,7 @@ public class BPHZ extends AbsDbOperation{
 		return mLists;
 	}
 	
-	public BphzBean getListBpHzBeans(Context mContext ,int start,int end,BphzBean  mBpHzBean){
+	public BpStasticBean getListBpHzBeans(Context mContext ,int start,int end,BpStasticBean  mBpHzBean){
 		
 		String sqlSelectBphzLvStastic =  mContext.getResources().getString(R.string.select_bphz_lev1data);
 		String sqlFormat = String.format(sqlSelectBphzLvStastic, 0,1,start,end);

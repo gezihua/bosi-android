@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
-import com.bosi.chineseclass.bean.BphzBean;
+import com.bosi.chineseclass.bean.BpStasticBean;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.model.BphzLevAdapter;
@@ -26,7 +26,7 @@ public class BphzLevFragment extends BaseFragment {
 	@ViewInject(R.id.headactionbar)
 	View mViewHead;
 
-	List<BphzBean> mAdapterDataList = new ArrayList<BphzBean>();
+	List<BpStasticBean> mAdapterDataList = new ArrayList<BpStasticBean>();
 
 	@Override
 	protected View getBasedView() {
@@ -91,11 +91,11 @@ public class BphzLevFragment extends BaseFragment {
 	}
 
 	// 放到异步任务中去做
-	private List<BphzBean> getLists() {
+	private List<BpStasticBean> getLists() {
 		BPHZ mBphz = new BPHZ();
-		List<BphzBean> mLists = new ArrayList<BphzBean>();
+		List<BpStasticBean> mLists = new ArrayList<BpStasticBean>();
 		for (int i = 1; i <= 15; i++) {
-			BphzBean mBpHzBean = new BphzBean();
+			BpStasticBean mBpHzBean = new BpStasticBean();
 			mBpHzBean.mDictIndex = i - 1;
 			int startSize = (mBpHzBean.mDictIndex * 500 + 1);
 			int endSize = (i * 500);
