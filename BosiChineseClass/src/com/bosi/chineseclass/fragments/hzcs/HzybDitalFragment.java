@@ -2,10 +2,12 @@ package com.bosi.chineseclass.fragments.hzcs;
 
 
 
+import android.graphics.Bitmap;
 import android.view.View;
 
 import com.bosi.chineseclass.R;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.bitmap.core.BitmapDecoder;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 
@@ -51,17 +53,25 @@ public class HzybDitalFragment extends AbsHzcsFragment{
 		currentPosition = 0;
 		downloadimgs();
 	}
-	
+	Bitmap mTempBitmap ; 
 	@Override
 	public void initMenu() {
-		mImageLoader.getBitmapFactory().display(mIvDital,
-				"assets/hzqy/hzyb.png");
+		mTempBitmap= BitmapDecoder.decodeResource(getResources(), R.drawable.hzyb);
+		mIvDital.setImageBitmap(mTempBitmap);
 		
 		View mMenuView = View.inflate(mActivity, R.layout.layout_hzyb_menu, null);
 		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
 		mBtLeft.setVisibility(View.GONE);
 		mBtRight.setVisibility(View.GONE);
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if(mTempBitmap!=null&&!mTempBitmap.isRecycled()){
+			mTempBitmap.recycle();
+		}
 	}
 
 	@Override

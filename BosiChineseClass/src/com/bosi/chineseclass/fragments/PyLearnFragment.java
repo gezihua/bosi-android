@@ -23,6 +23,7 @@ import com.bosi.chineseclass.components.MediaPlayerPools;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.control.DownLoadResouceControl.DownLoadInterface;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
+import com.bosi.chineseclass.han.util.Utils;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
 import com.bosi.chineseclass.views.BsVideoViewGroup;
 import com.bosi.chineseclass.views.BsVideoViewGroup.OnVideoRestartListener;
@@ -137,7 +138,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 		mAutoViewGroup.removeAllViews();
 		for (int i = 0; i < marrayForLearn.length; i++) {
 			final TextView mTextView = new TextView(mActivity);
-			mTextView.setTextSize(20);
+			mTextView.setTextSize(getTextSizeBaseScreen());
 			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setPadding(5, 3, 5, 3);
 			mTextView.setBackground(getResources().getDrawable(
@@ -212,7 +213,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 
 		for (int i = 0; i < mArrays.length; i++) {
 			TextView mTextView = new TextView(mActivity);
-			mTextView.setTextSize(20);
+			mTextView.setTextSize(getTextSizeBaseScreen());
 			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setText(mArrays[i]);
 			LinearLayout.LayoutParams mLayoutParams = new LayoutParams(
@@ -222,6 +223,16 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 			mLayoutDital.addView(mTextView);
 		}
 
+	}
+	
+	private int getTextSizeBaseScreen(){
+		int width = Utils.getWinWidth(mActivity);
+		if(width>900){
+			return 20;
+		}else{
+			return 14;
+		}
+		
 	}
 
 	/**
