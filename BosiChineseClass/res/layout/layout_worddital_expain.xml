@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
          android:background="@drawable/bphz_ditalexplan_bg"
-          android:padding="14dp"
+          android:padding="13dp"
         >
         <TextView
            

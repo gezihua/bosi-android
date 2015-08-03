@@ -50,8 +50,10 @@ public class WordDitalExpainComponent extends BaseComponents implements
 	public void actionWzsy(View mView) {
 		if (mData != null && mData.length == 3) {
 			SpanData mSpanData = BosiUtils.getInsertRelineData(mData[1]);
-			if (!TextUtils.isEmpty(mSpanData.mResouce))
-				mTvDital.setText(mSpanData.mResouce);
+			if (mSpanData!=null&&!TextUtils.isEmpty(mSpanData.mResouce))
+				mTvDital.setText(mSpanData.mResouce);else{
+					mTvDital.setText(mData[1]);
+				}
 		}
 		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_normal);
 		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_selected);
@@ -69,9 +71,9 @@ public class WordDitalExpainComponent extends BaseComponents implements
 
 	public void actionJbsy(View mView) {
 		if (mData != null && mData.length == 3) {
-			SpanData mSpanData = BosiUtils.getInsertRelineData(mData[0]);
-			if (!TextUtils.isEmpty(mSpanData.mResouce))
-				mTvDital.setText(mSpanData.mResouce);
+			/*SpanData mSpanData = BosiUtils.getInsertRelineData(mData[0]);
+			if (!TextUtils.isEmpty(mSpanData.mResouce))*/
+				mTvDital.setText(mData[0]);
 		}
 		mViewWzsy.setBackgroundResource(R.drawable.tab_word_detail_selected);
 		mViewCydg.setBackgroundResource(R.drawable.tab_word_detail_selected);

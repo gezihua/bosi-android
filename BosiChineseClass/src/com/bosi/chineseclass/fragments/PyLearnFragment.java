@@ -320,6 +320,8 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 		super.onDestroy();
 		mPorperties.clear();
 		mPorperties = null;
+		mVideoViewRead.onDestroy();
+		mVideoViewWrite.onDestroy();
 	}
 
 	public enum CategoryPinyin {
@@ -329,6 +331,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 	private void playVoice(String fileName){
 		mMediaPlayerPools.playMediaFile(fileName);
 	}
+	
 	
 	private void playVideoRead(){
 		mVideoViewRead.playVideo(getAbsoultFilePath()+mPressedZm+".mp4");

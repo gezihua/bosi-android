@@ -174,7 +174,7 @@
                     
                       android:layout_width="match_parent"
                     android:layout_height="80dp"
-                            android:layout_alignParentLeft="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="10dp"
@@ -182,13 +182,15 @@
                     android:layout_toLeftOf="@+id/oracle_word"
                     android:background="@drawable/pinyin_sybg"
                     >
-                    
-                     <TextView
+                         <TextView
+                             android:padding="2dp"
                     android:id="@+id/word_explain"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-            
-                    android:padding="5dp" />
+                    android:layout_height="300dp"
+                    />
+                        
+                    
+                    
                     
                 </ScrollView>
 

@@ -1,13 +1,21 @@
 package com.bosi.chineseclass.views;
 
+import java.io.File;
+
+import u.aly.cp;
 import android.annotation.SuppressLint;
+
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -24,11 +32,7 @@ public class BsVideoViewGroup extends LinearLayout{
 	
 	@OnClick(R.id.bt_bsvideo_replay)
 	public void actionReplay(View mView){
-		mVideoView.setVisibility(View.VISIBLE);
-		mVideoView.start();
-		if(mOnVideoRestartListener!=null){
-			mOnVideoRestartListener.OnVideoRestarted();
-		}
+		playVideo();
 	}
 	
 	public void resetVideoView(){
@@ -39,14 +43,37 @@ public class BsVideoViewGroup extends LinearLayout{
 	public void setOnVideoRestartListener(OnVideoRestartListener mOnVideoRestartListener){
 		this.mOnVideoRestartListener= mOnVideoRestartListener;
 	}
+	
+	private void playVideo(){
+		if(TextUtils.isEmpty(mVideoPath))return;
+		mVideoView.setVisibility(View.VISIBLE);
+		if(mOnVideoRestartListener!=null){
+			mOnVideoRestartListener.OnVideoRestarted();
+		}
+		mVideoView.setVideoPath(mVideoPath);
+	}
+	private String mVideoPath ;
 	public void playVideo(String filePath){
 		if(TextUtils.isEmpty(filePath)) return;
-		mVideoView.setVideoPath(filePath);
-		actionReplay(null);
+		File mFile = new File(filePath);
+		if(mFile==null ||!mFile.exists()){
+			Toast.makeText(getContext(), "此资源没有动画", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		this.mVideoPath = filePath;
+		playVideo();
 	}
 	public BsVideoViewGroup(Context context) {
 		super(context);
+		
+		
+	}
 	
+	
+	public void onDestroy(){
+		if(mVideoView.isPlaying()){
+			mVideoView.stopPlayback();
+		}
 	}
 	public BsVideoViewGroup(Context context,AttributeSet mAttributSet) { 
 		super(context,mAttributSet);
@@ -57,6 +84,15 @@ public class BsVideoViewGroup extends LinearLayout{
 		View mView = View.inflate(getContext(), R.layout.layout_videogroup, null);
 		ViewUtils.inject(this, mView);
 		addView(mView);
+		
+		mVideoView.setOnCompletionListener(new OnCompletionListener(){
+
+			@Override
+			public void onCompletion(MediaPlayer arg0) {
+				mVideoView.stopPlayback();
+			}
+ 	});
+
 	}
 	
 	@SuppressLint("NewApi")
