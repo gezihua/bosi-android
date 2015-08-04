@@ -6,4 +6,6 @@
     <dimen name="jbzy_icon_margintop_bottom">15dp</dimen>
     <dimen name="jbzy_icon_marginleft_right">90dp</dimen>
     <dimen name="jbzy_game_vertical_spacing">20dp</dimen>
+    
+    <dimen name = "pyxx_pyp_item_width">180dp</dimen>
 </resources>

@@ -179,7 +179,9 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
     }
 
     public void setVideoPath(String path) {
+    	
         setVideoURI(Uri.parse(path));
+        
     }
 
     public void setVideoURI(Uri uri) {

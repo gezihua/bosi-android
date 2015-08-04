@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+  <!--   android:background="@drawable/bphz_levitem_bg" -->
+    <LinearLayout
+        android:id="@+id/rl_bphz_item_body"
+        android:layout_width="125dp"
+        android:layout_height="90dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/bt_bphz_item_number"
+            android:background="@drawable/bphz_levitem_number_lvbg"
+            android:text="0-100"
+            style="@style/bosi_textstyle_title"
+            ></Button>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_layout_bphz_item_checkpoint"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            >
+            <Button
+                 android:id="@+id/bt_bphz_item_unrenumber"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:text="10"
+                android:background="@drawable/bphz_levunlearn_number_bg"
+                ></Button>
+             <Button
+                  android:id="@+id/bt_bphz_item_renumber"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:text="12"
+                android:background="@drawable/bphz_levlearn_num_bg"
+                ></Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

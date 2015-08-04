@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+ <RelativeLayout
+     android:layout_width="250dp"
+     android:layout_height="100dp"
+     android:background="@drawable/bphz_levv_stastic_bg"
+     android:orientation="vertical"
+     android:paddingLeft="10dp"
+     android:paddingRight="10dp"
+     android:gravity="center_horizontal"
+     >
+     
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="提示"
+         android:id="@+id/bphz_levv_remote"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="15dp"
+         android:textColor="@android:color/holo_green_light"
+         ></TextView>
+     
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="点击清零按钮,清除当前组爆破汉字的记录"
+         android:layout_marginTop="8dp"
+         android:textSize="12sp"
+         android:layout_below="@+id/bphz_levv_remote"
+          android:textColor="@android:color/holo_green_dark"
+         ></TextView>
+     
+      <Button
+         android:id="@+id/bt_bphzlvv_clear_logdata"
+         android:layout_width="60dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="12dp"
+         android:text="清零"
+         android:background="@android:color/background_light"
+         android:textColor="@android:color/holo_red_light"
+         android:layout_alignParentBottom="true"
+         android:layout_centerHorizontal="true"
+         android:layout_marginBottom="10dp"
+        ></Button>
+ </RelativeLayout>
+</LinearLayout>

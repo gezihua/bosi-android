@@ -24,6 +24,7 @@ import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.control.DownLoadResouceControl.DownLoadInterface;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.util.Utils;
+import com.bosi.chineseclass.utils.DataTools;
 import com.bosi.chineseclass.views.AutoChangeLineViewGroup;
 import com.bosi.chineseclass.views.BsVideoViewGroup;
 import com.bosi.chineseclass.views.BsVideoViewGroup.OnVideoRestartListener;
@@ -108,6 +109,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 	}
 
 	
+	
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -116,9 +118,20 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 //		showPresentPressedZmFyyl(getPropertiesFromKey(mPressedZm + SUFFIX_FYYL));
 	}
 
+	
+	
+	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 	}
+	
+	
+	private int getTextSize(){
+		int width = Utils.getWinWidth(mActivity);
+		if(width>900)return 20;
+		return 15;
+	}
+	
 	private void setup() {
 		initComponents();
 		initBasicPinYin(CategoryPinyin.SM);
@@ -198,7 +211,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 		mLayoutDital.removeAllViews();
 		TextView mTextView = new TextView(mActivity);
 		mTextView.setText(msg);
-		mTextView.setTextSize(20);
+		mTextView.setTextSize(getTextSize());
 		mLayoutDital.addView(mTextView);
 	}
 
@@ -230,7 +243,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 		if(width>900){
 			return 20;
 		}else{
-			return 14;
+			return 15;
 		}
 		
 	}
@@ -263,7 +276,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 				playVoice(getAbsoultFilePath()+fileName);
 				}
 			});
-			mTextView.setTextSize(20);
+			mTextView.setTextSize(getTextSize());
 			mTextView.setText(mArrays[i]);
 			mAutoChangeLineView.addView(mView);
 

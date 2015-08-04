@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -33,6 +32,7 @@ public class BsVideoViewGroup extends LinearLayout{
 	@OnClick(R.id.bt_bsvideo_replay)
 	public void actionReplay(View mView){
 		playVideo();
+		
 	}
 	
 	public void resetVideoView(){
@@ -52,6 +52,8 @@ public class BsVideoViewGroup extends LinearLayout{
 		}
 		mVideoView.setVideoPath(mVideoPath);
 	}
+	
+	
 	private String mVideoPath ;
 	public void playVideo(String filePath){
 		if(TextUtils.isEmpty(filePath)) return;

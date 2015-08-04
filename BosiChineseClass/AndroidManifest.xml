@@ -19,6 +19,7 @@
                   android:compatibleWidthLimitDp="integer"
                   android:largestWidthLimitDp="integer"/> -->
                   
+               
        
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
