@@ -30,23 +30,12 @@
     <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" >
-    </uses-permission>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_GPS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.CAMERA" >
-    </uses-permission>
-    <uses-permission android:name="android.permission.RECORD_AUDIO" >
-    </uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
     </uses-permission>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -119,6 +108,13 @@
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
+        
+          <activity
+            android:name="com.bosi.chineseclass.activitys.BpcyDitalActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
+            android:screenOrientation="landscape" >
+        </activity>
+        
         <activity
             android:name=".activitys.WebViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
@@ -130,6 +126,9 @@
             android:label="@string/umeng_fb_title"
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
+        
+        
+        
         <activity
             android:name="com.umeng.fb.HelpActivity"
             android:label="@string/umeng_fb_title"

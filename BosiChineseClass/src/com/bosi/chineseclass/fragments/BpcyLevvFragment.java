@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.fragments;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import android.view.View;
@@ -19,8 +20,6 @@ import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.model.BpcyLevvAdapter;
-import com.bosi.chineseclass.model.BphzLevAdapter;
-import com.bosi.chineseclass.model.BphzLevvAdapter;
 import com.bosi.chineseclass.views.BSGridView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -42,11 +41,8 @@ public class BpcyLevvFragment extends BaseFragment {
 	protected View getBasedView() {
 		return View.inflate(mActivity, R.layout.layout_bphz, null);
 	}
-
 	BpcyLevvAdapter mBphzLevAdapter;
-
 	int mCurrentXY;
-
 	@Override
 	protected void afterViewInject() {
 		mCurrentXY = PreferencesUtils.getInt(mActivity, "position");
@@ -121,9 +117,9 @@ public class BpcyLevvFragment extends BaseFragment {
 			public void onBt1Click() {
 				// 弹出一个提示框 用于确认是否删除数据
 				int mCurrentStartSize = mCurrentXY * 1000 + 1
-						+ AppDefine.ZYDefine.BPHZ_REFID_ADDED;
+						+ AppDefine.ZYDefine.BPCH_REFID_ADDED;
 				int mCurrentEndSize = mCurrentXY * 1000 + 1000
-						+ AppDefine.ZYDefine.BPHZ_REFID_ADDED;
+						+ AppDefine.ZYDefine.BPCH_REFID_ADDED;
 				mbphz.deleteDbBaseBetweenSE(mActivity, mCurrentStartSize,
 						mCurrentEndSize);
 
@@ -166,8 +162,8 @@ public class BpcyLevvFragment extends BaseFragment {
 			int endSize = i * 100 + mCurrentBegan;
 			mBpHzBean.mNumberBetween = startSize + "-" + endSize;
 			mBphz.getListBpHzBeans(mActivity,
-					AppDefine.ZYDefine.BPHZ_REFID_ADDED + startSize,
-					AppDefine.ZYDefine.BPHZ_REFID_ADDED + endSize, mBpHzBean);
+					AppDefine.ZYDefine.BPCH_REFID_ADDED + startSize,
+					AppDefine.ZYDefine.BPCH_REFID_ADDED + endSize, mBpHzBean);
 			mLists.add(mBpHzBean);
 		}
 

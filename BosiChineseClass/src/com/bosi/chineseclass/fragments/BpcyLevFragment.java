@@ -107,11 +107,11 @@ public class BpcyLevFragment extends BaseFragment{
 			if (i == 15) {
 				mBpHzBean.mNumberBetween = "13000";
 				mBphz.getListBpHzBeans(mActivity,1,
-						AppDefine.ZYDefine.BPHZ_REFID_ADDED + 7000, mBpHzBean);
+						AppDefine.ZYDefine.BPCH_REFID_ADDED + 7000, mBpHzBean);
 			} else {
 				mBpHzBean.mNumberBetween = startSize + "-" + endSize;
 				mBphz.getListBpHzBeans(mActivity,AppDefine.ZYDefine.BPHZ_REFID_ADDED + startSize,
-						AppDefine.ZYDefine.BPHZ_REFID_ADDED + endSize, mBpHzBean);
+						AppDefine.ZYDefine.BPCH_REFID_ADDED + endSize, mBpHzBean);
 			}
 			mLists.add(mBpHzBean);
 		}

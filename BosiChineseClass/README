@@ -25,3 +25,7 @@
     mdb 文件转db文件  。
     1.access 将mdb 转csv 活excel 
     2.在sqlite expert 中新建数据库 import 选择转后的文件 ok
+    
+    
+    ------------------适配的问题
+    1.定义了1280x720 的layout 但是内部没有需要的文件的时候 默认从 小如layout-854*432 （去掉了48的标题）的开始找

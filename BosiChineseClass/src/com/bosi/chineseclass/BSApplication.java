@@ -63,7 +63,11 @@ public class BSApplication extends Application {
 	}
 
 	public void destroySystem() {
+		
 		MobclickAgent.onKillProcess(this);
+		
+		mStorage.deleteDirectory(AppDefine.FilePathDefine.APP_DICTDITALNPATH);
+		mStorage.deleteDirectory(AppDefine.FilePathDefine.APP_PINYINLEARNPATH);
 		try {
 			isBaiduServiceRunningKill();
 		} catch (Exception e) {
@@ -103,7 +107,6 @@ public class BSApplication extends Application {
 	@Override
 	public void onTerminate() {
 		super.onTerminate();
-		MobclickAgent.onKillProcess(this);
 	}
 
 }

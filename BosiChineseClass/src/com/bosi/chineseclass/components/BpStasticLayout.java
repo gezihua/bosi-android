@@ -57,6 +57,20 @@ public class BpStasticLayout {
 		}
 	}
 	
+	public void setViewBpcyControl(int tag,OnDataChangedListener mDataChangedListener){
+		switch (tag) {
+		case AppDefine.ZYDefine.BPHZ_TAG_REMBER:
+			mViewControl = new StasticRemberControl(this, mDataChangedListener);
+			break;
+		case AppDefine.ZYDefine.BPHZ_TAG_UNREMBER:
+			mViewControl = new StasticUnRemberControl(this, mDataChangedListener);
+			break;
+		case AppDefine.ZYDefine.BPHZ_TAG_NORMAL:
+			mViewControl = new StasticSampleControl(this, mDataChangedListener);
+			break;
+		}
+	}
+	
 	@OnClick(R.id.bt_bphz_statistic_unrenumber)
 	public void actionUnRember(View mView){
 		mOnBpStasticListener.onUnRemberListener();

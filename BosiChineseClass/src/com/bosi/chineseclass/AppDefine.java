@@ -7,6 +7,7 @@ public class AppDefine {
         public static String APP_GLOBLEFILEPATH = "bosi-chinese";
         public static String APP_PINYINLEARNPATH = "bosi-chinese/Pylearn/";
         public static String APP_DICTDITALNPATH =  "bosi-chinese/Dict/";
+        public static String APP_CYPATH = "bosi-chinese/CY-DICT/";
     }
 
     public static class ZYDefine {
@@ -25,6 +26,7 @@ public class AppDefine {
         public static final int BPHZ_TAG_NORMAL =2;
         
         public static final int BPHZ_REFID_ADDED =  120000;
+        public static final int BPCH_REFID_ADDED = 220000;
         public static final int BPHZ_TOTALNUM = 7000;
         public static final String EXTRA_DATA_BPHZ_SATSTICSTART = "start";
         public static final String EXTRA_DATA_BPHZ_SATSTICEND = "end";

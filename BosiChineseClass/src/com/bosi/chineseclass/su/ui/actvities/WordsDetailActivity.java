@@ -1,22 +1,16 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
 import android.os.Bundle;
-
-
-
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.bosi.chineseclass.AppDefine;
-import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
-import com.bosi.chineseclass.bean.SpanData;
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools;
 import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerListener;

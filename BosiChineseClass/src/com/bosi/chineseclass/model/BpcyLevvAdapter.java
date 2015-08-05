@@ -1,7 +1,6 @@
 package com.bosi.chineseclass.model;
 
 import java.util.List;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BpStasticBean;
-import com.bosi.chineseclass.han.util.PreferencesUtils;
 
 //第二个层级
 public class BpcyLevvAdapter extends BpcyLevAdapter {
@@ -37,13 +35,12 @@ public class BpcyLevvAdapter extends BpcyLevAdapter {
 	@Override
 	protected void onClickItemNumsBetween(int position) {
 		// Intent mIntent = new Intent( ); //进入 字典详情页
-//		
-//		BphzBean mData = mListData.get(position);
-//		String array [] =mData.mNumberBetween.split("-");
-//	    String numStart =array[0];
-//	    String numEnd = array[1];
-//		intentToWordDital(AppDefine.ZYDefine.BPHZ_REFID_ADDED+Integer.parseInt(numStart),
-//				AppDefine.ZYDefine.BPHZ_REFID_ADDED+Integer.parseInt(numEnd),AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
+		BpStasticBean mData = mListData.get(position);
+		String array [] =mData.mNumberBetween.split("-");
+	    String numStart =array[0];
+	    String numEnd = array[1];
+		intentToWordDital(AppDefine.ZYDefine.BPCH_REFID_ADDED+Integer.parseInt(numStart),
+				AppDefine.ZYDefine.BPCH_REFID_ADDED+Integer.parseInt(numEnd),AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
 	}
 
 	@Override

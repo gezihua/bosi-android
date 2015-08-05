@@ -2,6 +2,7 @@ package com.bosi.chineseclass.model;
 
 import java.util.List;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -9,12 +10,12 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.activitys.BpcyDitalActivity;
 import com.bosi.chineseclass.activitys.SampleHolderActivity;
 import com.bosi.chineseclass.bean.BpStasticBean;
 import com.bosi.chineseclass.components.NiftyDialogComponents;
@@ -53,12 +54,19 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BpStasticBean>>{
 	
 	
 
+	/**
+	 * @param start 一组开始的游标
+	 * 
+	 * @param end   一组结束的游标
+	 * 
+	 * @param tag   一组的状态值 (普通  为记住  还是已经记住的)
+	 * */
 	protected void intentToWordDital(int start, int end, int tag) {
 		PreferencesUtils.putInt(context,
 				AppDefine.ZYDefine.EXTRA_DATA_BPHZ_SATSTICSTART, start);
 		PreferencesUtils.putInt(context,
 				AppDefine.ZYDefine.EXTRA_DATA_BPHZ_SATSTICEND, end);
-		Intent mIntent = new Intent(context, WordsDetailActivity.class);
+		Intent mIntent = new Intent(context, BpcyDitalActivity.class);
 		mIntent.putExtra(WordsDetailActivity.EXTRA_NAME_WORDS_TAG, tag);
 		context.startActivity(mIntent);
 
@@ -84,7 +92,7 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BpStasticBean>>{
 				// 弹出一个提示框 用于确认是否删除数据
 				mNiftyDialog.dismissBuilder();
 				mBphz.deleteDbBaseBetweenSE(context, 1,
-						AppDefine.ZYDefine.BPHZ_REFID_ADDED
+						AppDefine.ZYDefine.BPCH_REFID_ADDED
 								+ AppDefine.ZYDefine.BPHZ_TOTALNUM);
 				changeDataSource(null);
 			}
@@ -173,9 +181,9 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BpStasticBean>>{
 		String numStart = array[0];
 		String numEnd = array[1];
 		intentToWordDital(
-				AppDefine.ZYDefine.BPHZ_REFID_ADDED
+				AppDefine.ZYDefine.BPCH_REFID_ADDED
 						+ Integer.parseInt(numStart),
-				AppDefine.ZYDefine.BPHZ_REFID_ADDED + Integer.parseInt(numEnd),
+				AppDefine.ZYDefine.BPCH_REFID_ADDED + Integer.parseInt(numEnd),
 				tag);
 	}
 
