@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.db;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -57,6 +58,7 @@ public class BPCY extends AbsDbOperation{
 			}
 			
 		}catch(DbException e){
+			
 		}finally{
 			if(dbModels!=null){
 				dbModels.clear();

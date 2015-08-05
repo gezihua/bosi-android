@@ -1,12 +1,13 @@
 package com.bosi.chineseclass.control.bpcyControl;
 
 import com.bosi.chineseclass.components.BpStasticLayout;
+import com.bosi.chineseclass.control.OnDataChangedListener;
 
 
-public class StasticSampleControl extends AbsBpStasitcViewControl{
+public class StasticCySampleControl extends AbsBpStasitcViewControl{
 
 	int mCurrentDisplayWordId;
-	public StasticSampleControl(BpStasticLayout mBpStasticLayout,
+	public StasticCySampleControl(BpStasticLayout mBpStasticLayout,
 			OnDataChangedListener mDataChangedListener) {
 		super(mBpStasticLayout, mDataChangedListener);
 		mCurrentDisplayWordId = dictStart;

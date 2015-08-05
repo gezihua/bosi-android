@@ -63,9 +63,9 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BpStasticBean>>{
 	 * */
 	protected void intentToWordDital(int start, int end, int tag) {
 		PreferencesUtils.putInt(context,
-				AppDefine.ZYDefine.EXTRA_DATA_BPHZ_SATSTICSTART, start);
+				AppDefine.ZYDefine.EXTRA_DATA_BPCY_SATSTICSTART, start);
 		PreferencesUtils.putInt(context,
-				AppDefine.ZYDefine.EXTRA_DATA_BPHZ_SATSTICEND, end);
+				AppDefine.ZYDefine.EXTRA_DATA_BPCY_SATSTICEND, end);
 		Intent mIntent = new Intent(context, BpcyDitalActivity.class);
 		mIntent.putExtra(WordsDetailActivity.EXTRA_NAME_WORDS_TAG, tag);
 		context.startActivity(mIntent);

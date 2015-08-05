@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
 import android.os.Bundle;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,7 +18,6 @@ import com.bosi.chineseclass.components.MutilMediaPlayerTools.MutilMediaPlayerLi
 import com.bosi.chineseclass.components.WordDitalExpainComponent;
 import com.bosi.chineseclass.control.DownLoadResouceControl;
 import com.bosi.chineseclass.control.DownLoadResouceControl.DownLoadInterface;
-import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.su.db.DbUtils;
@@ -189,7 +189,7 @@ public class WordsDetailActivity extends BaseActivity implements
 					AppDefine.ZYDefine.BPHZ_TAG_NORMAL);
 			mBpStasitcLayout = new BpStasticLayout(mContext);
 			mBpStasitcLayout.setViewControl(tagFromBpLv,
-					new OnDataChangedListener() {
+					new com.bosi.chineseclass.control.OnDataChangedListener() {
 						@Override
 						public void chagePageData(int refid) {
 							updateUI(refid + "", "");

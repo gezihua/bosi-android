@@ -8,6 +8,7 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
+import com.bosi.chineseclass.control.OnDataChangedListener;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.db.BphzHistory;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
@@ -83,12 +84,6 @@ public abstract class AbsBpStasitcViewControl implements OnBpStasticListener {
 				WhereBuilder.b(BphzHistory.DICTINDEX, "=", mCurrentID));
 	}
 
-	public interface OnDataChangedListener {
-		public void chagePageData(int refid);
-
-		public void chagePageData();// 如果没有id的话说明还是用当前的id 只是需要将学习的部分 开始介绍一下
-		
-		public void onSampleLoadBefore();
-	}
+	
 
 }

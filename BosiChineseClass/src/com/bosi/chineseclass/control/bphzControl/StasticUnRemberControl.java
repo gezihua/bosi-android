@@ -3,6 +3,7 @@ package com.bosi.chineseclass.control.bphzControl;
 import java.util.List;
 
 import com.bosi.chineseclass.components.BpStasticLayout;
+import com.bosi.chineseclass.control.OnDataChangedListener;
 
 
 public class StasticUnRemberControl extends AbsBpStasitcViewControl{

@@ -9,7 +9,9 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.components.BpStasticLayout;
 import com.bosi.chineseclass.components.BpStasticLayout.OnBpStasticListener;
+import com.bosi.chineseclass.control.OnDataChangedListener;
 import com.bosi.chineseclass.db.BPCY;
+import com.bosi.chineseclass.db.BpcyHistory;
 import com.bosi.chineseclass.db.BphzHistory;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
@@ -35,9 +37,9 @@ public abstract class AbsBpStasitcViewControl implements OnBpStasticListener {
 		mBpStasticLayout.setCallback(this);
 		this.mContext = mBpStasticLayout.getBaseView().getContext();
 		dictStart = PreferencesUtils.getInt(mContext,
-				AppDefine.ZYDefine.EXTRA_DATA_BPHZ_SATSTICSTART);
+				AppDefine.ZYDefine.EXTRA_DATA_BPCY_SATSTICSTART);
 		dictEnd = PreferencesUtils.getInt(mContext,
-				AppDefine.ZYDefine.EXTRA_DATA_BPHZ_SATSTICEND);
+				AppDefine.ZYDefine.EXTRA_DATA_BPCY_SATSTICEND);
 
 		mBpStasticLayout.mTvNumber.setText(getNumberForStastic() + "");
 		// mBpStasticLayout.mBtRember.setText(getRemberNum());
@@ -77,17 +79,12 @@ public abstract class AbsBpStasitcViewControl implements OnBpStasticListener {
 	public abstract int getInitRefid();
 
 	protected void updateDb(int isResmber, int mCurrentID) {
-		BphzHistory mBpHistory = new BphzHistory();
+		BpcyHistory mBpHistory = new BpcyHistory();
 		mBpHistory.dictindex = mCurrentID;
 		mBpHistory.isRember = isResmber;
 		mBphz.insertOrUpdate(mBpHistory,
 				WhereBuilder.b(BphzHistory.DICTINDEX, "=", mCurrentID));
 	}
 
-	public interface OnDataChangedListener {
-		public void chagePageData(int refid);
-
-		public void chagePageData();// 如果没有id的话说明还是用当前的id 只是需要将学习的部分 开始介绍一下
-	}
 
 }

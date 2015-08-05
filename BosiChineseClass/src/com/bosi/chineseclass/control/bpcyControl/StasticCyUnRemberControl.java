@@ -3,11 +3,14 @@ package com.bosi.chineseclass.control.bpcyControl;
 import java.util.List;
 
 import com.bosi.chineseclass.components.BpStasticLayout;
+import com.bosi.chineseclass.control.OnDataChangedListener;
 
-public class StasticRemberControl extends AbsBpStasitcViewControl{
+
+public class StasticCyUnRemberControl extends AbsBpStasitcViewControl{
+
 	List<Integer> listData = null;
     int mCurrent = 0;
-	public StasticRemberControl(BpStasticLayout mBpStasticLayout,
+	public StasticCyUnRemberControl(BpStasticLayout mBpStasticLayout,
 			OnDataChangedListener mDataChangedListener) {
 		super(mBpStasticLayout, mDataChangedListener);
 	}
@@ -27,7 +30,7 @@ public class StasticRemberControl extends AbsBpStasitcViewControl{
 	
 	public List<Integer>  getListData(){
 		if(listData ==null){
-			listData = mBphz.selectDictListBaseTag(mContext, 1, dictStart, dictEnd);
+			listData = mBphz.selectDictListBaseTag(mContext, 0, dictStart, dictEnd);
 		}
 		return listData;
 	}

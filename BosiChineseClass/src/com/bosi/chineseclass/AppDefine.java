@@ -7,6 +7,7 @@ public class AppDefine {
         public static String APP_GLOBLEFILEPATH = "bosi-chinese";
         public static String APP_PINYINLEARNPATH = "bosi-chinese/Pylearn/";
         public static String APP_DICTDITALNPATH =  "bosi-chinese/Dict/";
+        public static String APP_CYDITALNPATH =  "bosi-chinese/CY/";
         public static String APP_CYPATH = "bosi-chinese/CY-DICT/";
     }
 
@@ -30,6 +31,9 @@ public class AppDefine {
         public static final int BPHZ_TOTALNUM = 7000;
         public static final String EXTRA_DATA_BPHZ_SATSTICSTART = "start";
         public static final String EXTRA_DATA_BPHZ_SATSTICEND = "end";
+        
+        public static final String EXTRA_DATA_BPCY_SATSTICSTART = "cy_start";
+        public static final String EXTRA_DATA_BPCY_SATSTICEND = "cy_end";
     }
 
     public static class URLDefine {

@@ -1,15 +1,19 @@
 package com.bosi.chineseclass.components;
 
 import android.content.Context;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.control.OnDataChangedListener;
+import com.bosi.chineseclass.control.bpcyControl.StasticCyRemberControl;
+import com.bosi.chineseclass.control.bpcyControl.StasticCySampleControl;
+import com.bosi.chineseclass.control.bpcyControl.StasticCyUnRemberControl;
 import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl;
 import com.bosi.chineseclass.control.bphzControl.StasticRemberControl;
-import com.bosi.chineseclass.control.bphzControl.AbsBpStasitcViewControl.OnDataChangedListener;
 import com.bosi.chineseclass.control.bphzControl.StasticSampleControl;
 import com.bosi.chineseclass.control.bphzControl.StasticUnRemberControl;
 import com.lidroid.xutils.ViewUtils;
@@ -60,13 +64,13 @@ public class BpStasticLayout {
 	public void setViewBpcyControl(int tag,OnDataChangedListener mDataChangedListener){
 		switch (tag) {
 		case AppDefine.ZYDefine.BPHZ_TAG_REMBER:
-			mViewControl = new StasticRemberControl(this, mDataChangedListener);
+			new StasticCyRemberControl(this, mDataChangedListener);
 			break;
 		case AppDefine.ZYDefine.BPHZ_TAG_UNREMBER:
-			mViewControl = new StasticUnRemberControl(this, mDataChangedListener);
+			new StasticCyUnRemberControl(this, mDataChangedListener);
 			break;
 		case AppDefine.ZYDefine.BPHZ_TAG_NORMAL:
-			mViewControl = new StasticSampleControl(this, mDataChangedListener);
+			 new StasticCySampleControl(this, mDataChangedListener);
 			break;
 		}
 	}

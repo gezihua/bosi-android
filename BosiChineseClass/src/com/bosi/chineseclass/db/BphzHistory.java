@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.db;
 
 import com.lidroid.xutils.db.annotation.Column;
+
 import com.lidroid.xutils.db.annotation.Table;
 
 @Table(name = "bphzhistory", execAfterTableCreated = "CREATE UNIQUE INDEX bphz_history_uniue ON bphzhistory(dictindex)")

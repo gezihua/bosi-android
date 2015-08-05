@@ -103,14 +103,14 @@ public class BpcyLevFragment extends BaseFragment{
 			int startSize = (mBpHzBean.mDictIndex * 1000 + 1);
 			int endSize = (i * 1000);
 			
-			// 如果是最后一个统计的view 的话 最小值1 最大值 7000
+			// 如果是最后一个统计的view 的话 最小值1 最大值 13000
 			if (i == 15) {
 				mBpHzBean.mNumberBetween = "13000";
 				mBphz.getListBpHzBeans(mActivity,1,
-						AppDefine.ZYDefine.BPCH_REFID_ADDED + 7000, mBpHzBean);
+						AppDefine.ZYDefine.BPCH_REFID_ADDED + 13000, mBpHzBean);
 			} else {
 				mBpHzBean.mNumberBetween = startSize + "-" + endSize;
-				mBphz.getListBpHzBeans(mActivity,AppDefine.ZYDefine.BPHZ_REFID_ADDED + startSize,
+				mBphz.getListBpHzBeans(mActivity,AppDefine.ZYDefine.BPCH_REFID_ADDED + startSize,
 						AppDefine.ZYDefine.BPCH_REFID_ADDED + endSize, mBpHzBean);
 			}
 			mLists.add(mBpHzBean);

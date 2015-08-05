@@ -152,7 +152,7 @@ public class BpcyLevvFragment extends BaseFragment {
 
 	// 放到异步任务中去做
 	private List<BpStasticBean> getLists() {
-		BPHZ mBphz = new BPHZ();
+		BPCY mBpcy = new BPCY();
 		List<BpStasticBean> mLists = new ArrayList<BpStasticBean>();
 		int mCurrentBegan = mCurrentXY * 1000;
 		for (int i = 1; i < 11; i++) {
@@ -161,7 +161,7 @@ public class BpcyLevvFragment extends BaseFragment {
 			int startSize = mBpHzBean.mDictIndex * 100 + 1 + mCurrentBegan;
 			int endSize = i * 100 + mCurrentBegan;
 			mBpHzBean.mNumberBetween = startSize + "-" + endSize;
-			mBphz.getListBpHzBeans(mActivity,
+			mBpcy.getListBpHzBeans(mActivity,
 					AppDefine.ZYDefine.BPCH_REFID_ADDED + startSize,
 					AppDefine.ZYDefine.BPCH_REFID_ADDED + endSize, mBpHzBean);
 			mLists.add(mBpHzBean);

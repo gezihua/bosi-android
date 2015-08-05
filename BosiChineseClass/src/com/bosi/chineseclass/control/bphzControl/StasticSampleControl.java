@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.control.bphzControl;
 
 import com.bosi.chineseclass.components.BpStasticLayout;
+import com.bosi.chineseclass.control.OnDataChangedListener;
 
 
 public class StasticSampleControl extends AbsBpStasitcViewControl{
