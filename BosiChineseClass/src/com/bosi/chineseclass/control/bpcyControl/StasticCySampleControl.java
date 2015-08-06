@@ -11,6 +11,7 @@ public class StasticCySampleControl extends AbsBpStasitcViewControl{
 			OnDataChangedListener mDataChangedListener) {
 		super(mBpStasticLayout, mDataChangedListener);
 		mCurrentDisplayWordId = dictStart;
+		mDataChangedListener.onSampleLoadBefore();
 	}
 
 	@Override
@@ -36,6 +37,7 @@ public class StasticCySampleControl extends AbsBpStasitcViewControl{
 	}
 	@Override
 	public void onUnRemberListener() {
+		
 		mDataChangedListener.chagePageData();
 		// 显示
 		if(mCurrentDisplayWordId<=dictEnd)
@@ -48,6 +50,7 @@ public class StasticCySampleControl extends AbsBpStasitcViewControl{
 			showToastRemoteLearnOver();
 			return;
 		}
+		mDataChangedListener.onSampleLoadBefore();
 		mBpStasticLayout.mTvNumber.setText(dictEnd-mCurrentDisplayWordId+"");
 		mDataChangedListener.chagePageData(mCurrentDisplayWordId);
 	}

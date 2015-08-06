@@ -49,6 +49,7 @@ public class StasticSampleControl extends AbsBpStasitcViewControl{
 			showToastRemoteLearnOver();
 			return;
 		}
+		mDataChangedListener.onSampleLoadBefore();
 		mBpStasticLayout.mTvNumber.setText(dictEnd-mCurrentDisplayWordId+"");
 		mDataChangedListener.chagePageData(mCurrentDisplayWordId);
 	}

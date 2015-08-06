@@ -24,7 +24,6 @@
             android:textStyle="bold"
             android:background="@drawable/bg_bp_dital_stastic_num"
             android:gravity="center"
-            android:layout_marginTop="5dp"
             ></TextView>
         
         <Button
