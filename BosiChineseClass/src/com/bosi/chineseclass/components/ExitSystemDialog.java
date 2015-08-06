@@ -2,6 +2,7 @@ package com.bosi.chineseclass.components;
 
 import java.util.HashMap;
 
+import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
@@ -33,7 +34,36 @@ public class ExitSystemDialog  {
 		mHashData.put("actName", mActivity.getClass().getName());
 		MobclickAgent.onEvent(mActivity, "ID_ZAN",mHashData);
 		mDialog.dismiss();
-		BSApplication.getInstance().destroySystem();
+		cleanDataAsy();
+	}
+	
+	private void cleanDataAsy(){
+		mActivity.showProgresssDialogWithHint("正在准备退出系统...");
+		mActivity.AsyTaskBaseThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				MobclickAgent.onKillProcess(mActivity);
+			    BSApplication.getInstance().mStorage.deleteDirectory(AppDefine.FilePathDefine.APP_DICTDITALNPATH);
+			    BSApplication.getInstance().mStorage.deleteDirectory(AppDefine.FilePathDefine.APP_PINYINLEARNPATH);
+			    BSApplication.getInstance().mStorage.deleteDirectory(AppDefine.FilePathDefine.APP_CYDITALNPATH);
+			}
+		}, new Runnable() {
+			
+			@Override
+			public void run() {
+				mActivity.runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						mActivity.dismissProgress();
+						BSApplication.getInstance().destroySystem();
+					}
+				});
+				
+			}
+		});
+	    
 	}
 	@OnClick(R.id.dialog_exit_bt_normal)
     public void actionNormal(View mView){
@@ -41,7 +71,7 @@ public class ExitSystemDialog  {
 		mHashData.put("actName", mActivity.getClass().getName());
 		MobclickAgent.onEvent(mActivity, "ID_NORMAL",mHashData);
 		mDialog.dismiss();
-		BSApplication.getInstance().destroySystem();
+		cleanDataAsy();
 	}
 	@OnClick(R.id.dialog_exit_bt_feedback)
     public void actionFeedBack(View mView){

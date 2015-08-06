@@ -10,6 +10,7 @@ import android.content.DialogInterface.OnDismissListener;
 
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
+import com.bosi.chineseclass.utils.NetStateUtil;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.HttpHandler;
@@ -72,6 +73,11 @@ public class DownLoadResouceControl {
 	}
 
 	public boolean downloadFiles() {
+		if(!NetStateUtil.isNetWorkAlive(mActivity)){
+			mActivity.showToastShort("没有网络连接 ,请检查手机网络");
+			mActivity.mLoadingDialog.dismiss();
+			return false;
+		}
 		isDownLoadOver .set(false);
 		String [] urls = mDownLoadCallBack.getDownLoadUrls();
 		

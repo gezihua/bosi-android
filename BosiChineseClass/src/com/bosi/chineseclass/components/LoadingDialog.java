@@ -41,6 +41,7 @@ public class LoadingDialog {
 	}
 	
 	public void dismiss(){
+		if(mDialog!=null &&mDialog.isShowing())
 		mDialog.dismiss();
 	}
 	private void initExitSystemDialog() {

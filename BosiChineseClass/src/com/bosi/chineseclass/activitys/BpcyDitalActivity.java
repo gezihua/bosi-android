@@ -217,6 +217,7 @@ DownLoadInterface{
 	}
 	
 	private void actionDownLoadSuccess(){
+		dismissProgress();
 		mUtilImageLoader.getBitmapFactory().display(mIvDispCy, mDownLoadControl.getAbsFilePath()+mBpcyBean.Cybh+".jpg");
 	}
 
@@ -237,7 +238,7 @@ DownLoadInterface{
 	}
 	
 	@OnClick(R.id.tv_showcy_dgdh)
-	private void showCyDgVideo(){
+	private void showCyDgVideo(View mView){
 		
 		String mAbsFilePath = mDownLoadControl.getAbsFilePath()+mBpcyBean.Cybh+".MP4";
 		File mFile = new File(mAbsFilePath);

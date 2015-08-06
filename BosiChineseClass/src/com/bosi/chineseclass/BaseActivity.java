@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bosi.chineseclass.components.LoadingDialog;
+import com.bosi.chineseclass.components.MyLoadingProgressBar;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.lidroid.xutils.BitmapUtils;
@@ -119,4 +120,21 @@ public class BaseActivity extends FragmentActivity {
 					}
 			}.start();
 		}
+    
+    MyLoadingProgressBar myLoadingProgressBar = new MyLoadingProgressBar(this);;
+	public void showProgresssDialog() {
+		showProgresssDialogWithHint(null);
+	}
+	public void showProgresssDialogWithHint(String hint) {
+		if(myLoadingProgressBar==null)
+			myLoadingProgressBar = new MyLoadingProgressBar(this);
+			if(myLoadingProgressBar.isProgressShowing())myLoadingProgressBar.dialogDismiss();
+			myLoadingProgressBar.showWithHint(hint);
+    }
+
+	public void dismissProgressDialog() {
+		if(myLoadingProgressBar!=null &&myLoadingProgressBar.isProgressShowing())
+		myLoadingProgressBar.dialogDismiss();
+	}
+
 }
