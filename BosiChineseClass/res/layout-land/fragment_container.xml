@@ -182,12 +182,22 @@
                     android:layout_marginTop="2dp"
                     android:layout_toLeftOf="@+id/oracle_word"
                     android:background="@drawable/pinyin_sybg"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
                     >
+                    
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="80dp"
+                        >
                          <TextView
                     android:id="@+id/word_explain"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     />
+                        
+                    </LinearLayout>
+                        
                         
                 </ScrollView>
 
