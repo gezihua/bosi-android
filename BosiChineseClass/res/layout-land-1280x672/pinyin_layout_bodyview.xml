@@ -3,18 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <include layout="@layout/common_head"
-             android:id="@+id/headactionbar"
-          />
-    
-    
+
+    <include
+        android:id="@+id/headactionbar"
+        layout="@layout/common_head" />
+
     <LinearLayout
-       android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/ll_pinyin_sym_item_dital"
-        android:orientation="horizontal"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -24,16 +22,15 @@
                 android:id="@+id/ll_pylearn_leftbody"
                 android:layout_width="190dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="9dp"
                 android:layout_marginTop="9dp"
-                android:layout_marginBottom ="9dp"
                 android:background="@drawable/pinyin_sybg"
-                android:paddingTop="40dp"
+                android:orientation="vertical"
                 android:paddingLeft="8dp"
                 android:paddingRight="3dp"
-                android:orientation="vertical" >
+                android:paddingTop="40dp" >
             </LinearLayout>
-
 
             <ImageView
                 android:id="@+id/iv_pyxx_ym"
@@ -41,102 +38,98 @@
                 android:layout_height="46dp"
                 android:layout_marginLeft="60dp"
                 android:background="@drawable/pyxy_ym_bg" />
+
             <ImageView
                 android:id="@+id/iv_pyxx_sm"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/pyxx_sm_bg" />
-
         </RelativeLayout>
-        
-        
+
         <LinearLayout
+            android:id="@+id/ll_pylearn_rightbody"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/ll_pylearn_rightbody"
-            android:orientation="vertical"
             android:layout_margin="9dp"
-            android:padding="5dp"
-               android:background="@drawable/pinyin_sybg"
-            >
+            android:background="@drawable/pinyin_sybg"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
             <LinearLayout
                 android:id="@+id/pinyinlearn_"
-                 android:layout_width="match_parent"
+                android:layout_width="match_parent"
                 android:layout_height="140dp"
-                 android:orientation="horizontal"
-                >
-                
+                android:orientation="horizontal" >
+
                 <com.bosi.chineseclass.views.BsVideoViewGroup
-                    android:layout_width="match_parent"
-					android:layout_weight="1"
-					android:layout_margin="3dp"
-	                android:layout_height="match_parent"
                     android:id="@+id/vv_pinyinlearn_reader"
-                    />
-                <ImageView
-                     android:layout_width="match_parent"
-					android:layout_weight="1"
-					android:layout_margin="3dp"
-                    android:layout_height="110dp"
-                    android:id="@+id/iv_pinyinlearn_reader"
-                    ></ImageView>
-                <com.bosi.chineseclass.views.BsVideoViewGroup
-                     android:layout_width="match_parent"
-					android:layout_weight="1"
-					android:layout_margin="3dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_pinyinlearn_reader"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1" >
+                </ImageView>
+
+                <com.bosi.chineseclass.views.BsVideoViewGroup
                     android:id="@+id/vv_pinyinlearn_writer"
-                    />
-                  <!-- android:background="@drawable/pinyin_learn_imgbg" -->
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1" />
+                <!-- android:background="@drawable/pinyin_learn_imgbg" -->
             </LinearLayout>
-             <LinearLayout
+
+            <LinearLayout
                 android:id="@+id/pinyinlearn_menu_bt"
-                 android:layout_width="match_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:orientation="horizontal"
                 android:layout_marginRight="10dp"
                 android:gravity="center_horizontal"
-                >
-                 <Button
-                     android:id="@+id/bt_pingyinlearn_fyyl"
-                     android:layout_width="match_parent"
-                     android:layout_weight="1"
-                     android:layout_height="35dp"
-                     android:text="发音要领"
-                     android:background="@drawable/pingying_learn_btbg"
-                     ></Button>
-                 <Button
-                     android:id="@+id/bt_pingyinlearn_pyp"
-                     android:layout_width="match_parent"
-                     android:layout_weight="1"
-                     android:layout_height="35dp"
-                     android:background="@drawable/pingying_learn_btbg"
-                     android:text="拼一拼"
-                     ></Button>
-                 <Button
-                     android:id="@+id/bt_pingyinlearn_dyd"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/bt_pingyinlearn_fyyl"
                     android:layout_width="match_parent"
-                     android:layout_weight="1"
-                     android:layout_height="35dp"
-                     android:background="@drawable/pingying_learn_btbg"
-                     android:text="读一读"
-                     ></Button>
-                 
-             </LinearLayout>
-             
-             <LinearLayout
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/pingying_learn_btbg"
+                    android:text="发音要领" >
+                </Button>
+
+                <Button
+                    android:id="@+id/bt_pingyinlearn_pyp"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/pingying_learn_btbg"
+                    android:text="拼一拼" >
+                </Button>
+
+                <Button
+                    android:id="@+id/bt_pingyinlearn_dyd"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/pingying_learn_btbg"
+                    android:text="读一读" >
+                </Button>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/pinyinlearn_dital"
-                 android:layout_width="match_parent"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                 android:orientation="horizontal"
                 android:gravity="center"
-                >
-                 
-             </LinearLayout>
-            
+                android:orientation="horizontal" >
+            </LinearLayout>
         </LinearLayout>
-        </LinearLayout>
-    
+    </LinearLayout>
 
 </LinearLayout>

@@ -128,7 +128,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 	
 	private int getTextSize(){
 		int width = Utils.getWinWidth(mActivity);
-		if(width>900)return 20;
+		if(width>900)return 19;
 		return 15;
 	}
 	
