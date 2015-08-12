@@ -1,7 +1,6 @@
 package com.bosi.chineseclass.utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import android.graphics.Color;
 import android.text.SpannableStringBuilder;
@@ -42,7 +41,11 @@ public class BosiUtils {
 
 					}
 					mTextView.setText(builder);
+				}else{
+					mTextView.setText(mSpanData.mResouce);
 				}
+			}else{
+				mTextView.setText("");
 			}
 		} else {
 			mTextView.setText("");

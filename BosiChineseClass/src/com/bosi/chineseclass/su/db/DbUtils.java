@@ -142,9 +142,7 @@ public class DbUtils {
 				cursor = database.query("bsbh", null, "bushow = ?",
 						new String[] { string }, null, null, null);
 				while (cursor.moveToNext()) {
-					String temp = cursor.getString(cursor
-							.getColumnIndex("bushow"));
-					list.add(cursor.getString(cursor.getColumnIndex("bushow")));
+					list.add(cursor.getString(cursor.getColumnIndex("bu")));
 				}
 				cursor.close();
 				cursor = null;
@@ -158,6 +156,10 @@ public class DbUtils {
 		return null;
 	}
 
+	/**
+	 * 根据部首获取具体有哪些文字
+	 * 
+	 * */
 	public ArrayList<Entity> getFilterRadicalsBy(String bu) {
 		Cursor cursor = null;
 		try {
