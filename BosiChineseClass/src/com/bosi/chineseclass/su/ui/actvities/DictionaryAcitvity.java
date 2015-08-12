@@ -2,6 +2,7 @@
 package com.bosi.chineseclass.su.ui.actvities;
 
 import android.content.Intent;
+
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -18,7 +19,6 @@ import com.bosi.chineseclass.han.components.HeadLayoutComponents.SearchableActio
 import com.bosi.chineseclass.su.ui.fragment.FilerPyFragment;
 import com.bosi.chineseclass.su.ui.fragment.FilterRadicalFragment;
 import com.bosi.chineseclass.su.ui.fragment.FiterStokeFragment;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
@@ -111,6 +111,7 @@ public class DictionaryAcitvity extends BaseActivity implements SearchableAction
         Intent intent = new Intent();
         intent.putExtra("word", word);
         intent.setClass(this, WordsDetailActivity.class);
+        intent.putExtra(WordsDetailActivity.EXTRA_NAME_WORDS_NAME,getResources().getString(R.string.wrod_dital_name));
         startActivity(intent);        
     }
 

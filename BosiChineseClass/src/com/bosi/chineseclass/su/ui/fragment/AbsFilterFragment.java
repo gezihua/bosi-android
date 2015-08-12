@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.bosi.chineseclass.BaseFragment;
+import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.su.ui.actvities.WordsDetailActivity;
 
 public abstract class AbsFilterFragment extends BaseFragment {
@@ -48,6 +49,8 @@ public abstract class AbsFilterFragment extends BaseFragment {
         Intent intent = new Intent();
         intent.putExtra("word", word);
         intent.setClass(getActivity(), WordsDetailActivity.class);
+        intent.putExtra(WordsDetailActivity.EXTRA_NAME_WORDS_NAME,getResources().getString(R.string.wrod_dital_name));
+        intent.putExtra(WordsDetailActivity.EXTRA_NAME_WORDS_NAME,getResources().getString(R.string.wrod_dital_name));
         startActivity(intent);
     }
 

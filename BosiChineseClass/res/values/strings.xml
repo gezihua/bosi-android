@@ -27,4 +27,8 @@
   
      <string name = "private_key"></string>
      <string name = "public_key"></string>
+     
+     <string name="bphz_dital_reline_filter">①②③④⑤⑥⑦⑧⑨⑩</string>
+     <string name="wrod_dital_name">字源字典</string>
+     <string name="bphz_dital_name">爆破汉字</string>
 </resources>

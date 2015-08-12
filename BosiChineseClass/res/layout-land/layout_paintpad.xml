@@ -23,6 +23,18 @@
             android:textColor="#000000"
             android:layout_alignParentTop="true"
             ></TextView>
+        
+        
+        <ImageView
+            android:id="@+id/iv_closepadwindow"
+            android:layout_width="16dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/icon_window_close"
+            android:layout_above="@+id/paintdialog_paintview"
+            android:layout_marginRight="3dp"
+            ></ImageView>
         <com.bosi.chineseclass.views.paint.PaintView
             android:layout_below="@+id/tv_padwindow_title"
             android:layout_width="200dp"

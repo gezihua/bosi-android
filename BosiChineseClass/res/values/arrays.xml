@@ -168,12 +168,13 @@
        
       
         
-         <string-array name="hzcs_qwhz_sjxhz_picarray">
-         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-1.jpg</item>
+        <string-array name="hzcs_qwhz_sjxhz_picarray">
+        <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-1.jpg</item>
         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-2.jpg</item>
         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-3.jpg</item>
         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-4.jpg</item>
         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-5.jpg</item>
         <item>http://www.yuwen100.cn/yuwen100/hzzy/Android/quweihanzi/sjxhz/sjxhz-6.jpg</item>
       </string-array>
+      
 </resources>

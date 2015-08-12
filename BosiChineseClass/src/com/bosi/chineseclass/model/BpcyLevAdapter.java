@@ -67,7 +67,7 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BpStasticBean>>{
 		PreferencesUtils.putInt(context,
 				AppDefine.ZYDefine.EXTRA_DATA_BPCY_SATSTICEND, end);
 		Intent mIntent = new Intent(context, BpcyDitalActivity.class);
-		mIntent.putExtra(WordsDetailActivity.EXTRA_NAME_WORDS_TAG, tag);
+		mIntent.putExtra(BpcyDitalActivity.EXTRA_NAME_WORDS_TAG, tag);
 		context.startActivity(mIntent);
 
 	}

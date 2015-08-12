@@ -18,8 +18,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 public class PaintPadWindow {
 	
@@ -67,6 +69,14 @@ public class PaintPadWindow {
 	private void initBaseView(){
 		mPaintView = (PaintView) mBaseView.findViewById(R.id.paintdialog_paintview);
 		mPaintView.setPenSize(16);
+		ImageView mImageView = (ImageView) mBaseView.findViewById(R.id.iv_closepadwindow);
+		mImageView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				dismissView();
+			}
+		});
 		mPaintView.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.iv_bgdict));
 		mColorPickDialog = new ColorPickerDialog(mContext, new OnColorChangedListener(){
 

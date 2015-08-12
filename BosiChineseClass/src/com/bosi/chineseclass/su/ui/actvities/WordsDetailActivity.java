@@ -85,8 +85,10 @@ public class WordsDetailActivity extends BaseActivity implements
 
 	/** 初始化头部 */
 	private void initHeadActionBarComp() {
+		
+		String mTitleName = getIntent().getStringExtra(EXTRA_NAME_WORDS_NAME);
 		mHeadActionBarComp = new HeadLayoutComponents(this, mHeadActionBar);
-		mHeadActionBarComp.setTextMiddle("字源字典", -1);
+		mHeadActionBarComp.setTextMiddle(mTitleName, -1);
 		mHeadActionBarComp.setDefaultLeftCallBack(true);
 		mHeadActionBarComp.setDefaultRightCallBack(true);
 	}
@@ -176,11 +178,20 @@ public class WordsDetailActivity extends BaseActivity implements
 	@ViewInject(R.id.ll_hzdital_stastic)
 	LinearLayout mLayoutStastic;
 
-	public static final String EXTRA_NAME_WORDS_TAG = "tag";
-
+	public static final String EXTRA_NAME_WORDS_TAG = "tag";  //for 修改为当前的控制器
+	public static final String EXTRA_NAME_WORDS_NAME = "name"; //当前标题名
+ 
 	BPHZ mBphz = new BPHZ();
 	@ViewInject(R.id.iv_hint_bphz_learn)
     ImageView mSampleHintView;
+	
+	@OnClick(R.id.iv_hint_bphz_learn)
+	public void onClick(View mView){
+		mllExpainBody.setVisibility(View.VISIBLE);
+		mExplainTextView.setVisibility(View.VISIBLE);
+		mSampleHintView.setVisibility(View.GONE);
+		
+	}
 	private void setUpBpWordsControl() {
 		updateProgress(0, 1);
 		final int TAG = getIntent().getIntExtra(EXTRA_NAME_WORDS_TAG, -1);
@@ -198,9 +209,7 @@ public class WordsDetailActivity extends BaseActivity implements
 
 						@Override
 						public void chagePageData() {
-							mllExpainBody.setVisibility(View.VISIBLE);
-							mExplainTextView.setVisibility(View.VISIBLE);
-							mSampleHintView.setVisibility(View.GONE);
+							onClick(null);
 						}
 
 						@Override
@@ -306,7 +315,7 @@ public class WordsDetailActivity extends BaseActivity implements
 		loadImage() ;
 		playVideo();
 		dismissProgress();
-		playSound();
+		//playSound();
 	}
 
 	private void loadImage() {

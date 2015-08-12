@@ -151,7 +151,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 		mAutoViewGroup.removeAllViews();
 		for (int i = 0; i < marrayForLearn.length; i++) {
 			final TextView mTextView = new TextView(mActivity);
-			mTextView.setTextSize(getTextSizeBaseScreen());
+			mTextView.setTextSize(getTextSize());
 			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setPadding(5, 3, 5, 3);
 			mTextView.setBackground(getResources().getDrawable(
@@ -226,7 +226,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 
 		for (int i = 0; i < mArrays.length; i++) {
 			TextView mTextView = new TextView(mActivity);
-			mTextView.setTextSize(getTextSizeBaseScreen());
+			mTextView.setTextSize(getTextSize());
 			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setText(mArrays[i]);
 			LinearLayout.LayoutParams mLayoutParams = new LayoutParams(
@@ -236,16 +236,6 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 			mLayoutDital.addView(mTextView);
 		}
 
-	}
-	
-	private int getTextSizeBaseScreen(){
-		int width = Utils.getWinWidth(mActivity);
-		if(width>900){
-			return 20;
-		}else{
-			return 15;
-		}
-		
 	}
 
 	/**

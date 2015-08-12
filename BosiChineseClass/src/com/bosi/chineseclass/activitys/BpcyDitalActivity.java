@@ -106,6 +106,7 @@ DownLoadInterface{
 	@ViewInject(R.id.ll_bpcy_stastic)
 	LinearLayout mLayoutStastic;
 
+	
 	public static final String EXTRA_NAME_WORDS_TAG = "tag";
 	private void setUpBpCyControl() {
 		updateProgress(0, 1);
@@ -196,6 +197,12 @@ DownLoadInterface{
     ImageView mSampleHintView;
 	@ViewInject(R.id.tv_bpcy)
 	TextView mTvExplain;
+	
+	@OnClick(R.id.iv_hint_bphz_learn)
+	public void actionDismissHintView(View mView){
+		mSampleHintView.setVisibility(View.GONE);
+	}
+	
 	private void setUpNameAndPinyin() throws Exception{
 		mTvName.setText(DesUtils.decode(mBpcyBean.CYCimu));
 		mTvCyPinyin.setText(DesUtils.decode(mBpcyBean.CYFayin));
@@ -222,7 +229,7 @@ DownLoadInterface{
 	private void actionDownLoadSuccess(){
 		dismissProgress();
 		mUtilImageLoader.getBitmapFactory().display(mIvDispCy, mDownLoadControl.getAbsFilePath()+mBpcyBean.Cybh+".jpg");
-		actionReadCyPy(null);
+		//actionReadCyPy(null);
 	}
 
 	@Override
