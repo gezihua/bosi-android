@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.han.fragments;
 
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +45,13 @@ public class ZjjzyFragment extends BaseFragment {
     	mVideoView.setScrollContainer(false);
         mVideoView.setVideoURI(Uri.parse(path));
         mVideoView.requestFocus();
+       /* mVideoView.setOnInfoListener(new OnInfoListener() {
+			
+			@Override
+			public boolean onInfo(MediaPlayer arg0, int arg1, int arg2) {
+				return false;
+			}
+		});*/
         mVideoView.start();
     }
 

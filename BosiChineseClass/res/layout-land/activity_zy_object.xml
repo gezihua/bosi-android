@@ -3,18 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0e85df" >
+    <include layout="@layout/common_head" android:id="@+id/headactionbar"></include>"
 
+<ProgressBar
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:layout_below="@+id/headactionbar"
+    android:id="@+id/pb_forwebview"
+    style="@style/progressbarStyle_Horizontal_Red"
+    ></ProgressBar>
     <WebView
+        android:layout_below="@+id/pb_forwebview"
         android:id="@+id/webview_zy_object"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     
-    <ImageView 
-        android:id="@+id/bt_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/close_selector"/>
 
 </RelativeLayout>

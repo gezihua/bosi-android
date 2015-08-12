@@ -42,4 +42,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+     <style name="progressbarStyle_Horizontal_Red" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progressbar_horizontal_red</item>
+        <item name="android:minHeight">12.0dp</item>
+        <item name="android:maxHeight">12.0dp</item>
+    </style>
 </resources>

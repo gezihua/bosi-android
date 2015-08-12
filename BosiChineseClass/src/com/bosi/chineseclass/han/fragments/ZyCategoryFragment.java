@@ -76,7 +76,7 @@ public class ZyCategoryFragment extends BaseFragment {
         titles.put(AppDefine.ZYDefine.CATEGORY_ZHIWU, getStringByid(R.string.category_zhiwu));
         titles.put(AppDefine.ZYDefine.CATEGORY_REN, getStringByid(R.string.category_ren));
         titles.put(AppDefine.ZYDefine.CATEGORY_QIWU, getStringByid(R.string.category_qiwu));
-        titles.put(AppDefine.ZYDefine.CATEGORY_ZIRAN, getStringByid(R.string.category_ziran));
+        titles.put(AppDefine.ZYDefine.CATEGORY_OTHER, getStringByid(R.string.category_dongwu));
         String title = String.format(getStringByid(R.string.category_title), titles.get(mCategoryType), mIconList.size());
         return title;
     }
