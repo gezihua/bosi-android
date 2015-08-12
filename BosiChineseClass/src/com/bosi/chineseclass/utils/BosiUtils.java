@@ -40,8 +40,9 @@ public class BosiUtils {
 					}
 					mTextView.setText(builder);
 				}
-
 			}
+		}else{
+			mTextView.setText("");
 		}
 	}
 	

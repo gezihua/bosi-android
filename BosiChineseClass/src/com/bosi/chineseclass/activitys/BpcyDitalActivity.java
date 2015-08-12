@@ -53,14 +53,16 @@ DownLoadInterface{
 		mHeadActionBar.setDefaultRightCallBack(true);
 		
 		mUtilImageLoader = new XutilImageLoader(this);
+		
 		mDownLoadControl = new DownLoadResouceControl(this);
 		mDownLoadControl.setOnDownLoadCallback(this);
+
+	    mPaintPadWindow = new PaintPadWindow(this);
+		mMediaPlayerPools = new MediaPlayerPools(this);
+		
 		
 		setUpBpCyControl();
-		
-		mPaintPadWindow = new PaintPadWindow(this);
-		
-		mMediaPlayerPools = new MediaPlayerPools(this);
+	
 	}
 
 	
@@ -91,6 +93,7 @@ DownLoadInterface{
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		
 		mMediaPlayerPools.destroyMediaPlayer();
 	}
 
@@ -219,6 +222,7 @@ DownLoadInterface{
 	private void actionDownLoadSuccess(){
 		dismissProgress();
 		mUtilImageLoader.getBitmapFactory().display(mIvDispCy, mDownLoadControl.getAbsFilePath()+mBpcyBean.Cybh+".jpg");
+		actionReadCyPy(null);
 	}
 
 	@Override
@@ -233,7 +237,9 @@ DownLoadInterface{
 		 return AppDefine.FilePathDefine.APP_CYDITALNPATH + mBpcyBean.Cybh+"/";
 	}
 	
-	public void actionReadCyPy(){
+	@OnClick(R.id.iv_cyspeak)
+	public void actionReadCyPy(View mView){
+		if(mMediaPlayerPools==null) return;
 		mMediaPlayerPools.playMediaFile(mDownLoadControl.getAbsFilePath()+mBpcyBean.Cybh+".mp3");
 	}
 	

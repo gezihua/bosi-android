@@ -12,6 +12,7 @@ public class AppDefine {
     }
 
     public static class ZYDefine {
+    	
         public static final String TYPE_CATEGORY = "type_ziyuan_category";
         
         public static final int CATEGORY_ZIRAN = 0;
@@ -29,6 +30,8 @@ public class AppDefine {
         public static final int BPHZ_REFID_ADDED =  120000;
         public static final int BPCH_REFID_ADDED = 220000;
         public static final int BPHZ_TOTALNUM = 7000;
+        
+        
         public static final String EXTRA_DATA_BPHZ_SATSTICSTART = "start";
         public static final String EXTRA_DATA_BPHZ_SATSTICEND = "end";
         

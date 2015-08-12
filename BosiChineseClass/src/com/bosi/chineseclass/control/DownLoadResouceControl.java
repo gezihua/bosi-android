@@ -41,6 +41,10 @@ public class DownLoadResouceControl {
 
 	DownLoadInterface mDownLoadCallBack;
 
+	boolean isCancleTask = false ;
+	public void onDestroy(){
+		canclTask();
+	}
 	public void setOnDownLoadCallback(DownLoadInterface mDownLoadCallBack) {
 		this.mDownLoadCallBack = mDownLoadCallBack;
 	}
@@ -97,7 +101,7 @@ public class DownLoadResouceControl {
 		}
 
 		loadedData = -1;
-
+		isCancleTask = false;
 		mActivity.mLoadingDialog.setOnDismissListener(new OnDismissListener() {
 			@Override
 			public void onDismiss(DialogInterface arg0) {
@@ -131,6 +135,7 @@ public class DownLoadResouceControl {
 	}
 
 	public void canclTask() {
+		isCancleTask = true;
 		if (mHandlerList != null && mHandlerList.size() > 0) {
 			for (HttpHandler mHandler : mHandlerList) {
 				mHandler.cancel();
@@ -139,6 +144,7 @@ public class DownLoadResouceControl {
 	}
 
 	private synchronized void updateProgress() {
+		if(isCancleTask)return;
 		loadedData++;
 		mActivity.updateProgress(loadedData, maxLength);
 		if (isCurrentDownLoadSuccess()) {
