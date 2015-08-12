@@ -2,6 +2,8 @@ package com.bosi.chineseclass.han.fragments;
 
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnInfoListener;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.VideoView;
 
 import com.bosi.chineseclass.BaseFragment;
@@ -22,6 +25,8 @@ public class ZjjzyFragment extends BaseFragment {
     @ViewInject(R.id.webview_zjjzy_index)
     private WebView mWebView;
 
+    @ViewInject(R.id.pb_videoplaying)
+    private ProgressBar mPbBarForVideo;
     private final String PATH = "http://www.yuwen100.cn/yuwen100/hzzy/jbzy-clips/video/";
 
     @Override
@@ -42,16 +47,17 @@ public class ZjjzyFragment extends BaseFragment {
     }
 
     private void playVideo(String path) {
+    	mPbBarForVideo.setVisibility(View.VISIBLE);
     	mVideoView.setScrollContainer(false);
         mVideoView.setVideoURI(Uri.parse(path));
         mVideoView.requestFocus();
-       /* mVideoView.setOnInfoListener(new OnInfoListener() {
+        mVideoView.setOnPreparedListener(new OnPreparedListener() {
 			
 			@Override
-			public boolean onInfo(MediaPlayer arg0, int arg1, int arg2) {
-				return false;
+			public void onPrepared(MediaPlayer arg0) {
+				mPbBarForVideo.setVisibility(View.GONE);
 			}
-		});*/
+		});
         mVideoView.start();
     }
 

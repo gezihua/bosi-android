@@ -34,6 +34,12 @@
                 android:id="@+id/video_zjjzy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+            <ProgressBar  
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pb_videoplaying"
+                android:layout_gravity="center"
+                />
         </FrameLayout>
     </LinearLayout>
 
