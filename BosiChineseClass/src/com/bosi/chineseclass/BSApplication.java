@@ -1,7 +1,13 @@
 package com.bosi.chineseclass;
 
 import java.util.Iterator;
+
 import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -11,7 +17,11 @@ import com.bosi.chineseclass.components.ExitSystemDialog;
 import com.bosi.chineseclass.db.BosiDbManager;
 import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.utils.AppActivityStack;
+import com.bosi.chineseclass.utils.XutilHttpPack;
+import com.bosi.chineseclass.utils.XutilHttpPack.OnHttpActionCallBack;
 import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.HttpHandler;
 import com.sromku.simple.storage.SimpleStorage;
 import com.sromku.simple.storage.Storage;
 import com.umeng.analytics.MobclickAgent;
@@ -31,6 +41,8 @@ public class BSApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		mApplication = this;
+		
+		mHttpPack = new XutilHttpPack();
 		storageManagerInit();
 		mDbBosiClass = new BosiDbManager(this);//项目逻辑
 		mActivityStack = new AppActivityStack();
@@ -39,6 +51,33 @@ public class BSApplication extends Application {
 		MobclickAgent.setDebugMode(true);
 	}
 
+	XutilHttpPack mHttpPack;
+	public HttpHandler sendData(List<NameValuePair> mList, String url,
+			final OnHttpActionListener mTatget, final int code) {
+		
+//		if(!NetWorkListenerControl.isNetWorkAvailable){
+//			Toast.makeText(this, "网络连接异常", Toast.LENGTH_SHORT).show();
+//			return null;
+//		}
+		
+		HttpHandler mHttpHandler = mHttpPack.sendData(mList, url,
+				new OnHttpActionCallBack() {
+
+					@Override
+					public void onHttpSuccess(String result) {
+						try {
+							JSONObject mObj = new JSONObject(result);
+						} catch (JSONException e) {
+						}
+					}
+
+					@Override
+					public void onHttpError(HttpException e, String messge) {
+						mTatget.onHttpError(e, messge);
+					}
+				});
+		return mHttpHandler;
+	}
 	public static BSApplication mApplication = null;
 
 	public static BSApplication getInstance() {

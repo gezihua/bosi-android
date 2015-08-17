@@ -83,6 +83,14 @@
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen|"
             android:screenOrientation="landscape" >
         </activity>
+        
+        <activity
+            android:name=".activitys.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen|"
+            android:screenOrientation="landscape" >
+        </activity>
+        
+        
         <activity
             android:name="com.bosi.chineseclass.han.activitys.GameActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
@@ -103,6 +111,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
         </activity>
+        
+        
         <activity
             android:name="com.bosi.chineseclass.han.activitys.ZyCategoryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
