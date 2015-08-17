@@ -154,8 +154,8 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 			mTextView.setTextSize(getTextSize());
 			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setPadding(5, 3, 5, 3);
-			mTextView.setBackground(getResources().getDrawable(
-					R.drawable.pingying_learn_zibg));
+			mTextView.setBackgroundResource(
+					R.drawable.pingying_learn_zibg);
 			mTextView.setGravity(Gravity.CENTER);
 			mTextView.setOnClickListener(new OnClickListener() {
 

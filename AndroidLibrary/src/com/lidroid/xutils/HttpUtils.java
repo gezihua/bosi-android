@@ -102,6 +102,7 @@ public class HttpUtils {
             public void process(org.apache.http.HttpRequest httpRequest, HttpContext httpContext) throws org.apache.http.HttpException, IOException {
                 if (!httpRequest.containsHeader(HEADER_ACCEPT_ENCODING)) {
                     httpRequest.addHeader(HEADER_ACCEPT_ENCODING, ENCODING_GZIP);
+                    httpRequest.addHeader(HEAD_ACCEPT,HEAD_ACCEPT_ADDVALUE);
                 }
             }
         });
@@ -137,6 +138,9 @@ public class HttpUtils {
     private final static int DEFAULT_RETRY_TIMES = 3;
 
     private static final String HEADER_ACCEPT_ENCODING = "Accept-Encoding";
+    private static final String HEAD_ACCEPT = "Accept";
+    
+    public static final String HEAD_ACCEPT_ADDVALUE = "application/json";
     private static final String ENCODING_GZIP = "gzip";
 
     private final static int DEFAULT_POOL_SIZE = 3;

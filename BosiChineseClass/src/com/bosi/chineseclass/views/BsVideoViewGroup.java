@@ -94,12 +94,11 @@ public class BsVideoViewGroup extends LinearLayout{
 				mVideoView.stopPlayback();
 			}
  	});
-
 	}
 	
 	@SuppressLint("NewApi")
 	public void setVideoBackGround(int resource){
-		mVideoView.setBackground(getContext().getResources().getDrawable(resource));
+		mVideoView.setBackgroundResource(resource);
 	}
 
 	public interface OnVideoRestartListener{
