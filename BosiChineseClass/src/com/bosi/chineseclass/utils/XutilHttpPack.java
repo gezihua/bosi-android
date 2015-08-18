@@ -28,7 +28,7 @@ public class XutilHttpPack {
 	}
 	
 	public XutilHttpPack(){
-		mHttPUtils =  new HttpUtils(); 
+		mHttPUtils =  new HttpUtils(true); 
 		mHttPUtils.configTimeout(10*1000);
 	}
 	public HttpUtils getHttpUtils(){

@@ -58,19 +58,11 @@ public class HttpUtils {
 
     private HttpRedirectHandler httpRedirectHandler;
 
-    public HttpUtils() {
-        this(HttpUtils.DEFAULT_CONN_TIMEOUT, null);
+    public HttpUtils(boolean isAddAccept) {
+        this(HttpUtils.DEFAULT_CONN_TIMEOUT, null,isAddAccept);
     }
 
-    public HttpUtils(int connTimeout) {
-        this(connTimeout, null);
-    }
-
-    public HttpUtils(String userAgent) {
-        this(HttpUtils.DEFAULT_CONN_TIMEOUT, userAgent);
-    }
-
-    public HttpUtils(int connTimeout, String userAgent) {
+    public HttpUtils(int connTimeout, String userAgent,final boolean isAddAccept) {
         HttpParams params = new BasicHttpParams();
 
         ConnManagerParams.setTimeout(params, connTimeout);
@@ -102,6 +94,7 @@ public class HttpUtils {
             public void process(org.apache.http.HttpRequest httpRequest, HttpContext httpContext) throws org.apache.http.HttpException, IOException {
                 if (!httpRequest.containsHeader(HEADER_ACCEPT_ENCODING)) {
                     httpRequest.addHeader(HEADER_ACCEPT_ENCODING, ENCODING_GZIP);
+                    if(isAddAccept)
                     httpRequest.addHeader(HEAD_ACCEPT,HEAD_ACCEPT_ADDVALUE);
                 }
             }

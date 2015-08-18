@@ -35,8 +35,6 @@ public class BSApplication extends Application {
 	
 	public BosiDbManager mDbBosiClass;
 
-	public HttpUtils mHttpUtils;
-
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -46,7 +44,6 @@ public class BSApplication extends Application {
 		storageManagerInit();
 		mDbBosiClass = new BosiDbManager(this);//项目逻辑
 		mActivityStack = new AppActivityStack();
-		mHttpUtils = new HttpUtils();
 		// CrashHandler.getInstance().init(this);
 		MobclickAgent.setDebugMode(true);
 	}

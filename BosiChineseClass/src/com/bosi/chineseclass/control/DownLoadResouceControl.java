@@ -60,7 +60,7 @@ public class DownLoadResouceControl {
 	}
 
 	public void onCreate() {
-		mHttpUtils = new HttpUtils();
+		mHttpUtils = new HttpUtils(false);
 		mHandlerList = new ArrayList<HttpHandler>();
 	}
 
