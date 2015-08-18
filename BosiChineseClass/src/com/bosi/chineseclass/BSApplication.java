@@ -67,13 +67,14 @@ public class BSApplication extends Application {
 					public void onHttpSuccess(String result) {
 						try {
 							JSONObject mObj = new JSONObject(result);
+							mTatget.onHttpSuccess(mObj,code);
 						} catch (JSONException e) {
 						}
 					}
 
 					@Override
 					public void onHttpError(HttpException e, String messge) {
-						mTatget.onHttpError(e, messge);
+						mTatget.onHttpError(e, messge,code);
 					}
 				});
 		return mHttpHandler;
