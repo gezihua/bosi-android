@@ -33,7 +33,7 @@ public class QwhzDitalFragment extends AbsHzcsFragment{
 	}
 	@OnClick(R.id.bt_qwhz_dital_qhz)
 	public void actionQwhz(View mView){
-		mTvDitalTitle.setText("趣味汉子");
+		mTvDitalTitle.setText("趣味汉字");
 		mCurrentData = qwhzDataArray;
 		downloadimgs();
 	}
@@ -51,7 +51,7 @@ public class QwhzDitalFragment extends AbsHzcsFragment{
 	}
 	@OnClick(R.id.bt_qwhz_dital_sjx)
 	public void actionSjxhz(View mView){
-		mTvDitalTitle.setText("三角形汉子");
+		mTvDitalTitle.setText("三角形汉字");
 		mCurrentData = sjxhzDataArray;
 		downloadimgs();
 	}
