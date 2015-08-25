@@ -1,8 +1,8 @@
 package com.bosi.chineseclass.han.fragments;
 
 import android.annotation.SuppressLint;
+
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnInfoListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.util.Log;
@@ -14,85 +14,96 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 
+import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class ZjjzyFragment extends BaseFragment {
-    @ViewInject(R.id.video_zjjzy)
-    private VideoView mVideoView;
+	@ViewInject(R.id.video_zjjzy)
+	private VideoView mVideoView;
 
-    @ViewInject(R.id.webview_zjjzy_index)
-    private WebView mWebView;
+	@ViewInject(R.id.webview_zjjzy_index)
+	private WebView mWebView;
 
-    @ViewInject(R.id.pb_videoplaying)
-    private ProgressBar mPbBarForVideo;
-    private final String PATH = "http://www.yuwen100.cn/yuwen100/hzzy/jbzy-clips/video/";
+	@ViewInject(R.id.pb_videoplaying)
+	private ProgressBar mPbBarForVideo;
 
-    @Override
-    protected View getBasedView() {
-        return inflater.inflate(R.layout.fragment_layout_zjjzy, null);
-    }
+	
+	HeadLayoutComponents mHeadActionBarComp;
+	@ViewInject(R.id.headactionbar)
+	View mHeadActionBar;
+	@Override
+	protected View getBasedView() {
+		return inflater.inflate(R.layout.fragment_layout_zjjzy, null);
+	}
 
-    @Override
-    protected void afterViewInject() {
-        mVideoView.setMediaController(new MediaController(mActivity));
-        //TODO:设置正确的专家讲字源路径
-        String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/120001.mp4";
-        playVideo(path);
+	@Override
+	protected void afterViewInject() {
+		mVideoView.setMediaController(new MediaController(mActivity));
+		// TODO:设置正确的专家讲字源路径
+		String path = AppDefine.URLDefine.URL_HZJC_ZJJZY_VIDEO + "1.mp4";
+		playVideo(path);
 
-        initWebView();
-        mWebView.loadUrl("file:///android_asset/zjjzy/videoindex.html");
+		initWebView();
+		mWebView.loadUrl("file:///android_asset/zjjzy/videoindex.html");
 
-    }
+		mHeadActionBarComp = new HeadLayoutComponents(mActivity, mHeadActionBar);
+		mHeadActionBarComp.setTextMiddle("专家讲字源", -1);
+		mHeadActionBarComp.setDefaultLeftCallBack(true);
+		mHeadActionBarComp.setDefaultRightCallBack(true);
+		
+	}
 
-    private void playVideo(String path) {
-    	mPbBarForVideo.setVisibility(View.VISIBLE);
-    	mVideoView.setScrollContainer(false);
-        mVideoView.setVideoURI(Uri.parse(path));
-        mVideoView.requestFocus();
-        mVideoView.setOnPreparedListener(new OnPreparedListener() {
-			
+	private void playVideo(String path) {
+		mPbBarForVideo.setVisibility(View.VISIBLE);
+		mVideoView.setScrollContainer(false);
+		mVideoView.setVideoURI(Uri.parse(path));
+		mVideoView.requestFocus();
+		mVideoView.setOnPreparedListener(new OnPreparedListener() {
+
 			@Override
 			public void onPrepared(MediaPlayer arg0) {
 				mPbBarForVideo.setVisibility(View.GONE);
 			}
 		});
-        mVideoView.start();
-    }
+		mVideoView.start();
+	}
 
-    @SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
-    private void initWebView() {
+	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
+	private void initWebView() {
 
-        WebSettings webSettings = mWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        mWebView.addJavascriptInterface(new WebAppShowObjectInterface(), "zjjzy");
+		WebSettings webSettings = mWebView.getSettings();
+		webSettings.setJavaScriptEnabled(true);
+		mWebView.addJavascriptInterface(new WebAppShowObjectInterface(),
+				"zjjzy");
 
-        }
+	}
 
-    public class WebAppShowObjectInterface {
-        @JavascriptInterface
-        public void showObject(final String id) {
-            Log.e("HNX", "Zjjzy showObject id  " + id);
-            
-            mActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                  //TODO:设置正确的专家讲字源路径
-//                    String path = PATH + id + ".mp4";
-                    String path = "http://www.yuwen100.cn/yuwen100/zy/hanzi-flash/120001.mp4";
-                    playVideo(path);
-                }
-            });
-        }
-    }
+	public class WebAppShowObjectInterface {
+		@JavascriptInterface
+		public void showObject(final String id) {
+			Log.e("HNX", "Zjjzy showObject id  " + id);
 
-    @Override
-    public void onDestroy() {
-        mWebView.clearCache(true);
-        mWebView.clearHistory();
+			mActivity.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					// TODO:设置正确的专家讲字源路径
+					String path = AppDefine.URLDefine.URL_HZJC_ZJJZY_VIDEO + id
+							+ ".mp4";
+					playVideo(path);
+				}
+			});
+		}
+	}
 
-        super.onDestroy();
-    }
+	@Override
+	public void onDestroy() {
+		mWebView.clearCache(true);
+		mWebView.clearHistory();
+		mVideoView.stopPlayback();
+		super.onDestroy();
+	}
 
 }

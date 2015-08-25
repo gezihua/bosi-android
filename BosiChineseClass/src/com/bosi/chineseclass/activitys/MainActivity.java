@@ -17,6 +17,7 @@ import com.bosi.chineseclass.bean.BpcyDataBean;
 import com.bosi.chineseclass.control.SampleControl;
 import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.db.dict.BPCYDATA;
+import com.bosi.chineseclass.han.activitys.GameActivity;
 import com.bosi.chineseclass.han.activitys.ZiYuanActivity;
 import com.bosi.chineseclass.han.db.CheckDbUtils;
 import com.bosi.chineseclass.han.db.DbManager;
@@ -71,7 +72,12 @@ public class MainActivity extends BaseActivity {
 		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
 		startActivity(mIntent);
 	}
-
+	@OnClick(R.id.bt_zyyx)
+	public void actionZyyx(View mView){
+		Intent mIntent = new Intent(this,GameActivity.class);
+		mIntent.putExtra("title", "字源游戏");
+		startActivity(mIntent);
+	}
 	
 	
 	@OnClick(R.id.bt_zy)

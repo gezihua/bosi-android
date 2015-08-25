@@ -21,6 +21,7 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 		
 		mDataArrayFxbg = getResources().getStringArray(R.array.hzcs_hzqy_fxbg_picarray);
 	}
+	
 	@OnClick(R.id.bt_hzcs_dital_jsjs)
 	public void actionClickJsJs(View mView){
 		mCurrentData = mDataArrayJsjs;

@@ -36,6 +36,12 @@
             android:layout_width="55dp"
             android:layout_height="160dp"
             android:background="@drawable/a3_selector" />
+        <Button
+            android:id="@+id/bt_zyyx"
+            android:layout_width="55dp"
+            android:layout_height="160dp"
+            android:background="@drawable/a7_selector" />
+        
 
         <Button
             android:id="@+id/btn_bphz"
