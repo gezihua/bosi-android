@@ -63,9 +63,9 @@ public class ZyObjectActivity extends BaseActivity{
 
         //TODO:webview路径需要写正确
 //        PATH + mId;
-         String path = PATH + mId + "./html";
-         mWebView.loadUrl(path); 
-      //  mWebView.loadUrl("file:///android_asset/bosijiaoyu/index.html");
+         //String path = PATH + mId + "./html";
+        // mWebView.loadUrl(path); 
+      mWebView.loadUrl("file:///android_asset/bosijiaoyu/index.html");
         
     }
 

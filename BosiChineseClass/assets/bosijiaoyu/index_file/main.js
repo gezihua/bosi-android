@@ -28,7 +28,7 @@
         var browserWidth = $(window).width();
         var imgWidth = $("#imgExample").width();
         
-        var containerWidth = (browserWidth - imgWidth - 100);
+        var containerWidth = (browserWidth - imgWidth - 45);
         
         if(containerWidth > 200){
             $("#mainContainer").css({"width":(0.95 * containerWidth) + "px","max-width":(0.95*containerWidth) + "px",});
