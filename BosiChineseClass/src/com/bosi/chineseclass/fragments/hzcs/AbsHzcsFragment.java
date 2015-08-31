@@ -1,5 +1,12 @@
 package com.bosi.chineseclass.fragments.hzcs;
 
+import java.io.IOException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpHead;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -19,6 +26,7 @@ import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.XutilImageLoader;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
+import com.bosi.chineseclass.utils.NetStateUtil;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
 import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
 import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
@@ -86,7 +94,8 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 
 		mWebView = (WebView) mBaseView.findViewById(R.id.wv_hzcs_dital);
 		mProgressBar = (ProgressBar) mBaseView.findViewById(R.id.pb_forwebview);
-		mLayoutWebViewBody = (LinearLayout)mBaseView.findViewById(R.id.ll_hzcs_dital);
+		mLayoutWebViewBody = (LinearLayout) mBaseView
+				.findViewById(R.id.ll_hzcs_dital);
 
 		mTvDitalTitle = (TextView) mBaseView
 				.findViewById(R.id.tv_hzcsdital_title);
@@ -100,18 +109,21 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 
 	private void initWebView() {
 		WebSettings webSettings = mWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+		webSettings.setBuiltInZoomControls(true); // 显示放大缩小 controler
+		webSettings.setUseWideViewPort(true);
+		webSettings.setSupportZoom(true); // 可以缩放
 		mWebView.setWebViewClient(new WebViewClient() {
+
+			boolean isError = false;
+
 			public void onReceivedError(WebView view, int errorCode,
 					String description, String failingUrl) {
 				view.stopLoading();
 				view.clearFormData();
 				view.clearHistory();
-				mLayoutWebViewBody.setVisibility(View.GONE);
-				mIvDital.setVisibility(View.VISIBLE);
-				//加载当前的图片 
-				mImageLoader.getBitmapFactory().display(mIvDital,
-						mCurrentData[currentPosition]);
+				if (isError) {
+					displayCurrentPic();
+				}
 			}
 
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -119,22 +131,22 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 				return true;
 			}
 		});
-		
-		mWebView.setWebChromeClient(new WebChromeClient(){
+
+		mWebView.setWebChromeClient(new WebChromeClient() {
 
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
 				super.onProgressChanged(view, newProgress);
-				 if (newProgress == 100) {
-					 mProgressBar.setVisibility(View.GONE);
-		                return;
-		            }
-				 mProgressBar.setVisibility(View.VISIBLE);
-				 mProgressBar.setProgress(newProgress);
+				if (newProgress == 100) {
+					mProgressBar.setVisibility(View.GONE);
+					return;
+				}
+				mProgressBar.setVisibility(View.VISIBLE);
+				mProgressBar.setProgress(newProgress);
 			}
-			
+
 		});
-		
+
 	}
 
 	public abstract void initMenu();
@@ -167,6 +179,37 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 		}
 	}
 
+	/**
+	 * 如果网络状态不通直接返回 -1
+	 * 
+	 * */
+	private int getRespStatus(String url) {
+
+		int status = -1;
+
+		if (!NetStateUtil.isNetWorkAlive(mActivity)) {
+			return status;
+		}
+
+		try {
+
+			HttpHead head = new HttpHead(url);
+
+			HttpClient client = new DefaultHttpClient();
+
+			HttpResponse resp = client.execute(head);
+
+			status = resp.getStatusLine().getStatusCode();
+
+		} catch (IOException e) {
+		}
+
+		return status;
+
+	}
+
+	int isExistHtmlFile = -1;
+
 	protected synchronized void updateDitalPg() {
 		if (mCurrentData == null)
 			return;
@@ -174,15 +217,48 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 			currentPosition = 0;
 
 		}
-		//换成加载网页 否则 
+		// 换成加载网页 否则
 		mIvDital.setVisibility(View.GONE);
 		mLayoutWebViewBody.setVisibility(View.VISIBLE);
 		mWebView.clearHistory();
-		
-		mWebView.loadUrl("http://manage1.bsccedu.com/temp/4.html");
+
+		// 首先异步检查当前文件是否存在如果不存在直接加载图片
+		final String mCurrentJpgPath = mCurrentData[currentPosition];
+		final String mUrlPath = mCurrentJpgPath.substring(0,
+				mCurrentJpgPath.lastIndexOf("."))
+				+ ".html";
+
+		mActivity.showProgresssDialogWithHint("加载中...");
+		isExistHtmlFile = -1;
+		mActivity.AsyTaskBaseThread(new Runnable() {
+
+			@Override
+			public void run() {
+				isExistHtmlFile = getRespStatus(mUrlPath);
+			}
+		}, new Runnable() {
+
+			@Override
+			public void run() {
+				if (isExistHtmlFile != -1 && isExistHtmlFile == 200) {
+					mWebView.loadUrl(mUrlPath);
+				} else {
+					displayCurrentPic();
+				}
+				mActivity.dismissProgressDialog();
+			}
+		});
+
 	}
 
-	
+	private void displayCurrentPic() {
+		mLayoutWebViewBody.setVisibility(View.GONE);
+		mIvDital.setVisibility(View.VISIBLE);
+		// 加载当前的图片
+		mImageLoader.getBitmapFactory().display(mIvDital,
+				mCurrentData[currentPosition]);
+	}
+
 	protected abstract void downLoadImageOverAction();
 
 	@Override

@@ -116,7 +116,7 @@ public class BaseActivity extends FragmentActivity {
 			new Thread(){
 					public void run(){
 						mTask.run();
-						mResult.run();
+						runOnUiThread(mResult);
 					}
 			}.start();
 		}
