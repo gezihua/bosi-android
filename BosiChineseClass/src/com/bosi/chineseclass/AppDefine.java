@@ -9,6 +9,7 @@ public class AppDefine {
         public static String APP_DICTDITALNPATH =  "bosi-chinese/Dict/";
         public static String APP_CYDITALNPATH =  "bosi-chinese/CY/";
         public static String APP_CYPATH = "bosi-chinese/CY-DICT/";
+        public static String APP_JCZY = "bosi-chinese/CACHE_JCZY/";
     }
 
     public static class ZYDefine {

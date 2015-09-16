@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -174,14 +175,34 @@ DownLoadInterface{
 		StringBuilder msb = new StringBuilder();
 		msb.append("[成语释义]");
 		msb.append(mBpcyBean.CYShiyi);
-		msb.append("[成语出处]");
-		msb.append(DesUtils.decode(mBpcyBean.CYChuchu));
+		try{
+			if(!TextUtils.isEmpty(mBpcyBean.CYChuchu)){
+				msb.append("[成语出处]");
+				msb.append(DesUtils.decode(mBpcyBean.CYChuchu));
+			}
+		}catch(Exception e ){
+			
+		}
+		
 		msb.append("[成语示例]");
 		msb.append(mBpcyBean.CYShili);
-		msb.append("[近义词]");
-		msb.append(DesUtils.decode(mBpcyBean.CYJinyi));
-		msb.append("[反义词]");
-		msb.append(DesUtils.decode(mBpcyBean.CYFanyi));
+		try{
+			if(!TextUtils.isEmpty(mBpcyBean.CYJinyi)){
+				msb.append("[近义词]");
+				msb.append(DesUtils.decode(mBpcyBean.CYJinyi));
+			}
+		}catch(Exception e){
+			
+		}
+		
+		try{
+			if(!TextUtils.isEmpty(mBpcyBean.CYFanyi)){
+				msb.append("[反义词]");
+				msb.append(DesUtils.decode(mBpcyBean.CYFanyi));
+			}
+		}catch(Exception e ){
+			
+		}
 		
 		String mAppenedData = msb.toString();
 		BosiUtils.loadTransfDataBaseSquare(mTvExplain, mAppenedData);
@@ -204,8 +225,13 @@ DownLoadInterface{
 	}
 	
 	private void setUpNameAndPinyin() throws Exception{
-		mTvName.setText(DesUtils.decode(mBpcyBean.CYCimu));
-		mTvCyPinyin.setText(DesUtils.decode(mBpcyBean.CYFayin));
+		try{
+			mTvName.setText(DesUtils.decode(mBpcyBean.CYCimu));
+			mTvCyPinyin.setText(DesUtils.decode(mBpcyBean.CYFayin));
+		}
+		catch(Exception e){
+			
+		}
 		getExplanDataText();
 	}
 	
@@ -219,10 +245,9 @@ DownLoadInterface{
 	 * http://www.yuwen100.cn/yuwen100/hzzy/zyzd-clips/cyread/220001.mp3
 	 * 
 */		
-		String mUrls [] = new String[3];
+		String mUrls [] = new String[2];
 		mUrls[0] = "http://www.yuwen100.cn/yuwen100/hzzy/zyzd-clips/cytu/"+mBpcyBean.Cybh+".jpg";
-		mUrls[1] = "http://www.yuwen100.cn/yuwen100/hzzy/zyzd-clips/cyflv/"+mBpcyBean.Cybh+".MP4";
-		mUrls[2] = "http://www.yuwen100.cn/yuwen100/hzzy/zyzd-clips/cyread/"+mBpcyBean.Cybh+".mp3";
+		mUrls[1] = "http://www.yuwen100.cn/yuwen100/hzzy/zyzd-clips/cyread/"+mBpcyBean.Cybh+".mp3";
 		return mUrls;
 	}
 	
@@ -253,12 +278,7 @@ DownLoadInterface{
 	@OnClick(R.id.tv_showcy_dgdh)
 	private void showCyDgVideo(View mView){
 		
-		String mAbsFilePath = mDownLoadControl.getAbsFilePath()+mBpcyBean.Cybh+".MP4";
-		File mFile = new File(mAbsFilePath);
-		if(mFile ==null ||!mFile.exists()){
-			showToastShort("未找到该典故相关视频");
-			return;
-		}
+		String mAbsFilePath = "http://www.yuwen100.cn/yuwen100/hzzy/zyzd-clips/cyflv/"+mBpcyBean.Cybh+".MP4";
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		String type = "video/mp4";
 		Uri uri = Uri.parse(mAbsFilePath);

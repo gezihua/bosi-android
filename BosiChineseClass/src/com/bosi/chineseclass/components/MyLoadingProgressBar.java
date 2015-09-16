@@ -72,25 +72,30 @@ public class MyLoadingProgressBar {
     }
     
     public void showWithHint(String hint){
-        mAlertDialog = new AlertDialog.Builder(mContext).create();
-        mAlertDialog.show();
-        mAlertDialog.setOnCancelListener(new OnCancelListener() {
-            
-            @Override
-            public void onCancel(DialogInterface paramDialogInterface) {
-                
-            }
-        });
-        mAlertDialog.setCanceledOnTouchOutside(false);
-        Window window = mAlertDialog.getWindow();
-        
-        View mView = LayoutInflater.from(mContext).inflate(R.layout.progress_layout, null);
-        mTextViewHint = (TextView) mView.findViewById(R.id.tv_loadinghint);
-        if(!TextUtils.isEmpty(hint)){
-            mTextViewHint.setText(hint);
-        }
-        window.setContentView(mView);
-        window.setGravity(Gravity.CENTER);
+    	try{
+    		 mAlertDialog = new AlertDialog.Builder(mContext).create();
+    	        mAlertDialog.show();
+    	        mAlertDialog.setOnCancelListener(new OnCancelListener() {
+    	            
+    	            @Override
+    	            public void onCancel(DialogInterface paramDialogInterface) {
+    	                
+    	            }
+    	        });
+    	        mAlertDialog.setCanceledOnTouchOutside(false);
+    	        Window window = mAlertDialog.getWindow();
+    	        
+    	        View mView = LayoutInflater.from(mContext).inflate(R.layout.progress_layout, null);
+    	        mTextViewHint = (TextView) mView.findViewById(R.id.tv_loadinghint);
+    	        if(!TextUtils.isEmpty(hint)){
+    	            mTextViewHint.setText(hint);
+    	        }
+    	        window.setContentView(mView);
+    	        window.setGravity(Gravity.CENTER);
+    	}catch(Exception e){
+    		
+    	}
+       
     }
 
     public OnLoading getOnLoadInterface() {
