@@ -1,8 +1,11 @@
 
 package com.bosi.chineseclass.components;
 
+import java.io.File;
+
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.text.TextUtils;
 
 public class MutilMediaPlayerTools implements MediaPlayer.OnCompletionListener {
     private int mCurrentPlayIndex = 0;
@@ -30,7 +33,16 @@ public class MutilMediaPlayerTools implements MediaPlayer.OnCompletionListener {
             mPlayerPools.playMediaFile(mPaths[0]);
             return;
         }
+        
         if (mCurrentPlayIndex < mPaths.length) {
+        	
+        	if(!TextUtils.isEmpty(mPaths[mCurrentPlayIndex])){
+        		File mFile = new File(mPaths[mCurrentPlayIndex]);
+        		if(mFile==null||!mFile.exists()){
+        			onCompletion(mPlayerPools.getMediaPlayer());
+            		return;
+        		}
+        	}
             mPlayerPools.playMediaFile(mPaths[mCurrentPlayIndex]);
         }
         if (mMutilMediaPlayerListener != null && mCurrentPlayIndex == mPaths.length) {

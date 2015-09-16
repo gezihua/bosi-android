@@ -21,6 +21,10 @@ public class MediaPlayerPools {
         destroyMediaPlayer();
         mMediaPlayer = new MediaPlayer();
     }
+    
+    public MediaPlayer getMediaPlayer(){
+    	return mMediaPlayer;
+    }
 
     public void destroyMediaPlayer() {
         try {
