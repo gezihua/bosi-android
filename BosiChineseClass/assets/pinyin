@@ -1,6 +1,6 @@
 b_f=双唇紧闭，阻碍气流，然后双唇突然放开，让气流冲出，读音轻短。
 b_p=ba#bo#bi#bu#bao
-b_d=bà ba 爸爸#bēn bō 奔波# bǎn běn 版本#biǎo bái 表白
+b_d=bà ba 爸爸#bēn bō 奔波#bǎn běn 版本#biǎo bái 表白
 b_dd=baba#benbo#banben#biaobai
 
 p_f=双唇紧闭，阻碍气流，然后双唇突然放开，气流迸出成音。
@@ -39,7 +39,7 @@ n_dd=niunai#nainai#nanfang#nengnai
 
 l_f=嘴唇稍开，舌尖抵住上牙床，声带颤动，气流从舌尖两边流出。
 l_p=la#le#li#lu 
-l_d=lái lì 来历#lǎo lao 姥姥#liàng lì# 亮丽#lì liàng 力量
+l_d=lái lì 来历#lǎo lao 姥姥#liàng lì 亮丽#lì liàng 力量
 l_dd=laili#laolao#liangli#liliang
 
 g_f=舌根前部抵住软腭阻碍气流，让气流冲破舌根的阻碍，爆发成声。
@@ -69,7 +69,7 @@ q_dd=qinqing#qingqiao#qiangquan#qiqiu
 
 x_f=舌尖抵住下门齿，舌面前部抬高靠近硬腭，形成窄缝，气流从缝中挤出，摩擦成音。
 x_p=xi# xu# xiu# xiao# xue
-x_d=xué xí 学习#xiǎo xué 小学#xiáng xì 详细 # xià xuě 下雪
+x_d=xué xí 学习#xiǎo xué 小学#xiáng xì 详细 #xià xuě 下雪
 x_dd=xuexi#xiaoxue#xiangxi#xiaxue
 
 
@@ -92,7 +92,7 @@ sh_dd=shishi#shuangshou#shoushu#shanshuo
 
 r_f=舌尖上翘，靠近硬腭前部，留出窄缝，嗓子用力发音，气流从窄缝中挤出，摩擦成音，声带颤动。
 r_p=re#ri#ru#rao#ruan
-r_d=réng rán 仍然róu ruǎn 柔软róng rù 融入róu rèn 柔韧
+r_d=réng rán 仍然#róu ruǎn 柔软#róng rù 融入#róu rèn 柔韧
 r_dd=rengran#rouruan#rongru#rouren
 
 
@@ -106,7 +106,7 @@ z_dd=zuozhe#zazhi#zizhu#zuzhi
 c_f=舌尖抵住上门齿背，阻碍气流，让较强的气流从缝中挤出，摩擦成音。
 c_p=ca#ce#ci#cu#cao
 c_d=céng cì 层次#cóng cǐ 从此#cāi cè 猜测#cuī cù 催促
-c_dd=cengci#congci#chace#cuicu
+c_dd=cengci#congci#caice#cuicu
 
 
 s_f=舌尖接近上门齿背，留出窄缝，气流从舌尖的窄缝中挤出，摩擦成音。
@@ -170,9 +170,9 @@ ai_d=bái cài 白菜#pái míng 排名#mài miáo 麦苗#kǒu dài 口袋
 ai_dd=baicai#paiming#maimiao#koudai
 
 
-ei_f=先发e的音，然后滑向i，气流不中断，读音轻短。
+ei_f=先发e的音，然后滑向i，气流不中断，嘴角向两边展开。
 ei_p=bei#pei#mei#fei
-ei_d=bèi zhù 备注#péi bàn 陪伴 měi róng 美容   fēi shì 飞逝
+ei_d=bèi zhù 备注#péi bàn 陪伴#měi róng 美容#fēi shì 飞逝
 ei_dd=beizhu#peiban#meirong#feishi
 
 
