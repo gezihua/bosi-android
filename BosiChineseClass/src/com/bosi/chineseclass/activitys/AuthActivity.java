@@ -65,7 +65,7 @@ public class AuthActivity extends BaseActivity implements OnHttpActionListener {
 		mList.add(new BasicNameValuePair("txtLoginName", mAccount));
 		mList.add(new BasicNameValuePair("txtLoginPwd", mPassword));
 		mList.add(new BasicNameValuePair("txtMobilePhone", mEditTextPhone));
-
+		mList.add(new BasicNameValuePair("imei", BSApplication.getInstance().getImei()));
 		showProgresssDialogWithHint("登录中...  ");
 		BSApplication.getInstance().sendData(mList, URLDefine.URL_AUTH, this,
 				101);

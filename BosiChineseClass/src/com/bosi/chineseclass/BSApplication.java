@@ -12,6 +12,9 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 import com.bosi.chineseclass.components.ExitSystemDialog;
 import com.bosi.chineseclass.db.BosiDbManager;
@@ -97,6 +100,17 @@ public class BSApplication extends Application {
 		ExitSystemDialog mDialog = new ExitSystemDialog(
 				(BaseActivity) mActivityStack.peek());
 		mDialog.mDialog.show();
+	}
+	
+	public String getImei(){
+		TelephonyManager telephonyManager= (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+		String imei=telephonyManager.getDeviceId();
+		
+		if(!TextUtils.isEmpty(imei)){
+			return imei;
+		}else{
+			return "1234567890";
+		}
 	}
 
 	public void destroySystem() {
