@@ -178,6 +178,7 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BpStasticBean>>{
 		}
 		BpStasticBean mData = mListData.get(position);
 		String array[] = mData.mNumberBetween.split("-");
+		
 		String numStart = array[0];
 		String numEnd = array[1];
 		intentToWordDital(
@@ -229,7 +230,12 @@ public class BpcyLevAdapter extends ComListViewAdapter<List<BpStasticBean>>{
 		if (mListData != null && mListData.size() > 0) {
 			BpStasticBean mData = mListData.get(position);
 			if (mData != null) {
-				mButtonSize.setText(mData.mNumberBetween);
+				if(position==mListData.size()-1){
+					mButtonSize.setText(mData.mNumberBetween.split("-")[1]);
+				}else{
+					mButtonSize.setText(mData.mNumberBetween);
+				}
+				
 			}
 		}
 		return mView;

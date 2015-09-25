@@ -105,7 +105,7 @@ public class BpcyLevFragment extends BaseFragment{
 			
 			// 如果是最后一个统计的view 的话 最小值1 最大值 13000
 			if (i == 15) {
-				mBpHzBean.mNumberBetween = "13000";
+				mBpHzBean.mNumberBetween = "0-13000";
 				mBphz.getListBpHzBeans(mActivity,1,
 						AppDefine.ZYDefine.BPCH_REFID_ADDED + 13000, mBpHzBean);
 			} else {
