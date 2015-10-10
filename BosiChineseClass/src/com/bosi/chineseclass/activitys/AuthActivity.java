@@ -65,7 +65,7 @@ public class AuthActivity extends BaseActivity implements OnHttpActionListener {
 		mList.add(new BasicNameValuePair("txtLoginName", mAccount));
 		mList.add(new BasicNameValuePair("txtLoginPwd", mPassword));
 		mList.add(new BasicNameValuePair("txtMobilePhone", mEditTextPhone));
-		mList.add(new BasicNameValuePair("imei", BSApplication.getInstance().getImei()));
+		mList.add(new BasicNameValuePair("hidVerifyCode", BSApplication.getInstance().getImei()));
 		showProgresssDialogWithHint("登录中...  ");
 		BSApplication.getInstance().sendData(mList, URLDefine.URL_AUTH, this,
 				101);
@@ -76,18 +76,27 @@ public class AuthActivity extends BaseActivity implements OnHttpActionListener {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 
+		
 		String account = PreferencesUtils.getString(this, "account");
-		String password = PreferencesUtils.getString(this, "password");
-		String phone = PreferencesUtils.getString(this, "phone");
-		if (!TextUtils.isEmpty(account)) {
-			mEditAccount.setText(account);
+		if(!TextUtils.isEmpty(account)){
+			performMainPage();
 		}
-		if (!TextUtils.isEmpty(password)) {
-			mEditPassword.setText(password);
-		}
-		if (!TextUtils.isEmpty(phone)) {
-			mEditPhone.setText(phone);
-		}
+//		String password = PreferencesUtils.getString(this, "password");
+//		String phone = PreferencesUtils.getString(this, "phone");
+//		if (!TextUtils.isEmpty(account)) {
+//			mEditAccount.setText(account);
+//		}
+//		if (!TextUtils.isEmpty(password)) {
+//			mEditPassword.setText(password);
+//		}
+//		if (!TextUtils.isEmpty(phone)) {
+//			mEditPhone.setText(phone);
+//		}
+	}
+	private void performMainPage(){
+		Intent mIntent = new Intent(this , MainActivity.class);
+		startActivity(mIntent);
+		finish();
 	}
 
 	interface RESULTCODE {

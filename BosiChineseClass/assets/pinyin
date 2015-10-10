@@ -65,7 +65,7 @@ j_dd=jiangjiu#jiaoji#jiji#jiejie
 q_f=舌面前部贴住硬腭，气流冲破舌根的阻碍，摩擦成音。
 q_p=qi#qu#qie#qin#quan
 q_d=qīnqíng 亲情#qīng qiǎo 轻巧#qīng quán 清泉#qì qiú 气球
-q_dd=qinqing#qingqiao#qiangquan#qiqiu
+q_dd=qinqing#qingqiao#qingquan#qiqiu
 
 x_f=舌尖抵住下门齿，舌面前部抬高靠近硬腭，形成窄缝，气流从缝中挤出，摩擦成音。
 x_p=xi# xu# xiu# xiao# xue
@@ -76,7 +76,7 @@ x_dd=xuexi#xiaoxue#xiangxi#xiaxue
 zh_f=舌尖上翘，抵住硬腭前部，有较弱的气流冲开舌尖阻碍，从缝中挤出，摩擦成音。
 zh_p=zha#zhu#zhi#zhe#zhui
 zh_d=zhè zhōu 这周#zhèng zhì政治#zhuān zhí专职#zhēn zhū 珍珠
-zh_dd=zhezhou#zhegzhi#zhuanzhi#zhenzhu
+zh_dd=zhezhou#zhengzhi#zhuanzhi#zhenzhu
 
 ch_f=舌尖上翘，抵住硬腭前部，有较强的气流冲开舌尖阻碍，从缝中挤出，摩擦成音。
 ch_p=cha#che#ch#ichu#chou
@@ -197,7 +197,7 @@ ou_dd=buou#oupian#touyuan#fouding
 iu_f=先发i，然后向ou滑动，口型由扁到圆。
 iu_p=miu#diu#niu#liu
 iu_d=diū shī 丢失#niǔ dài 纽带#liú chuán 留传#miù lùn 谬论
-iu_dd=diushi#niudai#liuchuan#miunun
+iu_dd=diushi#niudai#liuchuan#miulun
 
 
 ie_f=先发i，再发e，气流不中断。
@@ -206,11 +206,11 @@ ie_d=fēn bié 分别#xiāo miè 消灭#diē luò 跌落#hú dié 蝴蝶
 ie_dd=fenbie#xiaomie#dieluo#hudie
 
 
-ue_f=先发u的音，然后向e滑动，口型由圆到扁。
-ue_p=nüe#lüe#que#xue
-ue_d=quē diǎn 缺点#xué xiào 学校#nüè dài 虐待#lüè duó 掠夺
-ue_dd=quedian#xuexiao#nuedai#lueduo
 
+üe_f=先发u的音，然后向e滑动，口型由圆到扁。
+üe_p=nüe#lüe#que#xue
+üe_d=quē diǎn 缺点#xué xiào 学校#nüè dài 虐待#lüè duó 掠夺
+üe_dd=quedian#xuexiao#nvedai#lveduo
 
 
 er_f=舌位居中发e的音，然后舌尖向硬腭卷起，两个字母同时发音。
@@ -245,10 +245,10 @@ un_d=máo dùn 矛盾#tún tián 屯田#lùn tán 论坛#gǔn dòng 滚动
 un_dd=maodun#tuntian#luntan#gundong
 
 
-vn_f=先发ü的音，然后舌头上抬，抵住上牙床，气流从鼻腔泄出，发n的音。
-vn_p=jun#qun#xun#yun
-vn_d=bái yún 白云
-vn_dd=baiyun
+ün_f=先发ü的音，然后舌头上抬，抵住上牙床，气流从鼻腔泄出，发n的音。
+ün_p=jun#qun#xun#yun
+ün_d=bái yún 白云
+ün_dd=baiyun
 
 
 
