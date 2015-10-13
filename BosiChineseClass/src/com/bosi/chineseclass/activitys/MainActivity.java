@@ -3,10 +3,15 @@ package com.bosi.chineseclass.activitys;
 import java.util.List;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.bosi.chineseclass.BSApplication;
@@ -144,6 +149,50 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void onBackPressed() {
 		BSApplication.getInstance().exitApp();
+	}
+	
+	@ViewInject(R.id.iv_popu_remote_main)
+	ImageView mImageHintView;
+	
+	@OnClick(R.id.iv_popu_remote_main)
+	public void actionShowPopu(View mView){
+		showPopuWindow();
+	}
+	
+	PopupWindow mPopuWindow;
+
+	private void showPopuWindow() {
+		if (mPopuWindow != null && mPopuWindow.isShowing()) {
+			mPopuWindow.dismiss();
+			return;
+		}
+		View mPopView = View.inflate(this, R.layout.popu_main_remote,
+				null);
+		mPopuWindow = new PopupWindow(mPopView,
+				ViewGroup.LayoutParams.WRAP_CONTENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT, true);
+		mPopuWindow.setTouchable(true);
+		mPopuWindow.setOutsideTouchable(true);
+		mPopuWindow.setBackgroundDrawable(new BitmapDrawable());
+		mPopuWindow.showAsDropDown(mImageHintView, 0, 0);
+
+		//
+		View mFirst = mPopView.findViewById(R.id.main_popu_rl_instrohowtuse);
+		mFirst.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				mPopuWindow.dismiss();
+			}
+		});
+		View mSecond = mPopView.findViewById(R.id.main_popu_rl_userlimit);
+		mSecond.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				mPopuWindow.dismiss();
+			}
+		});
 	}
 
 }

@@ -9,10 +9,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 
 import com.bosi.chineseclass.AppDefine.URLDefine;
 import com.bosi.chineseclass.BSApplication;
@@ -78,26 +83,22 @@ public class AuthActivity extends BaseActivity implements OnHttpActionListener {
 
 		
 		String account = PreferencesUtils.getString(this, "account");
-		if(!TextUtils.isEmpty(account)){
-			performMainPage();
+		String password = PreferencesUtils.getString(this, "password");
+		String phone = PreferencesUtils.getString(this, "phone");
+		if (!TextUtils.isEmpty(account)) {
+			mEditAccount.setText(account);
 		}
-//		String password = PreferencesUtils.getString(this, "password");
-//		String phone = PreferencesUtils.getString(this, "phone");
-//		if (!TextUtils.isEmpty(account)) {
-//			mEditAccount.setText(account);
-//		}
-//		if (!TextUtils.isEmpty(password)) {
-//			mEditPassword.setText(password);
-//		}
-//		if (!TextUtils.isEmpty(phone)) {
-//			mEditPhone.setText(phone);
-//		}
+		if (!TextUtils.isEmpty(password)) {
+			mEditPassword.setText(password);
+		}
+		if (!TextUtils.isEmpty(phone)) {
+			mEditPhone.setText(phone);
+		}
+		
+		actionLogin(null);
+		
 	}
-	private void performMainPage(){
-		Intent mIntent = new Intent(this , MainActivity.class);
-		startActivity(mIntent);
-		finish();
-	}
+	
 
 	interface RESULTCODE {
 		public static String CODE_SUCCESS = "1"; // 登陆成功
@@ -161,5 +162,48 @@ public class AuthActivity extends BaseActivity implements OnHttpActionListener {
 	@OnClick(R.id.iv_login_exit)
 	public void existSystem(View mView) {
 		BSApplication.getInstance().destroySystem();
+	}
+	@ViewInject(R.id.iv_popu_remote_login)
+	ImageView mViewHintRemote;
+
+	@OnClick(R.id.iv_popu_remote_login)
+	public void actionShowRemote(View mView){
+		showPopuWindow();
+	}
+	
+	PopupWindow mPopuWindow;
+
+	private void showPopuWindow() {
+		if (mPopuWindow != null && mPopuWindow.isShowing()) {
+			mPopuWindow.dismiss();
+			return;
+		}
+		View mPopView = View.inflate(this, R.layout.popu_login_remote,
+				null);
+		mPopuWindow = new PopupWindow(mPopView,
+				ViewGroup.LayoutParams.WRAP_CONTENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT, true);
+		mPopuWindow.setTouchable(true);
+		mPopuWindow.setOutsideTouchable(true);
+		mPopuWindow.setBackgroundDrawable(new BitmapDrawable());
+		mPopuWindow.showAsDropDown(mViewHintRemote, 0, 0);
+
+		//
+		View mFirst = mPopView.findViewById(R.id.login_popu_rl_aboutbs);
+		mFirst.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				mPopuWindow.dismiss();
+			}
+		});
+		View mSecond = mPopView.findViewById(R.id.login_popu_rl_register);
+		mSecond.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				mPopuWindow.dismiss();
+			}
+		});
 	}
 }

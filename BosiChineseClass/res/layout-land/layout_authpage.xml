@@ -110,6 +110,14 @@
                 android:background="@drawable/icon_bt_logion" />
         </RelativeLayout>
     </RelativeLayout>
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/iv_popu_remote_login"
+        android:layout_margin="10dp"
+        android:background="@drawable/login_remote_icon"
+        ></ImageView>
 
     <ImageView
         android:layout_width="70dp"

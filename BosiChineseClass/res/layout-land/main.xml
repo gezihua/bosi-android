@@ -71,4 +71,13 @@
         android:layout_alignParentBottom="true"
         ></Button>
 
+    
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/iv_popu_remote_main"
+        android:layout_margin="10dp"
+        android:background="@drawable/main_remote_pupu_hint"
+        ></ImageView>
 </RelativeLayout>
