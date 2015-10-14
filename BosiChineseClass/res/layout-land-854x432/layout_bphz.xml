@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:id="@+id/ll_bphz_body"
         android:orientation="vertical"
-        android:layout_margin="10dp"
+        android:layout_margin="3dp"
         android:gravity="center"
         android:background="@drawable/bp_pagebg"
         >

@@ -14,7 +14,7 @@ public class BSGridView extends GridView{
 		setGravity(Gravity.CENTER);
 	}
 
-	@Override
+	/*@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		if (ev.getAction() == MotionEvent.ACTION_MOVE) {
 			if (!isGirdCanScroll) {
@@ -31,6 +31,6 @@ public class BSGridView extends GridView{
 				Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
 		super.onMeasure(widthMeasureSpec, expandSpec);
 	}
-
+*/
 
 }
