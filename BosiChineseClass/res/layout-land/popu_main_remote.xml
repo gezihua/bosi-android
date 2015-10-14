@@ -22,7 +22,7 @@
                 android:layout_width="20dp"
                 android:id="@+id/hint_img_aboutbs"
                 android:layout_height="20dp"
-                android:background="@drawable/login_remote_aboutbs"
+                android:background="@drawable/main_remote_instro_icon"
                 ></ImageView>
             <View
                 android:layout_width="1dp"
@@ -67,7 +67,7 @@
                 android:layout_width="20dp"
                 android:id="@+id/hint_img_register"
                 android:layout_height="20dp"
-                android:background="@drawable/login_pupu_login_hint"
+                android:background="@drawable/main_remote_limittime_icon"
                 ></ImageView>
             <View
                 android:layout_width="1dp"
