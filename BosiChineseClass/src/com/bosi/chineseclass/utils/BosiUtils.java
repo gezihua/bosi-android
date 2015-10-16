@@ -2,7 +2,10 @@ package com.bosi.chineseclass.utils;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -113,5 +116,14 @@ public class BosiUtils {
 		mData.mResouce = mStringBuilder.toString();
 		return mData;
 
+	}
+	
+	
+	public static void intentToVideoPlay(String url ,Activity mActivity){
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		String type = "video/mp4";
+		Uri uri = Uri.parse(url);
+		intent.setDataAndType(uri, type);
+		mActivity.startActivity(intent);
 	}
 }
