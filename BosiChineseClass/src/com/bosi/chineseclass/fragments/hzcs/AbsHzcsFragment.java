@@ -7,6 +7,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpHead;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -80,6 +81,7 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 		return View.inflate(mActivity, R.layout.layout_hzcs_base, null);
 	}
 
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void afterViewInject() {
 		mLayoutMenu = (LinearLayout) mBaseView
@@ -93,6 +95,8 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 		mBtRight.setOnClickListener(this);
 
 		mWebView = (WebView) mBaseView.findViewById(R.id.wv_hzcs_dital);
+        
+        
 		mProgressBar = (ProgressBar) mBaseView.findViewById(R.id.pb_forwebview);
 		mLayoutWebViewBody = (LinearLayout) mBaseView
 				.findViewById(R.id.ll_hzcs_dital);
@@ -107,10 +111,11 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 		initWebView();
 	}
 
+	@SuppressLint("SetJavaScriptEnabled")
 	private void initWebView() {
 		WebSettings webSettings = mWebView.getSettings();
-		webSettings.setBuiltInZoomControls(true); // 显示放大缩小 controler
-		webSettings.setUseWideViewPort(true);
+		//webSettings.setUseWideViewPort(true); 自适应屏幕
+		webSettings.setJavaScriptEnabled(true);
 		webSettings.setSupportZoom(true); // 可以缩放
 		mWebView.setWebViewClient(new WebViewClient() {
 
@@ -240,11 +245,13 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 
 			@Override
 			public void run() {
-				if (isExistHtmlFile != -1 && isExistHtmlFile == 200) {
+/*				if (isExistHtmlFile != -1 && isExistHtmlFile == 200) {
 					mWebView.loadUrl(mUrlPath);
 				} else {
 					displayCurrentPic();
-				}
+				}*/
+				
+				mWebView.loadUrl("file:///android_asset/zjl/qiehuan.html");
 				mActivity.dismissProgressDialog();
 			}
 		});

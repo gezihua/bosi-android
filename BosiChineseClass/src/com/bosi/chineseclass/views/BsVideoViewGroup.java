@@ -33,7 +33,7 @@ public class BsVideoViewGroup extends LinearLayout{
 	
 	@OnClick(R.id.bt_bsvideo_replay)
 	public void actionReplay(View mView){
-		playVideo();
+		playVideo(this.mVideoPath);
 		
 	}
 	
@@ -58,6 +58,7 @@ public class BsVideoViewGroup extends LinearLayout{
 	
 	private String mVideoPath ;
 	public void playVideo(String filePath){
+		this.mVideoPath = filePath;
 		if(TextUtils.isEmpty(filePath)) return;
 		File mFile = new File(filePath);
 		if(mFile==null ||!mFile.exists()){
@@ -69,7 +70,6 @@ public class BsVideoViewGroup extends LinearLayout{
 			mViewHint.setVisibility(View.GONE);
 			mVideoView.setVisibility(View.VISIBLE);
 		}
-		this.mVideoPath = filePath;
 		playVideo();
 	}
 	public BsVideoViewGroup(Context context) {

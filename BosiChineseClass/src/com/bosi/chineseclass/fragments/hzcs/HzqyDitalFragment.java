@@ -27,7 +27,6 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 		mCurrentData = mDataArrayJsjs;
 		mBtRight.setVisibility(View.GONE);
 		mBtLeft.setVisibility(View.GONE);
-		mTvDitalTitle.setText("结绳记事");
 		currentPosition = 0;
 		downloadimgs();
 	}

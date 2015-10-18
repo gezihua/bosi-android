@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+<script>
+    $(function(){
+     $('[data-selector="btn1"]').click(function(){
+          $('[data-selector="ling"]').removeClass("hide").addClass("show");
+          $('[data-selector="chang"]').removeClass("show").addClass("hide");
+          $('[data-selector="img1"]').removeClass("hide").addClass("show");
+          $('[data-selector="img2"]').removeClass("show").addClass("hide");
+          $('[data-selector="lingImg"]').attr("src","ling2.png");
+          $('[data-selector="changImg"]').attr("src","chang2.png");
+          
+     });
+     $('[data-selector="btn2"]').click(function(){
+          $('[data-selector="ling"]').removeClass("show").addClass("hide");
+          $('[data-selector="chang"]').removeClass("hide").addClass("show");
+          $('[data-selector="img1"]').removeClass("show").addClass("hide");
+          $('[data-selector="img2"]').removeClass("hide").addClass("show");
+          $('[data-selector="lingImg"]').attr("src","ling.png");
+          $('[data-selector="changImg"]').attr("src","chang.png");
+     });    
+   })        
+</script>
+<style>
+    .hide{display: none}
+    .show{display: block}
+    .bottom{background-color:antiquewhite}    
+    .characterHeadStyle{
+        color: coral;
+        font-size:25px;
+        font-weight: bolder;
+        font-family:monospace;
+    }
+    .characterTitleStyle{
+        color: black;
+        font-size:16px;
+        font-weight: 600;
+    }
+    .characterContentStyle{
+        color:black;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .center{text-align: center}
+    .summary{background-color:azure}
+    .keyword{
+        color: darksalmon;
+        font-size: 16px;
+    }
+    .title-keywords{
+        color: darksalmon;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+    <div class="summary">
+        <div class="center characterHeadStyle">假借:本无其字,依声托事</div>
+        <div>
+         <table class="table">
+          <tbody>
+            <tr>
+              <td class="characterTitleStyle">许慎在《说文解字·序》给假借所下的定义是：“<span class="title-keywords">本无其字，依声拖事,‘令’，‘长’是也。</span>”</td>
+            </tr>
+            <tr>
+              <td  class="characterTitleStyle">意思是说口语中某个词，书面上尚未有代表它的字。就借用一个同音的字
+              ，通过声音去寄托它的意思。</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div>
+            <button  type="button" data-selector="btn1"><img data-selector="lingImg" src="ling.png" alt=""></button>
+            <button  type="button" data-selector="btn2"><img data-selector="changImg" src="chang.png" alt=""></button>
+        </div>
+        <div  class="bottom">
+            <table>
+               <tbody>
+                   <td class="characterContentStyle">
+                        <span data-selector="ling" class="show">
+                             <span class="keyword">令</span>：上面是一个大屋顶的形象，下面是一个跪坐着的人，似乎正在屋内向别人发布命令。”令“字的含义：发布命令。
+                             后来，被假借去用在于它声音相同的语词上，如作为官名之称的县令、太史令；”令“后又用作”使“讲，如：令人发指；又作为敬辞之用，如：令尊、令堂、令郎、令爱等之称。
+                        </span>
+                        <span data-selector="chang" class="hide">
+                            <span class="keyword">长</span>：像一个头上有着头发，手持拐杖的人。本义是长途长远。后缀借为对地位高于一般人的称呼。如：
+                    县长、市长、家长、兄长（读音为zhǎng)。”长“用于时间相隔之久远，如：长期、细水长流（读音为
+                    cháng）等。                        
+                        </span>
+                </td>
+                <td><img class="show" data-selector="img1" src="lingP.png" alt=""><img class="hide" data-selector="img2" src="changP.png" alt=""></td>
+               </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

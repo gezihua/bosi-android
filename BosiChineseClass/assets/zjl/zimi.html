@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+<script>
+  $(function(){
+     $('[data-selector="btn1"]').click(function(){
+          $('[data-selector="character1"]').addClass("show");
+          $('[data-selector="analyse1"]').addClass("show");
+     });
+    $('[data-selector="btn2"]').click(function(){
+          $('[data-selector="character2"]').addClass("show");
+          $('[data-selector="analyse2"]').addClass("show");
+     });
+  
+  })    
+  
+</script>
+<style>
+    .hide{display: none}
+    .show{display: block}
+    .right{text-align:right}
+    .left{text-align: left}
+    .center{text-align: center}
+    .summary{
+        background-color:azure;
+    }
+    .distance{margin-bottom:40px;}
+    .line-hight{
+        line-height: 25px;
+    }
+    .characterHeadStyle{
+        color: coral;
+        font-size:20px;
+        font-weight: bolder;
+        font-family:serif;
+        
+    }
+    .characterTitleStyle{
+        color: black;
+        font-size:16px;
+        font-weight: 600;
+         width: 90%;
+    }
+    .characterContentStyle{
+        color:coral;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .float-left{
+        float: left;
+    }
+    .float-right{
+        float: right;     
+    }
+    .float-clear{
+        clear: both;
+    }
+    .right-img{
+        width: 10%;
+    }
+    .right-btn-img{
+        width: 10%
+    }
+</style>
+</head>
+<body>
+    <div class="summary">
+       <div class="characterHeadStyle center">字谜关</div>
+    
+       <!--字谜1-->
+        <div>
+             <div class="distance line-hight float-clear">
+                   <div class="float-left characterTitleStyle">
+                      <div class="">字谜1：“自小在一起，目前少联系。”</div>
+                  </div>
+                  <div class="float-right right-img hide" data-selector="character1">
+                     <img src="sheng.png" alt="">
+                  </div>
+            </div>
+            <div class="characterContentStyle hide" data-selector="analyse1">分析：因为“自”、 “小”两个字合在一起，是“省”；“目”、“少”合在一起，也是“省”字。 </div> 
+            <div class="distance right float-clear">
+                  <button type="button"  data-selector="btn1"><img src="click.png" alt=""></button>
+            </div>
+        </div>
+        
+     <!--字谜2-->
+        <div>
+             <div class="distance line-hight float-clear">
+                   <div class="float-left characterTitleStyle">
+                      <div class="">字谜2：“先写了一撇，后写了一画。”</div>
+                  </div>
+                  <div class="float-right right-img hide" data-selector="character2">
+                     <img src="yun.png" alt="">
+                  </div>
+            </div>
+            <div class="characterContentStyle hide" data-selector="analyse2">分析：前半句以“了”和一撇构成了“乃”字，后半句以“了”和“一”构成了“子”字，“乃” “子合在一起就是“孕”字。</div> 
+            <div class="distance right float-clear">
+                  <button type="button"  data-selector="btn2"><img src="click.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
