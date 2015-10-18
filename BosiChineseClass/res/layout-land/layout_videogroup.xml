@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" 
+    android:orientation="vertical"
     >
-
-      <com.bosi.chineseclass.views.VideoView
+    
+     <com.bosi.chineseclass.views.VideoView
         android:id="@+id/vv_bsvideo"
         android:layout_width="150dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
+        
         />
-      
+      <View
+        android:id="@+id/videogroup_hintnodata"
+ 		android:background="@android:color/darker_gray"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_weight="5"
+    ></View>
       
     <Button
         android:id="@+id/bt_bsvideo_replay"
@@ -22,6 +35,11 @@
         android:background="@drawable/bs_video_replay_bg"
         android:layout_weight="2"
         ></Button>
+</LinearLayout>
+
+
+    
+     
         
 
-</LinearLayout>
+</RelativeLayout>

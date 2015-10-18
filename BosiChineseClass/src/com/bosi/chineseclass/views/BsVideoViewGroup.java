@@ -28,6 +28,8 @@ public class BsVideoViewGroup extends LinearLayout{
 	public VideoView mVideoView;
 	@ViewInject(R.id.bt_bsvideo_replay)
 	public Button mBtReplay;
+	@ViewInject(R.id.videogroup_hintnodata)
+	View mViewHint;
 	
 	@OnClick(R.id.bt_bsvideo_replay)
 	public void actionReplay(View mView){
@@ -59,8 +61,13 @@ public class BsVideoViewGroup extends LinearLayout{
 		if(TextUtils.isEmpty(filePath)) return;
 		File mFile = new File(filePath);
 		if(mFile==null ||!mFile.exists()){
+			mViewHint.setVisibility(View.VISIBLE);
+			mVideoView.setVisibility(View.GONE);
 			Toast.makeText(getContext(), "此资源没有动画", Toast.LENGTH_SHORT).show();
 			return;
+		}else{
+			mViewHint.setVisibility(View.GONE);
+			mVideoView.setVisibility(View.VISIBLE);
 		}
 		this.mVideoPath = filePath;
 		playVideo();

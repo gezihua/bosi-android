@@ -25,6 +25,7 @@ public class XutilImageLoader {
     String folderPath = AppDefine.FilePathDefine.APP_GLOBLEFILEPATH+"/"+"cache";
     BSApplication.getInstance().mStorage.createDirectory(folderPath,false);
     mBitmapUtils = new BitmapUtils(mContext,BSApplication.getInstance().mStorage.getFile(folderPath).getAbsolutePath());
+    mBitmapUtils.configDefaultLoadFailedImage(mContext.getResources().getDrawable(R.drawable.temp_bg));
     mBitmapUtils.configDiskCacheEnabled(true);
     }
     
