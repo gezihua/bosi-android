@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.activitys.WebViewActivity;
 import com.bosi.chineseclass.bean.SpanData;
 
 public class BosiUtils {
@@ -118,7 +119,7 @@ public class BosiUtils {
 
 	}
 	
-	
+	//跳转到能播放视频的系统页面上
 	public static void intentToVideoPlay(String url ,Activity mActivity){
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		String type = "video/mp4";
@@ -126,4 +127,13 @@ public class BosiUtils {
 		intent.setDataAndType(uri, type);
 		mActivity.startActivity(intent);
 	}
+	
+	//进入基础的网页视图
+	public static void intentToWebActivity(String url ,String mHeadTitle ,Activity mActivity){
+		Intent mIntent = new Intent(mActivity,WebViewActivity.class);
+		mIntent.putExtra(WebViewActivity.KEY_URL, url);
+		mIntent.putExtra(WebViewActivity.KEY_URL_TITLE_STRING, mHeadTitle);
+		mActivity.startActivity(mIntent);
+	}
+	
 }
