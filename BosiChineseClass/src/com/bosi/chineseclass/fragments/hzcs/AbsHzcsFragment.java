@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+import android.webkit.WebSettings.LayoutAlgorithm;
+import android.webkit.WebSettings.ZoomDensity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -117,6 +119,11 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 		//webSettings.setUseWideViewPort(true); 自适应屏幕
 		webSettings.setJavaScriptEnabled(true);
 		webSettings.setSupportZoom(true); // 可以缩放
+		
+		webSettings.setBuiltInZoomControls(true); // 显示放大缩小 controler
+//		webSettings.setDefaultZoom(ZoomDensity.CLOSE);// 默认缩放模式
+//		webSettings.setUseWideViewPort(true);
+//		webSettings.setLoadWithOverviewMode(true); 
 		mWebView.setWebViewClient(new WebViewClient() {
 
 			boolean isError = false;
@@ -126,9 +133,9 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 				view.stopLoading();
 				view.clearFormData();
 				view.clearHistory();
-				if (isError) {
-					displayCurrentPic();
-				}
+//				if (isError) {
+//					displayCurrentPic();
+//				}
 			}
 
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -136,6 +143,7 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 				return true;
 			}
 		});
+		
 
 		mWebView.setWebChromeClient(new WebChromeClient() {
 
@@ -143,6 +151,7 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 			public void onProgressChanged(WebView view, int newProgress) {
 				super.onProgressChanged(view, newProgress);
 				if (newProgress == 100) {
+					loadVideo();
 					mProgressBar.setVisibility(View.GONE);
 					return;
 				}
@@ -216,46 +225,59 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 	int isExistHtmlFile = -1;
 
 	protected synchronized void updateDitalPg() {
-		if (mCurrentData == null)
-			return;
-		if (currentPosition == -1 || currentPosition >= mCurrentData.length) {
-			currentPosition = 0;
-
-		}
-		// 换成加载网页 否则
-		mIvDital.setVisibility(View.GONE);
+		
+		//TODO 不使用图片完全使用网页
+//		if (mCurrentData == null)
+//			return;
+//		if (currentPosition == -1 || currentPosition >= mCurrentData.length) {
+//			currentPosition = 0;
+//
+//		}
+//		// 换成加载网页 否则
+//		mIvDital.setVisibility(View.GONE);
+//		mLayoutWebViewBody.setVisibility(View.VISIBLE);
+//		mWebView.clearHistory();
+//
+//		// 首先异步检查当前文件是否存在如果不存在直接加载图片
+//		final String mCurrentJpgPath = mCurrentData[currentPosition];
+//		final String mUrlPath = mCurrentJpgPath.substring(0,
+//				mCurrentJpgPath.lastIndexOf("."))
+//				+ ".html";
+//
+//		mActivity.showProgresssDialogWithHint("加载中...");
+//		isExistHtmlFile = -1;
+//		mActivity.AsyTaskBaseThread(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				isExistHtmlFile = getRespStatus(mUrlPath);
+//			}
+//		}, new Runnable() {
+//
+//			@Override
+//			public void run() {
+///*				if (isExistHtmlFile != -1 && isExistHtmlFile == 200) {
+//					mWebView.loadUrl(mUrlPath);
+//				} else {
+//					displayCurrentPic();
+//				}*/
+//				
+//				mWebView.loadUrl("http://www.yuwen100.cn/yuwen100/hzzy/Android/zaozifangfa/xx/index.html");
+//				
+//				mActivity.dismissProgressDialog();
+//			}
+//		});
 		mLayoutWebViewBody.setVisibility(View.VISIBLE);
-		mWebView.clearHistory();
+		mIvDital.setVisibility(View.GONE);
+		mWebView.loadUrl("");
+		mActivity.dismissProgressDialog();
 
-		// 首先异步检查当前文件是否存在如果不存在直接加载图片
-		final String mCurrentJpgPath = mCurrentData[currentPosition];
-		final String mUrlPath = mCurrentJpgPath.substring(0,
-				mCurrentJpgPath.lastIndexOf("."))
-				+ ".html";
-
-		mActivity.showProgresssDialogWithHint("加载中...");
-		isExistHtmlFile = -1;
-		mActivity.AsyTaskBaseThread(new Runnable() {
-
-			@Override
-			public void run() {
-				isExistHtmlFile = getRespStatus(mUrlPath);
-			}
-		}, new Runnable() {
-
-			@Override
-			public void run() {
-/*				if (isExistHtmlFile != -1 && isExistHtmlFile == 200) {
-					mWebView.loadUrl(mUrlPath);
-				} else {
-					displayCurrentPic();
-				}*/
-				
-				mWebView.loadUrl("file:///android_asset/zjl/qiehuan.html");
-				mActivity.dismissProgressDialog();
-			}
-		});
-
+	}
+	
+	private void loadVideo()
+	{
+		String js="javascript: var v=document.getElementsByTagName('video')[0]; "+"v.play(); ";
+		mWebView.loadUrl(js);
 	}
 
 	private void displayCurrentPic() {
@@ -292,42 +314,46 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 	int loadedData = -1;
 
 	public void downloadimgs() {
-		if (mCurrentData.length > 1) {
-			mBtLeft.setVisibility(View.GONE);
-			mBtRight.setVisibility(View.VISIBLE);
-		} else {
-			mBtLeft.setVisibility(View.GONE);
-			mBtRight.setVisibility(View.GONE);
-		}
-		loadedData = -1;
-		updateProgress();
-		for (int i = 0; i < mCurrentData.length; i++) {
-			mImageLoader.getBitmapFactory().display(mIvDital, mCurrentData[i],
-					new BitmapLoadCallBack<View>() {
-
-						@Override
-						public void onLoadCompleted(View container, String uri,
-								Bitmap bitmap, BitmapDisplayConfig config,
-								BitmapLoadFrom from) {
-							updateProgress();
-						}
-
-						@Override
-						public void onLoadFailed(View container, String uri,
-								Drawable drawable) {
-							updateProgress();
-						}
-
-						@Override
-						public void onLoading(View container, String uri,
-								BitmapDisplayConfig config, long total,
-								long current) {
-							super.onLoading(container, uri, config, total,
-									current);
-						}
-
-					});
-		}
+		
+		//todo 删除之前的下载逻辑
+//		if (mCurrentData.length > 1) {
+//			mBtLeft.setVisibility(View.GONE);
+//			mBtRight.setVisibility(View.VISIBLE);
+//		} else {
+//			mBtLeft.setVisibility(View.GONE);
+//			mBtRight.setVisibility(View.GONE);
+//		}
+//		loadedData = -1;
+//		updateProgress();
+//		for (int i = 0; i < mCurrentData.length; i++) {
+//			mImageLoader.getBitmapFactory().display(mIvDital, mCurrentData[i],
+//					new BitmapLoadCallBack<View>() {
+//
+//						@Override
+//						public void onLoadCompleted(View container, String uri,
+//								Bitmap bitmap, BitmapDisplayConfig config,
+//								BitmapLoadFrom from) {
+//							updateProgress();
+//						}
+//
+//						@Override
+//						public void onLoadFailed(View container, String uri,
+//								Drawable drawable) {
+//							updateProgress();
+//						}
+//
+//						@Override
+//						public void onLoading(View container, String uri,
+//								BitmapDisplayConfig config, long total,
+//								long current) {
+//							super.onLoading(container, uri, config, total,
+//									current);
+//						}
+//
+//					});
+//		}
+		
+		downLoadImageOverAction();
 	}
 
 	private void updateProgress() {

@@ -25,8 +25,8 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	@OnClick(R.id.bt_hzcs_dital_jsjs)
 	public void actionClickJsJs(View mView){
 		mCurrentData = mDataArrayJsjs;
-		mBtRight.setVisibility(View.GONE);
-		mBtLeft.setVisibility(View.GONE);
+//		mBtRight.setVisibility(View.GONE);
+//		mBtLeft.setVisibility(View.GONE);
 		currentPosition = 0;
 		downloadimgs();
 	}
@@ -34,8 +34,8 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	@OnClick(R.id.bt_hzcs_dital_cjzz)
 	public void actionClickCjzz(View mView){
 		mCurrentData = mDataArrayCjzz;
-		mBtRight.setVisibility(View.VISIBLE);
-		mBtLeft.setVisibility(View.GONE);
+//		mBtRight.setVisibility(View.VISIBLE);
+//		mBtLeft.setVisibility(View.GONE);
 		mTvDitalTitle.setText("仓颉造字");
 		currentPosition = 0;
 		downloadimgs();
@@ -44,8 +44,8 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	@OnClick(R.id.bt_hzcs_dital_fxbg)
 	public void actionClickFxbg(View mView){
 		mCurrentData = mDataArrayFxbg;
-		mBtRight.setVisibility(View.GONE);
-		mBtLeft.setVisibility(View.GONE);
+//		mBtRight.setVisibility(View.GONE);
+//		mBtLeft.setVisibility(View.GONE);
 		mTvDitalTitle.setText("伏羲八卦");
 		currentPosition = 0;
 		downloadimgs();
@@ -60,8 +60,8 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 		View mMenuView = View.inflate(mActivity, R.layout.layout_hzqy_menu, null);
 		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
-		mBtLeft.setVisibility(View.GONE);
-		mBtRight.setVisibility(View.GONE);
+//		mBtLeft.setVisibility(View.GONE);
+//		mBtRight.setVisibility(View.GONE);
 	}
 
 	@Override

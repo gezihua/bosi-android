@@ -65,8 +65,8 @@ public class QwhzDitalFragment extends AbsHzcsFragment{
 		View mMenuView = View.inflate(mActivity, R.layout.layout_qwhz_menu, null);
 		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
-		mBtLeft.setVisibility(View.GONE);
-		mBtRight.setVisibility(View.GONE);
+//		mBtLeft.setVisibility(View.GONE);
+//		mBtRight.setVisibility(View.GONE);
 	
 	}
 

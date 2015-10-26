@@ -47,8 +47,8 @@ public class HzybDitalFragment extends AbsHzcsFragment{
 	}
 	
 	private void initpanel(String text){
-		mBtRight.setVisibility(View.VISIBLE);
-		mBtLeft.setVisibility(View.GONE);
+//		mBtRight.setVisibility(View.VISIBLE);
+//		mBtLeft.setVisibility(View.GONE);
 		mTvDitalTitle.setText(text);
 		currentPosition = 0;
 		downloadimgs();

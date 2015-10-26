@@ -74,8 +74,8 @@ public class ZzffDitalFragment extends AbsHzcsFragment{
 		View mMenuView = View.inflate(mActivity, R.layout.layout_zzff_menu, null);
 		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
-		mBtLeft.setVisibility(View.GONE);
-		mBtRight.setVisibility(View.GONE);
+//		mBtLeft.setVisibility(View.GONE);
+//		mBtRight.setVisibility(View.GONE);
 	}
 
 	@Override

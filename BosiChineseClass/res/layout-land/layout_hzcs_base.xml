@@ -51,7 +51,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="30dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/hzcs_dital_contentbg"
                 android:orientation="vertical" >
@@ -98,10 +98,12 @@
                 android:layout_alignBottom="@+id/ll_hzcs_rightfunction"
                 android:layout_alignRight="@+id/ll_hzcs_rightfunction"
                 android:layout_marginRight="30dp"
+                android:visibility="gone"
                 android:background="@drawable/hzqy_dital_content_next" >
             </Button>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/bt_hzcs_dital_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
