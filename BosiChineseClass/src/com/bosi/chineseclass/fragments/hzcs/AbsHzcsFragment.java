@@ -269,7 +269,7 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 //		});
 		mLayoutWebViewBody.setVisibility(View.VISIBLE);
 		mIvDital.setVisibility(View.GONE);
-		mWebView.loadUrl("");
+		mWebView.loadUrl(mCurrentData[0]);
 		mActivity.dismissProgressDialog();
 
 	}
