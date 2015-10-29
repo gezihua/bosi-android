@@ -54,8 +54,7 @@ public class HzqyDitalFragment extends AbsHzcsFragment {
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public void initMenu() {
-		mImageLoader.getBitmapFactory().display(mIvDital,
-				"assets/hzqy/hzqy.png");
+		mWebView.loadUrl("http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziqiyuan/zx/index.html");
 		mTvDitalTitle.setText("仓颉造字");
 		View mMenuView = View.inflate(mActivity, R.layout.layout_hzqy_menu, null);
 		mLayoutMenu.addView(mMenuView);

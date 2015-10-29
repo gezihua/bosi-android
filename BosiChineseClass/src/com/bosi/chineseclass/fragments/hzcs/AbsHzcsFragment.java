@@ -42,7 +42,6 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 
 	LinearLayout mLayoutMenu;
 
-	ImageView mIvDital;
 
 	Button mBtLeft;
 	Button mBtRight;
@@ -89,7 +88,6 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 		mLayoutMenu = (LinearLayout) mBaseView
 				.findViewById(R.id.ll_hzcs_leftmenu);
 
-		mIvDital = (ImageView) mBaseView.findViewById(R.id.iv_hzcs_dital);
 
 		mBtLeft = (Button) mBaseView.findViewById(R.id.bt_hzcs_dital_left);
 		mBtLeft.setOnClickListener(this);
@@ -268,7 +266,6 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 //			}
 //		});
 		mLayoutWebViewBody.setVisibility(View.VISIBLE);
-		mIvDital.setVisibility(View.GONE);
 		mWebView.loadUrl(mCurrentData[0]);
 		mActivity.dismissProgressDialog();
 
@@ -280,13 +277,6 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 		mWebView.loadUrl(js);
 	}
 
-	private void displayCurrentPic() {
-		mLayoutWebViewBody.setVisibility(View.GONE);
-		mIvDital.setVisibility(View.VISIBLE);
-		// 加载当前的图片
-		mImageLoader.getBitmapFactory().display(mIvDital,
-				mCurrentData[currentPosition]);
-	}
 
 	protected abstract void downLoadImageOverAction();
 

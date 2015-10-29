@@ -59,9 +59,7 @@ public class QwhzDitalFragment extends AbsHzcsFragment{
 
 	@Override
 	public void initMenu() {
-
-		mImageLoader.getBitmapFactory().display(mIvDital,
-				"assets/hzqy/cjzz.png");
+ 
 		View mMenuView = View.inflate(mActivity, R.layout.layout_qwhz_menu, null);
 		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
@@ -79,7 +77,8 @@ public class QwhzDitalFragment extends AbsHzcsFragment{
 		mHeadActionBar.setTextMiddle("趣味汉字", -1);
 		initarray();
 		mCurrentData = qwhzDataArray; 
-		downloadimgs();
+		mWebView.loadUrl(zimiguanDataArray[0]);
+
 	}
 
 

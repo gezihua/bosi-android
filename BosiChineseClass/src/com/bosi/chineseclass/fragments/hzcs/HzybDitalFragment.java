@@ -56,8 +56,7 @@ public class HzybDitalFragment extends AbsHzcsFragment{
 	Bitmap mTempBitmap ; 
 	@Override
 	public void initMenu() {
-		mTempBitmap= BitmapDecoder.decodeResource(getResources(), R.drawable.hzyb);
-		mIvDital.setImageBitmap(mTempBitmap);
+		mWebView.loadUrl("http://www.yuwen100.cn/yuwen100/hzzy/Android/hanziyanbian/zx/index.html");
 		
 		View mMenuView = View.inflate(mActivity, R.layout.layout_hzyb_menu, null);
 		mLayoutMenu.addView(mMenuView);

@@ -68,8 +68,6 @@ public class ZzffDitalFragment extends AbsHzcsFragment{
 	@Override
 	public void initMenu() {
 		
-		mImageLoader.getBitmapFactory().display(mIvDital,
-				"assets/hzqy/cjzz.png");
 		
 		View mMenuView = View.inflate(mActivity, R.layout.layout_zzff_menu, null);
 		mLayoutMenu.addView(mMenuView);
@@ -85,7 +83,8 @@ public class ZzffDitalFragment extends AbsHzcsFragment{
 		mTvDitalTitle.setText("造字方法");
 		initDataArray();
 		mCurrentData =  mDataArrayzs;
-		downloadimgs();
+		
+		mWebView.loadUrl("http://www.yuwen100.cn/yuwen100/hzzy/Android/zaozifangfa/zx/index.html");
 	}
 	@Override
 	protected void downLoadImageOverAction() {
