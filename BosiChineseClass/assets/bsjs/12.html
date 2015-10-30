@@ -20,6 +20,18 @@ SCROLLBAR-BASE-COLOR: #fc2400
     {
         zyobject.showObject(toast);
     }
+    
+      $("img").hover(function(){
+    	var oldSrc = $(this).attr("id");
+    	$(this).attr({"src":'./img/hover-'+oldSrc});
+
+    	$(this).mouseout(function(){
+    		$(this).attr({"src":'./img/'+oldSrc});
+    	});
+    });
+
+
+$("p").css("background-color","yellow");
 </script>
 
 </head>
@@ -28,7 +40,7 @@ SCROLLBAR-BASE-COLOR: #fc2400
 <a onClick="showZYObject('110033')">齒（齿）</a><br>
 <a onClick="showZYObject('110111')">龍（龙）</a><br>
 <a onClick="showZYObject('110065')">鼎（鼎）</a><br>
-<a onClick="showZYObject('110062')"><img src="./img/12-110062.png"></a><br>
-<a onClick="showZYObject('110086')"><img src="./img/12-110086-0.png"></a><br>
-<a onClick="showZYObject('110086')"><img src="./img/12-110086.png"></a><br>
+<a onClick="showZYObject('110062')"><img id="12-110062.png" src="./img/12-110062.png"></a><br>
+<a onClick="showZYObject('110086')"><img id="12-110086-0.png" src="./img/12-110086-0.png"></a><br>
+<a onClick="showZYObject('110086')"><img id="12-110086.png" src="./img/12-110086.png"></a><br>
 </body>

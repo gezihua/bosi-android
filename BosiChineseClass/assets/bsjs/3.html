@@ -20,6 +20,18 @@ SCROLLBAR-BASE-COLOR: #fc2400
     {
         zyobject.showObject(toast);
     }
+    
+      $("img").hover(function(){
+    	var oldSrc = $(this).attr("id");
+    	$(this).attr({"src":'./img/hover-'+oldSrc});
+
+    	$(this).mouseout(function(){
+    		$(this).attr({"src":'./img/'+oldSrc});
+    	});
+    });
+
+
+$("p").css("background-color","yellow");
 </script>
 
 </head>
@@ -28,9 +40,9 @@ SCROLLBAR-BASE-COLOR: #fc2400
 <a onClick="showZYObject('110040')">扌（又）</a><br>
 <a onClick="showZYObject('110124')">艹（艸）</a><br>
 <a onClick="showZYObject('110040')">寸（又）</a><br>
-<a onClick="showZYObject('110042')"><img src="./img/3-110042-1.png"></a><br>
+<a onClick="showZYObject('110042')"><img id = "3-110042-1.png" src="./img/3-110042-1.png"></a><br>
 <a onClick="showZYObject('110003')">大（大）</a><br>
-<a onClick="showZYObject('110042')"><img src="./img/3-110042_nu.png"></a><br>
+<a onClick="showZYObject('110042')"><img id = "3-110042_nu.png" src="./img/3-110042_nu.png"></a><br>
 <a onClick="showZYObject('110019')">尢（尢）</a><br>
 <a onClick="showZYObject('110144')">小（小）</a><br>
 <a onClick="showZYObject('110031')">口（口）</a><br>
@@ -40,7 +52,7 @@ SCROLLBAR-BASE-COLOR: #fc2400
 <a onClick="showZYObject('110053')">彳（彳）</a><br>
 <a onClick="showZYObject('110107')">犭（犬）</a><br>
 <a onClick="showZYObject('110131')">夕（月）</a><br>
-<a onClick="showZYObject('110048')"><img src="./img/3-110048.png"></a><br>
+<a onClick="showZYObject('110048')"><img id = "3-110048.png" src="./img/3-110048.png"></a><br>
 <a onClick="showZYObject('110064')">饣（食）</a><br>
 <a onClick="showZYObject('110075')">广（广）</a><br>
 <a onClick="showZYObject('110037')">忄（心）</a><br>
@@ -48,7 +60,7 @@ SCROLLBAR-BASE-COLOR: #fc2400
 <a onClick="showZYObject('110139')">氵（水）</a><br>
 <a onClick="showZYObject('110072')">宀（宀）</a><br>
 <a onClick="showZYObject('110051')">辶（辵）</a><br>
-<a onClick="showZYObject('110040')"><img src="./img/3-110040.png"></a><br>
+<a onClick="showZYObject('110040')"><img  id = "3-110040.png" src="./img/3-110040.png"></a><br>
 <a onClick="showZYObject('110010')">尸（尸）</a><br>
 <a onClick="showZYObject('110008')">尸（卩）</a><br>
 <a onClick="showZYObject('110089')">弓（弓）</a><br>

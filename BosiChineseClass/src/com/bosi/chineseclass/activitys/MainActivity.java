@@ -77,6 +77,13 @@ public class MainActivity extends BaseActivity {
 		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
 		startActivity(mIntent);
 	}
+	@OnClick(R.id.btn_zjkt)
+	public void actionZjkt(View mView){
+		Intent mIntent = new Intent(this,SampleHolderActivity.class);
+		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"ExpertClassFragment"});
+		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+		startActivity(mIntent);
+	}
 	@OnClick(R.id.bt_zyyx)
 	public void actionZyyx(View mView){
 		Intent mIntent = new Intent(this,GameActivity.class);

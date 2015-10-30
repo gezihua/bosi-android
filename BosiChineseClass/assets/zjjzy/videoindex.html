@@ -69,6 +69,19 @@ $(function(){
     {
         zjjzy.showObject(toast);
     }
+    
+    
+     $("img").hover(function(){
+    	var oldSrc = $(this).attr("id");
+    	$(this).attr({"src":'./img/hover-'+oldSrc});
+
+    	$(this).mouseout(function(){
+    		$(this).attr({"src":'./img/'+oldSrc});
+    	});
+    });
+
+
+$("p").css("background-color","yellow");
 
 </script>
 </head>
@@ -116,7 +129,7 @@ $(function(){
                 <li><div class="ziyuan"><a onClick="showZYObject('35')">35 肉（月）</a></div></li>
                 <li><div class="ziyuan"><a onClick="showZYObject('36')">36 手（扌又寸丑）</a></div></li>
                 <li><div class="ziyuan"><a onClick="showZYObject('37')">37 爪（爫）</a></div></li>
-               <li><div class="ziyuan"><a onClick="showZYObject('38')"><img src="./img/zjjzy_38.png"></a></li>
+               <li><div class="ziyuan"><a onClick="showZYObject('38')"><img id="zjjzy_38.png" src="./img/zjjzy_38.png"></a></li>
                 <li><div class="ziyuan"><a onClick="showZYObject('39')">39 心（忄）</a></div></li>
                 <li><div class="ziyuan"><a onClick="showZYObject('40')">40 攴（攵）</a></div></li>
                 <li><div class="ziyuan"><a onClick="showZYObject('41')">41 殳</a></div></li>
@@ -159,7 +172,7 @@ $(function(){
                 <li><a onClick="showZYObject('73')">73 爿（片）</a></li>
                 <li><a onClick="showZYObject('74')">74 冓</a></li>
                 <li><a onClick="showZYObject('75')">75 囗</a></li>
-                 <li><div class="ziyuan"><a onClick="showZYObject('76')"><img src="./img/zjjzy_76.png"></a></li>
+                 <li><div class="ziyuan"><a onClick="showZYObject('76')"><img id="zjjzy_76.png" src="./img/zjjzy_76.png"></a></li>
                 <li><a onClick="showZYObject('77')">77 车（車）</a></li>
                 <li><a onClick="showZYObject('78')">78 舟</a></li>
                 <li><a onClick="showZYObject('79')">79 示（礻）</a></li>
@@ -177,7 +190,7 @@ $(function(){
                 <li><a onClick="showZYObject('91')">91 斤</a></li>
                 <li><a onClick="showZYObject('92')">92 臼</a></li>
                 <li><a onClick="showZYObject('93')">93 网（罒）</a></li>
-                 <li><div class="ziyuan"><a onClick="showZYObject('94')"><img src="./img/zjjzy_94.png"></a></li>
+                 <li><div class="ziyuan"><a onClick="showZYObject('94')"><img id="zjjzy_94.png" src="./img/zjjzy_94.png"></a></li>
                 <li><a onClick="showZYObject('95')">95 亼</a></li>
                 <li><a onClick="showZYObject('96')">96 壴</a></li>
                 <li><a onClick="showZYObject('97')">97 聿</a></li>
@@ -209,7 +222,7 @@ $(function(){
                 <li><a onClick="showZYObject('118')">118 毛</a></li>
                 <li><a onClick="showZYObject('119')">119 艸（艹）</a></li>
                 <li><a onClick="showZYObject('120')">120 木</a></li>
-                  <li><div class="ziyuan"><a onClick="showZYObject('121')"><img src="./img/zjjzy_121.png"></a></li>
+                  <li><div class="ziyuan"><a onClick="showZYObject('121')"><img id="zjjzy_121.png" src="./img/zjjzy_121.png"></a></li>
                 <li><a onClick="showZYObject('122')">122 禾</a></li>
                 <li><a onClick="showZYObject('123')">123 米</a></li>
             </ul>
@@ -219,7 +232,7 @@ $(function(){
             <ul>
                 <li><a onClick="showZYObject('124')">124 日</a></li>
                 <li><a onClick="showZYObject('125')">125 月（夕）</a></li>
-                  <li><div class="ziyuan"><a onClick="showZYObject('126')"><img src="./img/zjjzy_126.png"></a></li>
+                 <li><div class="ziyuan"><a onClick="showZYObject('126')"><img id="zjjzy_126.png" src="./img/zjjzy_126.png"></a></li>
                 <li><a onClick="showZYObject('127')">127 山</a></li>
                 <li><a onClick="showZYObject('128')">128 阜（阝）</a></li>
                 <li><a onClick="showZYObject('129')">129 土</a></li> 

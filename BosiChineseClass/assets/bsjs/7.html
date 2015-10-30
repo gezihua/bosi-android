@@ -20,6 +20,18 @@ SCROLLBAR-BASE-COLOR: #fc2400
     {
         zyobject.showObject(toast);
     }
+    
+     $("img").hover(function(){
+    	var oldSrc = $(this).attr("id");
+    	$(this).attr({"src":'./img/hover-'+oldSrc});
+
+    	$(this).mouseout(function(){
+    		$(this).attr({"src":'./img/'+oldSrc});
+    	});
+    });
+
+
+$("p").css("background-color","yellow");
 </script>
 
 </head>
@@ -34,7 +46,7 @@ SCROLLBAR-BASE-COLOR: #fc2400
 <a onClick="showZYObject('110065')">貝（鼎）</a><br>
 <a onClick="showZYObject('110116')">貝（贝）</a><br>
 <a onClick="showZYObject('110049')">足（足）</a><br>
-<a onClick="showZYObject('110049')"><img src="./img/7-110049.png"></a><br>
+<a onClick="showZYObject('110049')"><img id="7-110049.png" src="./img/7-110049.png"></a><br>
 <a onClick="showZYObject('110017')">身（身）</a><br>
 <a onClick="showZYObject('110122')">角（角）</a><br>
 <a onClick="showZYObject('110035')">言（言）</a><br>
@@ -42,7 +54,7 @@ SCROLLBAR-BASE-COLOR: #fc2400
 <a onClick="showZYObject('110137')">邑（邑）</a><br>
 <a onClick="showZYObject('110051')">辵（辵）</a><br>
 <a onClick="showZYObject('110025')">皃（皃）</a><br>
-<a onClick="showZYObject('110043')"><img src="./img/7-110043.png"></a><br>
-<a onClick="showZYObject('110022')"><img src="./img/7-110022.png"></a><br>
+<a onClick="showZYObject('110043')"><img id="7-110043.png" src="./img/7-110043.png"></a><br>
+<a onClick="showZYObject('110022')"><img id="7-110022.png" src="./img/7-110022.png"></a><br>
 <a onClick="showZYObject('110063')">皀（皀）</a><br>
 </body>

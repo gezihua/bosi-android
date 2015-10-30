@@ -20,6 +20,18 @@ SCROLLBAR-BASE-COLOR: #fc2400
     {
         zyobject.showObject(toast);
     }
+    
+         $("img").hover(function(){
+    	var oldSrc = $(this).attr("id");
+    	$(this).attr({"src":'./img/hover-'+oldSrc});
+
+    	$(this).mouseout(function(){
+    		$(this).attr({"src":'./img/'+oldSrc});
+    	});
+    });
+
+
+$("p").css("background-color","yellow");
 </script>
 
 </head>
@@ -36,6 +48,6 @@ SCROLLBAR-BASE-COLOR: #fc2400
 <a onClick="showZYObject('110086')">享（享）</a><br>
 <a onClick="showZYObject('110109')">虎（虎）</a><br>
 <a onClick="showZYObject('110134')">阜（阜）</a><br>
-<a onClick="showZYObject('110024')"><img src="./img/8-110024.png"></a><br>
-<a onClick="showZYObject('110034')"><img src="./img/8-110134.png"></a><br>
+<a onClick="showZYObject('110024')"><img id="8-110024.png" src="./img/8-110024.png"></a><br>
+<a onClick="showZYObject('110034')"><img id="8-110134.png" src="./img/8-110134.png"></a><br>
 </body>
