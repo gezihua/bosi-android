@@ -48,6 +48,8 @@ public class AppDefine {
         //关于博思的介绍
         public static final String URL_LOGIN_REMOTE_HOWTOUSER = "http://www.yuwen100.cn/yuwen100/hzzy/Android/bosi/bosi.mp4";
         public static final String URL_AUTH = "http://verify.yuwen100.cn";
+        
+        public static final String URL_INSTRO_HELP = "http://www.yuwen100.cn/yuwen100/hzzy/Android/help/index.html";
     }
 
     public static class STUFFDEFICE {

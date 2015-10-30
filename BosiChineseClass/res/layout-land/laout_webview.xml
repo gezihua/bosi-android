@@ -4,17 +4,23 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
 >
-
+<include
+    
+    layout="@layout/common_head"
+    android:id="@+id/headactionbar" 
+    
+    />
 
 <WebView 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/wv_webact"
+    android:layout_below="@+id/headactionbar"
     />
- <ProgressBar android:layout_width="match_parent" android:layout_height="5dp"
-     android:id="@+id/progbar_webview"
-   
-     android:layout_alignParentBottom="true"
+ <ProgressBar android:layout_width="match_parent" android:layout_height="1dp"
+     android:id="@+id/webactivity_pb"
+      style="@style/progressbarStyle_Horizontal_Red"
+    android:layout_below="@+id/headactionbar"
      />
 
 </RelativeLayout>

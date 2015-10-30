@@ -38,7 +38,6 @@ import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 public abstract class AbsHzcsFragment extends BaseFragment implements
 		OnClickListener {
 
-	XutilImageLoader mImageLoader;
 
 	LinearLayout mLayoutMenu;
 
@@ -69,7 +68,6 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState != null)
 			return;
-		mImageLoader = new XutilImageLoader(mActivity);
 	}
 
 	@Override

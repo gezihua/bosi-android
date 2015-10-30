@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
+import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
@@ -28,6 +29,7 @@ import com.bosi.chineseclass.han.db.CheckDbUtils;
 import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.han.util.LogUtils;
 import com.bosi.chineseclass.su.ui.actvities.DictionaryAcitvity;
+import com.bosi.chineseclass.utils.BosiUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -189,6 +191,7 @@ public class MainActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View arg0) {
+				BosiUtils.intentToWebActivity(AppDefine.URLDefine.URL_INSTRO_HELP, "使用说明", MainActivity.this);
 				mPopuWindow.dismiss();
 			}
 		});

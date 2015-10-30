@@ -3,5 +3,5 @@
    
     
      <item android:drawable="@drawable/a8_normal" android:state_pressed="true" />
-    <item android:drawable="@drawable/a8_normal" />
+    <item android:drawable="@drawable/a8" />
 </selector>

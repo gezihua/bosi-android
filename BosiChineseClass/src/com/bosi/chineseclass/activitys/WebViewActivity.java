@@ -19,10 +19,10 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 public class WebViewActivity extends BaseActivity {
 
 
-	@ViewInject(R.id.webview_zy_object)
+	@ViewInject(R.id.wv_webact)
 	private WebView mWebView;
 
-	@ViewInject(R.id.pb_forwebview)
+	@ViewInject(R.id.webactivity_pb)
 	ProgressBar mPbLoading;
 
 
@@ -30,11 +30,10 @@ public class WebViewActivity extends BaseActivity {
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
         String mTitleString = getIntent().getStringExtra(KEY_URL_TITLE_STRING);
-		mHeadLayout = new HeadLayoutComponents(this, mViewHead);
+	    mHeadLayout = new HeadLayoutComponents(this, mViewHead);
 		mHeadLayout.setTextMiddle(mTitleString, -1);
-		initWebView();
+	    initWebView();
 
-		mWebView.setWebChromeClient(new MyWebChromeClient());
 	}
 
 	private class MyWebChromeClient extends WebChromeClient {
@@ -55,11 +54,9 @@ public class WebViewActivity extends BaseActivity {
 		WebSettings webSettings = mWebView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		webSettings.setAppCacheEnabled(true);
-		BSApplication.getInstance().mStorage
-				.createDirectory(AppDefine.FilePathDefine.APP_JCZY);
-
-		webSettings.setAppCachePath(BSApplication.getInstance().mStorage
-				.getFile(AppDefine.FilePathDefine.APP_JCZY).getAbsolutePath());
+		
+		mWebView.setWebChromeClient(new MyWebChromeClient());
+		
 		// TODO:webview路径需要写正确
 		// PATH + mId;
 		String mUrlString = getIntent().getStringExtra(KEY_URL);
