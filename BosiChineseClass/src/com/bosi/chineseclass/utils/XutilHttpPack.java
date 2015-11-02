@@ -36,13 +36,14 @@ public class XutilHttpPack {
 	}
 	
 	
-	public HttpHandler<String> sendData(List<NameValuePair> nameValuePairs,String url,final OnHttpActionCallBack httpCallBack ){
+	public HttpHandler<String> sendData(List<NameValuePair> nameValuePairs,String url,final OnHttpActionCallBack httpCallBack,HttpMethod method ){
 		RequestParams mRequest = getSendDataRequestParams(nameValuePairs,null,"");
 		
-		return sendData(mRequest,url,httpCallBack);
+		return sendData(mRequest,url,httpCallBack,method);
 	}
-	private HttpHandler<String> sendData(RequestParams mRequest,String url,final OnHttpActionCallBack httpCallBack ){
-		HttpHandler<String> mHandler = mHttPUtils.send(HttpMethod.POST, url, mRequest, new  RequestCallBack<String>() {
+	
+	private HttpHandler<String> sendData(RequestParams mRequest,String url,final OnHttpActionCallBack httpCallBack ,HttpMethod method ){
+		HttpHandler<String> mHandler = mHttPUtils.send(method, url, mRequest, new  RequestCallBack<String>() {
 
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -55,7 +56,6 @@ public class XutilHttpPack {
 			@Override
 			public void onFailure(HttpException error, String msg) {
 				httpCallBack.onHttpError(error, msg);
-				
 			}
 		});
 		return mHandler;

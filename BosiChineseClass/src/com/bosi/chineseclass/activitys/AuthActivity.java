@@ -1,6 +1,7 @@
 package com.bosi.chineseclass.activitys;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
+import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.AppDefine.URLDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
@@ -27,6 +29,7 @@ import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.utils.NetStateUtil;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -55,14 +58,7 @@ public class AuthActivity extends BaseActivity {
 	}
 
 
-	interface RESULTCODE {
-		public static String CODE_SUCCESS = "1"; // 登陆成功
-		public static String CODE_FAILED = "0"; // 登陆失败
-		public static String CODE_NOEXISTUSER = "2"; // 用户名不存在
-		public static String CODE_INCURETPASWORD = "3"; // 密码不正确
-		public static String CODE_OUTOFPROMISSION = "4"; // 超出使用权限
-	}
-	
+
 	private void initPanelBaseRole(){
 		if(ROLE_TEMP_CURRENT == ROLE_USER_CARD){
 			mCardUserManager.initCardUserPanel();
@@ -136,16 +132,18 @@ public class AuthActivity extends BaseActivity {
 		@Override
 		public void onHttpSuccess(JSONObject mResult, int code) {
 
-			// {"code":"1","message":""} 0 登陆失败 1成功 2 用户名不存在 3 密码不正确 4 超出使用权限
+			// {"code":"1","message":"","data":"{}"} 0 登陆失败 1成功 2 用户名不存在 3 密码不正确 4 超出使用权限
 			dismissProgressDialog(); // 登录成功
 			if (mResult.has("code")) {
 				try {
 					String codeResult = mResult.getString("code");
 					String message = mResult.getString("message");
 
-					if (codeResult.equals(RESULTCODE.CODE_SUCCESS)) {
+					if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
 						showToastShort("登陆成功");
-						storeUserData();
+						JSONObject mData = mResult.getJSONObject("data");
+						String id = mData.getString("id");
+						storeUserData(id);
 						intentToSystem();
 					} else {
 						if (!TextUtils.isEmpty(message))
@@ -156,6 +154,7 @@ public class AuthActivity extends BaseActivity {
 					}
 
 				} catch (JSONException e) {
+					showToastShort("后台数据异常");
 				}
 			} else {
 				showToastShort("服务异常");
@@ -167,13 +166,14 @@ public class AuthActivity extends BaseActivity {
 		 * 保存了当前的登录的用户数据
 		 * 保存用户卡相关信息
 		 * */
-		private void storeUserData() {
+		private void storeUserData(String userId) {
 			PreferencesUtils.putString(mContext, "account", mEditAccount
 					.getText().toString().trim());
 			PreferencesUtils.putString(mContext, "password", mEditPassword
 					.getText().toString().trim());
 			PreferencesUtils.putString(mContext, "phone", mEditPhone.getText()
 					.toString().trim());
+			PreferencesUtils.putString(mContext, AppDefine.ZYDefine.EXTRA_DATA_USERID, userId);
 		}
 
 		@Override
@@ -216,7 +216,7 @@ public class AuthActivity extends BaseActivity {
 					.getInstance().getImei()));
 			showProgresssDialogWithHint("登录中...  ");
 			BSApplication.getInstance().sendData(mList, URLDefine.URL_AUTH,
-					this, 101);
+					this, 101,HttpMethod.GET);
 
 		}
 		public void initCardUserPanel() {

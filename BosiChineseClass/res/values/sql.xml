@@ -44,4 +44,10 @@ as countremb
 
 <string name = "select_frombpcybaseid">select * from chengyu where cybh = \'%1$s\'</string>
 
+<string name = "insert_bpcy_history">insert into bpcyhistory (\'dictindex\',\'isrember\') values (\'%1$s\' , \'%2$s\') </string>
+<string name = "insert_bphz_history">insert into bphzhistory (\'dictindex\',\'isrember\') values (\'%1$s\' , \'%2$s\') </string>
+
+<string name ="select_all_bpcyhistory">select * from bpcyhistory where isrember = \'%1$s\' </string>
+<string name = "select_all_bphzhistory">select * from bphzhistory where isrember = \'%1$s\' </string>
+
 </resources>

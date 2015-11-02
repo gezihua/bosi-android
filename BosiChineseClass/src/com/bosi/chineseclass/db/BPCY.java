@@ -41,11 +41,33 @@ public class BPCY extends AbsDbOperation{
 		return mLists;
 	}
 	
+	public String getAllLearnedData(Context mContext ,String mTag){
+		String sql = mContext.getResources().getString(R.string.select_all_bpcyhistory);
+		String mSqlFormat = String.format(sql, mTag);
+		List<DbModel> dbModels = null;
+		StringBuilder mSb = new StringBuilder();
+		try{
+			dbModels = mDbManager.getContentDb().findDbModelAll(mSqlFormat);
+			
+			for(DbModel mDbModel:dbModels){
+				String dictID = mDbModel.getString(BpcyHistory.DICTINDEX);
+				mSb.append(dictID);
+				mSb.append(",");
+			}
+		}catch(DbException e){
+		}finally{
+			if(dbModels!=null){
+				dbModels.clear();
+				dbModels =null;
+			}
+		}
+		return mSb.toString();
+	}
+	
 	public BpStasticBean getListBpHzBeans(Context mContext ,int start,int end,BpStasticBean  mBpHzBean){
 		
 		String sqlSelectBphzLvStastic =  mContext.getResources().getString(R.string.select_bpcy_lev1data);
 		String sqlFormat = String.format(sqlSelectBphzLvStastic, 0,1,start,end);
-		
 		List<DbModel> dbModels = null;
 		final String countRemb="countremb";
 		final String countUnRemb = "countunremb";
@@ -65,7 +87,6 @@ public class BPCY extends AbsDbOperation{
 				dbModels =null;
 			}
 		}
-		
 		return mBpHzBean;
 	}
 	

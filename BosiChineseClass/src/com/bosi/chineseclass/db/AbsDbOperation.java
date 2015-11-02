@@ -21,6 +21,7 @@ public abstract class AbsDbOperation implements IDbOperation{
 		}
 	}
 	
+	
 	public abstract String  getDbName ();
 	@Override
 	public boolean deleteDataFromDb(String sql) {

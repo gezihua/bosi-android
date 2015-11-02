@@ -25,6 +25,7 @@ import com.bosi.chineseclass.utils.XutilHttpPack.OnHttpActionCallBack;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.HttpHandler;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.sromku.simple.storage.SimpleStorage;
 import com.sromku.simple.storage.Storage;
 import com.umeng.analytics.MobclickAgent;
@@ -53,7 +54,7 @@ public class BSApplication extends Application {
 
 	XutilHttpPack mHttpPack;
 	public HttpHandler sendData(List<NameValuePair> mList, String url,
-			final OnHttpActionListener mTatget, final int code) {
+			final OnHttpActionListener mTatget, final int code,HttpMethod method) {
 		
 //		if(!NetWorkListenerControl.isNetWorkAvailable){
 //			Toast.makeText(this, "网络连接异常", Toast.LENGTH_SHORT).show();
@@ -76,9 +77,11 @@ public class BSApplication extends Application {
 					public void onHttpError(HttpException e, String messge) {
 						mTatget.onHttpError(e, messge,code);
 					}
-				});
+				},method);
 		return mHttpHandler;
 	}
+	
+	
 	public static BSApplication mApplication = null;
 
 	public static BSApplication getInstance() {

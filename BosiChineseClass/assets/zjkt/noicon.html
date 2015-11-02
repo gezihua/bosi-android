@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+    <TITLE> ZTREE DEMO - noIcon </TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./css/demo.css" type="text/css">
+    <link rel="stylesheet" href="./css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="./js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.ztree.core-3.5.js"></script>
+    <SCRIPT type="text/javascript">
+        var setting = {
+            view: {
+                showIcon: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                onClick: zTreeOnClick
+//                beforeCollapse: zTreeBeforeCollapse
+            },
+
+        };
+
+
+
+        var zNodes = [
+            {
+                id: 1,
+                pId: 0,
+                name: "一、重点研读",
+                open: true
+            },
+            {
+                id: 11,
+                pId: 1,
+                name: "1、综合引导",
+                tag :"1.1"
+            },
+
+            {
+                id: 12,
+                pId: 1,
+                name: "2、课文听读"
+            },
+            {
+                id: 13,
+                pId: 1,
+                name: "3、学生跟读"
+            },
+            {
+                id: 14,
+                pId: 1,
+                name: "4、重点字词"
+            },
+            {
+                id: 15,
+                pId: 1,
+                name: "5、对应译文"
+            },
+            {
+                id: 2,
+                pId: 0,
+                name: "二、文化拓展"
+            },
+            {
+                id: 3,
+                pId: 0,
+                name: "三、学以致用"
+            },
+            {
+                id: 4,
+                pId: 0,
+                name: "四、知识强化"
+            },
+            {
+                id: 5,
+                pId: 0,
+                name: "五、作业"
+            }
+
+
+		];
+
+        function zTreeOnClick(event, treeId, treeNode) {
+          zjkt.showObject();
+        };
+
+        function zTreeBeforeCollapse(treeId, treeNode) { //1. 禁止所有已展开的父节点折叠
+            return false;
+        };
+
+        $(document).ready(function () {
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        });
+    </SCRIPT>
+<!--    <style>.ztree li span.button{display:none}</style>-->
+</HEAD>
+
+<BODY>
+    <div class="content_wrap">
+        <div >
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+    </div>
+</BODY>
+
+</HTML>
