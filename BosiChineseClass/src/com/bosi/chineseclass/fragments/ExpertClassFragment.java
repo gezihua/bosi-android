@@ -53,6 +53,8 @@ public class ExpertClassFragment extends BaseFragment{
 //	            Intent intent = new Intent(mActivity, ZyObjectActivity.class);
 //	            intent.putExtra(AppDefine.ZYDefine.ZY_OBJECT_ID, id);
 //	            mActivity.startActivity(intent);
+	        	
+	        	
 	        }
 	 }
 	 

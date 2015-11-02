@@ -109,6 +109,9 @@ public class BpcyLevFragment extends BaseFragment implements
 		mList.add(new BasicNameValuePair("uid", mUid));
 		mList.add(new BasicNameValuePair("listLearned", mBpcy.getAllLearnedData(mActivity, "0")));
 		mList.add(new BasicNameValuePair("listNotLearned", mBpcy.getAllLearnedData(mActivity, "1")));
+		BSApplication.getInstance().sendData(mList,
+				AppDefine.URLDefine.URL_SYNCBOSIIDIOM, this, 101,
+				HttpMethod.POST);
 	}
 
 	private void getBphzHistory() {

@@ -18,6 +18,29 @@ public class BPHZ extends AbsDbOperation{
 		return null;
 	}
 	
+	public String getAllLearnedData(Context mContext ,String mTag){
+		String sql = mContext.getResources().getString(R.string.select_all_bphzhistory);
+		String mSqlFormat = String.format(sql, mTag);
+		List<DbModel> dbModels = null;
+		StringBuilder mSb = new StringBuilder();
+		try{
+			dbModels = mDbManager.getContentDb().findDbModelAll(mSqlFormat);
+			
+			for(DbModel mDbModel:dbModels){
+				String dictID = mDbModel.getString(BpcyHistory.DICTINDEX);
+				mSb.append(dictID);
+				mSb.append(",");
+			}
+		}catch(DbException e){
+		}finally{
+			if(dbModels!=null){
+				dbModels.clear();
+				dbModels =null;
+			}
+		}
+		return mSb.toString();
+	}
+	
 	public List<Integer> selectDictListBaseTag(Context mContext,int tag ,int start ,int end){
 		List<Integer>  mLists = new ArrayList<Integer>();
 		/**/

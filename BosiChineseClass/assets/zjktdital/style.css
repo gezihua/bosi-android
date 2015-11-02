@@ -1,0 +1,6 @@
+body{font-size:20px;font-weight:bold;background:#fcf5e5;line-height:30px;letter-spacing:0px; word-spacing:0px; }
+a{ background:#ffff99;margin:6px;}
+a:link{text-decoration:none;color:#000000;}
+a:visited{text-decoration:none;color:#000000;}
+a:hover{text-decoration:none;color:#000000;background:#ffcc33}
+.active{background:#ffcc33;}
