@@ -11,22 +11,24 @@ import org.json.JSONObject;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseFragment;
-import com.bosi.chineseclass.BosiChineseService;
 import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BpStasticBean;
 import com.bosi.chineseclass.db.BPCY;
+import com.bosi.chineseclass.db.BpcyHistory;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.model.BpcyLevAdapter;
 import com.bosi.chineseclass.model.BphzLevAdapter;
+import com.bosi.chineseclass.task.UpLoadBpcyTask;
+import com.bosi.chineseclass.task.UpLoadBphzTask;
 import com.bosi.chineseclass.views.BSGridView;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
-import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
 public class BpcyLevFragment extends BaseFragment implements
@@ -56,13 +58,11 @@ public class BpcyLevFragment extends BaseFragment implements
 
 	@Override
 	public void onDestroy() {
-		mActivity.showToastShort("学习记录在后台传送中 ... ");
-		Intent mIntent = new Intent(mActivity ,BosiChineseService.class);
-		mIntent.putExtra(BosiChineseService.TASKNAME, BosiChineseService.TASK_UPLOADBPCY);
-		mActivity.startService(mIntent);
+		mActivity.dismissProgressDialog();
 		super.onDestroy();
 	}
 	
+	UpLoadBpcyTask mUpLoadTask;
 	@Override
 	protected void afterViewInject() {
 
@@ -80,20 +80,28 @@ public class BpcyLevFragment extends BaseFragment implements
 		mBphzLevAdapter = new BpcyLevAdapter(mActivity, mAdapterDataList);
 		mGridView.setAdapter(mBphzLevAdapter);
 		
+		BpcyHistory mHistory = new BpcyHistory();
+		mHistory.dictindex=0;
+		mHistory.isRember =2;
+		mBpcy.saveData(mHistory);
+		
+		mUpLoadTask= new UpLoadBpcyTask(mActivity);
+		mHead.setLeftOnclickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mActivity.showProgresssDialogWithHint("正在上传学习记录 ... ");
+				mUpLoadTask.sendDataAsy();
+			}
+		});
 		getDataAsy();
 	}
 
-	@Override
-	public void onDestroyView() {
-		// TODO Auto-generated method stub
-		super.onDestroyView();
-	}
 
 	// 模拟一次进度
 	protected void getDataAsy() {
 		mActivity.showProgresssDialogWithHint("正在同步学习记录 ... ");
 		getBphzHistory();
-
 	}
 
 	private void updateUI() {
@@ -199,6 +207,7 @@ public class BpcyLevFragment extends BaseFragment implements
 							id, "1");
 					mBpcy.updateDataFromDb(mSqlInsertData);
 				} catch (Exception e) {
+					System.out.println();
 				}
 			}
 		}

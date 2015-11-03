@@ -2,6 +2,7 @@ package com.bosi.chineseclass.fragments;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -18,11 +19,12 @@ import android.widget.LinearLayout;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseFragment;
-import com.bosi.chineseclass.BosiChineseService;
 import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BpStasticBean;
 import com.bosi.chineseclass.db.BPHZ;
+import com.bosi.chineseclass.db.BpcyHistory;
+import com.bosi.chineseclass.db.BphzHistory;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.model.BphzLevAdapter;
@@ -68,7 +70,10 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 
 		mBphzLevAdapter = new BphzLevAdapter(mActivity, mAdapterDataList);
 		mGridView.setAdapter(mBphzLevAdapter);
-
+		BphzHistory mHistory = new BphzHistory();
+		mHistory.dictindex=0;
+		mHistory.isRember =2;
+		mBphz.saveData(mHistory);
 		getDataAsy();
 	}
 
@@ -85,10 +90,6 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 
 	@Override
 	public void onDestroy() {
-		Intent mIntent = new Intent(mActivity , BosiChineseService.class);
-		mIntent.putExtra(BosiChineseService.TASKNAME, BosiChineseService.TASK_UPLOADBPHZ);
-		mActivity.startService(mIntent);
-		
 		super.onDestroy();
 	}
 	// 放到异步任务中去做

@@ -2,16 +2,17 @@ package com.bosi.chineseclass.task;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
-import android.content.Context;
-import android.content.Intent;
 
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
+import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.db.BPCY;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
@@ -21,22 +22,34 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 public class UpLoadBpcyTask implements OnHttpActionListener ,IBasicTask{
 
 	HttpHandler<?> mHandler;
-	Context mContext ;
-	public UpLoadBpcyTask(Context mContext){
+	BaseActivity mContext ;
+	public UpLoadBpcyTask(BaseActivity mContext){
 		this.mContext = mContext;
 	}
 	@Override
 	public void onHttpSuccess(JSONObject mResult, int code) {
+		mContext.dismissProgressDialog();
+		if(mResult ==null)return ;
 		if(mResult.has("code")){
+			String mCode;
+			try {
+				mCode = mResult.getString("code");
+				if(mCode.equals(AppDefine.ZYDefine.CODE_SUCCESS)){
+					mContext.finish();
+				}
+			} catch (JSONException e) {
+				mContext.showToastShort("服务异常");
+			}
 		}
-		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BROADCAST_UPBPCYOVER));
+		mContext.dismissProgressDialog();
 	}
 
 	@Override
 	public void onHttpError(Exception e, String reason, int code) {
-		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BROADCAST_UPBPCYOVER));
+		mContext.showToastShort("网络异常");
+		mContext.dismissProgressDialog();
 	}
-	
+
 	@Override
 	public void cancleTask() {
 		if(mHandler!=null){
@@ -46,7 +59,7 @@ public class UpLoadBpcyTask implements OnHttpActionListener ,IBasicTask{
 	BPCY mBpcy = new BPCY();
 	@Override
 	public HttpHandler<?> sendDataAsy() {
-		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPCYBGTIN));
+		
 		String mUid = PreferencesUtils.getString(mContext,
 				AppDefine.ZYDefine.EXTRA_DATA_USERID);
 		List<NameValuePair> mList = new ArrayList<NameValuePair>();

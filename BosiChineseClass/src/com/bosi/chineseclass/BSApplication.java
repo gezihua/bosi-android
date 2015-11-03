@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -50,6 +51,7 @@ public class BSApplication extends Application {
 		mActivityStack = new AppActivityStack();
 		// CrashHandler.getInstance().init(this);
 		MobclickAgent.setDebugMode(true);
+		
 	}
 
 	XutilHttpPack mHttpPack;

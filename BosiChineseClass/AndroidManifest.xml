@@ -135,8 +135,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
         
-        
-        
         <activity
             android:name="com.umeng.fb.HelpActivity"
             android:label="@string/umeng_fb_title"
@@ -151,10 +149,6 @@
             android:process=":remotereporterror"
             android:screenOrientation="landscape" >
         </activity>
-
-        <service 
-            android:name="com.bosi.chineseclass.BosiChineseService"
-            ></service>
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" >
