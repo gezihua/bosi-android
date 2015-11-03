@@ -2,7 +2,10 @@ package com.bosi.chineseclass.activitys;
 
 import java.util.List;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.BitmapDrawable;
 
 
@@ -42,6 +45,11 @@ public class MainActivity extends BaseActivity {
 	RelativeLayout mlayoutBody;
 	
 	XutilImageLoader mXutilImageLoader;
+	
+	MyBroadCastReiver mBroadCastReciver;
+	
+	private boolean isUpLoadBphz=false;
+	private boolean isUpLoadBpcy=false;
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -51,6 +59,20 @@ public class MainActivity extends BaseActivity {
 		mXutilImageLoader = new XutilImageLoader(this);
 		mXutilImageLoader.getBitmapFactory().display(mlayoutBody, "assets/bosi_index_bg.jpg");
 		
+		mBroadCastReciver = new MyBroadCastReiver();
+		IntentFilter mFilter = new IntentFilter();
+		mFilter.addAction(AppDefine.ZYDefine.ACTION_BROADCAST_UPBPCYOVER);
+		mFilter.addAction(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPCYBGTIN);
+		mFilter.addAction(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZBGTIN);
+		mFilter.addAction(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZOVER);
+		registerReceiver(mBroadCastReciver, mFilter);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if(mBroadCastReciver!=null)
+		unregisterReceiver(mBroadCastReciver);
 	}
 	@OnClick(R.id.btn_pinyinlearn)
 	public void actionPyLearn(View mView){
@@ -66,6 +88,10 @@ public class MainActivity extends BaseActivity {
 	}
 	@OnClick(R.id.btn_bphz)
 	public void actionBphz(View mView){
+		if(isUpLoadBphz){
+			showToastShort("正在上提交学习记录，请稍等 .. ");
+			return;
+		}
 		Intent mIntent = new Intent(this,SampleHolderActivity.class);
 		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"BphzLevFragment"});
 		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
@@ -74,6 +100,10 @@ public class MainActivity extends BaseActivity {
 
 	@OnClick(R.id.btn_bpcy)
 	public void actionBpcy(View mView){
+		if(isUpLoadBpcy){
+			showToastShort("正在上提交学习记录，请稍等 .. ");
+			return;
+		}
 		Intent mIntent = new Intent(this,SampleHolderActivity.class);
 		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"BpcyLevFragment"});
 		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
@@ -124,8 +154,27 @@ public class MainActivity extends BaseActivity {
 				}
 			}
 		}.start();
-		
 	}
+	
+	class MyBroadCastReiver extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context arg0, Intent mIntent) {
+			String action= mIntent.getAction();
+			if(action.equals(AppDefine.ZYDefine.ACTION_BROADCAST_UPBPCYOVER)){
+				isUpLoadBpcy = false;
+			}
+			if(action.equals(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZOVER)){
+				isUpLoadBphz = false ;
+			}
+			if(action.equals(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZBGTIN)){
+				isUpLoadBphz = true;
+			}
+			if(action.equals(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPCYBGTIN)){
+				isUpLoadBpcy = true;
+			}
+		}
+	};
 	private void getDataAsy(){
 		updateProgress(1, 2);
 		
@@ -184,7 +233,6 @@ public class MainActivity extends BaseActivity {
 		mPopuWindow.setOutsideTouchable(true);
 		mPopuWindow.setBackgroundDrawable(new BitmapDrawable());
 		mPopuWindow.showAsDropDown(mImageHintView, 0, 0);
-
 		//
 		View mFirst = mPopView.findViewById(R.id.main_popu_rl_instrohowtuse);
 		mFirst.setOnClickListener(new OnClickListener() {
@@ -195,6 +243,7 @@ public class MainActivity extends BaseActivity {
 				mPopuWindow.dismiss();
 			}
 		});
+		
 		View mSecond = mPopView.findViewById(R.id.main_popu_rl_userlimit);
 		mSecond.setOnClickListener(new OnClickListener() {
 

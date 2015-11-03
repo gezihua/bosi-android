@@ -8,6 +8,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 import android.content.Context;
+import android.content.Intent;
+
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.OnHttpActionListener;
@@ -27,11 +29,12 @@ public class UpLoadBpcyTask implements OnHttpActionListener ,IBasicTask{
 	public void onHttpSuccess(JSONObject mResult, int code) {
 		if(mResult.has("code")){
 		}
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BROADCAST_UPBPCYOVER));
 	}
 
 	@Override
 	public void onHttpError(Exception e, String reason, int code) {
-		
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BROADCAST_UPBPCYOVER));
 	}
 	
 	@Override
@@ -43,6 +46,7 @@ public class UpLoadBpcyTask implements OnHttpActionListener ,IBasicTask{
 	BPCY mBpcy = new BPCY();
 	@Override
 	public HttpHandler<?> sendDataAsy() {
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPCYBGTIN));
 		String mUid = PreferencesUtils.getString(mContext,
 				AppDefine.ZYDefine.EXTRA_DATA_USERID);
 		List<NameValuePair> mList = new ArrayList<NameValuePair>();

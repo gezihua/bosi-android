@@ -8,6 +8,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
@@ -29,14 +30,17 @@ public class UpLoadBphzTask implements OnHttpActionListener ,IBasicTask{
 		if(mResult.has("code")){
 			
 		}
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZOVER));
 	}
 
 	@Override
 	public void onHttpError(Exception e, String reason, int code) {
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZOVER));
 	}
 
 	@Override
 	public void cancleTask() {
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZOVER));
 		if(mHandler!=null){
 			mHandler.cancel();
 		}
@@ -44,7 +48,7 @@ public class UpLoadBphzTask implements OnHttpActionListener ,IBasicTask{
 	BPHZ mBpcy = new BPHZ();
 	@Override
 	public HttpHandler<?> sendDataAsy() {
-		
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZBGTIN));
 		String mUid = PreferencesUtils.getString(mContext,
 				AppDefine.ZYDefine.EXTRA_DATA_USERID);
 		List<NameValuePair> mList = new ArrayList<NameValuePair>();
