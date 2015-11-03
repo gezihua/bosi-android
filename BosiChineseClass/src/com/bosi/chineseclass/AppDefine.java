@@ -56,8 +56,8 @@ public class AppDefine {
 
 		public static final String URL_INSTRO_HELP = "http://www.yuwen100.cn/yuwen100/hzzy/Android/help/index.html";
 
-		public static final String URL_SYNCBOSICHARDATA = "http://study.yuwen100.cn/char";
-		public static final String URL_SYNCBOSIIDIOM = "http://study.yuwen100.cn/idiom";
+		public static final String URL_SYNCBOSICHARDATA = "http://study1.yuwen100.cn/char";
+		public static final String URL_SYNCBOSIIDIOM = "http://study1.yuwen100.cn/idiom";
 
 	}
 

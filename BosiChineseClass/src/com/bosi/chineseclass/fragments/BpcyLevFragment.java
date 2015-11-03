@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseFragment;
+import com.bosi.chineseclass.BosiChineseService;
 import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BpStasticBean;
@@ -23,6 +24,7 @@ import com.bosi.chineseclass.views.BSGridView;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -49,9 +51,18 @@ public class BpcyLevFragment extends BaseFragment implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		getDataAsy();
+		updateUI();
 	}
 
+	@Override
+	public void onDestroy() {
+		mActivity.showToastShort("学习记录在后台传送中 ... ");
+		Intent mIntent = new Intent(mActivity ,BosiChineseService.class);
+		mIntent.putExtra(BosiChineseService.TASKNAME, BosiChineseService.TASK_UPLOADBPCY);
+		mActivity.startService(mIntent);
+		super.onDestroy();
+	}
+	
 	@Override
 	protected void afterViewInject() {
 
@@ -68,58 +79,35 @@ public class BpcyLevFragment extends BaseFragment implements
 
 		mBphzLevAdapter = new BpcyLevAdapter(mActivity, mAdapterDataList);
 		mGridView.setAdapter(mBphzLevAdapter);
-
+		
 		getDataAsy();
+	}
+
+	@Override
+	public void onDestroyView() {
+		// TODO Auto-generated method stub
+		super.onDestroyView();
 	}
 
 	// 模拟一次进度
 	protected void getDataAsy() {
 		mActivity.showProgresssDialogWithHint("正在同步学习记录 ... ");
+		getBphzHistory();
 
-		mActivity.AsyTaskBaseThread(new Runnable() {
-
-			@Override
-			public void run() {
-				getBphzHistory();
-			}
-		}, new Runnable() {
-
-			@Override
-			public void run() {
-				mActivity.runOnUiThread(new Runnable() {
-
-					@Override
-					public void run() {
-						mActivity.dismissProgressDialog();
-						updateUI();
-					}
-				});
-			}
-		});
 	}
 
 	private void updateUI() {
+		mAdapterDataList = getLists();
 		mBphzLevAdapter.changeDataSource(mAdapterDataList);
-	}
-
-	private void sendBpHzHistory() {
-		// uid listLearned listNotLearned
-		String mUid = PreferencesUtils.getString(mActivity, AppDefine.ZYDefine.EXTRA_DATA_USERID);
-		List<NameValuePair> mList = new ArrayList<NameValuePair>();
-		mList.add(new BasicNameValuePair("uid", mUid));
-		mList.add(new BasicNameValuePair("listLearned", mBpcy.getAllLearnedData(mActivity, "0")));
-		mList.add(new BasicNameValuePair("listNotLearned", mBpcy.getAllLearnedData(mActivity, "1")));
-		BSApplication.getInstance().sendData(mList,
-				AppDefine.URLDefine.URL_SYNCBOSIIDIOM, this, 101,
-				HttpMethod.POST);
 	}
 
 	private void getBphzHistory() {
 		List<NameValuePair> mList = new ArrayList<NameValuePair>();
-		String mUid = PreferencesUtils.getString(mActivity, AppDefine.ZYDefine.EXTRA_DATA_USERID);
+		String mUid = PreferencesUtils.getString(mActivity,
+				AppDefine.ZYDefine.EXTRA_DATA_USERID);
 		mList.add(new BasicNameValuePair("uid", mUid));
 		BSApplication.getInstance().sendData(mList,
-				AppDefine.URLDefine.URL_SYNCBOSIIDIOM, this, 101,
+				AppDefine.URLDefine.URL_SYNCBOSIIDIOM+"?uid="+mUid, this, 101,
 				HttpMethod.GET);
 	}
 
@@ -158,35 +146,40 @@ public class BpcyLevFragment extends BaseFragment implements
 		// ,"data":{"uid":"3","listLearned":["12006",
 		// "12005"],"listNotLearned":["12008","1200
 		// 7"]}}
-		mActivity.dismissProgressDialog(); // 获取数据成功
-		JSONArray mArrayLearned = null;
-		JSONArray mArrayNotLearned = null;
-		if (mResult.has("code")) {
-			try {
-				String codeResult = mResult.getString("code");
-				String message = mResult.getString("message");
-				if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
-					JSONObject mData = mResult.getJSONObject("data");
-					if (mData.has("listLearned")) {
-						mArrayLearned = mData.getJSONArray("listLearned");
-					}
+		if (code == 101) {
+			JSONArray mArrayLearned = null;
+			JSONArray mArrayNotLearned = null;
+			if (mResult.has("code")) {
+				try {
+					String codeResult = mResult.getString("code");
+					String message = mResult.getString("msg");
+					if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
+						JSONObject mData = mResult.getJSONObject("data");
+						if (mData.has("listLearned")) {
+							mArrayLearned = mData.getJSONArray("listLearned");
+						}
 
-					if (mData.has("listNotLearned")) {
-						mArrayNotLearned = mData.getJSONArray("listNotLearned");
+						if (mData.has("listNotLearned")) {
+							mArrayNotLearned = mData
+									.getJSONArray("listNotLearned");
+						}
+						// 更新本地数据库
+						updateLocalBpcyDb(mArrayLearned, mArrayNotLearned);
+						updateUI();
+					} else {
+						mActivity.showToastShort(message);
 					}
-
-					//更新本地数据库
-					updateLocalBpcyDb(mArrayLearned, mArrayNotLearned);
-					
-					
-				} else {
-					mActivity.showToastShort(message);
+					mActivity.dismissProgressDialog();
+				} catch (JSONException e) {
+					mActivity.dismissProgressDialog();
+					mActivity.showToastShort("服务异常");
 				}
-			} catch (JSONException e) {
+			}else{
+				mActivity.dismissProgressDialog();
 				mActivity.showToastShort("服务异常");
 			}
-		} else {
 		}
+
 	}
 
 	BPCY mBpcy = new BPCY();
@@ -213,7 +206,7 @@ public class BpcyLevFragment extends BaseFragment implements
 		if (mArrayNotLearned != null) {
 			for (int i = 0; i < mArrayNotLearned.length(); i++) {
 				try {
-					String id = mArrayLearned.getString(i);
+					String id = mArrayNotLearned.getString(i);
 					String mSqlInsertData = String.format(
 							mActivity.getString(R.string.insert_bpcy_history),
 							id, "0");
@@ -227,6 +220,7 @@ public class BpcyLevFragment extends BaseFragment implements
 	@Override
 	public void onHttpError(Exception e, String reason, int code) {
 		mActivity.showToastShort("网络异常");
+		mActivity.dismissProgressDialog();
 	}
 
 }

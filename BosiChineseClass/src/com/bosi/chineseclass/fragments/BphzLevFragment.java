@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseFragment;
+import com.bosi.chineseclass.BosiChineseService;
 import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BpStasticBean;
@@ -45,11 +47,10 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 	}
 
 	BphzLevAdapter mBphzLevAdapter;
-
 	@Override
 	public void onResume() {
 		super.onResume();
-		getDataAsy();
+		updateUI();
 	}
 	@Override
 	protected void afterViewInject() {
@@ -73,37 +74,23 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 
 	// 模拟一次进度
 	protected void getDataAsy() {
-		mActivity.updateProgress(1, 2);
-
-		mActivity.AsyTaskBaseThread(new Runnable() {
-
-			@Override
-			public void run() {
-				getBphzHistory();
-			}
-		}, new Runnable() {
-
-			@Override
-			public void run() {
-				mActivity.runOnUiThread(new Runnable() {
-
-					@Override
-					public void run() {
-						mActivity.updateProgress(2, 2);
-						updateUI();
-					}
-				});
-			}
-		});
+		mActivity.showProgresssDialogWithHint("正在同步爆破汉字学习记录 ... ");
+		getBphzHistory();
 	}
-	
-	
-
 
 	private void updateUI() {
+		mAdapterDataList = getLists();
 		mBphzLevAdapter.changeDataSource(mAdapterDataList);
 	}
 
+	@Override
+	public void onDestroy() {
+		Intent mIntent = new Intent(mActivity , BosiChineseService.class);
+		mIntent.putExtra(BosiChineseService.TASKNAME, BosiChineseService.TASK_UPLOADBPHZ);
+		mActivity.startActivity(mIntent);
+		
+		super.onDestroy();
+	}
 	// 放到异步任务中去做
 	private List<BpStasticBean> getLists() {
 		BPHZ mBphz = new BPHZ();
@@ -113,7 +100,6 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 			mBpHzBean.mDictIndex = i - 1;
 			int startSize = (mBpHzBean.mDictIndex * 500 + 1);
 			int endSize = (i * 500);
-			
 			// 如果是最后一个统计的view 的话 最小值1 最大值 7000
 			if (i == 15) {
 				mBpHzBean.mNumberBetween = 1 + "-" + 7000;
@@ -132,26 +118,15 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 	
 	
 	BPHZ mBphz = new BPHZ();
-	private void sendBpHzHistory() {
-		// uid listLearned listNotLearned
-		String mUid = PreferencesUtils.getString(mActivity, AppDefine.ZYDefine.EXTRA_DATA_USERID);
-		List<NameValuePair> mList = new ArrayList<NameValuePair>();
-		mList.add(new BasicNameValuePair("uid", mUid));
-		mList.add(new BasicNameValuePair("listLearned", mBphz.getAllLearnedData(mActivity, "0")));
-		mList.add(new BasicNameValuePair("listNotLearned", mBphz.getAllLearnedData(mActivity, "1")));
-		BSApplication.getInstance().sendData(mList,
-				AppDefine.URLDefine.URL_SYNCBOSICHARDATA, this, 101,
-				HttpMethod.POST);
-	}
-
 	private void getBphzHistory() {
 		List<NameValuePair> mList = new ArrayList<NameValuePair>();
 		String mUid = PreferencesUtils.getString(mActivity, AppDefine.ZYDefine.EXTRA_DATA_USERID);
 		mList.add(new BasicNameValuePair("uid", mUid));
 		BSApplication.getInstance().sendData(mList,
-				AppDefine.URLDefine.URL_SYNCBOSICHARDATA, this, 101,
+				AppDefine.URLDefine.URL_SYNCBOSICHARDATA +"?uid="+mUid, this, 101,
 				HttpMethod.GET);
 	}
+	
 	
 	@Override
 	public void onHttpSuccess(JSONObject mResult, int code) {
@@ -167,22 +142,22 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 					if (mData.has("listLearned")) {
 						mArrayLearned = mData.getJSONArray("listLearned");
 					}
-
 					if (mData.has("listNotLearned")) {
 						mArrayNotLearned = mData.getJSONArray("listNotLearned");
 					}
-
 					//更新本地数据库
 					updateLocalBpcyDb(mArrayLearned, mArrayNotLearned);
-					
-					
 				} else {
 					mActivity.showToastShort(message);
 				}
+				mActivity.dismissProgress();
 			} catch (JSONException e) {
+				mActivity.dismissProgress();
 				mActivity.showToastShort("服务异常");
 			}
-		} else {
+		} else{
+			mActivity.dismissProgressDialog();
+			mActivity.showToastShort("服务异常");
 		}
 	}
 
@@ -223,6 +198,7 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 	@Override
 	public void onHttpError(Exception e, String reason, int code) {
 		mActivity.showToastShort("网络异常");
+		mActivity.dismissProgress();
 	}
 
 }

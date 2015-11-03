@@ -134,10 +134,13 @@ public class AuthActivity extends BaseActivity {
 
 			// {"code":"1","message":"","data":"{}"} 0 登陆失败 1成功 2 用户名不存在 3 密码不正确 4 超出使用权限
 			dismissProgressDialog(); // 登录成功
+			String message =null;
 			if (mResult.has("code")) {
 				try {
 					String codeResult = mResult.getString("code");
-					String message = mResult.getString("message");
+					if(mResult.has("message")){
+						 message = mResult.getString("message");
+					}
 
 					if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
 						showToastShort("登陆成功");
@@ -179,7 +182,7 @@ public class AuthActivity extends BaseActivity {
 		@Override
 		public void onHttpError(Exception e, String reason, int code) {
 			dismissProgressDialog();
-			showToastShort("服务异常，请检查网络后重试");
+			showToastShort("服务异常，请检查网络后重试" +e.getMessage());
 		}
 
 		@OnClick(R.id.bt_login)
@@ -216,7 +219,7 @@ public class AuthActivity extends BaseActivity {
 					.getInstance().getImei()));
 			showProgresssDialogWithHint("登录中...  ");
 			BSApplication.getInstance().sendData(mList, URLDefine.URL_AUTH,
-					this, 101,HttpMethod.GET);
+					this, 101,HttpMethod.POST);
 
 		}
 		public void initCardUserPanel() {

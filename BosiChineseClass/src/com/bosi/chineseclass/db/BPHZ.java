@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BpStasticBean;
@@ -28,6 +29,9 @@ public class BPHZ extends AbsDbOperation{
 			
 			for(DbModel mDbModel:dbModels){
 				String dictID = mDbModel.getString(BpcyHistory.DICTINDEX);
+				if(TextUtils.isEmpty(dictID)){
+					continue;
+				}
 				mSb.append(dictID);
 				mSb.append(",");
 			}
@@ -38,7 +42,9 @@ public class BPHZ extends AbsDbOperation{
 				dbModels =null;
 			}
 		}
-		return mSb.toString();
+		String result = mSb.toString();
+		if(result.endsWith(","))result= result.substring(0, result.length()-1);
+		return result;
 	}
 	
 	public List<Integer> selectDictListBaseTag(Context mContext,int tag ,int start ,int end){
