@@ -68,7 +68,7 @@ public class StasticCyRemberControl extends AbsBpStasitcViewControl{
 
 	@Override
 	public int getInitRefid() {
-		int mCurrentId  = 210001;
+		int mCurrentId  = 220001;
 		try{
 			mCurrentId = listData.get(mCurrent);
 		}catch(ArrayIndexOutOfBoundsException e){

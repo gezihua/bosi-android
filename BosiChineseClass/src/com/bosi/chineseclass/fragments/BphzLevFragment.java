@@ -87,7 +87,7 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 	public void onDestroy() {
 		Intent mIntent = new Intent(mActivity , BosiChineseService.class);
 		mIntent.putExtra(BosiChineseService.TASKNAME, BosiChineseService.TASK_UPLOADBPHZ);
-		mActivity.startActivity(mIntent);
+		mActivity.startService(mIntent);
 		
 		super.onDestroy();
 	}
@@ -136,7 +136,7 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 		if (mResult.has("code")) {
 			try {
 				String codeResult = mResult.getString("code");
-				String message = mResult.getString("message");
+				String message = mResult.getString("msg");
 				if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
 					JSONObject mData = mResult.getJSONObject("data");
 					if (mData.has("listLearned")) {
@@ -147,6 +147,8 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 					}
 					//更新本地数据库
 					updateLocalBpcyDb(mArrayLearned, mArrayNotLearned);
+					
+					updateUI();
 				} else {
 					mActivity.showToastShort(message);
 				}
@@ -184,7 +186,7 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 		if (mArrayNotLearned != null) {
 			for (int i = 0; i < mArrayNotLearned.length(); i++) {
 				try {
-					String id = mArrayLearned.getString(i);
+					String id = mArrayNotLearned.getString(i);
 					String mSqlInsertData = String.format(
 							mActivity.getString(R.string.insert_bphz_history),
 							id, "0");

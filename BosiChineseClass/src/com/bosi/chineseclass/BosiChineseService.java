@@ -1,6 +1,8 @@
 package com.bosi.chineseclass;
 
+import com.bosi.chineseclass.task.IBasicTask;
 import com.bosi.chineseclass.task.UpLoadBpcyTask;
+import com.bosi.chineseclass.task.UpLoadBphzTask;
 
 import android.app.Service;
 import android.content.Intent;
@@ -32,7 +34,7 @@ public class BosiChineseService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		// 根据传递过来的信息 执行相应的任务
-		if(intent !=null){
+		if (intent != null) {
 			int mTaskName = intent.getIntExtra(TASKNAME, TASK_UPLOADBPCY);
 			Message msg = Message.obtain();
 			msg.arg1 = mTaskName;
@@ -45,7 +47,11 @@ public class BosiChineseService extends Service {
 	public void onDestroy() {
 		super.onDestroy();
 		mUploadThread.quit();
+		if (mTask != null)
+			mTask.cancleTask();
 	}
+
+	IBasicTask mTask;
 
 	class MyUploadThread extends HandlerThread {
 
@@ -58,13 +64,11 @@ public class BosiChineseService extends Service {
 				@Override
 				public void handleMessage(Message msg) {
 					if (msg.arg1 == TASK_UPLOADBPCY) {
-						UpLoadBpcyTask mBpcyTask = new UpLoadBpcyTask(
-								BosiChineseService.this);
-						mBpcyTask.sendDataAsy();
+						mTask = new UpLoadBpcyTask(BosiChineseService.this);
+						mTask.sendDataAsy();
 					} else if (msg.arg1 == TASK_UPLOADBPHZ) {
-						// UpLoadBphzTask mBphzTask = new
-						// UpLoadBphzTask(BosiChineseService.this);
-						// mBphzTask.sendDataAsy();
+						mTask = new UpLoadBphzTask(BosiChineseService.this);
+						mTask.sendDataAsy();
 					}
 					super.handleMessage(msg);
 				}

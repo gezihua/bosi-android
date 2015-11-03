@@ -26,7 +26,9 @@ public class UpLoadBphzTask implements OnHttpActionListener ,IBasicTask{
 	}
 	@Override
 	public void onHttpSuccess(JSONObject mResult, int code) {
-		
+		if(mResult.has("code")){
+			
+		}
 	}
 
 	@Override
