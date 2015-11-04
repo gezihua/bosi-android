@@ -10,6 +10,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
+
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
@@ -28,26 +30,22 @@ public class UpLoadBpcyTask implements OnHttpActionListener ,IBasicTask{
 	}
 	@Override
 	public void onHttpSuccess(JSONObject mResult, int code) {
-		mContext.dismissProgressDialog();
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BROADCAST_UPBPCYOVER));
 		if(mResult ==null)return ;
 		if(mResult.has("code")){
 			String mCode;
 			try {
 				mCode = mResult.getString("code");
-				if(mCode.equals(AppDefine.ZYDefine.CODE_SUCCESS)){
-					mContext.finish();
-				}
 			} catch (JSONException e) {
 				mContext.showToastShort("服务异常");
 			}
 		}
-		mContext.dismissProgressDialog();
 	}
 
 	@Override
 	public void onHttpError(Exception e, String reason, int code) {
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BROADCAST_UPBPCYOVER));
 		mContext.showToastShort("网络异常");
-		mContext.dismissProgressDialog();
 	}
 
 	@Override

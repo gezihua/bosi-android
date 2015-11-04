@@ -31,4 +31,6 @@
      <string name="bphz_dital_reline_filter">①②③④⑤⑥⑦⑧⑨⑩</string>
      <string name="wrod_dital_name">字源字典</string>
      <string name="bphz_dital_name">爆破汉字</string>
+     <string name = "hint_uploading_studyhistory">正在上传学习记录 ...  </string>
+      <string name = "hint_updateing_studyhistory">正在同步学习记录 ... </string>
 </resources>

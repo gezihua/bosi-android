@@ -1,29 +1,22 @@
 package com.bosi.chineseclass;
 
 import java.util.Iterator;
-
 import java.util.List;
-
 import org.apache.http.NameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-
 import com.bosi.chineseclass.components.ExitSystemDialog;
 import com.bosi.chineseclass.db.BosiDbManager;
 import com.bosi.chineseclass.han.db.DbManager;
 import com.bosi.chineseclass.utils.AppActivityStack;
 import com.bosi.chineseclass.utils.XutilHttpPack;
 import com.bosi.chineseclass.utils.XutilHttpPack.OnHttpActionCallBack;
-import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.HttpHandler;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -39,7 +32,10 @@ public class BSApplication extends Application {
 	public DbManager mDbManager;
 	
 	public BosiDbManager mDbBosiClass;
-
+	
+	public boolean isFirstInBphz = true;
+	
+	public boolean isFirstInBpcy = true;
 	@Override
 	public void onCreate() {
 		super.onCreate();

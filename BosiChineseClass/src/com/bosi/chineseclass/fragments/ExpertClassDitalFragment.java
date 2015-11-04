@@ -33,6 +33,10 @@ public class ExpertClassDitalFragment extends BaseFragment{
 	HeadLayoutComponents mHeadActionBarComp;
 	@ViewInject(R.id.headactionbar)
 	View mHeadActionBar;
+	
+	
+	public static final String KEY_FATHERID = "key_fatherid";
+	String mFatherId ;
 	@Override
 	protected View getBasedView() {
 		return inflater.inflate(R.layout.fragment_layout_zjjzy, null);
@@ -41,13 +45,13 @@ public class ExpertClassDitalFragment extends BaseFragment{
 	@Override
 	protected void afterViewInject() {
 		mVideoView.setMediaController(new MediaController(mActivity));
-		// TODO:设置正确的专家讲字源路径
-		String path = AppDefine.URLDefine.URL_HZJC_ZJJZY_VIDEO + "1.mp4";
-		playVideo(path);
 
 		initWebView();
+		//加载目录
 		mWebView.loadUrl("file:///android_asset/zjkt/videoindex.html");
 
+		
+		mFatherId = mActivity.getIntent().getStringExtra(KEY_FATHERID);
 		mHeadActionBarComp = new HeadLayoutComponents(mActivity, mHeadActionBar);
 		mHeadActionBarComp.setTextMiddle("专家课堂", -1);
 		mHeadActionBarComp.setDefaultLeftCallBack(true);
@@ -75,7 +79,7 @@ public class ExpertClassDitalFragment extends BaseFragment{
 		WebSettings webSettings = mWebView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		mWebView.addJavascriptInterface(new WebAppShowObjectInterface(),
-				"zjjzy");
+				"zjktdital");
 
 	}
 
@@ -83,7 +87,6 @@ public class ExpertClassDitalFragment extends BaseFragment{
 		@JavascriptInterface
 		public void showObject(final String id) {
 			Log.e("HNX", "Zjjzy showObject id  " + id);
-
 			mActivity.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {

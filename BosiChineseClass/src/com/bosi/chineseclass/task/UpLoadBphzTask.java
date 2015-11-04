@@ -8,7 +8,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
 import android.content.Intent;
 
 import com.bosi.chineseclass.AppDefine;
@@ -29,26 +28,22 @@ public class UpLoadBphzTask implements OnHttpActionListener ,IBasicTask{
 	}
 	@Override
 	public void onHttpSuccess(JSONObject mResult, int code) {
-		mContext.dismissProgressDialog();
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZOVER));
 		if(mResult ==null)return ;
 		if(mResult.has("code")){
 			String mCode;
 			try {
 				mCode = mResult.getString("code");
-				if(mCode.equals(AppDefine.ZYDefine.CODE_SUCCESS)){
-					mContext.finish();
-				}
 			} catch (JSONException e) {
 				mContext.showToastShort("服务异常");
 			}
 		}
-		mContext.dismissProgressDialog();
 	}
 
 	@Override
 	public void onHttpError(Exception e, String reason, int code) {
 		mContext.showToastShort("网络异常");
-		mContext.dismissProgressDialog();
+		mContext.sendBroadcast(new Intent(AppDefine.ZYDefine.ACTION_BRPADCAST_UPBPHZOVER));
 	}
 
 	@Override
@@ -69,7 +64,7 @@ public class UpLoadBphzTask implements OnHttpActionListener ,IBasicTask{
 		mList.add(new BasicNameValuePair("listNotLearned", mBpcy
 				.getAllLearnedData(mContext, "0")));
 		BSApplication.getInstance().sendData(mList,
-				AppDefine.URLDefine.URL_SYNCBOSIIDIOM, this, 102,
+				AppDefine.URLDefine.URL_SYNCBOSICHARDATA, this, 102,
 				HttpMethod.POST);
 		return mHandler;
 	}

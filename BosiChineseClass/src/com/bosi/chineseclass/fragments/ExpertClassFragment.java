@@ -10,9 +10,14 @@ import android.webkit.WebView;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.activitys.SampleHolderActivity;
+import com.bosi.chineseclass.control.SampleControl;
+import com.bosi.chineseclass.control.SampleHolderControlMake;
 import com.bosi.chineseclass.han.activitys.ZyObjectActivity;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.han.fragments.ZiyuanBihuaFragment.WebAppShowObjectInterface;
+import com.bosi.chineseclass.han.util.PreferencesUtils;
+import com.bosi.chineseclass.utils.BosiUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 
@@ -50,11 +55,11 @@ public class ExpertClassFragment extends BaseFragment{
 	 public class WebAppShowObjectInterface {
 	        @JavascriptInterface
 	        public void showObject(String id) {
-//	            Intent intent = new Intent(mActivity, ZyObjectActivity.class);
-//	            intent.putExtra(AppDefine.ZYDefine.ZY_OBJECT_ID, id);
-//	            mActivity.startActivity(intent);
-	        	
-	        	
+	        	Intent mIntent = new Intent(mActivity, SampleHolderActivity.class);
+	        	mIntent.putExtra(ExpertClassDitalFragment.KEY_FATHERID, id);
+	        	mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"ExpertClassDitalFragment"});
+	    		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+	    		startActivity(mIntent);
 	        }
 	 }
 	 

@@ -1,17 +1,7 @@
 package com.bosi.chineseclass.fragments;
 
 import java.util.ArrayList;
-
-
 import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -19,20 +9,17 @@ import android.widget.LinearLayout;
 import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseFragment;
-import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.bean.BpStasticBean;
 import com.bosi.chineseclass.db.BPHZ;
-import com.bosi.chineseclass.db.BpcyHistory;
-import com.bosi.chineseclass.db.BphzHistory;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
-import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.model.BphzLevAdapter;
+import com.bosi.chineseclass.task.DownLoadBphzTask;
+import com.bosi.chineseclass.task.DownLoadBphzTask.CallBack;
 import com.bosi.chineseclass.views.BSGridView;
-import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
-public class BphzLevFragment extends BaseFragment implements OnHttpActionListener{
+public class BphzLevFragment extends BaseFragment implements CallBack{
 
 	@ViewInject(R.id.ll_bphz_body)
 	LinearLayout mLayoutBody;
@@ -42,6 +29,8 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 	View mViewHead;
 
 	List<BpStasticBean> mAdapterDataList = new ArrayList<BpStasticBean>();
+	
+	DownLoadBphzTask mDownLoadTask;
 
 	@Override
 	protected View getBasedView() {
@@ -56,9 +45,9 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 	}
 	@Override
 	protected void afterViewInject() {
-
 		HeadLayoutComponents mHead = new HeadLayoutComponents(mActivity,
 				mViewHead);
+		
 		mHead.setTextMiddle("爆破汉字", -1);
 		mGridView = new BSGridView(mActivity);
 		mGridView.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -70,28 +59,25 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 
 		mBphzLevAdapter = new BphzLevAdapter(mActivity, mAdapterDataList);
 		mGridView.setAdapter(mBphzLevAdapter);
-		BphzHistory mHistory = new BphzHistory();
-		mHistory.dictindex=0;
-		mHistory.isRember =2;
-		mBphz.saveData(mHistory);
-		getDataAsy();
+		
+		if(BSApplication.getInstance().isFirstInBphz){
+			BSApplication.getInstance().isFirstInBphz = false;
+			downLoadBphzData();
+		}
 	}
 
-	// 模拟一次进度
-	protected void getDataAsy() {
-		mActivity.showProgresssDialogWithHint("正在同步爆破汉字学习记录 ... ");
-		getBphzHistory();
+	private void downLoadBphzData(){
+		mDownLoadTask = new DownLoadBphzTask(mActivity);
+		mDownLoadTask.setCallBack(this);
+		mDownLoadTask.sendDataAsy();
 	}
+	
 
 	private void updateUI() {
 		mAdapterDataList = getLists();
 		mBphzLevAdapter.changeDataSource(mAdapterDataList);
 	}
 
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-	}
 	// 放到异步任务中去做
 	private List<BpStasticBean> getLists() {
 		BPHZ mBphz = new BPHZ();
@@ -116,92 +102,13 @@ public class BphzLevFragment extends BaseFragment implements OnHttpActionListene
 
 		return mLists;
 	}
-	
-	
-	BPHZ mBphz = new BPHZ();
-	private void getBphzHistory() {
-		List<NameValuePair> mList = new ArrayList<NameValuePair>();
-		String mUid = PreferencesUtils.getString(mActivity, AppDefine.ZYDefine.EXTRA_DATA_USERID);
-		mList.add(new BasicNameValuePair("uid", mUid));
-		BSApplication.getInstance().sendData(mList,
-				AppDefine.URLDefine.URL_SYNCBOSICHARDATA +"?uid="+mUid, this, 101,
-				HttpMethod.GET);
-	}
-	
-	
 	@Override
-	public void onHttpSuccess(JSONObject mResult, int code) {
-		mActivity.dismissProgressDialog(); // 获取数据成功
-		JSONArray mArrayLearned = null;
-		JSONArray mArrayNotLearned = null;
-		if (mResult.has("code")) {
-			try {
-				String codeResult = mResult.getString("code");
-				String message = mResult.getString("msg");
-				if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
-					JSONObject mData = mResult.getJSONObject("data");
-					if (mData.has("listLearned")) {
-						mArrayLearned = mData.getJSONArray("listLearned");
-					}
-					if (mData.has("listNotLearned")) {
-						mArrayNotLearned = mData.getJSONArray("listNotLearned");
-					}
-					//更新本地数据库
-					updateLocalBpcyDb(mArrayLearned, mArrayNotLearned);
-					
-					updateUI();
-				} else {
-					mActivity.showToastShort(message);
-				}
-				mActivity.dismissProgress();
-			} catch (JSONException e) {
-				mActivity.dismissProgress();
-				mActivity.showToastShort("服务异常");
-			}
-		} else{
-			mActivity.dismissProgressDialog();
-			mActivity.showToastShort("服务异常");
-		}
+	public void actionCallback() {
+		updateUI();
 	}
+	
+	
 
 
-	private void updateLocalBpcyDb(JSONArray mArrayLearned,
-			JSONArray mArrayNotLearned) {
-		if (mArrayLearned != null || mArrayLearned != null
-				&& mArrayLearned.length() > 0 || mArrayNotLearned.length() > 0) {
-			mBphz.clearDbData();
-		}
-		if (mArrayLearned != null) {
-			for (int i = 0; i < mArrayLearned.length(); i++) {
-				try {
-					String id = mArrayLearned.getString(i);
-					String mSqlInsertData = String.format(
-							mActivity.getString(R.string.insert_bphz_history),
-							id, "1");
-					mBphz.updateDataFromDb(mSqlInsertData);
-				} catch (Exception e) {
-				}
-			}
-		}
-
-		if (mArrayNotLearned != null) {
-			for (int i = 0; i < mArrayNotLearned.length(); i++) {
-				try {
-					String id = mArrayNotLearned.getString(i);
-					String mSqlInsertData = String.format(
-							mActivity.getString(R.string.insert_bphz_history),
-							id, "0");
-					mBphz.updateDataFromDb(mSqlInsertData);
-				} catch (Exception e) {
-				}
-			}
-		}
-	}
-
-	@Override
-	public void onHttpError(Exception e, String reason, int code) {
-		mActivity.showToastShort("网络异常");
-		mActivity.dismissProgress();
-	}
-
+	
 }
