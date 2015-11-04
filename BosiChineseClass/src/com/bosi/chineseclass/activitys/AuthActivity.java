@@ -27,6 +27,7 @@ import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
+import com.bosi.chineseclass.utils.BosiUtils;
 import com.bosi.chineseclass.utils.NetStateUtil;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -285,6 +286,7 @@ public class AuthActivity extends BaseActivity {
 			@Override
 			public void onClick(View arg0) {
 				mPopuWindow.dismiss();
+				BosiUtils.intentToVideoPlay(AppDefine.URLDefine.URL_LOGIN_REMOTE_ABOUTBOSI, mContext);
 			}
 		});
 		View mSecond = mPopView.findViewById(R.id.login_popu_rl_register);

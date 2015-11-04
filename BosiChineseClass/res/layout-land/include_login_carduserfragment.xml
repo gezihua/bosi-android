@@ -78,6 +78,7 @@
                 android:layout_alignParentRight="true"
                 android:id="@+id/login_tv_showphoneuserpanel"
                 android:text="手机号登陆"
+                android:visibility="gone"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/bt_login"
                 android:textColor="#ffffff"
