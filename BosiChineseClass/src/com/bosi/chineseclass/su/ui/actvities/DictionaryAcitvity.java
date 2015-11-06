@@ -1,10 +1,10 @@
 
 package com.bosi.chineseclass.su.ui.actvities;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -20,8 +20,6 @@ import com.bosi.chineseclass.su.ui.fragment.FilerPyFragment;
 import com.bosi.chineseclass.su.ui.fragment.FilterRadicalFragment;
 import com.bosi.chineseclass.su.ui.fragment.FiterStokeFragment;
 import com.viewpagerindicator.TabPageIndicator;
-
-import java.util.ArrayList;
 
 public class DictionaryAcitvity extends BaseActivity implements SearchableAction {
     private final static String sTitleList[] = {

@@ -30,9 +30,13 @@ public class ExpertClassFragment extends BaseFragment {
 
 	@ViewInject(R.id.expertmain_wv_instro)
 	WebView mWvExpertinstro;
-	
+
 	@ViewInject(R.id.pb_forwebview)
 	ProgressBar mProgressBar;
+	
+	@ViewInject(R.id.pb_forwebviewmenu)
+	ProgressBar mProgressForMenu;
+
 	@Override
 	protected View getBasedView() {
 		return View.inflate(mActivity, R.layout.layout_expertclass_mainpage,
@@ -47,9 +51,22 @@ public class ExpertClassFragment extends BaseFragment {
 		initMenuWebData(mWvExpertinstro);
 		mWvExpertMenu.addJavascriptInterface(new WebAppShowObjectInterface(),
 				"zjktd");
-		
-		
+
 		mWvExpertinstro.setWebChromeClient(new WebChromeClient() {
+
+			@Override
+			public void onProgressChanged(WebView view, int newProgress) {
+				super.onProgressChanged(view, newProgress);
+				if (newProgress == 100) {
+					mProgressForMenu.setVisibility(View.GONE);
+					return;
+				}
+				mProgressForMenu.setVisibility(View.VISIBLE);
+				mProgressForMenu.setProgress(newProgress);
+			}
+
+		});
+		mWvExpertMenu.setWebChromeClient(new WebChromeClient() {
 
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
@@ -71,11 +88,12 @@ public class ExpertClassFragment extends BaseFragment {
 	public class WebAppShowObjectInterface {
 		@JavascriptInterface
 		public void showObject(String id) {
-			//System.out.println(id);
-			if(id.endsWith("html")){
-				loadInstroData(AppDefine.URLDefine.URL_BASEURL+id);
-			}else{
-				Intent mIntent = new Intent(mActivity, SampleHolderActivity.class);
+			// System.out.println(id);
+			if (id.endsWith("html")) {
+				loadInstroData(AppDefine.URLDefine.URL_BASEURL + id);
+			} else {
+				Intent mIntent = new Intent(mActivity,
+						SampleHolderActivity.class);
 				mIntent.putExtra(ExpertClassDitalFragment.KEY_FATHERID, id);
 				mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES,
 						new String[] { "ExpertClassDitalFragment" });
@@ -84,7 +102,7 @@ public class ExpertClassFragment extends BaseFragment {
 				startActivity(mIntent);
 			}
 		}
-		
+
 	}
 
 	@SuppressLint("SetJavaScriptEnabled")
@@ -96,8 +114,8 @@ public class ExpertClassFragment extends BaseFragment {
 	}
 
 	private void loadMenuData() {
-		//TODO FOR CURRECT URL
-		mWvExpertMenu.loadUrl("file:///android_asset/zjktdital/index.html");
+		// TODO FOR CURRECT URL
+		mWvExpertMenu.loadUrl(AppDefine.URLDefine.URL_ZJKT_FIRSTPAGEMENU);
 	}
 
 	private void loadInstroData(String mUrl) {

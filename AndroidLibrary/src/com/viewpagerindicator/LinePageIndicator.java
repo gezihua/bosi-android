@@ -15,6 +15,7 @@
  */
 package com.viewpagerindicator;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -64,7 +65,8 @@ public class LinePageIndicator extends View implements PageIndicator {
         this(context, attrs, R.attr.vpiLinePageIndicatorStyle);
     }
 
-    public LinePageIndicator(Context context, AttributeSet attrs, int defStyle) {
+    @SuppressLint("NewApi")
+	public LinePageIndicator(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         if (isInEditMode()) return;
 
@@ -371,7 +373,7 @@ public class LinePageIndicator extends View implements PageIndicator {
                 result = Math.min(result, specSize);
             }
         }
-        return (int)FloatMath.ceil(result);
+        return (int)Math.ceil(result);
     }
 
     /**
@@ -397,7 +399,7 @@ public class LinePageIndicator extends View implements PageIndicator {
                 result = Math.min(result, specSize);
             }
         }
-        return (int)FloatMath.ceil(result);
+        return (int)Math.ceil(result);
     }
 
     @Override

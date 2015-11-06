@@ -67,7 +67,12 @@ public class AppDefine {
 		public static final String URL_SYNCBOSIIDIOM = "http://study1.yuwen100.cn/idiom";
 		
 		public static final String URL_BASEURL = "http://www.yuwen100.cn/yuwen100";
-		public static final String URL_ZJKT_ZYINSTRO = URL_BASEURL+"/zhuanjia/zyref/js/zyref.html";
+		public static final String URL_ZJKT_ZYINSTRO = URL_BASEURL+"/zhuanjia/zyref/js/zyref-an.html";
+		
+		//专家课堂的第一个页面的左边菜单
+		public static final String URL_ZJKT_FIRSTPAGEMENU = "http://www.yuwen100.cn/yuwen100/hzzy/Android/zhuanjiaindex/firstpage/index.html";
+		
+		public static final String URL_ZJKT_BASEURL = "http://www.yuwen100.cn/yuwen100/hzzy/Android/zhuanjiaindex";
 
 	}
 

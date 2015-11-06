@@ -3,48 +3,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <include  
-        layout="@layout/common_head"
+
+    <include
         android:id="@+id/headactionbar"
-        />
-    
+        layout="@layout/common_head" />
+
     <LinearLayout
+        android:id="@+id/expertclass_ll_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/expertclass_ll_body"
-        android:orientation="horizontal"
-        >
-        <WebView
+        android:orientation="horizontal" >
+
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:id="@+id/expertmain_wv_menu"
-            />
-        
-        <RelativeLayout
-              android:layout_width="0dp"
-               android:layout_weight="5"
-            android:layout_height="match_parent"
-            >
-            
+            android:layout_weight="2.5" >
+
             <ProgressBar
-                        android:visibility="gone"
-                        android:id="@+id/pb_forwebview"
-                        style="@style/progressbarStyle_Horizontal_Red"
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginRight="3dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_height="2dp" >
-                    </ProgressBar>
+                android:id="@+id/pb_forwebviewmenu"
+                style="@style/progressbarStyle_Horizontal_Red"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:visibility="gone" >
+            </ProgressBar>
+
             <WebView
-                android:layout_below="@+id/pb_forwebview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/expertmain_wv_instro"
-            />
+                android:id="@+id/expertmain_wv_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/pb_forwebviewmenu" />
         </RelativeLayout>
-         
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5" >
+
+            <ProgressBar
+                android:id="@+id/pb_forwebview"
+                style="@style/progressbarStyle_Horizontal_Red"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:visibility="gone" >
+            </ProgressBar>
+
+            <WebView
+                android:id="@+id/expertmain_wv_instro"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/pb_forwebview" />
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

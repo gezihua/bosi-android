@@ -35,6 +35,9 @@ public class ExpertClassDitalFragment extends BaseFragment {
 	@ViewInject(R.id.headactionbar)
 	View mHeadActionBar;
 
+	@ViewInject(R.id.pb_forzjktdital)
+	private ProgressBar mPbForZjktDital ;
+	
 	public static final String KEY_FATHERID = "key_fatherid";
 
 	String mFatherId;
@@ -52,7 +55,7 @@ public class ExpertClassDitalFragment extends BaseFragment {
 
 		mFatherId = mActivity.getIntent().getStringExtra(KEY_FATHERID);
 
-		if (TextUtils.isEmpty(mFatherId)) {
+		if (TextUtils.isEmpty(mFatherId) || !mFatherId.contains("-")) {
 			mActivity.showToastShort("数据异常");
 			mActivity.finish();
 			return;
@@ -64,22 +67,32 @@ public class ExpertClassDitalFragment extends BaseFragment {
 			public void onCompletion(MediaPlayer arg0) {
 				if (mCurremtSize < mWholeSize) {
 					mCurremtSize++;
+					mWebView.loadUrl("javascript:selectNode(" + mCurremtSize
+							+ ")");
 					playVideo(getBasicUrl() + mCurremtSize + ".mp4");
 				}
 			}
 		});
 		initWebView();
-		// 加载目录
-		mWebView.loadUrl("file:///android_asset/zjkt/index.html");
+		// 加载目录 TODO
+		 mWebView.loadUrl(AppDefine.URLDefine.URL_ZJKT_BASEURL + "/"
+		 + mFatherId.split("-")[0] + "/secondpage/index.html");
+		//mWebView.loadUrl("file:///android_asset/zjkt/index.html");
+
 		mWebView.setWebChromeClient(new WebChromeClient() {
 
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
 				super.onProgressChanged(view, newProgress);
 				if (newProgress == 100) {
+					mPbForZjktDital.setVisibility(View.GONE);
 					mWebView.loadUrl("javascript:getAllNodeSize()");
+					mWebView.loadUrl("javascript:selectNode(" + mCurremtSize
+							+ ")");
 					return;
 				}
+				mPbForZjktDital.setVisibility(View.VISIBLE);
+				mPbForZjktDital.setProgress(newProgress);
 			}
 		});
 		playVideo(getBasicUrl() + mCurremtSize + ".mp4");
@@ -99,7 +112,7 @@ public class ExpertClassDitalFragment extends BaseFragment {
 		StringBuilder mBuilder = new StringBuilder();
 		mBuilder.append(AppDefine.URLDefine.URL_BASEURL);
 		mBuilder.append("/zhuanjia/");
-		mBuilder.append(mSpitArray[0] + "/");
+		mBuilder.append(mSpitArray[0] + "/shipin/");
 		mBuilder.append(mSpitArray[1] + "/");
 		return mBuilder.toString();
 	}

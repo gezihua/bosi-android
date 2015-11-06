@@ -84,27 +84,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/bt_hzcs_dital_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/ll_hzcs_rightfunction"
-                android:layout_alignRight="@+id/ll_hzcs_rightfunction"
-                android:layout_marginRight="30dp"
-                android:visibility="gone"
-                android:background="@drawable/hzqy_dital_content_next" >
-            </Button>
-
-            <Button
-                android:visibility="gone"
-                android:id="@+id/bt_hzcs_dital_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/ll_hzcs_rightfunction"
-                android:layout_alignLeft="@+id/ll_hzcs_rightfunction"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/hzqy_dital_content_pre" >
-            </Button>
         </RelativeLayout>
     </RelativeLayout>
 

@@ -35,15 +35,10 @@ import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
 import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 
 //汉字常识的基础功能
-public abstract class AbsHzcsFragment extends BaseFragment implements
-		OnClickListener {
+public abstract class AbsHzcsFragment extends BaseFragment  {
 
 
 	LinearLayout mLayoutMenu;
-
-
-	Button mBtLeft;
-	Button mBtRight;
 
 	String mCurrentData[];
 	String mCurrentDataHtmlData[];
@@ -87,10 +82,6 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 				.findViewById(R.id.ll_hzcs_leftmenu);
 
 
-		mBtLeft = (Button) mBaseView.findViewById(R.id.bt_hzcs_dital_left);
-		mBtLeft.setOnClickListener(this);
-		mBtRight = (Button) mBaseView.findViewById(R.id.bt_hzcs_dital_right);
-		mBtRight.setOnClickListener(this);
 
 		mWebView = (WebView) mBaseView.findViewById(R.id.wv_hzcs_dital);
         
@@ -161,33 +152,6 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 
 	public abstract void initMenu();
 
-	public void actionLeft(View mView) {
-		mBtRight.setVisibility(View.VISIBLE);
-		currentPosition--;
-		if (currentPosition < 0)
-			return;
-
-		updateDitalPg();
-		if (currentPosition == 0) {
-			mBtLeft.setVisibility(View.GONE);
-			mBtRight.setVisibility(View.VISIBLE);
-		}
-	}
-
-	public void actionRight(View mView) {
-		mBtLeft.setVisibility(View.VISIBLE);
-		currentPosition++;
-		if (currentPosition == mCurrentData.length) {
-			return;
-		}
-
-		updateDitalPg();
-		if (currentPosition == mCurrentData.length - 1) {
-			mBtRight.setVisibility(View.GONE);
-			mBtLeft.setVisibility(View.VISIBLE);
-
-		}
-	}
 
 	/**
 	 * 如果网络状态不通直接返回 -1
@@ -278,20 +242,6 @@ public abstract class AbsHzcsFragment extends BaseFragment implements
 
 	protected abstract void downLoadImageOverAction();
 
-	@Override
-	public void onClick(View mView) {
-		switch (mView.getId()) {
-		case R.id.bt_hzcs_dital_left:
-			actionLeft(mView);
-			break;
-		case R.id.bt_hzcs_dital_right:
-			actionRight(mView);
-			break;
-
-		default:
-			break;
-		}
-	}
 
 	protected void displayBgView() {
 		mViewBody.setBackgroundResource(R.drawable.hzqy_ditalbg);

@@ -61,8 +61,6 @@ public class HzybDitalFragment extends AbsHzcsFragment{
 		View mMenuView = View.inflate(mActivity, R.layout.layout_hzyb_menu, null);
 		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
-		mBtLeft.setVisibility(View.GONE);
-		mBtRight.setVisibility(View.GONE);
 	}
 	
 	@Override

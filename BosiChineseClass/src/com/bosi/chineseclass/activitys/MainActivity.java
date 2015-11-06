@@ -37,10 +37,9 @@ import com.umeng.update.UmengUpdateAgent;
 public class MainActivity extends BaseActivity {
 	@ViewInject(R.id.ll_main_body)
 	RelativeLayout mlayoutBody;
-	
+
 	XutilImageLoader mXutilImageLoader;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -48,110 +47,127 @@ public class MainActivity extends BaseActivity {
 		MobclickAgent.updateOnlineConfig(this);
 		getDataAsy();
 		mXutilImageLoader = new XutilImageLoader(this);
-		mXutilImageLoader.getBitmapFactory().display(mlayoutBody, "assets/bosi_index_bg.jpg");
-		
+		mXutilImageLoader.getBitmapFactory().display(mlayoutBody,
+				"assets/bosi_index_bg.jpg");
+
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 	}
+
 	@OnClick(R.id.btn_pinyinlearn)
-	public void actionPyLearn(View mView){
-		Intent mIntent = new Intent(this,SampleHolderActivity.class);
-		mIntent.putExtra(SampleHolderControlMake.mControlName, "PinYinLearnControl");
+	public void actionPyLearn(View mView) {
+		Intent mIntent = new Intent(this, SampleHolderActivity.class);
+		mIntent.putExtra(SampleHolderControlMake.mControlName,
+				"PinYinLearnControl");
 		startActivity(mIntent);
-		
+
 	}
+
 	@OnClick(R.id.main_btn_hzcs)
-	public void actionHzcs(View mView){
-		Intent mIntent = new Intent(this,HzcsActivity.class);
+	public void actionHzcs(View mView) {
+		Intent mIntent = new Intent(this, HzcsActivity.class);
 		startActivity(mIntent);
 	}
+
 	@OnClick(R.id.btn_bphz)
-	public void actionBphz(View mView){
-		Intent mIntent = new Intent(this,SampleHolderActivity.class);
-		mIntent.putExtra(SampleHolderActivity.KEY_NOTALLOWBACKKEY,"notallow");
-		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"BphzLevFragment"});
-		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+	public void actionBphz(View mView) {
+		Intent mIntent = new Intent(this, SampleHolderActivity.class);
+		mIntent.putExtra(SampleHolderActivity.KEY_NOTALLOWBACKKEY, "notallow");
+		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES,
+				new String[] { "BphzLevFragment" });
+		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME,
+				"com.bosi.chineseclass.fragments");
 		startActivity(mIntent);
 	}
 
 	@OnClick(R.id.btn_bpcy)
-	public void actionBpcy(View mView){
-		Intent mIntent = new Intent(this,SampleHolderActivity.class);
-		
-		mIntent.putExtra(SampleHolderActivity.KEY_NOTALLOWBACKKEY,"notallow");
-		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"BpcyLevFragment"});
-		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+	public void actionBpcy(View mView) {
+		Intent mIntent = new Intent(this, SampleHolderActivity.class);
+
+		mIntent.putExtra(SampleHolderActivity.KEY_NOTALLOWBACKKEY, "notallow");
+		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES,
+				new String[] { "BpcyLevFragment" });
+		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME,
+				"com.bosi.chineseclass.fragments");
 		startActivity(mIntent);
 	}
+
 	@OnClick(R.id.btn_zjkt)
-	public void actionZjkt(View mView){
-		Intent mIntent = new Intent(this,SampleHolderActivity.class);
-		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES, new String []{"ExpertClassFragment"});
-		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME ,"com.bosi.chineseclass.fragments");
+	public void actionZjkt(View mView) {
+		Intent mIntent = new Intent(this, SampleHolderActivity.class);
+		mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES,
+				new String[] { "ExpertClassFragment" });
+		mIntent.putExtra(SampleControl.KEY_PACKAGETNAME,
+				"com.bosi.chineseclass.fragments");
 		startActivity(mIntent);
 	}
+
 	@OnClick(R.id.bt_zyyx)
-	public void actionZyyx(View mView){
-		Intent mIntent = new Intent(this,GameActivity.class);
+	public void actionZyyx(View mView) {
+		Intent mIntent = new Intent(this, GameActivity.class);
 		mIntent.putExtra("title", "字源游戏");
 		startActivity(mIntent);
 	}
-	
-	
+
 	@OnClick(R.id.bt_zy)
-	public void actionZy(View mView){
+	public void actionZy(View mView) {
 		Intent ziyuanIntent = new Intent(mContext, ZiYuanActivity.class);
 		startActivity(ziyuanIntent);
 	}
+
 	@OnClick(R.id.btn_zyzd)
-	public void actionZyzd(View mView){
+	public void actionZyzd(View mView) {
 		Intent intent = new Intent(MainActivity.this, DictionaryAcitvity.class);
 		startActivity(intent);
 	}
-	
+
 	BPCYDATA mBpcy = new BPCYDATA();
+
 	@OnClick(R.id.encode_bpcy)
-	public void actionEncodeBpcy(View mView){
-		new Thread(){
-			public void run(){
-				for(int i=0 ;i<13300 ;i=i+100){
-					String sqlSelect = getResources().getString(R.string.select_frombpcy);
-					String sqlFormat = String.format(sqlSelect, i+"",(100+i)+"");
+	public void actionEncodeBpcy(View mView) {
+		new Thread() {
+			public void run() {
+				for (int i = 0; i < 13300; i = i + 100) {
+					String sqlSelect = getResources().getString(
+							R.string.select_frombpcy);
+					String sqlFormat = String.format(sqlSelect, i + "",
+							(100 + i) + "");
 					LogUtils.i("zhujohnle", sqlFormat);
-					List<BpcyDataBean> mList = mBpcy.selectDataFromDb(sqlFormat);
+					List<BpcyDataBean> mList = mBpcy
+							.selectDataFromDb(sqlFormat);
 					try {
 						mBpcy.syncEncryptData(mList);
-						LogUtils.i("zhujohnle", "success"+i);
+						LogUtils.i("zhujohnle", "success" + i);
 					} catch (Exception e) {
-						LogUtils.i("zhujohnle", "failed"+i);
+						LogUtils.i("zhujohnle", "failed" + i);
 					}
 				}
 			}
 		}.start();
 	}
-	
-	private void getDataAsy(){
+
+	private void getDataAsy() {
 		updateProgress(1, 2);
-		
+
 		AsyTaskBaseThread(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				 boolean isSuccess = CheckDbUtils.checkDb();
-				 if(!isSuccess){
-					 finish();
-				 }
-				 BSApplication.getInstance().mDbManager = new DbManager(mContext);
+				boolean isSuccess = CheckDbUtils.checkDb();
+				if (!isSuccess) {
+					finish();
+				}
+				BSApplication.getInstance().mDbManager = new DbManager(mContext);
 			}
-		},new Runnable() {
-			
+		}, new Runnable() {
+
 			@Override
 			public void run() {
-				runOnUiThread( new Runnable() {
-					
+				runOnUiThread(new Runnable() {
+
 					@Override
 					public void run() {
 						updateProgress(2, 2);
@@ -160,21 +176,20 @@ public class MainActivity extends BaseActivity {
 			}
 		});
 	}
-	
-	
+
 	@Override
 	public void onBackPressed() {
 		BSApplication.getInstance().exitApp();
 	}
-	
+
 	@ViewInject(R.id.iv_popu_remote_main)
 	ImageView mImageHintView;
-	
+
 	@OnClick(R.id.iv_popu_remote_main)
-	public void actionShowPopu(View mView){
+	public void actionShowPopu(View mView) {
 		showPopuWindow();
 	}
-	
+
 	PopupWindow mPopuWindow;
 
 	private void showPopuWindow() {
@@ -182,8 +197,7 @@ public class MainActivity extends BaseActivity {
 			mPopuWindow.dismiss();
 			return;
 		}
-		View mPopView = View.inflate(this, R.layout.popu_main_remote,
-				null);
+		View mPopView = View.inflate(this, R.layout.popu_main_remote, null);
 		mPopuWindow = new PopupWindow(mPopView,
 				ViewGroup.LayoutParams.WRAP_CONTENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT, true);
@@ -197,11 +211,13 @@ public class MainActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View arg0) {
-				BosiUtils.intentToWebActivity(AppDefine.URLDefine.URL_INSTRO_HELP, "使用说明", MainActivity.this);
+				BosiUtils.intentToWebActivity(
+						AppDefine.URLDefine.URL_INSTRO_HELP, "使用说明",
+						MainActivity.this);
 				mPopuWindow.dismiss();
 			}
 		});
-		
+
 		View mSecond = mPopView.findViewById(R.id.main_popu_rl_userlimit);
 		mSecond.setOnClickListener(new OnClickListener() {
 

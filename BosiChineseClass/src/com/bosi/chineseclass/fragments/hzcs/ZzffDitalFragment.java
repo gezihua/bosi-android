@@ -58,8 +58,6 @@ public class ZzffDitalFragment extends AbsHzcsFragment{
 	}
 	
 	private void initpanel(String text){
-		mBtRight.setVisibility(View.VISIBLE);
-		mBtLeft.setVisibility(View.GONE);
 		mTvDitalTitle.setText(text);
 		currentPosition = 0;
 		downloadimgs();
@@ -68,12 +66,9 @@ public class ZzffDitalFragment extends AbsHzcsFragment{
 	@Override
 	public void initMenu() {
 		
-		
 		View mMenuView = View.inflate(mActivity, R.layout.layout_zzff_menu, null);
 		mLayoutMenu.addView(mMenuView);
 		ViewUtils.inject(this, mMenuView);
-//		mBtLeft.setVisibility(View.GONE);
-//		mBtRight.setVisibility(View.GONE);
 	}
 
 	@Override

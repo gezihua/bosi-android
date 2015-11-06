@@ -6,6 +6,7 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.han.util.Utils;
 import com.bosi.chineseclass.task.UpLoadBpcyTask;
 import com.bosi.chineseclass.task.UpLoadBphzTask;
 import com.lidroid.xutils.ViewUtils;
@@ -46,6 +47,12 @@ public class ExitSystemDialog {
 
 	@OnClick(R.id.dialog_exit_bt_good)
 	public void actionGood(View mView) {
+		if (!Utils.hasNetwork(mActivity)) {
+			mActivity.showToastLong("因需要同步学习记录请联网后退出系统 ..");
+			if (mDialog != null)
+				mDialog.dismiss();
+			return;
+		}
 		HashMap<String, String> mHashData = new HashMap<String, String>();
 		mHashData.put("actName", mActivity.getClass().getName());
 		MobclickAgent.onEvent(mActivity, "ID_ZAN", mHashData);
@@ -104,6 +111,12 @@ public class ExitSystemDialog {
 
 	@OnClick(R.id.dialog_exit_bt_normal)
 	public void actionNormal(View mView) {
+		if (!Utils.hasNetwork(mActivity)) {
+			mActivity.showToastLong("因需要同步学习记录请联网后退出系统 ..");
+			if (mDialog != null)
+				mDialog.dismiss();
+			return;
+		}
 		HashMap<String, String> mHashData = new HashMap<String, String>();
 		mHashData.put("actName", mActivity.getClass().getName());
 		MobclickAgent.onEvent(mActivity, "ID_NORMAL", mHashData);
