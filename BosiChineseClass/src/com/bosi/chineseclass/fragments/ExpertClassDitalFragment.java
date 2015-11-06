@@ -11,6 +11,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
@@ -20,6 +21,8 @@ import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnChildClick;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 public class ExpertClassDitalFragment extends BaseFragment {
 	@ViewInject(R.id.video_zjjzy)
@@ -38,7 +41,12 @@ public class ExpertClassDitalFragment extends BaseFragment {
 	@ViewInject(R.id.pb_forzjktdital)
 	private ProgressBar mPbForZjktDital ;
 	
+	@ViewInject(R.id.bt_video_fullscreen_togg)
+	Button mBtFullScreen;
+	
 	public static final String KEY_FATHERID = "key_fatherid";
+	@ViewInject(R.id.ll_menu_left)
+	View mViewLeftMenu;
 
 	String mFatherId;
 
@@ -50,9 +58,19 @@ public class ExpertClassDitalFragment extends BaseFragment {
 		return inflater.inflate(R.layout.fragment_layout_zjjzy, null);
 	}
 
+	@OnClick(R.id.bt_video_fullscreen_togg)
+	public void actionToggFullScreen(View mView){
+		if(mViewLeftMenu.getVisibility()==View.VISIBLE){
+			mViewLeftMenu.setVisibility(View.GONE);
+			mBtFullScreen.setBackgroundResource(R.drawable.icon_canclefullscreen);
+		}else{
+			mViewLeftMenu.setVisibility(View.VISIBLE);
+			mBtFullScreen.setBackgroundResource(R.drawable.icon_fullscreen);
+		}
+	}
 	@Override
 	protected void afterViewInject() {
-
+		mViewLeftMenu.setVisibility(View.VISIBLE);
 		mFatherId = mActivity.getIntent().getStringExtra(KEY_FATHERID);
 
 		if (TextUtils.isEmpty(mFatherId) || !mFatherId.contains("-")) {
