@@ -20,6 +20,7 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BaseFragment;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
+import com.bosi.chineseclass.utils.BosiUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnChildClick;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -52,6 +53,15 @@ public class ExpertClassDitalFragment extends BaseFragment {
 
 	int mWholeSize = 1;
 	int mCurremtSize = 1;
+	
+	String mCurrentVideoPath ;
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		if(mVideoView.isPlaying())
+		mVideoView.pause();
+	}
 
 	@Override
 	protected View getBasedView() {
@@ -60,17 +70,18 @@ public class ExpertClassDitalFragment extends BaseFragment {
 
 	@OnClick(R.id.bt_video_fullscreen_togg)
 	public void actionToggFullScreen(View mView){
-		if(mViewLeftMenu.getVisibility()==View.VISIBLE){
-			mViewLeftMenu.setVisibility(View.GONE);
-			mBtFullScreen.setBackgroundResource(R.drawable.icon_canclefullscreen);
-		}else{
-			mViewLeftMenu.setVisibility(View.VISIBLE);
-			mBtFullScreen.setBackgroundResource(R.drawable.icon_fullscreen);
-		}
+//		if(mViewLeftMenu.getVisibility()==View.VISIBLE){
+//			mViewLeftMenu.setVisibility(View.GONE);
+//			mBtFullScreen.setBackgroundResource(R.drawable.icon_canclefullscreen);
+//		}else{
+//			mViewLeftMenu.setVisibility(View.VISIBLE);
+//			mBtFullScreen.setBackgroundResource(R.drawable.icon_fullscreen);
+//		}
+		BosiUtils.intentToVideoPlay(mCurrentVideoPath, mActivity);
 	}
 	@Override
 	protected void afterViewInject() {
-		mViewLeftMenu.setVisibility(View.VISIBLE);
+		mBtFullScreen.setVisibility(View.VISIBLE);
 		mFatherId = mActivity.getIntent().getStringExtra(KEY_FATHERID);
 
 		if (TextUtils.isEmpty(mFatherId) || !mFatherId.contains("-")) {
@@ -136,6 +147,10 @@ public class ExpertClassDitalFragment extends BaseFragment {
 	}
 
 	private void playVideo(String path) {
+		if(TextUtils.isEmpty(path)){
+			return;
+		}
+		this.mCurrentVideoPath = path;
 		mPbBarForVideo.setVisibility(View.VISIBLE);
 		mVideoView.setScrollContainer(false);
 		mVideoView.setVideoURI(Uri.parse(path));

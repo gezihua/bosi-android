@@ -70,11 +70,12 @@ public class PaintPadWindow {
 		mPaintView = (PaintView) mBaseView.findViewById(R.id.paintdialog_paintview);
 		mPaintView.setPenSize(16);
 		ImageView mImageView = (ImageView) mBaseView.findViewById(R.id.iv_closepadwindow);
-		mImageView.setOnClickListener(new OnClickListener() {
+		mImageView.setOnTouchListener(new OnTouchListener() {
 			
 			@Override
-			public void onClick(View arg0) {
+			public boolean onTouch(View arg0, MotionEvent arg1) {
 				dismissView();
+				return false;
 			}
 		});
 		mPaintView.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.iv_bgdict));
