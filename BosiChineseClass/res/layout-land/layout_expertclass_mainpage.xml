@@ -21,12 +21,30 @@
             android:id="@+id/expertmain_wv_menu"
             />
         
-         <WebView
-            android:layout_width="0dp"
+        <RelativeLayout
+              android:layout_width="0dp"
+               android:layout_weight="5"
             android:layout_height="match_parent"
-            android:layout_weight="5"
+            >
+            
+            <ProgressBar
+                        android:visibility="gone"
+                        android:id="@+id/pb_forwebview"
+                        style="@style/progressbarStyle_Horizontal_Red"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_height="2dp" >
+                    </ProgressBar>
+            <WebView
+                android:layout_below="@+id/pb_forwebview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/expertmain_wv_instro"
             />
+        </RelativeLayout>
+         
     </LinearLayout>
 
 </LinearLayout>

@@ -65,6 +65,9 @@ public class AppDefine {
 
 		public static final String URL_SYNCBOSICHARDATA = "http://study1.yuwen100.cn/char";
 		public static final String URL_SYNCBOSIIDIOM = "http://study1.yuwen100.cn/idiom";
+		
+		public static final String URL_BASEURL = "http://www.yuwen100.cn/yuwen100";
+		public static final String URL_ZJKT_ZYINSTRO = URL_BASEURL+"/zhuanjia/zyref/js/zyref.html";
 
 	}
 

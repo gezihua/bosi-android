@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <title>无标题文档</title>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <style>
@@ -19,9 +20,9 @@ SCROLLBAR-BASE-COLOR: #fc2400 ;
 </style>
 <style type="text/css">
 *{ margin:0; padding:0;}
-#div1{width:230px;}
+#div1{width:200px;}
 ul li{ list-style:none;}
-#menu{ width:230px; margin-left:8px;}
+#menu{ width:200px; margin-left:8px;}
 a{ text-decoration:none; color:#000;}
 #menu li ul li{ height:30px; line-height:30px; padding-left:10px;}
 /*.a1{ color:#FFF; background:url(jian.png) no-repeat 0px 10px;}
@@ -100,14 +101,14 @@ $("p").css("background-color","yellow");
 <div id="div1">
   <ul id="menu">
        <li style="margin-top:20px;">
-            <a href="#" class="sym">《学字源·识汉字》</a>
+            <a href="#" class="sym" onClick="showZYObject('/zhuanjia/zyref/js/zyref.html')">《学字源·识汉字》</a>
             <ul>
                 <li><div class="ziyuan"><a onClick="showZYObject('xzy-1')" class="active">01、汉字的起源</a></div></li>
                        
             </ul>
        </li>
        <li>
-            <a href="#" class="sym">《弟子规》</a>
+            <a href="#" class="sym" onClick="showZYObject('/zhuanjia/dzg/js/dzg.html')">《弟子规》</a>
             <ul>
                 <li><div class="ziyuan"><a onClick="showZYObject('dzg-1')">01、总叙</a></div></li>                
             </ul>
