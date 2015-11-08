@@ -75,7 +75,7 @@ public class PaintPadWindow {
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				dismissView();
-				return false;
+				return true;
 			}
 		});
 		mPaintView.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.iv_bgdict));
@@ -152,8 +152,8 @@ public class PaintPadWindow {
 			         */
 			        
 			        // 设置悬浮窗的长得宽
-			        params.width = DataTools.dip2px(mContext,200);
-			        params.height = DataTools.dip2px(mContext, 200);
+			        params.width = DataTools.dip2px(mContext,290);
+			        params.height = DataTools.dip2px(mContext, 290);
 		}
         if(isAdded){
         	wm.removeView(mBaseView);
