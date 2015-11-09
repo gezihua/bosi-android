@@ -22,7 +22,6 @@ import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.bosi.chineseclass.utils.BosiUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnChildClick;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 public class ExpertClassDitalFragment extends BaseFragment {
@@ -65,7 +64,7 @@ public class ExpertClassDitalFragment extends BaseFragment {
 
 	@Override
 	protected View getBasedView() {
-		return inflater.inflate(R.layout.fragment_layout_zjjzy, null);
+		return inflater.inflate(R.layout.fragment_layout_zjktd, null);
 	}
 
 	@OnClick(R.id.bt_video_fullscreen_togg)

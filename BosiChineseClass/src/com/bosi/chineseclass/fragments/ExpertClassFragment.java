@@ -52,7 +52,7 @@ public class ExpertClassFragment extends BaseFragment {
 		mWvExpertMenu.addJavascriptInterface(new WebAppShowObjectInterface(),
 				"zjktd");
 
-		mWvExpertinstro.setWebChromeClient(new WebChromeClient() {
+		mWvExpertMenu.setWebChromeClient(new WebChromeClient() {
 
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
@@ -66,7 +66,7 @@ public class ExpertClassFragment extends BaseFragment {
 			}
 
 		});
-		mWvExpertMenu.setWebChromeClient(new WebChromeClient() {
+		mWvExpertinstro.setWebChromeClient(new WebChromeClient() {
 
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {

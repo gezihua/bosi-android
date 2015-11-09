@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bosi.demo.GameActivity" >
+    
+    <include layout="@layout/common_head" android:id="@+id/headactionbar"></include>"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/headactionbar"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/ll_menu_left"
+            android:orientation="vertical" >
+     <ProgressBar
+                android:id="@+id/pb_forzjktdital"
+                style="@style/progressbarStyle_Horizontal_Red"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:visibility="gone"
+                 >
+            </ProgressBar>
+            <WebView
+                android:id="@+id/webview_zjjzy_index"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#fff8ef"
+            android:layout_weight="5" >
+
+            <VideoView
+                android:id="@+id/video_zjjzy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ProgressBar  
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pb_videoplaying"
+                android:layout_gravity="center"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="10dp"
+                android:id="@+id/bt_video_fullscreen_togg"
+                android:visibility="gone"
+                android:background="@drawable/icon_fullscreen"
+                ></Button>
+        </FrameLayout>
+    </LinearLayout>
+
+</RelativeLayout>

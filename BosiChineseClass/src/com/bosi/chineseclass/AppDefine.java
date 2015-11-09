@@ -59,12 +59,12 @@ public class AppDefine {
 
 		// 关于博思的介绍
 		public static final String URL_LOGIN_REMOTE_ABOUTBOSI = "http://www.yuwen100.cn/yuwen100/hzzy/Android/bosi/bosi.mp4";
-		public static final String URL_AUTH = "http://verify1.yuwen100.cn";
+		public static final String URL_AUTH = "http://verify.yuwen100.cn";
 
 		public static final String URL_INSTRO_HELP = "http://www.yuwen100.cn/yuwen100/hzzy/Android/help/index.html";
 
-		public static final String URL_SYNCBOSICHARDATA = "http://study1.yuwen100.cn/char";
-		public static final String URL_SYNCBOSIIDIOM = "http://study1.yuwen100.cn/idiom";
+		public static final String URL_SYNCBOSICHARDATA = "http://study.yuwen100.cn/char";
+		public static final String URL_SYNCBOSIIDIOM = "http://study.yuwen100.cn/idiom";
 		
 		public static final String URL_BASEURL = "http://www.yuwen100.cn/yuwen100";
 		public static final String URL_ZJKT_ZYINSTRO = URL_BASEURL+"/zhuanjia/zyref/js/zyref-an.html";
