@@ -14,11 +14,11 @@
 
     <string name="category_title">和%1$s有关的字源共%2$d个</string>
     <string name="category_ziran">自然界</string>
-    <string name="category_zhiwu">植物</string>
+    <string name="category_zhiwu">动植物</string>
     <string name="category_ren">人的身体</string>
     <string name="category_qiwu">器具用具</string>
     <string name="category_dongwu">动物</string>
-    
+    <string name="category_other">其他</string>
      <string name="dialog_clearbphz_levvdata">清除数据后 该组学习记录将被删除 ,是否确认清除?</string>
      <string name="dialog_clearbphz_levdata">  清除数据后所有的学习记录将被清除,是否确认清除?</string>
      <string name ="toast_remote_bphz_term_learnover">已经学习到本组最后一个字</string>

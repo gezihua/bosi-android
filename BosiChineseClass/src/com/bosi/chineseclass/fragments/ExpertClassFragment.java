@@ -19,6 +19,7 @@ import com.bosi.chineseclass.han.components.HeadLayoutComponents;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 //专家课堂
+@SuppressLint("JavascriptInterface")
 public class ExpertClassFragment extends BaseFragment {
 
 	HeadLayoutComponents mHeadActionbar;
@@ -86,20 +87,28 @@ public class ExpertClassFragment extends BaseFragment {
 	}
 
 	public class WebAppShowObjectInterface {
-		public void showObject(String id) {
-			// System.out.println(id);
-			if (id.endsWith("html")) {
-				loadInstroData(AppDefine.URLDefine.URL_BASEURL + id);
-			} else {
-				Intent mIntent = new Intent(mActivity,
-						SampleHolderActivity.class);
-				mIntent.putExtra(ExpertClassDitalFragment.KEY_FATHERID, id);
-				mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES,
-						new String[] { "ExpertClassDitalFragment" });
-				mIntent.putExtra(SampleControl.KEY_PACKAGETNAME,
-						"com.bosi.chineseclass.fragments");
-				startActivity(mIntent);
-			}
+		@JavascriptInterface   //只有注解后才能被掉用到
+		public void showObject(final String id) {
+			//android 4.1 之前没问题 往后的系统会有问题呢 
+			mActivity.runOnUiThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					if (id.endsWith("html")) {
+						loadInstroData(AppDefine.URLDefine.URL_BASEURL + id);
+					} else {
+						Intent mIntent = new Intent(mActivity,
+								SampleHolderActivity.class);
+						mIntent.putExtra(ExpertClassDitalFragment.KEY_FATHERID, id);
+						mIntent.putExtra(SampleControl.KEY_FRAGMENTNAMES,
+								new String[] { "ExpertClassDitalFragment" });
+						mIntent.putExtra(SampleControl.KEY_PACKAGETNAME,
+								"com.bosi.chineseclass.fragments");
+						startActivity(mIntent);
+					}
+				}
+			});
+			
 		}
 
 	}

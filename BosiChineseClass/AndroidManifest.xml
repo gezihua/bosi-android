@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bosi.chineseclass"
-    android:versionCode="91"
-    android:versionName="0.9.1" >
+    android:versionCode="101"
+    android:versionName="1.0.1" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -50,7 +50,7 @@
         android:largeHeap="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.bosi.chineseclass.activitys.AuthActivity"
+            android:name="com.bosi.chineseclass.activitys.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -84,11 +84,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen|"
             android:screenOrientation="landscape" >
         </activity>
-       <activity
+      <!--  <activity
             android:name=".activitys.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen|"
             android:screenOrientation="landscape" >
-        </activity> 
+        </activity>  -->
         
         <activity
             android:name="com.bosi.chineseclass.han.activitys.GameActivity"

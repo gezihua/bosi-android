@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -57,7 +58,7 @@ DownLoadInterface{
 	    mPaintPadWindow = new PaintPadWindow(this);
 		mMediaPlayerPools = new MediaPlayerPools(this);
 		
-		
+		mTvExplain.setMovementMethod(new ScrollingMovementMethod());
 		setUpBpCyControl();
 	
 	}
