@@ -86,7 +86,6 @@ public class ExpertClassFragment extends BaseFragment {
 	}
 
 	public class WebAppShowObjectInterface {
-		@JavascriptInterface
 		public void showObject(String id) {
 			// System.out.println(id);
 			if (id.endsWith("html")) {

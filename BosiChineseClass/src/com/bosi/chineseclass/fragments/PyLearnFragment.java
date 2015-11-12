@@ -371,7 +371,7 @@ public class PyLearnFragment extends BaseFragment implements DownLoadInterface ,
 		mUrlSoruce[mVoiceUrls.length+3] =  AppDefine.URLDefine.URL_PINYINVOICE
 				+ mPressedZm + "/" + mPressedZm+".mp3";
 		
-		http://www.yuwen100.cn/yuwen100/hzzy/Android/pyxx/b/b.mp3
+		//http://www.yuwen100.cn/yuwen100/hzzy/Android/pyxx/b/b.mp3
 		/*http://www.yuwen100.cn/yuwen100/zy/zyzd-clips/pinyinread/a4.mp3*/	
 		return mUrlSoruce;
 	}
