@@ -184,7 +184,7 @@ public class ExpertClassDitalFragment extends BaseFragment {
 				}
 			});
 		}
-
+		@JavascriptInterface
 		public void getAllNodeSize(String size) {
 			mWholeSize = Integer.parseInt(size);
 		}
