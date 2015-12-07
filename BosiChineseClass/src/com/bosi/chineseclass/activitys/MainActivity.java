@@ -49,8 +49,17 @@ public class MainActivity extends BaseActivity {
 		mXutilImageLoader = new XutilImageLoader(this);
 		mXutilImageLoader.getBitmapFactory().display(mlayoutBody,
 				"assets/bosi_index_bg.jpg");
+		
+		//检查版本更新
+		UmengUpdateAgent.update(this);
 
 	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+	}
+	
 
 	@Override
 	protected void onDestroy() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bosi.chineseclass"
-    android:versionCode="102"
-    android:versionName="1.0.2" >
+    android:versionCode="112"
+    android:versionName="1.1.2" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -150,16 +150,19 @@
             android:process=":remotereporterror"
             android:screenOrientation="landscape" >
         </activity>
-        <service
-            android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" >
-        </service>
+      
 
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
+        
+        <service
+    android:name="com.umeng.update.net.DownloadingService"
+    android:process=":DownloadingService" >
+     </service>
+
     </application>
 
 </manifest>

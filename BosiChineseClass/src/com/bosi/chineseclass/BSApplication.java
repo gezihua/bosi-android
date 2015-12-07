@@ -46,7 +46,7 @@ public class BSApplication extends Application {
 		mDbBosiClass = new BosiDbManager(this);//项目逻辑
 		mActivityStack = new AppActivityStack();
 		// CrashHandler.getInstance().init(this);
-		MobclickAgent.setDebugMode(true);
+		MobclickAgent.setDebugMode(false);
 		
 	}
 
