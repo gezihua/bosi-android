@@ -2,6 +2,7 @@ package com.bosi.chineseclass.activitys;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -9,6 +10,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -46,6 +48,8 @@ public class AuthActivity extends BaseActivity {
 	@ViewInject(R.id.fragment_login_phoneuser)
 	View mViewPhoneUser;
 	
+	
+	
 	private final int ROLE_USER_CARD = 0;
 	private final int ROLE_USER_PHONE = 1;
 	private  int ROLE_TEMP_CURRENT = -1;
@@ -67,17 +71,50 @@ public class AuthActivity extends BaseActivity {
 			mPhoneUserManager.initViewPanel();
 		}
 	}
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent mIntent) {
+		super.onActivityResult(resultCode, resultCode, mIntent);
+		
+		if(resultCode == Activity.RESULT_OK){
+			
+			if(mIntent!=null){
+				
+				String mphone = mIntent.getStringExtra(RegisterActivity
+						.RESULT_PHONE);
+				
+				String mPassword = mIntent.getStringExtra(RegisterActivity
+						.RESULT_PASSWORD);
+				
+				
+				if(mPhoneUserManager!=null){
+					mPhoneUserManager.actionRegisterActivityResult(mphone, mPassword);
+				}
+			}
+		}
+		
+		
+	}
 	/**
 	 * 手机用户登录 需要获取验证码
 	 * 
 	 * */
 	class PhoneUserManager implements OnHttpActionListener{
 		
+		public final static int mPhoneUserRequest = 111;
 		@ViewInject(R.id.login_et_phoneuser_phonenum)
 		EditText mEtPhoenNum;
 		
 		@ViewInject(R.id.login_et_snscode)
 		EditText mEtSnsCode;
+		
+		@ViewInject(R.id.login_et_snscode)
+		View mViewSendEms;
+		@ViewInject(R.id.register_tv_phonelogin)
+		View mViewRegister;
+		
+		
 		
 		public PhoneUserManager(){
 			ViewUtils.inject(this, mViewPhoneUser);
@@ -88,9 +125,70 @@ public class AuthActivity extends BaseActivity {
 			mViewCardUser.setVisibility(View.VISIBLE);
 			ROLE_TEMP_CURRENT = ROLE_USER_CARD;
 		}
+		
+		@OnClick(R.id.register_tv_phonelogin)
+		public void actionRegister(View mView){
+			Intent mIntent = new Intent(mContext,RegisterActivity.class);
+			mContext.startActivityForResult(mIntent, mPhoneUserRequest);
+		}
+		
+	    public void actionRegisterActivityResult(String mPhone ,String password){
+	    	mEtPhoenNum.setText(mPhone);
+	    	mEtSnsCode.setText(password);
+	    	sendPhoneLogin(null);
+	    }
+	    
+		
+	    @OnClick(R.id.bt_login)
+		public void sendPhoneLogin(View mView){
+	    	
+	    	String mPhone = mEtPhoenNum.getText().toString();
+	    	String mPassword = mEtSnsCode.getText().toString();
+			//手机号登陆
+			List<NameValuePair> mList = new ArrayList<NameValuePair>();
+			mList.add(new BasicNameValuePair("account", mPhone));
+			mList.add(new BasicNameValuePair("password", mPassword));
+			mList.add(new BasicNameValuePair("product", "6"));
+			mList.add(new BasicNameValuePair("ei", BSApplication
+					.getInstance().getImei()));
+			showProgresssDialogWithHint("登录中...  ");
+			BSApplication.getInstance().sendData(mList, URLDefine.URL_PHONELOGIN,
+					this, 101,HttpMethod.POST);
+	    	
+		}
+		
+		// 
 		@Override
 		public void onHttpSuccess(JSONObject mResult, int code) {
-			
+			dismissProgressDialog(); // 登录成功
+			String message =null;
+			if (mResult.has("code")) {
+				try {
+					String codeResult = mResult.getString("code");
+					if(mResult.has("msg")){
+						 message = mResult.getString("msg");
+					}
+
+					if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
+						showToastShort("登陆成功");
+						JSONObject mData = mResult.getJSONObject("data");
+						String id = mData.getString("id");
+						PreferencesUtils.putString(mContext, AppDefine.ZYDefine.EXTRA_DATA_USERID, id);
+						intentToSystem();
+					} else {
+						if (!TextUtils.isEmpty(message))
+							showToastShort(message);
+						else {
+							showToastShort("登陆失败");
+						}
+					}
+
+				} catch (JSONException e) {
+					showToastShort("后台数据异常");
+				}
+			} else {
+				showToastShort("服务异常");
+			}
 		}
 
 		@Override

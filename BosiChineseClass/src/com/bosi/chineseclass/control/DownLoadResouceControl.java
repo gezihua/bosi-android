@@ -128,6 +128,10 @@ public class DownLoadResouceControl {
 				public void onFailure(HttpException error, String msg) {
 					updateProgress();
 				}
+				
+				public void onCancelled() {
+			    }
+				
 			});
 			mHandlerList.add(mHandler);
 		}

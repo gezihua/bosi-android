@@ -82,10 +82,13 @@ public class DefaultDownloader extends Downloader {
             }
             out.flush();
         } catch (Throwable e) {
+        	if(task!=null)
+        	task.cancel();
             result = -1;
             LogUtils.e(e.getMessage(), e);
         } finally {
             IOUtils.closeQuietly(bis);
+            
         }
         return result;
     }

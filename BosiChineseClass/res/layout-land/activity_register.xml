@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+   <include
+        android:id="@+id/headactionbar"
+        layout="@layout/common_head" />
+   
+   <RelativeLayout
+       android:background="@drawable/temp_bg"
             android:id="@+id/rl_inputlogin_body"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_horizontal"
             android:layout_toRightOf="@+id/iv_hint_tici" >
 
             <TextView
@@ -12,16 +22,33 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:inputType="phone"
                 android:layout_marginTop="25dp"
-                android:text="登录名" />
+                android:text="手机号" />
 
             <EditText
                 android:id="@+id/et_account"
                 android:layout_width="140dp"
                 android:layout_height="35dp"
+                android:inputType="number"
+                android:hint="手机号"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/hint_account"
                 android:textSize="12sp" />
+             <TextView
+                android:id="@+id/tv_sendems"
+                android:layout_toRightOf="@+id/et_account"
+                style="@style/bosi_textstyle_smalltitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="发送验证码"
+                android:background="@drawable/selector_sendems"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:padding="5dp"
+               />
+            
 
             <TextView
                 android:id="@+id/hint_password"
@@ -41,48 +68,45 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/hint_password"
                 android:singleLine="true"
+                android:hint ="密码"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/hint_mobile"
+                android:id="@+id/hint_sms"
                 style="@style/bosi_textstyle_smalltitle"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et_password"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="手机号" />
+                android:text="验证码" />
 
             <EditText
-                android:id="@+id/et_phonenum"
+                android:id="@+id/et_sms"
                 android:layout_width="140dp"
                 android:layout_height="35dp"
+                android:hint ="短信验证码"
                 android:layout_below="@+id/et_password"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/hint_mobile"
-                android:inputType="number"
+                android:layout_toRightOf="@+id/hint_sms"
                 android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/bt_login"
-                android:layout_width="80dp"
-                android:layout_height="25dp"
-                android:layout_below="@+id/et_phonenum"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/icon_bt_logion" />
             
              <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:id="@+id/login_tv_showphoneuserpanel"
-                android:text="手机号登陆"
-                android:gravity="center"
-                android:layout_toRightOf="@+id/bt_login"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="5dp"
-                ></TextView>
+                 android:id="@+id/login_tv_showphoneuserpanel"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginBottom="5dp"
+                 android:gravity="center"
+                 android:text="手机号登陆"
+                 android:textColor="#ffffff"
+                 android:visibility="gone" >
+</TextView>
         </RelativeLayout>
         
 
+   
+
+</LinearLayout>

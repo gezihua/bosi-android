@@ -74,6 +74,17 @@ public class AppDefine {
 		
 		public static final String URL_ZJKT_BASEURL = "http://www.yuwen100.cn/yuwen100/hzzy/Android/zhuanjiaindex";
 
+	
+	    public static final String URL_SENDEMS= "http://sms.bsccedu.com/securityCode";
+	    
+	    public static final String URL_CHECKEMSSECURITY = "http://sms.bsccedu.com/securityCode";
+	    
+	    public static final String URL_USEREGISTER = "http://passport.bsccedu.com/users";
+	    
+	    public static final String URL_PHONELOGIN = "http://passport.bsccedu.com/authorization/account";
+	    
+	    
+	    
 	}
 
 	public static class STUFFDEFICE {

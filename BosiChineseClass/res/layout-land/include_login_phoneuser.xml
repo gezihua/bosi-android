@@ -5,6 +5,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            
             android:layout_toRightOf="@+id/iv_hint_tici" >
 
 
@@ -13,7 +15,7 @@
                 style="@style/bosi_textstyle_smalltitle"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
                 android:text="手机号" />
 
@@ -23,6 +25,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:singleLine="true"
+                android:hint ="手机号"
                 android:layout_toRightOf="@+id/login_tv_phoneuser_hone"
                 android:background="@drawable/bg_edit_contact"
                 android:textSize="12sp" />
@@ -33,24 +36,25 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_et_phoneuser_phonenum"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
                 android:text="验证码" />
 
             <EditText
                 android:id="@+id/login_et_snscode"
-                android:layout_width="60dp"
+                android:layout_width="140dp"
                 android:layout_height="30dp"
                 android:layout_below="@+id/login_et_phoneuser_phonenum"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/hint_mobile"
-                android:inputType="number"
                 android:singleLine="true"
+                android:hint ="密码"
                 android:background="@drawable/bg_edit_contact"
                 android:textSize="12sp" />
 
             
                 <TextView
+                android:id="@+id/auth_id_tv_sendems"  
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_toRightOf="@+id/login_et_snscode"
@@ -59,6 +63,7 @@
                 android:layout_alignTop="@+id/login_et_snscode"
                 android:textSize="14sp"
                 android:layout_marginLeft="5dp"
+                android:visibility="gone"
                 android:background="@drawable/bg_edit_contact"
                 android:text="发送验证码" ></TextView>
             <Button
@@ -78,8 +83,21 @@
                 android:text="学生卡登录"
                 android:layout_marginTop="3dp"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:layout_alignParentBottom="true"
                 android:layout_toRightOf="@+id/bt_login"
+                ></TextView>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bt_login"
+                android:id="@+id/register_tv_phonelogin"
+                android:text="注册"
+                android:layout_toLeftOf="@+id/login_tv_showcardpanel"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 ></TextView>
             
         </RelativeLayout>
