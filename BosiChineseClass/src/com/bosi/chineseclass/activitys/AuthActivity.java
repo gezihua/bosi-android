@@ -28,6 +28,8 @@ import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.db.BPCY;
+import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.utils.BosiUtils;
 import com.bosi.chineseclass.utils.NetStateUtil;
@@ -108,9 +110,6 @@ public class AuthActivity extends BaseActivity {
 		
 		@ViewInject(R.id.login_et_snscode)
 		EditText mEtSnsCode;
-		
-		@ViewInject(R.id.login_et_snscode)
-		View mViewSendEms;
 		@ViewInject(R.id.register_tv_phonelogin)
 		View mViewRegister;
 		
@@ -171,9 +170,11 @@ public class AuthActivity extends BaseActivity {
 
 					if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
 						showToastShort("登陆成功");
-						JSONObject mData = mResult.getJSONObject("data");
-						String id = mData.getString("id");
-						PreferencesUtils.putString(mContext, AppDefine.ZYDefine.EXTRA_DATA_USERID, id);
+						actionPhoneLoginSuccess();
+						
+//						JSONObject mData = mResult.getJSONObject("data");
+//						String id = mData.getString("id");
+//						PreferencesUtils.putString(mContext, AppDefine.ZYDefine.EXTRA_DATA_USERID, id);
 						intentToSystem();
 					} else {
 						if (!TextUtils.isEmpty(message))
@@ -193,11 +194,26 @@ public class AuthActivity extends BaseActivity {
 
 		@Override
 		public void onHttpError(Exception e, String reason, int code) {
+			showToastShort("登陆失败");
+			dismissProgressDialog(); 
 			
 		}
 		
 		public void initViewPanel(){
 			mViewPhoneUser.setVisibility(View.VISIBLE);
+		}
+		
+		//手机号登陆成功 清空学习记录 ，并且
+		BPCY mBpcy = new BPCY();
+		BPHZ mBphz = new BPHZ();
+		
+		private void actionPhoneLoginSuccess(){
+			PreferencesUtils.putString(mContext,
+					AppDefine.ZYDefine.EXTRA_DATA_USERID,"");
+			mBpcy.clearDbData();
+			mBphz.clearDbData();
+			BSApplication.getInstance().mCurrentLoginRole = ROLE_USER_PHONE;
+			BSApplication.getInstance().mTimeminPhoneUserLoginTime = System.currentTimeMillis();
 		}
 		
 	}
@@ -245,6 +261,8 @@ public class AuthActivity extends BaseActivity {
 						showToastShort("登陆成功");
 						JSONObject mData = mResult.getJSONObject("data");
 						String id = mData.getString("id");
+						BSApplication.getInstance().mCurrentLoginRole = ROLE_USER_CARD;
+						
 						storeUserData(id);
 						intentToSystem();
 					} else {

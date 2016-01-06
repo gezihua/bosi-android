@@ -31,6 +31,7 @@ public class AppDefine {
 		public static final int BPHZ_TAG_REMBER = 0;
 		public static final int BPHZ_TAG_UNREMBER = 1;
 		public static final int BPHZ_TAG_NORMAL = 2;
+		public static final long TIMELIMIT_ROLE_PHONEUSER = 10*60*1000;
 
 		public static final int BPHZ_REFID_ADDED = 120000;
 		public static final int BPCH_REFID_ADDED = 220000;
@@ -79,9 +80,9 @@ public class AppDefine {
 	    
 	    public static final String URL_CHECKEMSSECURITY = "http://sms.bsccedu.com/securityCode";
 	    
-	    public static final String URL_USEREGISTER = "http://passport.bsccedu.com/users";
+	    public static final String URL_USEREGISTER = "http://passport1.bsccedu.com/users";
 	    
-	    public static final String URL_PHONELOGIN = "http://passport.bsccedu.com/authorization/account";
+	    public static final String URL_PHONELOGIN = "http://passport1.bsccedu.com/authorization/account";
 	    
 	    
 	    

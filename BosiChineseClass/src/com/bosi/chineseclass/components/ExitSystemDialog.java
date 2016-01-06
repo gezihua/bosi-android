@@ -6,6 +6,7 @@ import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
+import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.han.util.Utils;
 import com.bosi.chineseclass.task.UpLoadBpcyTask;
 import com.bosi.chineseclass.task.UpLoadBphzTask;
@@ -18,6 +19,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.text.TextUtils;
 import android.view.View;
 
 public class ExitSystemDialog {
@@ -47,7 +49,9 @@ public class ExitSystemDialog {
 
 	@OnClick(R.id.dialog_exit_bt_good)
 	public void actionGood(View mView) {
-		if (!Utils.hasNetwork(mActivity)) {
+		String mUid = PreferencesUtils.getString(mActivity,
+				AppDefine.ZYDefine.EXTRA_DATA_USERID);
+		if (!Utils.hasNetwork(mActivity)&&!TextUtils.isEmpty(mUid)) {
 			mActivity.showToastLong("因需要同步学习记录请联网后退出系统 ..");
 			if (mDialog != null)
 				mDialog.dismiss();
@@ -73,8 +77,15 @@ public class ExitSystemDialog {
 						.deleteDirectory(AppDefine.FilePathDefine.APP_PINYINLEARNPATH);
 				BSApplication.getInstance().mStorage
 						.deleteDirectory(AppDefine.FilePathDefine.APP_CYDITALNPATH);
-				mUpLoadBpHzTask.sendDataAsy();
-				mUploadBpcyTask.sendDataAsy();
+				String mUid = PreferencesUtils.getString(mActivity,
+						AppDefine.ZYDefine.EXTRA_DATA_USERID);
+				if(!TextUtils.isEmpty(mUid)){
+					mUpLoadBpHzTask.sendDataAsy();
+					mUploadBpcyTask.sendDataAsy();
+				}else{
+					actionExist();
+				}
+				
 			}
 		}, new Runnable() {
 
@@ -111,7 +122,9 @@ public class ExitSystemDialog {
 
 	@OnClick(R.id.dialog_exit_bt_normal)
 	public void actionNormal(View mView) {
-		if (!Utils.hasNetwork(mActivity)) {
+		String mUid = PreferencesUtils.getString(mActivity,
+				AppDefine.ZYDefine.EXTRA_DATA_USERID);
+		if (!Utils.hasNetwork(mActivity)&&!TextUtils.isEmpty(mUid)) {
 			mActivity.showToastLong("因需要同步学习记录请联网后退出系统 ..");
 			if (mDialog != null)
 				mDialog.dismiss();

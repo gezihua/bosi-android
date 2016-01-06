@@ -36,6 +36,12 @@ public class BSApplication extends Application {
 	public boolean isFirstInBphz = true;
 	
 	public boolean isFirstInBpcy = true;
+	
+	public int mCurrentLoginRole = ROLE_STUDYCARD;
+	public long mTimeminPhoneUserLoginTime = 0;
+	public static final int ROLE_STUDYCARD = 1;
+	public static final int ROLE_PHONELOGIN = 2;
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();

@@ -88,7 +88,7 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 		mList.add(new BasicNameValuePair("securityCode", ems));
 		showProgresssDialogWithHint("正在验证...  ");
 		BSApplication.getInstance().sendData(mList, URLDefine.URL_CHECKEMSSECURITY,
-				this, VIFITY_CODE,HttpMethod.POST);
+				this, VIFITY_CODE,HttpMethod.HEAD);
 	}
 	
 	private void registerUserAccount(){														
@@ -119,7 +119,6 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 		tempCurrectWaitTimeToUserSendEmsBt =EFFECT_SENDEMSBUT_TIMEOUT ;
 		mTvSendEms.setEnabled(false);
 		mTvSendEms.post(mRunable);
-		
 		
 	}
 	
@@ -163,9 +162,9 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 		}
 		
 		//首先验证短信验证码
-		checkems(mPhoneNum,mEms);
+		//checkems(mPhoneNum,mEms);
 		
-		
+		registerUserAccount();
 	}
 	
 	

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.bosi.chineseclass.components.LoadingDialog;
 import com.bosi.chineseclass.components.MyLoadingProgressBar;
+import com.bosi.chineseclass.components.PhoneLoginTimeOutDialog;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.lidroid.xutils.BitmapUtils;
@@ -34,6 +35,7 @@ public class BaseActivity extends FragmentActivity {
 		mLoadingDialog = new LoadingDialog(this);
 	}
 
+	
 	public String getResourceFromId(int id) {
 		return getResources().getString(id);
 	}
@@ -72,6 +74,18 @@ public class BaseActivity extends FragmentActivity {
 	protected void onResume() {
 		super.onResume();
 		MobclickAgent.onResume(this);
+		//如果是手机号登陆 检查当前时间和登陆时间 超过限制时间提示试用时间已经到了
+		
+		if(BSApplication.getInstance().mCurrentLoginRole ==BSApplication.ROLE_PHONELOGIN){
+			long mCurrentTime = System.currentTimeMillis();
+			long mLoginTime = mCurrentTime - BSApplication.getInstance().mTimeminPhoneUserLoginTime;
+			if(mLoginTime>AppDefine.ZYDefine.TIMELIMIT_ROLE_PHONEUSER){
+				PhoneLoginTimeOutDialog mDialog = new PhoneLoginTimeOutDialog(this);
+				mDialog.mDialog.show();
+			}
+		}
+		
+		
 	}
 
 	@Override

@@ -75,27 +75,29 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/icon_bt_logion" />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
+                android:layout_alignParentBottom="true"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/bt_login"
                 android:layout_alignParentRight="true"
                 android:id="@+id/login_tv_showcardpanel"
                 android:text="学生卡登录"
+                android:background="@drawable/selector_sendems"
                 android:layout_marginTop="3dp"
                 android:gravity="center"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/bt_login"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="10dp"
                 ></TextView>
             
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/bt_login"
                 android:id="@+id/register_tv_phonelogin"
                 android:text="注册"
-                android:layout_toLeftOf="@+id/login_tv_showcardpanel"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="3dp"
                 android:gravity="center"
+                android:background="@drawable/selector_sendems"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
                 ></TextView>
