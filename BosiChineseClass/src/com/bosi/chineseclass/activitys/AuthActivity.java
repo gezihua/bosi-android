@@ -143,6 +143,17 @@ public class AuthActivity extends BaseActivity {
 	    	
 	    	String mPhone = mEtPhoenNum.getText().toString();
 	    	String mPassword = mEtSnsCode.getText().toString();
+	    	if(TextUtils.isEmpty(mPhone)){
+	    		((BaseActivity)mContext).playYoYo(mEtPhoenNum);
+	    		return ;
+	    	}
+	    	
+	    	if(TextUtils.isEmpty(mPassword)){
+	    		((BaseActivity)mContext).playYoYo(mEtSnsCode);
+	    		return ;
+	    	}
+	    		
+	    	
 			//手机号登陆
 			List<NameValuePair> mList = new ArrayList<NameValuePair>();
 			mList.add(new BasicNameValuePair("account", mPhone));

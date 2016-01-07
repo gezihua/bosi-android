@@ -28,10 +28,11 @@
 
             <EditText
                 android:id="@+id/et_account"
-                android:layout_width="140dp"
+                android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:inputType="number"
                 android:hint="手机号"
+                android:imeOptions="flagNoExtractUi"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/hint_account"
                 android:textSize="12sp" />
@@ -62,12 +63,13 @@
 
             <EditText
                 android:id="@+id/et_password"
-                android:layout_width="140dp"
+                android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_below="@+id/et_account"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/hint_password"
                 android:singleLine="true"
+                android:imeOptions="flagNoExtractUi"
                 android:hint ="密码"
                 android:textSize="12sp" />
 
@@ -83,9 +85,10 @@
 
             <EditText
                 android:id="@+id/et_sms"
-                android:layout_width="140dp"
+                android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:hint ="短信验证码"
+                android:imeOptions="flagNoExtractUi"
                 android:layout_below="@+id/et_password"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/hint_sms"

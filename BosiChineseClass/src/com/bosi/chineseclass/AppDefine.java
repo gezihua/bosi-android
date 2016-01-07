@@ -84,7 +84,7 @@ public class AppDefine {
 	    
 	    public static final String URL_PHONELOGIN = "http://passport1.bsccedu.com/authorization/account";
 	    
-	    
+	    public static final String URL_BUNDPHONE = "http://passport1.bsccedu.com/authorization/mobilephone";
 	    
 	}
 

@@ -68,7 +68,7 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 	
 	
 	private final int CODE_SENDEMS = 101;
-	private final int VIFITY_CODE  = 102;
+	private final int BUNDPHONE_CODE  = 102;
 	
 	private final int REGISTERE_CODE = 103;
 	private void sendEmsAcitonHttp(String phone){
@@ -82,25 +82,32 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 	}
 	
 	
-	private void checkems(String mPhone ,String ems){
-		List<NameValuePair> mList = new ArrayList<NameValuePair>();
-		mList.add(new BasicNameValuePair("mobilephone", mPhone));
-		mList.add(new BasicNameValuePair("securityCode", ems));
-		showProgresssDialogWithHint("正在验证...  ");
-		BSApplication.getInstance().sendData(mList, URLDefine.URL_CHECKEMSSECURITY,
-				this, VIFITY_CODE,HttpMethod.HEAD);
-	}
-	
 	private void registerUserAccount(){														
 		
 		String mPhoneNum = mEtPhone.getText().toString(); 
 		String mPassword = mEtPassword.getText().toString();
 		List<NameValuePair> mList = new ArrayList<NameValuePair>();
-		mList.add(new BasicNameValuePair("account", mPhoneNum));
+		mList.add(new BasicNameValuePair("account", "bscc-"+mPhoneNum));
 		mList.add(new BasicNameValuePair("password", mPassword));
+		mList.add(new BasicNameValuePair("product", "6"));
+		mList.add(new BasicNameValuePair("ei", BSApplication.getInstance().getImei()));
 		showProgresssDialogWithHint("正在注册...  ");
 		BSApplication.getInstance().sendData(mList, URLDefine.URL_USEREGISTER,
 				this, REGISTERE_CODE,HttpMethod.POST);
+	}
+	
+	
+	//绑定手机号
+	private void bundPhoneNum(){
+		String mPhoneNum = mEtPhone.getText().toString(); 
+		String mPassword = mEmsCode.getText().toString();
+		List<NameValuePair> mList = new ArrayList<NameValuePair>();
+		mList.add(new BasicNameValuePair("mobilephone", mPhoneNum));
+		mList.add(new BasicNameValuePair("securityCode", mPassword));
+		mList.add(new BasicNameValuePair("uid", mId));
+		mList.add(new BasicNameValuePair("token", mToken));
+		BSApplication.getInstance().sendData(mList, URLDefine.URL_BUNDPHONE,
+				this, BUNDPHONE_CODE,HttpMethod.POST);
 	}
 	
 	final int EFFECT_TIMEOUT = 3;
@@ -110,7 +117,7 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 
 	@OnClick(R.id.tv_sendems)
 	public void actionSendEms(View mView){
-		String mPhoneNum = mEtPhone.getText().toString();
+		String mPhoneNum = mEtPhone.getText().toString().trim();
 		if(TextUtils.isEmpty(mPhoneNum)){
 			playYoYo(mEtPhone);
 			return ;
@@ -129,6 +136,7 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 		public void run() {
 			if(tempCurrectWaitTimeToUserSendEmsBt ==0){
 				mTvSendEms.setEnabled(true);
+				mTvSendEms.setText("发送验证码");
 				return;
 			}
 			
@@ -182,8 +190,10 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 		mIntent.putExtra(RESULT_PASSWORD, mPassword);
 		setResult(Activity.RESULT_OK);
 		finish();
-		
 	}
+	
+	String mId ="";
+	String mToken = "";
 	@Override
 	public void onHttpSuccess(JSONObject mResult, int code) {
 		// {"code":"1","message":"","data":"{}"} 0 登陆失败 1成功 2 用户名不存在 3 密码不正确 4 超出使用权限
@@ -199,11 +209,15 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 				if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
 					if(code == CODE_SENDEMS){
 						showToastShort("验证码以发送，请注意查收");
-					}else if(code ==  VIFITY_CODE){
-						registerUserAccount();
+					}else if(code ==  BUNDPHONE_CODE){
+						actionResult();
+						
 					}else if(code ==REGISTERE_CODE){
 						//注册成功 执行登陆
-						actionResult();
+						JSONObject mObj = mResult.getJSONObject("data");
+						mId = mObj.getString("id");
+						mToken = mObj.getString("token");
+						bundPhoneNum();
 					}
 				} else {
 					if (!TextUtils.isEmpty(message))

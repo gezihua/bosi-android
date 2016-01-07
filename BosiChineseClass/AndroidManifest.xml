@@ -92,6 +92,7 @@
         
          <activity
             android:name=".activitys.RegisterActivity"
+           
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|layoutDirection|touchscreen|"
             android:screenOrientation="landscape" >
         </activity>  
