@@ -211,7 +211,6 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 						showToastShort("验证码以发送，请注意查收");
 					}else if(code ==  BUNDPHONE_CODE){
 						actionResult();
-						
 					}else if(code ==REGISTERE_CODE){
 						//注册成功 执行登陆
 						JSONObject mObj = mResult.getJSONObject("data");

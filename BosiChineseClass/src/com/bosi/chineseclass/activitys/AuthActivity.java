@@ -152,7 +152,6 @@ public class AuthActivity extends BaseActivity {
 	    		((BaseActivity)mContext).playYoYo(mEtSnsCode);
 	    		return ;
 	    	}
-	    		
 	    	
 			//手机号登陆
 			List<NameValuePair> mList = new ArrayList<NameValuePair>();
