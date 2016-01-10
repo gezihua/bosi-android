@@ -80,12 +80,13 @@ public class AppDefine {
 	    
 	    public static final String URL_CHECKEMSSECURITY = "http://sms.bsccedu.com/securityCode";
 	    
-	    public static final String URL_USEREGISTER = "http://passport1.bsccedu.com/users";
+	    public static final String URL_USEREGISTER = "http://passport1.bsccedu.com/registration/mobilephone";
 	    
 	    public static final String URL_PHONELOGIN = "http://passport1.bsccedu.com/authorization/account";
 	    
 	    public static final String URL_BUNDPHONE = "http://passport1.bsccedu.com/authorization/mobilephone";
-	    
+	    //检查超时时间
+	    public static final String URL_CHECKPHONEUSETIME = "http://order1.bsccedu.com/deadline";
 	}
 
 	public static class STUFFDEFICE {

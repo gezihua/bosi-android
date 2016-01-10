@@ -130,6 +130,29 @@ public class AuthActivity extends BaseActivity {
 			Intent mIntent = new Intent(mContext,RegisterActivity.class);
 			mContext.startActivityForResult(mIntent, mPhoneUserRequest);
 		}
+		private final int CODE_CHECKENABLETIME = 102;
+		private final int CODE_PHONEREGISTER = 101;
+		
+		//查询是否超时
+		private void actionCheckOutOfTimeUsed(String uid){
+			//手机号登陆
+			List<NameValuePair> mList = new ArrayList<NameValuePair>();
+			showProgresssDialogWithHint("检查用户权限中...  ");
+			
+			
+			
+			JSONObject mObj = new JSONObject();
+			try {
+				mObj.put("product", "6");
+				mObj.put("uid", uid);
+			} catch (JSONException e) {
+				
+			}
+			mList.add(new BasicNameValuePair("body", mObj.toString()));
+			
+			BSApplication.getInstance().sendData(mList, URLDefine.URL_CHECKPHONEUSETIME,
+					this, CODE_CHECKENABLETIME,HttpMethod.GET);
+		}
 		
 	    public void actionRegisterActivityResult(String mPhone ,String password){
 	    	mEtPhoenNum.setText(mPhone);
@@ -162,11 +185,10 @@ public class AuthActivity extends BaseActivity {
 					.getInstance().getImei()));
 			showProgresssDialogWithHint("登录中...  ");
 			BSApplication.getInstance().sendData(mList, URLDefine.URL_PHONELOGIN,
-					this, 101,HttpMethod.POST);
+					this, CODE_PHONEREGISTER,HttpMethod.POST);
 	    	
 		}
 		
-		// 
 		@Override
 		public void onHttpSuccess(JSONObject mResult, int code) {
 			dismissProgressDialog(); // 登录成功
@@ -177,15 +199,25 @@ public class AuthActivity extends BaseActivity {
 					if(mResult.has("msg")){
 						 message = mResult.getString("msg");
 					}
-
+					
 					if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
-						showToastShort("登陆成功");
-						actionPhoneLoginSuccess();
-						
-//						JSONObject mData = mResult.getJSONObject("data");
-//						String id = mData.getString("id");
-//						PreferencesUtils.putString(mContext, AppDefine.ZYDefine.EXTRA_DATA_USERID, id);
-						intentToSystem();
+						if(code ==CODE_PHONEREGISTER){
+							JSONObject mJson = mResult.getJSONObject("data");
+							String uid = mJson.getString("id");
+							//todo
+							PreferencesUtils.putString(mContext,
+									AppDefine.ZYDefine.EXTRA_DATA_USERID,uid);
+							actionCheckOutOfTimeUsed(uid);
+						}
+						else if(code ==CODE_CHECKENABLETIME){
+							JSONObject mJson = mResult.getJSONObject("data");
+							String uid = mJson.getString("id");
+							PreferencesUtils.putString(mContext,
+									AppDefine.ZYDefine.EXTRA_DATA_USERID,uid);
+							actionPhoneLoginSuccess();
+							intentToSystem();
+						}
+					
 					} else {
 						if (!TextUtils.isEmpty(message))
 							showToastShort(message);
@@ -193,7 +225,7 @@ public class AuthActivity extends BaseActivity {
 							showToastShort("登陆失败");
 						}
 					}
-
+		
 				} catch (JSONException e) {
 					showToastShort("后台数据异常");
 				}
@@ -218,8 +250,7 @@ public class AuthActivity extends BaseActivity {
 		BPHZ mBphz = new BPHZ();
 		
 		private void actionPhoneLoginSuccess(){
-			PreferencesUtils.putString(mContext,
-					AppDefine.ZYDefine.EXTRA_DATA_USERID,"");
+			
 			mBpcy.clearDbData();
 			mBphz.clearDbData();
 			BSApplication.getInstance().mCurrentLoginRole = ROLE_USER_PHONE;

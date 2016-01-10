@@ -60,11 +60,6 @@ public class BSApplication extends Application {
 	public HttpHandler sendData(List<NameValuePair> mList, String url,
 			final OnHttpActionListener mTatget, final int code,HttpMethod method) {
 		
-//		if(!NetWorkListenerControl.isNetWorkAvailable){
-//			Toast.makeText(this, "网络连接异常", Toast.LENGTH_SHORT).show();
-//			return null;
-//		}
-		
 		HttpHandler mHttpHandler = mHttpPack.sendData(mList, url,
 				new OnHttpActionCallBack() {
 

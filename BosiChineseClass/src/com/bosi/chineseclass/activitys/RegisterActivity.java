@@ -83,35 +83,27 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 	
 	
 	private void registerUserAccount(){														
+		String mPhoneNum = mEtPhone.getText().toString().trim(); 
+		String mPassword = mEtPassword.getText().toString().trim();
+		String mSms = mEmsCode.getText().toString().trim();
 		
-		String mPhoneNum = mEtPhone.getText().toString(); 
-		String mPassword = mEtPassword.getText().toString();
 		List<NameValuePair> mList = new ArrayList<NameValuePair>();
-		mList.add(new BasicNameValuePair("account", "bscc-"+mPhoneNum));
+		mList.add(new BasicNameValuePair("account", mPhoneNum));
 		mList.add(new BasicNameValuePair("password", mPassword));
 		mList.add(new BasicNameValuePair("product", "6"));
 		mList.add(new BasicNameValuePair("ei", BSApplication.getInstance().getImei()));
+		mList.add(new BasicNameValuePair("securityCode", mSms));
+		
+		
 		showProgresssDialogWithHint("正在注册...  ");
 		BSApplication.getInstance().sendData(mList, URLDefine.URL_USEREGISTER,
 				this, REGISTERE_CODE,HttpMethod.POST);
 	}
 	
 	
-	//绑定手机号
-	private void bundPhoneNum(){
-		String mPhoneNum = mEtPhone.getText().toString(); 
-		String mPassword = mEmsCode.getText().toString();
-		List<NameValuePair> mList = new ArrayList<NameValuePair>();
-		mList.add(new BasicNameValuePair("mobilephone", mPhoneNum));
-		mList.add(new BasicNameValuePair("securityCode", mPassword));
-		mList.add(new BasicNameValuePair("uid", mId));
-		mList.add(new BasicNameValuePair("token", mToken));
-		BSApplication.getInstance().sendData(mList, URLDefine.URL_BUNDPHONE,
-				this, BUNDPHONE_CODE,HttpMethod.POST);
-	}
+	
 	
 	final int EFFECT_TIMEOUT = 3;
-	
 	final int EFFECT_SENDEMSBUT_TIMEOUT = 3*60;
 	int tempCurrectWaitTimeToUserSendEmsBt =0 ;
 
@@ -168,7 +160,6 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 			playYoYo(mEmsCode);
 			return ;
 		}
-		
 		//首先验证短信验证码
 		//checkems(mPhoneNum,mEms);
 		
@@ -209,14 +200,12 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 				if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
 					if(code == CODE_SENDEMS){
 						showToastShort("验证码以发送，请注意查收");
-					}else if(code ==  BUNDPHONE_CODE){
-						actionResult();
 					}else if(code ==REGISTERE_CODE){
 						//注册成功 执行登陆
 						JSONObject mObj = mResult.getJSONObject("data");
 						mId = mObj.getString("id");
 						mToken = mObj.getString("token");
-						bundPhoneNum();
+						actionResult();
 					}
 				} else {
 					if (!TextUtils.isEmpty(message))

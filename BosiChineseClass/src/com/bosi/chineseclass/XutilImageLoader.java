@@ -1,6 +1,7 @@
 package com.bosi.chineseclass;
 
 import android.content.Context;
+import com.bosi.chineseclass.R;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;

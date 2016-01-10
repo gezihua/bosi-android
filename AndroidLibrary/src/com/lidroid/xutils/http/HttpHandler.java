@@ -251,13 +251,14 @@ public class HttpHandler<T> extends PriorityAsyncTask<Object, Object, Void> impl
             }
             return new ResponseInfo<T>(response, (T) result, false);
         } else if (statusCode == 301 || statusCode == 302) {
-            if (httpRedirectHandler == null) {
-                httpRedirectHandler = new DefaultHttpRedirectHandler();
-            }
-            HttpRequestBase request = httpRedirectHandler.getDirectRequest(response);
-            if (request != null) {
-                return this.sendRequest(request);
-            }
+//            if (httpRedirectHandler == null) {
+//                httpRedirectHandler = new DefaultHttpRedirectHandler();
+//            }
+//            HttpRequestBase request = httpRedirectHandler.getDirectRequest(response);
+//            if (request != null) {
+//                return this.sendRequest(request);
+//            }
+        	
         } else if (statusCode == 416) {
             throw new HttpException(statusCode, "maybe the file has downloaded completely");
         } else {
