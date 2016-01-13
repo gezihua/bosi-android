@@ -3,6 +3,8 @@ package com.bosi.chineseclass.components;
 
 import android.app.AlertDialog;
 import android.view.View;
+
+import com.bosi.chineseclass.AppDefine;
 import com.bosi.chineseclass.BSApplication;
 import com.bosi.chineseclass.BaseActivity;
 import com.bosi.chineseclass.R;
@@ -33,7 +35,7 @@ public class PhoneLoginTimeOutDialog {
 		mDialog.dismiss();
 		//跳转到购买页面
 		//退到登录页面
-		BosiUtils.intentToWebBrower(mActivity, "http://baidu.com");
+		BosiUtils.intentToWebBrower(mActivity, AppDefine.URLDefine.URL_BUYACCOUNTURL);
 		BSApplication.getInstance().destroySystem();
 	}
 	
