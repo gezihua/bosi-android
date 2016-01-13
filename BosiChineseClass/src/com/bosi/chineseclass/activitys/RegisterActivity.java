@@ -24,6 +24,7 @@ import com.bosi.chineseclass.OnHttpActionListener;
 import com.bosi.chineseclass.R;
 import com.bosi.chineseclass.AppDefine.URLDefine;
 import com.bosi.chineseclass.han.components.HeadLayoutComponents;
+import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -166,20 +167,16 @@ public class RegisterActivity extends BaseActivity implements  OnHttpActionListe
 		registerUserAccount();
 	}
 	
-	
-	public  static final String RESULT_PHONE = "mPhone";
-	
-	public static final String RESULT_PASSWORD ="password";
 
 	private void actionResult(){
-		String mPhoneNum = mEtPhone.getText().toString(); 
-		String mPassword = mEtPassword.getText().toString();
-		
-		Intent mIntent = new Intent(this,AuthActivity.class);
-
-		mIntent.putExtra(RESULT_PHONE, mPhoneNum);
-		mIntent.putExtra(RESULT_PASSWORD, mPassword);
-		setResult(Activity.RESULT_OK);
+		String mPhoneNum = mEtPhone.getText().toString().trim(); 
+		String mPassword = mEtPassword.getText().toString().trim();
+		PreferencesUtils.putString(mContext,
+				AppDefine.ZYDefine.PARAM_PHONELOGIN_PHONE, mPhoneNum
+						);
+		PreferencesUtils.putString(mContext,
+				AppDefine.ZYDefine.PARAM_PHONELOGIN_PASSWORD, mPassword
+						);
 		finish();
 	}
 	

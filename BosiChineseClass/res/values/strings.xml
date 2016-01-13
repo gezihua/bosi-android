@@ -33,5 +33,5 @@
      <string name="bphz_dital_name">爆破汉字</string>
      <string name = "hint_uploading_studyhistory">正在上传学习记录 ...  </string>
       <string name = "hint_updateing_studyhistory">正在同步学习记录 ... </string>
-      <string name = "remote_phoneuserdialog">您的试用的时间已到 ，请购买学习卡以方便 完整的对本系统的内容进行学习</string>
+      <string name = "remote_phoneuserdialog">您的试用的时间已到 ，请购买相关学习套餐以方便 完整的对本系统的内容进行学习</string>
 </resources>

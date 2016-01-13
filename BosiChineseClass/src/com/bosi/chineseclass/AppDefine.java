@@ -45,6 +45,9 @@ public class AppDefine {
 
 		public static final String EXTRA_DATA_USERID = "userId";
 		
+		public static final String PARAM_PHONELOGIN_PHONE = "phonelogin_phone";
+		public static final String PARAM_PHONELOGIN_PASSWORD = "phonelogin_password";
+		
 		public static final String ACTION_BROADCAST_UPBPCYOVER = "com.action.bpcytastover";
 		public static final String ACTION_BRPADCAST_UPBPHZOVER = "com.action.bphztastover";
 		

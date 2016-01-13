@@ -75,17 +75,27 @@ public class BaseActivity extends FragmentActivity {
 		super.onResume();
 		MobclickAgent.onResume(this);
 		//如果是手机号登陆 检查当前时间和登陆时间 超过限制时间提示试用时间已经到了
-		
+		//如果还没有登录的话 不检查
+		checkPhoneLoginTimeDistance();
+	}
+	
+	
+	protected void checkPhoneLoginTimeDistance(){
 		if(BSApplication.getInstance().mCurrentLoginRole ==BSApplication.ROLE_PHONELOGIN){
 			long mCurrentTime = System.currentTimeMillis();
-			long mLoginTime = mCurrentTime - BSApplication.getInstance().mTimeminPhoneUserLoginTime;
-			if(mLoginTime>AppDefine.ZYDefine.TIMELIMIT_ROLE_PHONEUSER){
-				PhoneLoginTimeOutDialog mDialog = new PhoneLoginTimeOutDialog(this);
-				mDialog.mDialog.show();
+			//程序最后试用期限
+			long mTimeminPhoneUserLoginTime = BSApplication.getInstance().mTimeminPhoneUserLoginTime;
+			//距离最后试用期限的时间
+			long mLoginTime = mCurrentTime - mTimeminPhoneUserLoginTime;
+			
+			if(mTimeminPhoneUserLoginTime>0&&mLoginTime>=0){
+				showPhoneLoginTimeOutDialog();
 			}
 		}
-		
-		
+	}
+	
+	protected void showPhoneLoginTimeOutDialog(){
+		PhoneLoginTimeOutDialog mDialog = new PhoneLoginTimeOutDialog(this);
 	}
 
 	@Override

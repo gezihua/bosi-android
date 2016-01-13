@@ -2,7 +2,6 @@ package com.bosi.chineseclass.activitys;
 
 import java.util.ArrayList;
 
-
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -32,6 +31,7 @@ import com.bosi.chineseclass.db.BPCY;
 import com.bosi.chineseclass.db.BPHZ;
 import com.bosi.chineseclass.han.util.PreferencesUtils;
 import com.bosi.chineseclass.utils.BosiUtils;
+import com.bosi.chineseclass.utils.DateUtils;
 import com.bosi.chineseclass.utils.NetStateUtil;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -43,181 +43,193 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 public class AuthActivity extends BaseActivity {
 
 	CardUserLoginManager mCardUserManager;
-	PhoneUserManager  mPhoneUserManager;
+	PhoneUserManager mPhoneUserManager;
 	@ViewInject(R.id.fragment_login_carduser)
 	View mViewCardUser;
-	
+
 	@ViewInject(R.id.fragment_login_phoneuser)
 	View mViewPhoneUser;
-	
-	
-	
+
 	private final int ROLE_USER_CARD = 0;
 	private final int ROLE_USER_PHONE = 1;
-	private  int ROLE_TEMP_CURRENT = -1;
+	private int ROLE_TEMP_CURRENT = -1;
+
+	BPCY mBpcy = new BPCY();
+	BPHZ mBphz = new BPHZ();
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		ROLE_TEMP_CURRENT = ROLE_USER_CARD;
 		mCardUserManager = new CardUserLoginManager();
 		mPhoneUserManager = new PhoneUserManager();
+		
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
 		initPanelBaseRole();
 	}
 
-
-
-	private void initPanelBaseRole(){
-		if(ROLE_TEMP_CURRENT == ROLE_USER_CARD){
+	private void initPanelBaseRole() {
+		// 如果之前用手机号登录过 则默认用手机号登录 否则直接跳转到学习卡登陆的界面上去
+		String mPhoneLogin = PreferencesUtils.getString(mContext,
+				AppDefine.ZYDefine.PARAM_PHONELOGIN_PHONE);
+		String mAccount = PreferencesUtils.getString(mContext,
+				"account");
+		if (!TextUtils.isEmpty(mAccount)||TextUtils.isEmpty(mPhoneLogin)) {
+			// 学习卡自动登录
 			mCardUserManager.initCardUserPanel();
-		}else{
+		} else {
+			// 手机号自动登录
 			mPhoneUserManager.initViewPanel();
 		}
 	}
-	
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent mIntent) {
-		super.onActivityResult(resultCode, resultCode, mIntent);
-		
-		if(resultCode == Activity.RESULT_OK){
-			
-			if(mIntent!=null){
-				
-				String mphone = mIntent.getStringExtra(RegisterActivity
-						.RESULT_PHONE);
-				
-				String mPassword = mIntent.getStringExtra(RegisterActivity
-						.RESULT_PASSWORD);
-				
-				
-				if(mPhoneUserManager!=null){
-					mPhoneUserManager.actionRegisterActivityResult(mphone, mPassword);
-				}
-			}
-		}
-		
-		
-	}
+
+//	@Override
+//	protected void onActivityResult(int requestCode, int resultCode,
+//			Intent mIntent) {
+//		super.onActivityResult(resultCode, resultCode, mIntent);
+//
+//		if (resultCode == Activity.RESULT_OK
+//				&& ROLE_TEMP_CURRENT == ROLE_USER_PHONE) {
+//			if (mIntent != null) {
+//
+//				String mphone = mIntent.getStringExtra("mPhone");
+//
+//				String mPassword = mIntent.getStringExtra("password");
+//
+//				if (mPhoneUserManager != null) {
+//					mPhoneUserManager.actionRegisterActivityResult(mphone,
+//							mPassword);
+//				}
+//			}
+//		}
+//
+//	}
+
 	/**
 	 * 手机用户登录 需要获取验证码
 	 * 
 	 * */
-	class PhoneUserManager implements OnHttpActionListener{
-		
+	class PhoneUserManager implements OnHttpActionListener {
+
 		public final static int mPhoneUserRequest = 111;
 		@ViewInject(R.id.login_et_phoneuser_phonenum)
 		EditText mEtPhoenNum;
-		
+
 		@ViewInject(R.id.login_et_snscode)
 		EditText mEtSnsCode;
 		@ViewInject(R.id.register_tv_phonelogin)
 		View mViewRegister;
-		
-		
-		
-		public PhoneUserManager(){
+
+		public PhoneUserManager() {
 			ViewUtils.inject(this, mViewPhoneUser);
 		}
+
 		@OnClick(R.id.login_tv_showcardpanel)
-		public void actionShowCardInfoPanel(View mView){
+		public void actionShowCardInfoPanel(View mView) {
 			mViewPhoneUser.setVisibility(View.GONE);
 			mViewCardUser.setVisibility(View.VISIBLE);
 			ROLE_TEMP_CURRENT = ROLE_USER_CARD;
 		}
-		
+
 		@OnClick(R.id.register_tv_phonelogin)
-		public void actionRegister(View mView){
-			Intent mIntent = new Intent(mContext,RegisterActivity.class);
+		public void actionRegister(View mView) {
+			Intent mIntent = new Intent(mContext, RegisterActivity.class);
 			mContext.startActivityForResult(mIntent, mPhoneUserRequest);
 		}
+
 		private final int CODE_CHECKENABLETIME = 102;
 		private final int CODE_PHONEREGISTER = 101;
-		
-		//查询是否超时
-		private void actionCheckOutOfTimeUsed(String uid){
-			//手机号登陆
+
+		// 查询是否超时
+		private void actionCheckOutOfTimeUsed(String uid) {
+			// 手机号登陆
 			List<NameValuePair> mList = new ArrayList<NameValuePair>();
 			showProgresssDialogWithHint("检查用户权限中...  ");
-			
-			
-			
-			JSONObject mObj = new JSONObject();
-			try {
-				mObj.put("product", "6");
-				mObj.put("uid", uid);
-			} catch (JSONException e) {
-				
-			}
-			mList.add(new BasicNameValuePair("body", mObj.toString()));
-			
-			BSApplication.getInstance().sendData(mList, URLDefine.URL_CHECKPHONEUSETIME,
-					this, CODE_CHECKENABLETIME,HttpMethod.GET);
+
+			String mPhoneUrl = "http://order1.bsccedu.com/deadline?product=6&uid="
+					+ uid;
+
+			BSApplication.getInstance().sendData(mList, mPhoneUrl, this,
+					CODE_CHECKENABLETIME, HttpMethod.GET);
 		}
-		
-	    public void actionRegisterActivityResult(String mPhone ,String password){
-	    	mEtPhoenNum.setText(mPhone);
-	    	mEtSnsCode.setText(password);
-	    	sendPhoneLogin(null);
-	    }
-	    
-		
-	    @OnClick(R.id.bt_login)
-		public void sendPhoneLogin(View mView){
-	    	
-	    	String mPhone = mEtPhoenNum.getText().toString();
-	    	String mPassword = mEtSnsCode.getText().toString();
-	    	if(TextUtils.isEmpty(mPhone)){
-	    		((BaseActivity)mContext).playYoYo(mEtPhoenNum);
-	    		return ;
-	    	}
-	    	
-	    	if(TextUtils.isEmpty(mPassword)){
-	    		((BaseActivity)mContext).playYoYo(mEtSnsCode);
-	    		return ;
-	    	}
-	    	
-			//手机号登陆
+
+		public void actionRegisterActivityResult(String mPhone, String password) {
+			mEtPhoenNum.setText(mPhone);
+			mEtSnsCode.setText(password);
+			sendPhoneLogin(null);
+		}
+
+		@OnClick(R.id.bt_login)
+		public void sendPhoneLogin(View mView) {
+
+			String mPhone = mEtPhoenNum.getText().toString();
+			String mPassword = mEtSnsCode.getText().toString();
+			if (TextUtils.isEmpty(mPhone)) {
+				((BaseActivity) mContext).playYoYo(mEtPhoenNum);
+				return;
+			}
+
+			if (TextUtils.isEmpty(mPassword)) {
+				((BaseActivity) mContext).playYoYo(mEtSnsCode);
+				return;
+			}
+			// 手机号登陆
 			List<NameValuePair> mList = new ArrayList<NameValuePair>();
 			mList.add(new BasicNameValuePair("account", mPhone));
 			mList.add(new BasicNameValuePair("password", mPassword));
 			mList.add(new BasicNameValuePair("product", "6"));
-			mList.add(new BasicNameValuePair("ei", BSApplication
-					.getInstance().getImei()));
+			mList.add(new BasicNameValuePair("ei", BSApplication.getInstance()
+					.getImei()));
 			showProgresssDialogWithHint("登录中...  ");
-			BSApplication.getInstance().sendData(mList, URLDefine.URL_PHONELOGIN,
-					this, CODE_PHONEREGISTER,HttpMethod.POST);
-	    	
+			BSApplication.getInstance().sendData(mList,
+					URLDefine.URL_PHONELOGIN, this, CODE_PHONEREGISTER,
+					HttpMethod.POST);
+			
 		}
-		
+
+		// 手机号登录成功回执，用于手机号登录成功后的回调
 		@Override
 		public void onHttpSuccess(JSONObject mResult, int code) {
 			dismissProgressDialog(); // 登录成功
-			String message =null;
+			String message = null;
 			if (mResult.has("code")) {
 				try {
 					String codeResult = mResult.getString("code");
-					if(mResult.has("msg")){
-						 message = mResult.getString("msg");
+					if (mResult.has("msg")) {
+						message = mResult.getString("msg");
 					}
-					
+
 					if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
-						if(code ==CODE_PHONEREGISTER){
+						if (code == CODE_PHONEREGISTER) {
 							JSONObject mJson = mResult.getJSONObject("data");
 							String uid = mJson.getString("id");
-							//todo
+							// todo
 							PreferencesUtils.putString(mContext,
-									AppDefine.ZYDefine.EXTRA_DATA_USERID,uid);
+									AppDefine.ZYDefine.EXTRA_DATA_USERID, uid);
 							actionCheckOutOfTimeUsed(uid);
-						}
-						else if(code ==CODE_CHECKENABLETIME){
-							JSONObject mJson = mResult.getJSONObject("data");
-							String uid = mJson.getString("id");
+						} else if (code == CODE_CHECKENABLETIME) {
+							JSONObject mJson = mResult.getJSONArray("data")
+									.getJSONObject(0);
+							String uid = mJson.getString("uid");
 							PreferencesUtils.putString(mContext,
-									AppDefine.ZYDefine.EXTRA_DATA_USERID,uid);
-							actionPhoneLoginSuccess();
+									AppDefine.ZYDefine.EXTRA_DATA_USERID, uid);
+							// 记录时间 并比对
+							String deadline = mJson.getString("deadline");
+							String isExpire = mJson.getString("isExpire");
+							if (!TextUtils.isEmpty(isExpire)
+									&& !isExpire.equals("0")) {
+								showPhoneLoginTimeOutDialog();
+								return;
+							}
+
+							checkPhoneLoginTimeDistance();
+							actionPhoneLoginSuccess(deadline);
 							intentToSystem();
 						}
-					
+
 					} else {
 						if (!TextUtils.isEmpty(message))
 							showToastShort(message);
@@ -225,7 +237,7 @@ public class AuthActivity extends BaseActivity {
 							showToastShort("登陆失败");
 						}
 					}
-		
+
 				} catch (JSONException e) {
 					showToastShort("后台数据异常");
 				}
@@ -237,26 +249,39 @@ public class AuthActivity extends BaseActivity {
 		@Override
 		public void onHttpError(Exception e, String reason, int code) {
 			showToastShort("登陆失败");
-			dismissProgressDialog(); 
-			
+			dismissProgressDialog();
+
 		}
-		
-		public void initViewPanel(){
+
+		public void initViewPanel() {
 			mViewPhoneUser.setVisibility(View.VISIBLE);
-		}
-		
-		//手机号登陆成功 清空学习记录 ，并且
-		BPCY mBpcy = new BPCY();
-		BPHZ mBphz = new BPHZ();
-		
-		private void actionPhoneLoginSuccess(){
+			mViewCardUser.setVisibility(View.GONE);
 			
-			mBpcy.clearDbData();
-			mBphz.clearDbData();
-			BSApplication.getInstance().mCurrentLoginRole = ROLE_USER_PHONE;
-			BSApplication.getInstance().mTimeminPhoneUserLoginTime = System.currentTimeMillis();
+			String mPhoneLogin = PreferencesUtils.getString(mContext, AppDefine.ZYDefine.PARAM_PHONELOGIN_PHONE);
+			String mPhonePassword = PreferencesUtils.getString(mContext, AppDefine.ZYDefine.PARAM_PHONELOGIN_PASSWORD);
+			
+			if(!TextUtils.isEmpty(mPhoneLogin)){
+				mEtPhoenNum.setText(mPhoneLogin);
+			}
+			if(!TextUtils.isEmpty(mPhonePassword)){
+				mEtSnsCode.setText(mPhonePassword);
+			}
+			//sendPhoneLogin(null);
+
 		}
-		
+
+		private void actionPhoneLoginSuccess(String msgTime) {
+			PreferencesUtils.putString(mContext,
+					AppDefine.ZYDefine.PARAM_PHONELOGIN_PHONE, mEtPhoenNum
+							.getText().toString().trim());
+			PreferencesUtils.putString(mContext,
+					AppDefine.ZYDefine.PARAM_PHONELOGIN_PASSWORD, mEtSnsCode
+							.getText().toString().trim());
+			BSApplication.getInstance().mTimeminPhoneUserLoginTime = DateUtils
+					.stringToDate(msgTime).getTime();
+			BSApplication.getInstance().mCurrentLoginRole = BSApplication.ROLE_PHONELOGIN;
+		}
+
 	}
 
 	/**
@@ -265,22 +290,23 @@ public class AuthActivity extends BaseActivity {
 	 * */
 	class CardUserLoginManager implements OnHttpActionListener {
 		@OnClick(R.id.login_tv_showphoneuserpanel)
-		public void actionShowPhoneUserPanel(View mView){
+		public void actionShowPhoneUserPanel(View mView) {
 			mViewPhoneUser.setVisibility(View.VISIBLE);
 			mViewCardUser.setVisibility(View.GONE);
 			ROLE_TEMP_CURRENT = ROLE_USER_PHONE;
 		}
-		
-		public CardUserLoginManager(){
+
+		public CardUserLoginManager() {
 			ViewUtils.inject(this, mViewCardUser);
 		}
+
 		@ViewInject(R.id.et_account)
 		private EditText mEditAccount;
 		@ViewInject(R.id.et_password)
 		private EditText mEditPassword;
 		@ViewInject(R.id.et_phonenum)
 		private EditText mEditPhone;
-		
+
 		/**
 		 * 通讯交互成功
 		 * 
@@ -288,14 +314,15 @@ public class AuthActivity extends BaseActivity {
 		@Override
 		public void onHttpSuccess(JSONObject mResult, int code) {
 
-			// {"code":"1","message":"","data":"{}"} 0 登陆失败 1成功 2 用户名不存在 3 密码不正确 4 超出使用权限
+			// {"code":"1","message":"","data":"{}"} 0 登陆失败 1成功 2 用户名不存在 3 密码不正确
+			// 4 超出使用权限
 			dismissProgressDialog(); // 登录成功
-			String message =null;
+			String message = null;
 			if (mResult.has("code")) {
 				try {
 					String codeResult = mResult.getString("code");
-					if(mResult.has("message")){
-						 message = mResult.getString("message");
+					if (mResult.has("message")) {
+						message = mResult.getString("message");
 					}
 
 					if (codeResult.equals(AppDefine.ZYDefine.CODE_SUCCESS)) {
@@ -303,7 +330,6 @@ public class AuthActivity extends BaseActivity {
 						JSONObject mData = mResult.getJSONObject("data");
 						String id = mData.getString("id");
 						BSApplication.getInstance().mCurrentLoginRole = ROLE_USER_CARD;
-						
 						storeUserData(id);
 						intentToSystem();
 					} else {
@@ -324,8 +350,7 @@ public class AuthActivity extends BaseActivity {
 		}
 
 		/**
-		 * 保存了当前的登录的用户数据
-		 * 保存用户卡相关信息
+		 * 保存了当前的登录的用户数据 保存用户卡相关信息
 		 * */
 		private void storeUserData(String userId) {
 			PreferencesUtils.putString(mContext, "account", mEditAccount
@@ -334,13 +359,14 @@ public class AuthActivity extends BaseActivity {
 					.getText().toString().trim());
 			PreferencesUtils.putString(mContext, "phone", mEditPhone.getText()
 					.toString().trim());
-			PreferencesUtils.putString(mContext, AppDefine.ZYDefine.EXTRA_DATA_USERID, userId);
+			PreferencesUtils.putString(mContext,
+					AppDefine.ZYDefine.EXTRA_DATA_USERID, userId);
 		}
 
 		@Override
 		public void onHttpError(Exception e, String reason, int code) {
 			dismissProgressDialog();
-			showToastShort("服务异常，请检查网络后重试" +e.getMessage());
+			showToastShort("服务异常，请检查网络后重试" + e.getMessage());
 		}
 
 		@OnClick(R.id.bt_login)
@@ -377,11 +403,13 @@ public class AuthActivity extends BaseActivity {
 					.getInstance().getImei()));
 			showProgresssDialogWithHint("登录中...  ");
 			BSApplication.getInstance().sendData(mList, URLDefine.URL_AUTH,
-					this, 101,HttpMethod.POST);
+					this, 101, HttpMethod.POST);
 
 		}
+
 		public void initCardUserPanel() {
 			mViewCardUser.setVisibility(View.VISIBLE);
+			mViewPhoneUser.setVisibility(View.GONE);
 			String account = PreferencesUtils.getString(mContext, "account");
 			String password = PreferencesUtils.getString(mContext, "password");
 			String phone = PreferencesUtils.getString(mContext, "phone");
@@ -394,13 +422,15 @@ public class AuthActivity extends BaseActivity {
 			if (!TextUtils.isEmpty(phone)) {
 				mEditPhone.setText(phone);
 			}
-
-			 actionLogin(null);
+			//actionLogin(null);
 		}
 
 	}
 
 	private void intentToSystem() {
+		mBpcy.clearDbData();
+		mBphz.clearDbData();
+
 		Intent mIntent = new Intent(this, MainActivity.class);
 		startActivity(mIntent);
 		finish();
@@ -443,7 +473,9 @@ public class AuthActivity extends BaseActivity {
 			@Override
 			public void onClick(View arg0) {
 				mPopuWindow.dismiss();
-				BosiUtils.intentToVideoPlay(AppDefine.URLDefine.URL_LOGIN_REMOTE_ABOUTBOSI, mContext);
+				BosiUtils.intentToVideoPlay(
+						AppDefine.URLDefine.URL_LOGIN_REMOTE_ABOUTBOSI,
+						mContext);
 			}
 		});
 		View mSecond = mPopView.findViewById(R.id.login_popu_rl_register);

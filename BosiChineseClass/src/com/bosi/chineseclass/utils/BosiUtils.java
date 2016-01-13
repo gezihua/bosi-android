@@ -136,4 +136,16 @@ public class BosiUtils {
 		mActivity.startActivity(mIntent);
 	}
 	
+	//跳转到系统的网页浏览器进行购买
+	
+	public static void intentToWebBrower(Activity mActivity,String mUrl ){
+		Uri uri = Uri.parse(mUrl);
+		Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		mActivity.startActivity(intent);
+		
+		
+	}
+	
+	
 }
